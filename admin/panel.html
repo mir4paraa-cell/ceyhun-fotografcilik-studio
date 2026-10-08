@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ceyhun Fotoğrafçılık — Yönetim Paneli</title>
+<title>Ceyhun Fotoğrafçılık Studio</title>
+
+<meta name="description"
+content="Ceyhun Fotoğrafçılık Studio — Düğün, nişan, dış çekim ve özel gün fotoğrafçılığı.">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -15,287 +18,460 @@
   padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f5f7;
+  background:#faf9f7;
   color:#171717;
+  line-height:1.6;
 }
 
-button,input{
-  font:inherit;
+img{
+  max-width:100%;
 }
 
-button{
-  cursor:pointer;
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-.sidebar{
+/* HEADER */
+
+header{
   position:fixed;
-  left:0;
   top:0;
-  bottom:0;
-  width:250px;
-  background:#111;
-  color:#fff;
-  padding:28px 18px;
-  z-index:20;
+  left:0;
+  right:0;
+  z-index:50;
+  padding:20px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.3s;
+  color:white;
+}
+
+header.scrolled{
+  background:rgba(250,249,247,.96);
+  color:#171717;
+  box-shadow:0 5px 30px rgba(0,0,0,.08);
 }
 
 .logo{
-  padding:0 12px 30px;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:2px;
 }
 
-.logo strong{
-  display:block;
-  font-size:20px;
-  letter-spacing:1px;
+nav{
+  display:flex;
+  gap:28px;
+  font-size:14px;
 }
 
-.logo span{
-  display:block;
-  margin-top:6px;
-  color:#999;
-  font-size:12px;
+nav a{
+  opacity:.9;
 }
 
-.menu-title{
-  color:#777;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin:24px 12px 8px;
+nav a:hover{
+  opacity:1;
 }
 
-.nav-btn{
-  width:100%;
-  border:0;
-  background:transparent;
-  color:#bbb;
-  padding:13px 12px;
-  border-radius:10px;
-  text-align:left;
-  margin-bottom:4px;
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  overflow:hidden;
+  background:#111;
 }
 
-.nav-btn:hover,
-.nav-btn.active{
-  background:#252525;
-  color:#fff;
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,.38),
+      rgba(0,0,0,.55)
+    ),
+    url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg");
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.02);
 }
 
-.nav-btn span{
-  display:inline-block;
-  width:28px;
-  color:#aaa;
-}
-
-.logout{
-  margin-top:15px;
-}
-
-.main{
-  margin-left:250px;
+.hero-content{
+  position:relative;
+  z-index:2;
   padding:30px;
 }
 
-.top{
+.hero-kicker{
+  text-transform:uppercase;
+  letter-spacing:5px;
+  font-size:12px;
+  margin-bottom:25px;
+  opacity:.9;
+}
+
+.hero h1{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:clamp(48px,8vw,105px);
+  line-height:.95;
+  max-width:1000px;
+}
+
+.hero p{
+  max-width:650px;
+  margin:30px auto;
+  font-size:17px;
+  opacity:.9;
+}
+
+.hero-btn{
+  display:inline-block;
+  padding:14px 28px;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:50px;
+  transition:.3s;
+}
+
+.hero-btn:hover{
+  background:white;
+  color:#111;
+}
+
+.scroll{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:11px;
+  letter-spacing:3px;
+  opacity:.7;
+}
+
+/* GENERAL */
+
+.section{
+  padding:110px 5%;
+  max-width:1500px;
+  margin:auto;
+}
+
+.section-heading{
+  max-width:700px;
+  margin-bottom:50px;
+}
+
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:11px;
+  color:#777;
+  margin-bottom:15px;
+}
+
+.section h2{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:clamp(38px,5vw,65px);
+  line-height:1;
+}
+
+.section-heading p{
+  color:#777;
+  margin-top:20px;
+}
+
+/* GALLERY */
+
+.gallery{
+  columns:4 250px;
+  column-gap:18px;
+}
+
+.gallery-item{
+  break-inside:avoid;
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  background:#eee;
+}
+
+.gallery-item img{
+  width:100%;
+  display:block;
+  transition:transform .7s ease;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.035);
+}
+
+.gallery-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+  background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.45)
+  );
+  opacity:0;
+  transition:.3s;
+  color:white;
+  font-size:12px;
+}
+
+.gallery-item:hover .gallery-overlay{
+  opacity:1;
+}
+
+/* LOADING */
+
+.gallery-loading{
+  padding:80px 20px;
+  text-align:center;
+  color:#777;
+}
+
+.spinner{
+  width:30px;
+  height:30px;
+  border:2px solid #ddd;
+  border-top-color:#222;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:0 auto 20px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* STORY */
+
+.story{
+  background:#171717;
+  color:white;
+}
+
+.story-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.story-image{
+  height:650px;
+  background:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg")
+  center/cover;
+}
+
+.story-text h2{
+  font-family:Georgia,serif;
+  font-size:clamp(40px,5vw,70px);
+  font-weight:400;
+  line-height:1;
+}
+
+.story-text p{
+  color:#bbb;
+  margin-top:25px;
+  max-width:500px;
+}
+
+/* SERVICES */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.service{
+  background:white;
+  border:1px solid #e8e6e2;
+  padding:35px;
+  min-height:220px;
+}
+
+.service-number{
+  font-size:12px;
+  color:#999;
+}
+
+.service h3{
+  font-family:Georgia,serif;
+  font-size:27px;
+  font-weight:400;
+  margin-top:30px;
+}
+
+.service p{
+  color:#777;
+  margin-top:12px;
+  font-size:14px;
+}
+
+/* CTA */
+
+.cta{
+  text-align:center;
+  padding:140px 25px;
+  background:#e9e4dc;
+}
+
+.cta h2{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:clamp(42px,6vw,75px);
+  line-height:1;
+}
+
+.cta p{
+  color:#666;
+  max-width:600px;
+  margin:25px auto 35px;
+}
+
+.cta-btn{
+  display:inline-block;
+  background:#171717;
+  color:white;
+  padding:15px 30px;
+  border-radius:50px;
+}
+
+/* CONTACT */
+
+.contact{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.contact h2{
+  font-family:Georgia,serif;
+  font-size:60px;
+  font-weight:400;
+  line-height:1;
+}
+
+.contact-info{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.contact-card{
+  background:white;
+  border:1px solid #e5e2dd;
+  padding:22px;
+}
+
+.contact-card small{
+  color:#999;
+  display:block;
+  margin-bottom:5px;
+}
+
+.contact-card strong{
+  font-weight:500;
+}
+
+/* FOOTER */
+
+footer{
+  background:#111;
+  color:white;
+  padding:45px 5%;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:20px;
-  margin-bottom:28px;
 }
 
-.top h1{
-  font-size:30px;
+footer small{
+  color:#888;
 }
 
-.top p{
-  color:#777;
-  margin-top:6px;
-}
+/* WHATSAPP */
 
-.btn{
-  border:0;
-  border-radius:10px;
-  padding:12px 18px;
-  background:#111;
-  color:#fff;
-  font-weight:600;
-}
-
-.btn:hover{
-  opacity:.85;
-}
-
-.btn-light{
-  background:#fff;
-  color:#111;
-  border:1px solid #ddd;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  margin-bottom:28px;
-}
-
-.stat{
-  background:#fff;
-  border:1px solid #e6e6e6;
-  border-radius:16px;
-  padding:22px;
-}
-
-.stat small{
-  color:#777;
-}
-
-.stat strong{
-  display:block;
-  font-size:30px;
-  margin-top:10px;
-}
-
-.toolbar{
-  background:#fff;
-  border:1px solid #e5e5e5;
-  border-radius:16px;
-  padding:18px;
+.whatsapp{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  z-index:80;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#171717;
+  color:white;
   display:flex;
+  justify-content:center;
   align-items:center;
-  gap:12px;
-  margin-bottom:22px;
+  font-size:23px;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);
 }
 
-.search{
-  flex:1;
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:13px 15px;
-  outline:none;
-}
+/* LIGHTBOX */
 
-.search:focus{
-  border-color:#111;
-}
-
-.file-input{
-  display:none;
-}
-
-.gallery{
-  columns:4 220px;
-  column-gap:18px;
-}
-
-.photo{
-  break-inside:avoid;
-  background:#fff;
-  border:1px solid #e5e5e5;
-  border-radius:15px;
-  overflow:hidden;
-  margin-bottom:18px;
-  position:relative;
-}
-
-.photo img{
-  width:100%;
-  display:block;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.photo img:hover{
-  opacity:.9;
-}
-
-.photo-info{
-  padding:12px;
-}
-
-.photo-name{
-  font-size:13px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.photo-actions{
-  display:flex;
-  gap:7px;
-  margin-top:10px;
-}
-
-.photo-actions button{
-  flex:1;
-  border:1px solid #ddd;
-  background:#fff;
-  padding:8px;
-  border-radius:8px;
-}
-
-.photo-actions button:hover{
-  background:#f1f1f1;
-}
-
-.favorite{
-  color:#b18b00;
-}
-
-.empty{
-  background:#fff;
-  border:1px dashed #ccc;
-  border-radius:16px;
-  padding:60px 20px;
-  text-align:center;
-  color:#777;
-}
-
-.loading{
-  background:#fff;
-  border-radius:16px;
-  padding:50px;
-  text-align:center;
-  color:#777;
-}
-
-.modal{
+.lightbox{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.9);
+  background:rgba(0,0,0,.95);
+  z-index:100;
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:100;
   padding:30px;
 }
 
-.modal.open{
+.lightbox.open{
   display:flex;
 }
 
-.modal img{
+.lightbox img{
   max-width:90vw;
-  max-height:85vh;
+  max-height:88vh;
   object-fit:contain;
 }
 
-.modal-close{
+.close{
   position:absolute;
   top:20px;
   right:25px;
+  width:45px;
+  height:45px;
   border:0;
-  background:#fff;
-  width:44px;
-  height:44px;
   border-radius:50%;
-  font-size:22px;
+  background:white;
+  color:#111;
+  font-size:25px;
+  cursor:pointer;
 }
 
-.modal-prev,
-.modal-next{
+.prev,
+.next{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
@@ -303,91 +479,94 @@ button{
   height:50px;
   border:0;
   border-radius:50%;
-  background:#fff;
-  font-size:25px;
+  background:white;
+  color:#111;
+  font-size:28px;
+  cursor:pointer;
 }
 
-.modal-prev{
+.prev{
   left:25px;
 }
 
-.modal-next{
+.next{
   right:25px;
 }
 
-.modal-name{
+.photo-name{
   position:absolute;
-  bottom:18px;
+  bottom:20px;
   left:50%;
   transform:translateX(-50%);
-  color:#fff;
-  background:rgba(0,0,0,.6);
-  padding:9px 15px;
-  border-radius:8px;
-  max-width:80%;
-  overflow:hidden;
+  background:rgba(0,0,0,.65);
+  color:white;
+  padding:8px 15px;
+  border-radius:20px;
+  font-size:12px;
+  max-width:70%;
   white-space:nowrap;
+  overflow:hidden;
   text-overflow:ellipsis;
 }
 
-.toast{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:#111;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:10px;
-  display:none;
-  z-index:200;
-}
+/* MOBILE */
 
-@media(max-width:900px){
-  .sidebar{
-    width:210px;
+@media(max-width:800px){
+
+  header{
+    padding:18px 5%;
   }
 
-  .main{
-    margin-left:210px;
+  nav{
+    gap:12px;
+    font-size:12px;
   }
 
-  .stats{
-    grid-template-columns:repeat(2,1fr);
+  nav a:nth-child(n+4){
+    display:none;
   }
 
-  .gallery{
-    columns:3 180px;
-  }
-}
-
-@media(max-width:650px){
-  .sidebar{
-    position:relative;
-    width:100%;
-    height:auto;
-  }
-
-  .main{
-    margin-left:0;
-    padding:18px;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .toolbar{
-    flex-direction:column;
-    align-items:stretch;
+  .section{
+    padding:80px 5%;
   }
 
   .gallery{
     columns:2 140px;
+    column-gap:10px;
   }
 
-  .top{
-    align-items:flex-start;
-    flex-direction:column;
+  .gallery-item{
+    margin-bottom:10px;
+  }
+
+  .story-inner,
+  .contact{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .story-image{
+    height:450px;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .contact h2{
+    font-size:45px;
+  }
+
+  .prev{
+    left:10px;
+  }
+
+  .next{
+    right:10px;
+  }
+
+  .lightbox{
+    padding:10px;
   }
 }
 </style>
@@ -395,311 +574,390 @@ button{
 
 <body>
 
-<aside class="sidebar">
+<header id="header">
 
-  <div class="logo">
-    <strong>CEYHUN FOTOĞRAFÇILIK</strong>
-    <span>Yönetim Paneli</span>
+  <a href="#home" class="logo">
+    CEYHUN FOTOĞRAFÇILIK
+  </a>
+
+  <nav>
+    <a href="#home">Ana Sayfa</a>
+    <a href="#gallery">Galerimiz</a>
+    <a href="#story">Hikâyemiz</a>
+    <a href="#services">Hizmetler</a>
+    <a href="#contact">İletişim</a>
+  </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+
+    <div class="hero-kicker">
+      Wedding • Story • Emotion
+    </div>
+
+    <h1>
+      Her aşkın<br>
+      bir hikâyesi vardır.
+    </h1>
+
+    <p>
+      Biz o hikâyeyi kadraja alıyoruz.
+      Sizin için en özel anları zamansız
+      fotoğraflara dönüştürüyoruz.
+    </p>
+
+    <a href="#gallery" class="hero-btn">
+      Hikâyelerimize Bak
+    </a>
+
   </div>
 
-  <div class="menu-title">Yönetim</div>
+  <div class="scroll">
+    AŞAĞI KAYDIR
+  </div>
 
-  <button class="nav-btn active" onclick="showSection('dashboard',this)">
-    <span>⌂</span> Genel Bakış
-  </button>
+</section>
 
-  <button class="nav-btn" onclick="showSection('photos',this)">
-    <span>▧</span> Fotoğraflar
-  </button>
 
-  <button class="nav-btn" onclick="showSection('albums',this)">
-    <span>▤</span> Albümler
-  </button>
+<!-- GALLERY -->
 
-  <div class="menu-title">Diğer</div>
+<section class="section" id="gallery">
 
-  <button class="nav-btn" onclick="showSection('clients',this)">
-    <span>♙</span> Müşteriler
-  </button>
+  <div class="section-heading">
 
-  <button class="nav-btn" onclick="showSection('appointments',this)">
-    <span>◷</span> Randevular
-  </button>
-
-  <button class="nav-btn" onclick="showSection('payments',this)">
-    <span>₺</span> Ödemeler
-  </button>
-
-  <button class="nav-btn" onclick="showSection('messages',this)">
-    <span>✉</span> Mesajlar
-  </button>
-
-  <button class="nav-btn logout" onclick="logout()">
-    <span>↪</span> Çıkış Yap
-  </button>
-
-</aside>
-
-<main class="main">
-
-  <!-- DASHBOARD -->
-
-  <section id="dashboard">
-
-    <div class="top">
-      <div>
-        <h1>Hoş geldin 👋</h1>
-        <p>Ceyhun Fotoğrafçılık yönetim paneli</p>
-      </div>
-
-      <button class="btn" onclick="openPhotos()">
-        📸 Fotoğraflara Git
-      </button>
+    <div class="eyebrow">
+      Seçkilerimiz
     </div>
 
-    <div class="stats">
+    <h2>
+      Aşkın<br>
+      kadrajı.
+    </h2>
 
-      <div class="stat">
-        <small>Toplam Fotoğraf</small>
-        <strong id="dashboardPhotoCount">0</strong>
-      </div>
+    <p>
+      Gerçek hikâyelerden, gerçek duygulardan
+      ve unutulmayacak anlardan bir seçki.
+    </p>
 
-      <div class="stat">
-        <small>Favoriler</small>
-        <strong id="dashboardFavoriteCount">0</strong>
-      </div>
-
-      <div class="stat">
-        <small>Albüm</small>
-        <strong>0</strong>
-      </div>
-
-      <div class="stat">
-        <small>Müşteri</small>
-        <strong>0</strong>
-      </div>
-
-    </div>
-
-    <div class="empty">
-      <h2>Fotoğraf arşivin hazır 📸</h2>
-      <p style="margin-top:10px;">
-        Supabase'deki <b>site fotolar</b> alanındaki fotoğrafların
-        Fotoğraflar bölümünde otomatik görünecek.
-      </p>
-    </div>
-
-  </section>
+  </div>
 
 
-  <!-- PHOTOS -->
+  <div id="galleryContainer">
 
-  <section id="photos" style="display:none;">
+    <div class="gallery-loading">
 
-    <div class="top">
+      <div class="spinner"></div>
 
-      <div>
-        <h1>Fotoğraflar</h1>
-        <p>Supabase fotoğraf arşivin</p>
-      </div>
-
-      <label class="btn">
-        ＋ Fotoğraf Yükle
-        <input
-          id="fileInput"
-          class="file-input"
-          type="file"
-          accept="image/*"
-          multiple
-          onchange="uploadPhotos(event)"
-        >
-      </label>
-
-    </div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <small>Toplam Fotoğraf</small>
-        <strong id="photoCount">0</strong>
-      </div>
-
-      <div class="stat">
-        <small>Favoriler</small>
-        <strong id="favoriteCount">0</strong>
-      </div>
-
-      <div class="stat">
-        <small>JPG</small>
-        <strong id="jpgCount">0</strong>
-      </div>
-
-      <div class="stat">
-        <small>PNG</small>
-        <strong id="pngCount">0</strong>
-      </div>
-
-    </div>
-
-    <div class="toolbar">
-
-      <input
-        id="searchInput"
-        class="search"
-        type="text"
-        placeholder="Fotoğraf ara..."
-        oninput="renderPhotos()"
-      >
-
-      <button class="btn btn-light" onclick="loadPhotos()">
-        ↻ Yenile
-      </button>
-
-    </div>
-
-    <div id="loading" class="loading">
       Fotoğraflar yükleniyor...
+
     </div>
 
-    <div id="gallery" class="gallery"></div>
+  </div>
 
-  </section>
+</section>
 
 
-  <!-- ALBUMS -->
+<!-- STORY -->
 
-  <section id="albums" style="display:none;">
+<section class="story" id="story">
 
-    <div class="top">
-      <div>
-        <h1>Albümler</h1>
-        <p>Fotoğraflarından albümler oluştur.</p>
+  <div class="section">
+
+    <div class="story-inner">
+
+      <div class="story-image"></div>
+
+      <div class="story-text">
+
+        <div class="eyebrow">
+          Bizim hikâyemiz
+        </div>
+
+        <h2>
+          Sadece<br>
+          fotoğraf<br>
+          çekmiyoruz.
+        </h2>
+
+        <p>
+          Bir bakışı, bir gülüşü, bir dokunuşu
+          ve o günün hissettirdiği her şeyi
+          hatırlanabilir hale getiriyoruz.
+        </p>
+
+        <p>
+          Çünkü yıllar sonra fotoğraflara
+          baktığınızda sadece nasıl göründüğünüzü
+          değil, o an ne hissettiğinizi de
+          hatırlamanızı istiyoruz.
+        </p>
+
       </div>
+
     </div>
 
-    <div class="empty">
-      <h2>Albüm sistemi hazırlanıyor 📚</h2>
-      <p style="margin-top:10px;">
-        Bir sonraki aşamada SmartAlbums tarzı albüm tasarımını buraya ekleyeceğiz.
+  </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="section" id="services">
+
+  <div class="section-heading">
+
+    <div class="eyebrow">
+      Hizmetler
+    </div>
+
+    <h2>
+      Sizin hikâyeniz,<br>
+      bizim kadrajımız.
+    </h2>
+
+  </div>
+
+
+  <div class="services">
+
+    <div class="service">
+
+      <div class="service-number">
+        01
+      </div>
+
+      <h3>
+        Düğün
+      </h3>
+
+      <p>
+        Düğününüzün en özel anlarını
+        doğal ve zamansız karelerle
+        ölümsüzleştiriyoruz.
       </p>
+
     </div>
 
-  </section>
 
+    <div class="service">
 
-  <!-- CLIENTS -->
-
-  <section id="clients" style="display:none;">
-
-    <div class="top">
-      <div>
-        <h1>Müşteriler</h1>
-        <p>Müşteri kayıtları</p>
+      <div class="service-number">
+        02
       </div>
+
+      <h3>
+        Dış Çekim
+      </h3>
+
+      <p>
+        Size özel mekanlarda, doğal ışık
+        ve özgün hikâyeler eşliğinde
+        romantik çekimler.
+      </p>
+
     </div>
 
-    <div class="empty">
-      Müşteri sistemi bir sonraki aşamada aktif olacak.
-    </div>
 
-  </section>
+    <div class="service">
 
-
-  <!-- APPOINTMENTS -->
-
-  <section id="appointments" style="display:none;">
-
-    <div class="top">
-      <div>
-        <h1>Randevular</h1>
-        <p>Çekim takvimi</p>
+      <div class="service-number">
+        03
       </div>
+
+      <h3>
+        Nişan & Özel Gün
+      </h3>
+
+      <p>
+        Hayatınızdaki önemli anları
+        sade, zarif ve size özel
+        fotoğraflarla saklıyoruz.
+      </p>
+
     </div>
 
-    <div class="empty">
-      Randevu sistemi bir sonraki aşamada aktif olacak.
-    </div>
+  </div>
 
-  </section>
+</section>
 
 
-  <!-- PAYMENTS -->
+<!-- CTA -->
 
-  <section id="payments" style="display:none;">
+<section class="cta">
 
-    <div class="top">
-      <div>
-        <h1>Ödemeler</h1>
-        <p>Ödeme takibi</p>
+  <h2>
+    Hikâyenizi<br>
+    birlikte anlatalım.
+  </h2>
+
+  <p>
+    Tarihinizi belirleyin, gerisini bize bırakın.
+  </p>
+
+  <a
+    class="cta-btn"
+    href="https://wa.me/905000000000"
+    target="_blank">
+    WhatsApp'tan Ulaş
+  </a>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+  <div class="contact">
+
+    <div>
+
+      <div class="eyebrow">
+        İletişim
       </div>
+
+      <h2>
+        Bir kahve<br>
+        içelim.
+      </h2>
+
     </div>
 
-    <div class="empty">
-      Ödeme sistemi bir sonraki aşamada aktif olacak.
-    </div>
 
-  </section>
+    <div class="contact-info">
 
+      <div class="contact-card">
 
-  <!-- MESSAGES -->
+        <small>
+          WhatsApp
+        </small>
 
-  <section id="messages" style="display:none;">
+        <strong>
+          Çekim ve fiyat bilgisi için yazın
+        </strong>
 
-    <div class="top">
-      <div>
-        <h1>Mesajlar</h1>
-        <p>Müşteri iletişimi</p>
       </div>
+
+
+      <div class="contact-card">
+
+        <small>
+          Instagram
+        </small>
+
+        <strong>
+          @ceyhunfotografcilik
+        </strong>
+
+      </div>
+
+
+      <div class="contact-card">
+
+        <small>
+          Çalışma
+        </small>
+
+        <strong>
+          Düğün • Nişan • Dış Çekim
+        </strong>
+
+      </div>
+
     </div>
 
-    <div class="empty">
-      Mesaj sistemi bir sonraki aşamada aktif olacak.
-    </div>
+  </div>
 
-  </section>
-
-</main>
+</section>
 
 
-<!-- PHOTO MODAL -->
+<footer>
 
-<div id="modal" class="modal">
+  <strong>
+    CEYHUN FOTOĞRAFÇILIK
+  </strong>
 
-  <button class="modal-close" onclick="closeModal()">×</button>
+  <small>
+    © 2026 Tüm hakları saklıdır.
+  </small>
 
-  <button class="modal-prev" onclick="previousPhoto()">‹</button>
+</footer>
 
-  <img id="modalImage" src="" alt="">
 
-  <button class="modal-next" onclick="nextPhoto()">›</button>
+<!-- WHATSAPP -->
 
-  <div id="modalName" class="modal-name"></div>
+<a
+  class="whatsapp"
+  href="https://wa.me/905000000000"
+  target="_blank"
+  aria-label="WhatsApp">
+  ◉
+</a>
+
+
+<!-- LIGHTBOX -->
+
+<div id="lightbox" class="lightbox">
+
+  <button
+    class="close"
+    onclick="closeLightbox()">
+    ×
+  </button>
+
+  <button
+    class="prev"
+    onclick="previousPhoto()">
+    ‹
+  </button>
+
+  <img
+    id="lightboxImage"
+    src=""
+    alt="">
+
+  <button
+    class="next"
+    onclick="nextPhoto()">
+    ›
+  </button>
+
+  <div
+    id="photoName"
+    class="photo-name">
+  </div>
 
 </div>
 
 
-<div id="toast" class="toast"></div>
-
-
 <script>
 
-/* =========================================================
+/* =====================================================
    SUPABASE
-========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://nzriewxchkcfeknkbwuu.supabase.co";
 
 /*
-   BURAYA KENDİ PUBLISHABLE KEY'İNİ YAZ.
+   BURAYA DAHA ÖNCE KULLANDIĞIN
+   SUPABASE PUBLISHABLE KEY'İNİ KOY.
 
-   Daha önce kullandığın panel.html'deki
-   sb_publishable_ ile başlayan anahtarını
-   buraya koy.
+   Bana göndermene gerek yok.
 */
 
 const SUPABASE_KEY =
 "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -708,497 +966,289 @@ window.supabase.createClient(
 );
 
 
-/* =========================================================
-   STORAGE
-========================================================= */
-
-const BUCKET = "site fotolar";
-
-let photos = [];
-let filteredPhotos = [];
-let currentPhotoIndex = 0;
+const BUCKET =
+"site fotolar";
 
 
-/* =========================================================
-   OTURUM KONTROLÜ
-========================================================= */
+let galleryPhotos = [];
 
-async function checkAuth(){
-
-  const {
-    data:{
-      session
-    }
-  } = await supabaseClient.auth.getSession();
-
-  if(!session){
-
-    window.location.href =
-      "/admin/index.html";
-
-    return false;
-  }
-
-  return true;
-}
+let currentPhoto = 0;
 
 
-/* =========================================================
-   FOTOĞRAFLARI YÜKLE
-========================================================= */
+/* =====================================================
+   FOTOĞRAFLARI SUPABASE'DEN GETİR
+===================================================== */
 
-async function loadPhotos(){
+async function loadGallery(){
 
-  const loading =
-    document.getElementById("loading");
-
-  loading.style.display = "block";
-
-  const {
-    data,
-    error
-  } = await supabaseClient
-    .storage
-    .from(BUCKET)
-    .list("",{
-      limit:1000,
-      offset:0,
-      sortBy:{
-        column:"name",
-        order:"asc"
-      }
-    });
-
-  if(error){
-
-    console.error(error);
-
-    loading.innerHTML =
-      "Fotoğraflar yüklenemedi.<br><br>" +
-      error.message;
-
-    return;
-  }
-
-  photos = [];
-
-  for(const file of data){
-
-    if(!file.name) continue;
-
-    const extension =
-      file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
-
-    const allowed = [
-      "jpg",
-      "jpeg",
-      "png",
-      "webp",
-      "gif",
-      "avif"
-    ];
-
-    if(!allowed.includes(extension))
-      continue;
-
-    const {
-      data:urlData
-    } = supabaseClient
-      .storage
-      .from(BUCKET)
-      .getPublicUrl(file.name);
-
-    photos.push({
-
-      name:file.name,
-
-      url:urlData.publicUrl,
-
-      extension:extension,
-
-      favorite:
-        localStorage.getItem(
-          "favorite_"+file.name
-        ) === "true"
-
-    });
-
-  }
-
-  loading.style.display = "none";
-
-  updateStats();
-
-  renderPhotos();
-}
-
-
-/* =========================================================
-   FOTOĞRAFLARI GÖSTER
-========================================================= */
-
-function renderPhotos(){
-
-  const gallery =
-    document.getElementById("gallery");
-
-  const search =
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
-
-  filteredPhotos =
-    photos.filter(photo =>
-      photo.name
-        .toLowerCase()
-        .includes(search)
+  const container =
+    document.getElementById(
+      "galleryContainer"
     );
 
-  if(filteredPhotos.length === 0){
-
-    gallery.innerHTML = `
-      <div class="empty">
-        <h2>Fotoğraf bulunamadı</h2>
-        <p style="margin-top:10px;">
-          Arama kelimesini değiştir veya yeni fotoğraf yükle.
-        </p>
-      </div>
-    `;
-
-    return;
-  }
-
-  gallery.innerHTML =
-    filteredPhotos.map((photo,index)=>`
-
-      <div class="photo">
-
-        <img
-          src="${photo.url}"
-          alt="${escapeHtml(photo.name)}"
-          loading="lazy"
-          onclick="openModal(${index})"
-        >
-
-        <div class="photo-info">
-
-          <div class="photo-name"
-               title="${escapeHtml(photo.name)}">
-            ${escapeHtml(photo.name)}
-          </div>
-
-          <div class="photo-actions">
-
-            <button
-              class="${photo.favorite ? "favorite" : ""}"
-              onclick="toggleFavorite(${index})">
-              ${photo.favorite ? "★ Favori" : "☆ Favori"}
-            </button>
-
-            <button
-              onclick="deletePhoto(${index})">
-              🗑️
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* =========================================================
-   İSTATİSTİKLER
-========================================================= */
-
-function updateStats(){
-
-  const total =
-    photos.length;
-
-  const favorites =
-    photos.filter(p=>p.favorite).length;
-
-  const jpg =
-    photos.filter(p=>
-      ["jpg","jpeg"].includes(p.extension)
-    ).length;
-
-  const png =
-    photos.filter(p=>
-      p.extension === "png"
-    ).length;
-
-  document.getElementById("photoCount")
-    .textContent = total;
-
-  document.getElementById("favoriteCount")
-    .textContent = favorites;
-
-  document.getElementById("jpgCount")
-    .textContent = jpg;
-
-  document.getElementById("pngCount")
-    .textContent = png;
-
-  document.getElementById("dashboardPhotoCount")
-    .textContent = total;
-
-  document.getElementById("dashboardFavoriteCount")
-    .textContent = favorites;
-}
-
-
-/* =========================================================
-   FAVORİ
-========================================================= */
-
-function toggleFavorite(index){
-
-  const photo =
-    filteredPhotos[index];
-
-  photo.favorite =
-    !photo.favorite;
-
-  localStorage.setItem(
-    "favorite_"+photo.name,
-    photo.favorite
-  );
-
-  const original =
-    photos.find(p =>
-      p.name === photo.name
-    );
-
-  if(original)
-    original.favorite =
-      photo.favorite;
-
-  updateStats();
-
-  renderPhotos();
-}
-
-
-/* =========================================================
-   FOTOĞRAF YÜKLE
-========================================================= */
-
-async function uploadPhotos(event){
-
-  const files =
-    Array.from(event.target.files);
-
-  if(!files.length)
-    return;
-
-  showToast(
-    files.length +
-    " fotoğraf yükleniyor..."
-  );
-
-  let success = 0;
-
-  for(const file of files){
-
-    const safeName =
-      Date.now() +
-      "_" +
-      Math.random()
-        .toString(36)
-        .substring(2,8) +
-      "_" +
-      file.name;
+  try{
 
     const {
+      data,
       error
     } = await supabaseClient
       .storage
       .from(BUCKET)
-      .upload(
-        safeName,
-        file,
-        {
-          cacheControl:"3600",
-          upsert:false
+      .list("",{
+        limit:1000,
+        offset:0,
+        sortBy:{
+          column:"name",
+          order:"asc"
         }
-      );
+      });
 
-    if(!error)
-      success++;
 
-    else
-      console.error(error);
+    if(error)
+      throw error;
+
+
+    galleryPhotos =
+      data.filter(file=>{
+
+        if(!file.name)
+          return false;
+
+        const ext =
+          file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+        return [
+          "jpg",
+          "jpeg",
+          "png",
+          "webp",
+          "gif",
+          "avif"
+        ].includes(ext);
+
+      });
+
+
+    if(!galleryPhotos.length){
+
+      container.innerHTML = `
+        <div class="gallery-loading">
+          Henüz fotoğraf bulunamadı.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    let html =
+      `<div class="gallery">`;
+
+
+    galleryPhotos.forEach(
+      (photo,index)=>{
+
+        const {
+          data:urlData
+        } =
+          supabaseClient
+            .storage
+            .from(BUCKET)
+            .getPublicUrl(
+              photo.name
+            );
+
+
+        html += `
+
+          <div
+            class="gallery-item"
+            onclick="openLightbox(${index})">
+
+            <img
+              src="${urlData.publicUrl}"
+              alt="Ceyhun Fotoğrafçılık"
+              loading="lazy">
+
+            <div class="gallery-overlay">
+              Ceyhun Fotoğrafçılık
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    html += `</div>`;
+
+
+    container.innerHTML =
+      html;
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    container.innerHTML = `
+
+      <div class="gallery-loading">
+
+        <strong>
+          Fotoğraflar yüklenemedi.
+        </strong>
+
+        <p style="margin-top:10px;">
+          Lütfen daha sonra tekrar deneyin.
+        </p>
+
+      </div>
+
+    `;
 
   }
 
-  event.target.value = "";
-
-  showToast(
-    success +
-    " fotoğraf başarıyla yüklendi."
-  );
-
-  await loadPhotos();
 }
 
 
-/* =========================================================
-   FOTOĞRAF SİL
-========================================================= */
+/* =====================================================
+   LIGHTBOX
+===================================================== */
 
-async function deletePhoto(index){
+function openLightbox(index){
 
-  const photo =
-    filteredPhotos[index];
-
-  const confirmed =
-    confirm(
-      '"' +
-      photo.name +
-      '" fotoğrafı silinsin mi?"
-    );
-
-  if(!confirmed)
-    return;
-
-  const {
-    error
-  } = await supabaseClient
-    .storage
-    .from(BUCKET)
-    .remove([
-      photo.name
-    ]);
-
-  if(error){
-
-    alert(
-      "Fotoğraf silinemedi:\n" +
-      error.message
-    );
-
-    return;
-  }
-
-  localStorage.removeItem(
-    "favorite_"+photo.name
-  );
-
-  showToast(
-    "Fotoğraf silindi."
-  );
-
-  await loadPhotos();
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function openModal(index){
-
-  currentPhotoIndex =
+  currentPhoto =
     index;
 
-  updateModal();
+  updateLightbox();
 
   document
-    .getElementById("modal")
-    .classList.add("open");
+    .getElementById("lightbox")
+    .classList
+    .add("open");
+
 }
 
 
-function updateModal(){
+function updateLightbox(){
 
   const photo =
-    filteredPhotos[currentPhotoIndex];
+    galleryPhotos[currentPhoto];
 
   if(!photo)
     return;
 
-  document
-    .getElementById("modalImage")
-    .src = photo.url;
+
+  const {
+    data:urlData
+  } =
+    supabaseClient
+      .storage
+      .from(BUCKET)
+      .getPublicUrl(
+        photo.name
+      );
+
 
   document
-    .getElementById("modalName")
-    .textContent = photo.name;
+    .getElementById(
+      "lightboxImage"
+    )
+    .src =
+      urlData.publicUrl;
+
+
+  document
+    .getElementById(
+      "photoName"
+    )
+    .textContent =
+      photo.name;
+
 }
 
 
-function closeModal(){
+function closeLightbox(){
 
   document
-    .getElementById("modal")
-    .classList.remove("open");
+    .getElementById(
+      "lightbox"
+    )
+    .classList
+    .remove("open");
+
 }
 
 
 function nextPhoto(){
 
-  if(!filteredPhotos.length)
+  if(!galleryPhotos.length)
     return;
 
-  currentPhotoIndex++;
+  currentPhoto++;
 
   if(
-    currentPhotoIndex >=
-    filteredPhotos.length
+    currentPhoto >=
+    galleryPhotos.length
   )
-    currentPhotoIndex = 0;
+    currentPhoto = 0;
 
-  updateModal();
+  updateLightbox();
+
 }
 
 
 function previousPhoto(){
 
-  if(!filteredPhotos.length)
+  if(!galleryPhotos.length)
     return;
 
-  currentPhotoIndex--;
+  currentPhoto--;
 
-  if(currentPhotoIndex < 0)
-    currentPhotoIndex =
-      filteredPhotos.length - 1;
+  if(currentPhoto < 0)
+    currentPhoto =
+      galleryPhotos.length - 1;
 
-  updateModal();
+  updateLightbox();
+
 }
 
 
-/* =========================================================
+/* =====================================================
    KLAVYE
-========================================================= */
+===================================================== */
 
 document.addEventListener(
   "keydown",
-  function(event){
+  event=>{
 
-    const modal =
-      document.getElementById("modal");
+    const lightbox =
+      document.getElementById(
+        "lightbox"
+      );
+
 
     if(
-      !modal.classList.contains("open")
+      !lightbox.classList
+        .contains("open")
     )
       return;
 
+
     if(event.key === "Escape")
-      closeModal();
+      closeLightbox();
+
 
     if(event.key === "ArrowRight")
       nextPhoto();
+
 
     if(event.key === "ArrowLeft")
       previousPhoto();
@@ -1207,118 +1257,39 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   SAYFA GEÇİŞLERİ
-========================================================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
-function showSection(id,button){
+window.addEventListener(
+  "scroll",
+  ()=>{
 
-  document
-    .querySelectorAll("main > section")
-    .forEach(section=>{
-      section.style.display =
-        "none";
-    });
-
-  document
-    .getElementById(id)
-    .style.display = "block";
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
-
-  if(button)
-    button.classList.add("active");
-
-  if(id === "photos")
-    loadPhotos();
-}
+    const header =
+      document.getElementById(
+        "header"
+      );
 
 
-function openPhotos(){
+    if(window.scrollY > 50)
+      header.classList.add(
+        "scrolled"
+      );
 
-  const buttons =
-    document.querySelectorAll(
-      ".nav-btn"
-    );
+    else
+      header.classList.remove(
+        "scrolled"
+      );
 
-  showSection(
-    "photos",
-    buttons[1]
-  );
-}
-
-
-/* =========================================================
-   ÇIKIŞ
-========================================================= */
-
-async function logout(){
-
-  await supabaseClient
-    .auth
-    .signOut();
-
-  window.location.href =
-    "/admin/index.html";
-}
+  }
+);
 
 
-/* =========================================================
-   TOAST
-========================================================= */
-
-function showToast(message){
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent =
-    message;
-
-  toast.style.display =
-    "block";
-
-  setTimeout(()=>{
-    toast.style.display =
-      "none";
-  },3000);
-}
-
-
-/* =========================================================
-   GÜVENLİ METİN
-========================================================= */
-
-function escapeHtml(text){
-
-  const div =
-    document.createElement("div");
-
-  div.textContent = text;
-
-  return div.innerHTML;
-}
-
-
-/* =========================================================
+/* =====================================================
    BAŞLAT
-========================================================= */
+===================================================== */
 
-(async function(){
-
-  const logged =
-    await checkAuth();
-
-  if(!logged)
-    return;
-
-  await loadPhotos();
-
-})();
+loadGallery();
 
 </script>
 
