@@ -1,390 +1,2815 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CEYHUN FOTOĞRAFÇILIK STUDİO v4.6</title>
+<title>Ceyhun Fotoğrafçılık Studio</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-:root{--bg:#17191d;--panel:#20242a;--panel2:#272c33;--line:#3a414a;--text:#f3f5f7;--muted:#a9b0b9;--accent:#39a9ff;--danger:#ff5c5c;--safe:#e53935;--trim:#ff9800;--spine:#1976d2}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
-button,input,select{font:inherit}button{background:#2b3138;color:var(--text);border:1px solid #454d57;border-radius:6px;padding:7px 9px;cursor:pointer}button:hover{background:#343b44}button:disabled{opacity:.45;cursor:not-allowed}.topbar{height:56px;background:#121417;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:8px 10px;flex-wrap:nowrap}.brand{font-weight:800;margin-right:8px;white-space:nowrap}.topbar .spacer{flex:1}.app{height:calc(100% - 56px);display:flex}.sidebar{width:320px;min-width:320px;background:var(--panel);border-right:1px solid var(--line);overflow:auto;padding:12px;display:flex;flex-direction:column}.main{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;overflow:auto;background:#101215;position:relative}.rightbar{width:280px;min-width:280px;background:var(--panel);border-left:1px solid var(--line);overflow:auto;padding:12px}.previewFrame{position:relative;width:100%;height:190px;background:#0f1114;border:1px solid #47515c;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:grab}.previewFrame.dragging{cursor:grabbing}.previewFrame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}.previewPlaceholder{font-size:11px;color:#7e8893;text-align:center;padding:20px}.photosPanel{order:1}.templatePanel{order:2}.selectedPanel{order:3}.albumPanel{order:4}.viewPanel{order:5}.pagesPanel{order:6}.panel{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px}.panel h3{font-size:12px;margin:0 0 9px;color:#d4dae1}.row{display:flex;gap:6px;align-items:center;margin:6px 0;flex-wrap:wrap}.row>*{min-width:0}.row label{font-size:11px;color:var(--muted)}.row input[type=number]{width:82px}.row select{background:#15181c;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px}.note{font-size:10px;line-height:1.45;color:var(--muted)}.status{font-size:11px;color:#cfd5dc;min-height:16px}.drop{border:1px dashed #59616b;padding:14px;text-align:center;border-radius:7px;color:var(--muted);cursor:pointer}.drop.dragover{border-color:var(--accent);background:#1c2730}.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}.thumbCard{background:#171a1e;border:1px solid #343a42;border-radius:6px;overflow:hidden;cursor:pointer}.thumbCard.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}.thumbCard img{display:block;width:100%;aspect-ratio:1.25;object-fit:cover;background:#0e1013}.thumbName{font-size:9px;padding:5px 5px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.thumbUse{font-size:8px;padding:2px 5px 5px;color:#87919c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.templateGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}.templateGrid button.active{outline:2px solid var(--accent);background:#243749}.pageTabs{display:flex;gap:5px;flex-wrap:wrap}.pageTab{min-width:34px}.pageTab.active{background:var(--accent);color:#061018;border-color:var(--accent);font-weight:700}.canvasWrap{padding:32px}.page{position:relative;background:white;box-shadow:0 20px 60px #000;overflow:hidden;user-select:none}.photo{position:absolute;overflow:hidden;background:#eceff3;cursor:move;box-sizing:border-box}.photo.selected{outline:2px solid var(--accent)}.photo.crop{outline:2px dashed #ffd34d;cursor:grab}.photo img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}.photoName{position:absolute;left:5px;bottom:5px;background:rgba(0,0,0,.66);color:#fff;border-radius:3px;padding:2px 5px;font-size:9px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:5}.handle{position:absolute;width:10px;height:10px;background:white;border:2px solid #111;border-radius:2px;z-index:7}.h-nw{left:-5px;top:-5px;cursor:nwse-resize}.h-ne{right:-5px;top:-5px;cursor:nesw-resize}.h-sw{left:-5px;bottom:-5px;cursor:nesw-resize}.h-se{right:-5px;bottom:-5px;cursor:nwse-resize}.spine{position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--spine);transform:translateX(-50%);z-index:100;pointer-events:none}.trim{position:absolute;inset:0;border:1px solid var(--trim);z-index:98;pointer-events:none}.safe{position:absolute;border:1px dashed var(--safe);z-index:97;pointer-events:none}.insideTrim{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,152,0,.7);z-index:99;pointer-events:none}.insideSafe{position:absolute;top:0;bottom:0;width:1px;background:rgba(229,57,53,.65);z-index:99;pointer-events:none}.rulerTop,.rulerLeft{position:absolute;background:#181b20;color:#8b95a0;font-size:8px;z-index:200;pointer-events:none}.rulerTop{left:0;right:0;top:0;height:16px;border-bottom:1px solid #2d333a}.rulerLeft{top:0;bottom:0;left:0;width:16px;border-right:1px solid #2d333a}.marquee{position:absolute;border:1px dashed var(--accent);background:rgba(57,169,255,.12);z-index:500;pointer-events:none}.snap{position:absolute;z-index:90;background:rgba(57,169,255,.85);pointer-events:none}.snap.v{top:0;bottom:0;width:1px}.snap.h{left:0;right:0;height:1px}.emptyHint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:15px;color:#9aa3ad;pointer-events:none}.viewControls{position:absolute;right:12px;bottom:12px;background:rgba(18,20,23,.9);border:1px solid #3c444d;border-radius:8px;padding:5px;display:flex;gap:4px;z-index:600}.tiny{font-size:10px}.danger{background:#3a2325;border-color:#6c2d30}.accent{background:#18364a;border-color:#2f6e95}.sectionTitle{font-size:10px;color:#9aa3ad;margin:5px 0 4px;text-transform:uppercase;letter-spacing:.08em}.sep{height:1px;background:#343a42;margin:8px 0}.selectedName{font-size:10px;color:#d6dde5;word-break:break-all}.pill{font-size:9px;border:1px solid #414852;border-radius:10px;padding:2px 6px;color:#b7c0ca}
+*{box-sizing:border-box}
+
+:root{
+  --bg:#101216;
+  --panel:#191d23;
+  --panel2:#222730;
+  --line:#343b45;
+  --text:#f5f7fa;
+  --muted:#aab2bd;
+  --accent:#39a9ff;
+  --danger:#ff5964;
+  --green:#35d07f;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  background:#292f37;
+  border:1px solid #444c56;
+  color:white;
+  border-radius:7px;
+  padding:9px 12px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#353c45;
+}
+
+button.primary{
+  background:#175579;
+  border-color:#2781b9;
+}
+
+button.danger{
+  background:#48252b;
+  border-color:#75353e;
+}
+
+input,select{
+  background:#111419;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:9px;
+}
+
+#login{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at top,#273646,#101216 60%);
+}
+
+.login{
+  width:400px;
+  max-width:92%;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:30px;
+  box-shadow:0 30px 80px #0008;
+}
+
+.login h1{
+  margin:0;
+  font-size:23px;
+}
+
+.login p{
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+.login label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin:12px 0 5px;
+}
+
+.login input{
+  width:100%;
+}
+
+.login button{
+  width:100%;
+  margin-top:15px;
+}
+
+#app{
+  display:none;
+  height:100vh;
+}
+
+.topbar{
+  height:58px;
+  background:#0c0e11;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+}
+
+.logo{
+  font-weight:800;
+  margin-right:15px;
+  white-space:nowrap;
+}
+
+.spacer{
+  flex:1;
+}
+
+.layout{
+  height:calc(100vh - 58px);
+  display:flex;
+}
+
+.sidebar{
+  width:220px;
+  background:var(--panel);
+  border-right:1px solid var(--line);
+  padding:12px;
+}
+
+.sidebar button{
+  width:100%;
+  text-align:left;
+  margin-bottom:7px;
+}
+
+.content{
+  flex:1;
+  overflow:auto;
+  padding:20px;
+}
+
+.view{
+  display:none;
+}
+
+.view.active{
+  display:block;
+}
+
+.title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.title h2{
+  margin:0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:12px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:16px;
+}
+
+.card h3{
+  margin-top:0;
+}
+
+.stat{
+  font-size:30px;
+  font-weight:800;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table th,
+.table td{
+  padding:10px;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+}
+
+.badge{
+  padding:4px 8px;
+  border-radius:20px;
+  background:#303740;
+  font-size:11px;
+}
+
+/* ALBÜM */
+
+.album{
+  display:flex;
+  height:calc(100vh - 98px);
+  min-height:600px;
+  margin:-2px;
+}
+
+.albumLeft{
+  width:280px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  overflow:auto;
+  padding:10px;
+}
+
+.albumCenter{
+  flex:1;
+  background:#090b0e;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:auto;
+}
+
+.albumRight{
+  width:250px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:10px;
+  overflow:auto;
+}
+
+.panel{
+  background:var(--panel2);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px;
+  margin-bottom:10px;
+}
+
+.panel h3{
+  font-size:12px;
+  margin:0 0 10px;
+}
+
+.row{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin:6px 0;
+}
+
+.row label{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.drop{
+  border:1px dashed #626b76;
+  border-radius:8px;
+  padding:18px 8px;
+  text-align:center;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+.photos{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+  margin-top:8px;
+}
+
+.photo{
+  border:1px solid #343a42;
+  border-radius:6px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.photo.selected{
+  border-color:var(--accent);
+}
+
+.photo img{
+  width:100%;
+  aspect-ratio:1.2;
+  object-fit:cover;
+  display:block;
+}
+
+.photo span{
+  display:block;
+  font-size:9px;
+  padding:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.templates{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+}
+
+.pages{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.pages button.active{
+  background:var(--accent);
+  color:#061018;
+}
+
+.canvas{
+  position:relative;
+  background:white;
+  box-shadow:0 25px 80px #000;
+  overflow:hidden;
+}
+
+.frame{
+  position:absolute;
+  overflow:hidden;
+  background:#e9edf1;
+  cursor:move;
+}
+
+.frame.selected{
+  outline:3px solid var(--accent);
+}
+
+.frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  pointer-events:none;
+}
+
+.frameName{
+  position:absolute;
+  left:4px;
+  bottom:4px;
+  background:#000b;
+  color:white;
+  font-size:9px;
+  padding:2px 5px;
+  border-radius:3px;
+  max-width:80%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+@media(max-width:900px){
+  .sidebar{width:160px}
+  .albumLeft{width:210px}
+  .albumRight{width:190px}
+  .logo{display:none}
+}
 </style>
 </head>
+
 <body>
-<div class="topbar">
-  <div class="brand">CEYHUN FOTOĞRAFÇILIK STUDİO</div>
-  <button id="undo">↶ Geri Al</button><button id="redo">↷ İleri Al</button>
-  <button id="newPage">+ Sayfa</button><button id="duplicatePage">⧉ Sayfayı Çoğalt</button>
-  <button id="saveProject">💾 Projeyi Kaydet</button><button id="openProject">📂 Projeyi Aç</button>
-  <button id="exportJpg" class="accent">📦 JPG ZIP Dışa Aktar</button><button id="print">🖨️ PDF / Yazdır</button>
-  <div class="spacer"></div><span id="status" class="status"></span>
+
+<!-- LOGIN -->
+
+<div id="login">
+
+  <div class="login">
+
+    <h1>CEYHUN FOTOĞRAFÇILIK</h1>
+
+    <p>
+      Studio Yönetim Sistemi
+    </p>
+
+    <label>E-posta</label>
+    <input
+      id="email"
+      type="email"
+      placeholder="E-posta"
+    >
+
+    <label>Şifre</label>
+    <input
+      id="password"
+      type="password"
+      placeholder="Şifre"
+    >
+
+    <button
+      id="loginButton"
+      class="primary">
+      Giriş Yap
+    </button>
+
+    <div
+      id="loginMessage"
+      class="muted"
+      style="margin-top:10px;font-size:12px">
+    </div>
+
+  </div>
+
 </div>
-<div class="app">
-  <aside class="sidebar">
-    <div id="albumPanel" class="panel albumPanel">
-      <h3>ALBÜM AYARLARI</h3>
-      <div class="row"><label>Genişlik cm</label><input id="wCm" type="number" step="0.1" value="50"><label>Yükseklik cm</label><input id="hCm" type="number" step="0.1" value="30.5"><button id="applySize">Uygula</button></div>
-      <div class="row"><label>Tam Yayılım Desteği</label><select id="fullSpread"><option value="yes">Evet</option><option value="no">Hayır</option></select></div>
-      <div class="row"><label>Kesim Sol/Sağ</label><input id="trimLR" type="number" step="0.1" value="0.5"><label>Kesim Üst/Alt</label><input id="trimTB" type="number" step="0.1" value="0.5"></div>
-      <div class="row"><label>İç Kesim</label><input id="trimInside" type="number" step="0.1" value="0.5"><label>Güvenli Sol/Sağ</label><input id="safeLR" type="number" step="0.1" value="1"></div>
-      <div class="row"><label>Güvenli Üst/Alt</label><input id="safeTB" type="number" step="0.1" value="1"><label>İç Güvenli Alan</label><input id="safeInside" type="number" step="0.1" value="1"></div>
-      <div class="row"><label>İlk Yayılım</label><select id="firstSpread"><option value="double">Çift Sayfa</option></select><label>Son Yayılım</label><select id="lastSpread"><option value="double">Çift Sayfa</option></select></div>
-      <div class="row"><button id="applyPrintSettings">✅ Ayarları Uygula</button><button id="resetSettings">↺ Varsayılan</button></div>
-      <div class="note">50 × 30,5 cm çalışma: Trim 0,5 cm • Güvenli alan 1 cm • Inside 0,5 / 1 cm.</div>
-    </div>
-    <div id="photoPanel" class="panel photosPanel">
-      <h3>1. FOTOĞRAFLAR</h3>
-      <input id="fileInput" type="file" multiple accept="image/*" hidden>
-      <div id="drop" class="drop">📷 Fotoğrafları buraya bırak veya tıkla</div>
-      <div class="row"><button id="deleteLibrary" class="danger">🗑️ Seçili Fotoğrafı Sil</button><button id="clearLibrary">🧹 Kütüphaneyi Temizle</button></div>
-      <div class="note">Fotoğraf adları aşağıda görünür. Kullanıldığı sayfalar da gösterilir.</div>
-      <div id="thumbs" class="thumbs"></div>
-    </div>
-    <div id="selectedPanel" class="panel selectedPanel">
-      <h3>3. SEÇİLİ FOTOĞRAF</h3>
-      <div id="selectedName" class="selectedName">Fotoğraf seçilmedi</div>
-      <div class="row"><label>Zoom</label><input id="zoom" type="range" min="1" max="4" step="0.01" value="1"></div>
-      <div class="row"><label>Döndürme</label><input id="rot" type="range" min="-180" max="180" value="0"></div>
-      <div class="row"><button id="cropMode">✂️ Kadraj Modu</button><button id="fit">Sığdır / Sıfırla</button></div>
-      <div class="row"><button id="deletePagePhoto" class="danger">↩ Sayfadan Kaldır</button><button id="replacePhoto">🔄 Fotoğrafı Değiştir</button></div>
-      <div class="row"><button id="lock">🔒 Kilitle/Aç</button><button id="front">⬆ Öne</button><button id="back">⬇ Arkaya</button></div>
-      <div class="row"><button id="sameSize">▣ Aynı Boyut</button><button id="sameWidth">↔ Aynı En</button><button id="sameHeight">↕ Aynı Boy</button></div>
-      <div class="row"><button id="alignLeft">⬅ Sol</button><button id="alignCenterX">↔ Orta</button><button id="alignRight">Sağ ➡</button></div>
-      <div class="row"><button id="alignTop">⬆ Üst</button><button id="alignCenterY">↕ Orta</button><button id="alignBottom">Alt ⬇</button></div>
-      <div class="row"><button id="distX">↔ Eşit Yatay</button><button id="distY">↕ Eşit Dikey</button></div>
-      <div class="row"><button id="group">▦ Grupla</button><button id="ungroup">▣ Grup Çöz</button></div>
-      <div class="row"><button id="copyStyle">⧉ Stili Kopyala</button><button id="pasteStyle">⧪ Stili Yapıştır</button></div>
-      <div class="row"><button id="clearSelection">Seçimi Kaldır</button><button id="selectAll">Tümünü Seç</button></div>
-    </div>
-    <div id="templatePanel" class="panel templatePanel">
-      <h3>2. ŞABLONLAR</h3>
-      <div class="note">Önce fotoğraf sayısını seç. Fotoğraflar otomatik yerleşir. Ardından bir şablona tıkla veya ↑ ↓ ile aynı fotoğraflar arasında düzen değiştir.</div>
-      <div class="templateGrid"><button class="countBtn" data-count="1">1 Fotoğraf</button><button class="countBtn" data-count="2">2 Fotoğraf</button><button class="countBtn" data-count="3">3 Fotoğraf</button><button class="countBtn" data-count="4">4 Fotoğraf</button><button class="countBtn" data-count="5">5 Fotoğraf</button><button class="countBtn" data-count="6">6 Fotoğraf</button></div>
-      <div class="sep"></div><div class="sectionTitle">Seçili sayı için düzenler</div><div id="templateList" class="templateGrid"></div>
-      <div class="row"><button id="prevTemplate">↑ Önceki Düzen</button><button id="nextTemplate">↓ Sonraki Düzen</button><button id="randomTemplate">🎲 Rastgele</button></div>
-      <div id="templateInfo" class="note">Henüz şablon seçilmedi.</div>
-      <div class="row"><button id="fillPage" class="accent">🧩 Sayfayı Doldur</button><button id="zeroGap">⬛ Beyaz Boşlukları Kapat</button></div>
-    </div>
-    <div id="viewPanel" class="panel viewPanel">
-      <h3>GÖRÜNÜM</h3>
-      <div class="row"><button id="viewMinus">−</button><button id="viewFit">⌂ Sayfaya Sığdır</button><button id="view100">100%</button><button id="viewPlus">+</button></div>
-      <div class="row"><button id="toggleGrid">Izgara</button><button id="toggleRuler">Cetvel</button><button id="addVGuide">│ Dikey Kılavuz</button><button id="addHGuide">─ Yatay Kılavuz</button></div>
-      <div class="row"><button id="clearGuides">Kılavuzları Temizle</button><span class="pill">Kırım: <span id="spineLabel">Mavi</span></span></div>
-      <div class="row"><button id="spineBlack">Siyah</button><button id="spineBlue">Mavi</button><button id="spineRed">Kırmızı</button></div>
-    </div>
-    <div id="pagesPanel" class="panel pagesPanel">
-      <h3>SAYFALAR</h3><div id="pageTabs" class="pageTabs"></div><div class="note">1, 2, 3, 4, 5... istediğin sayfaya doğrudan tıklayabilirsin.</div>
-    </div>
-  </aside>
-  <main class="main"><div class="canvasWrap"><div id="page" class="page"></div></div><div class="viewControls"><button id="viewStatus" class="tiny">100%</button></div></main>
-  <aside class="rightbar">
-    <div class="panel">
-      <h3>KADRAJ ÖNİZLEMESİ</h3>
-      <div id="previewName" class="selectedName">Fotoğraf seçilmedi</div>
-      <div id="previewFrame" class="previewFrame"><div id="previewPlaceholder" class="previewPlaceholder">Bir fotoğraf seçtiğinde burada küçük önizleme görünür.<br>Fotoğrafı burada tutup sürükleyerek kadrajı değiştirebilirsin.</div><img id="previewImage" alt="Kadraj önizlemesi" style="display:none"></div>
-      <div class="row"><button id="pLeft">← Sol</button><button id="pRight">Sağ →</button></div>
-      <div class="row"><button id="pUp">↑ Yukarı</button><button id="pDown">↓ Aşağı</button></div>
-      <div class="row"><label>Zoom</label><input id="previewZoom" type="range" min="1" max="4" step="0.01" value="1"></div>
-      <div class="row"><button id="pFit">↺ Kadrajı Sıfırla</button><button id="pCenter">⊙ Ortala</button></div>
-      <div class="note">Ok tuşları: <b>← →</b> sayfa değiştirir, <b>↑ ↓</b> şablon değiştirir. Kadraj modunda oklar fotoğrafın içini hareket ettirir.</div>
-    </div>
-    <div class="panel">
-      <h3>DIŞA AKTARMA</h3>
-      <div class="note">Tüm sayfalar tek bir ZIP dosyasında JPG olarak hazırlanır. Desteklenen tarayıcılar hedef klasörü seçtirir; Safari'de ZIP indirme klasörüne gider.</div>
-      <button id="exportJpgRight" class="accent" style="width:100%;margin-top:8px">📦 Tüm Albümü JPG ZIP Yap</button>
-    </div>
-  </aside>
+
+
+<!-- APP -->
+
+<div id="app">
+
+<header class="topbar">
+
+  <div class="logo">
+    CEYHUN FOTOĞRAFÇILIK STUDİO
+  </div>
+
+  <button onclick="showView('dashboard')">
+    🏠 Yönetim
+  </button>
+
+  <button
+    class="primary"
+    onclick="showView('album')">
+    🎨 Albüm Tasarım
+  </button>
+
+  <div class="spacer"></div>
+
+  <span
+    id="currentUser"
+    class="muted">
+  </span>
+
+  <button id="logoutButton">
+    Çıkış
+  </button>
+
+</header>
+
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<button onclick="showView('dashboard')">
+📊 Dashboard
+</button>
+
+<button onclick="showView('clients')">
+👥 Müşteriler
+</button>
+
+<button onclick="showView('appointments')">
+📅 Randevular
+</button>
+
+<button onclick="showView('albums')">
+📚 Albümler
+</button>
+
+<button onclick="showView('photos')">
+📸 Fotoğraflar
+</button>
+
+<button onclick="showView('payments')">
+💰 Ödemeler
+</button>
+
+<button onclick="showView('messages')">
+💬 Mesajlar
+</button>
+
+<button onclick="showView('delivery')">
+📦 Teslimatlar
+</button>
+
+</aside>
+
+
+<main class="content">
+
+
+<!-- DASHBOARD -->
+
+<section
+id="dashboard"
+class="view active">
+
+<div class="title">
+<h2>Dashboard</h2>
 </div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Müşteriler</h3>
+<div id="clientCount" class="stat">0</div>
+</div>
+
+<div class="card">
+<h3>Albümler</h3>
+<div id="albumCount" class="stat">0</div>
+</div>
+
+<div class="card">
+<h3>Randevular</h3>
+<div id="appointmentCount" class="stat">0</div>
+</div>
+
+<div class="card">
+<h3>Toplam Ödeme</h3>
+<div id="paymentTotal" class="stat">0 ₺</div>
+</div>
+
+</div>
+
+<div
+class="card"
+style="margin-top:15px">
+
+<h3>Hoş geldin 👋</h3>
+
+<p class="muted">
+Ceyhun Fotoğrafçılık Studio yönetim paneline hoş geldin.
+Buradan müşterilerini, albümlerini, randevularını ve ödemelerini yönetebilirsin.
+</p>
+
+<button
+class="primary"
+onclick="showView('album')">
+🎨 Albüm Tasarımına Başla
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CLIENTS -->
+
+<section
+id="clients"
+class="view">
+
+<div class="title">
+
+<h2>Müşteriler</h2>
+
+<button
+class="primary"
+onclick="addClient()">
++ Müşteri Ekle
+</button>
+
+</div>
+
+<div class="card">
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>Ad Soyad</th>
+<th>Telefon</th>
+<th>Durum</th>
+</tr>
+
+</thead>
+
+<tbody id="clientsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- APPOINTMENTS -->
+
+<section
+id="appointments"
+class="view">
+
+<div class="title">
+<h2>Randevular</h2>
+</div>
+
+<div class="card">
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>Tarih</th>
+<th>Başlık</th>
+<th>Müşteri</th>
+<th>Durum</th>
+</tr>
+
+</thead>
+
+<tbody id="appointmentsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- ALBUMS -->
+
+<section
+id="albums"
+class="view">
+
+<div class="title">
+
+<h2>Albümler</h2>
+
+<button
+class="primary"
+onclick="createAlbum()">
++ Yeni Albüm
+</button>
+
+</div>
+
+<div
+id="albumsGrid"
+class="grid">
+</div>
+
+</section>
+
+
+<!-- PHOTOS -->
+
+<section
+id="photos"
+class="view">
+
+<div class="title">
+<h2>Fotoğraflar</h2>
+</div>
+
+<div class="card">
+
+<p class="muted">
+Fotoğraf yönetimi albüm tasarım ekranından yapılır.
+</p>
+
+<button
+class="primary"
+onclick="showView('album')">
+🎨 Albüm Editörünü Aç
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAYMENTS -->
+
+<section
+id="payments"
+class="view">
+
+<div class="title">
+<h2>Ödemeler</h2>
+</div>
+
+<div class="card">
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>Müşteri</th>
+<th>Tutar</th>
+<th>Durum</th>
+</tr>
+
+</thead>
+
+<tbody id="paymentsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- MESSAGES -->
+
+<section
+id="messages"
+class="view">
+
+<div class="title">
+<h2>Mesajlar</h2>
+</div>
+
+<div class="card">
+
+<p class="muted">
+Müşteri mesajları burada görünecek.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DELIVERY -->
+
+<section
+id="delivery"
+class="view">
+
+<div class="title">
+<h2>Teslimatlar</h2>
+</div>
+
+<div class="card">
+
+<p class="muted">
+Albüm ve fotoğraf teslimatları burada takip edilecek.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ALBUM EDITOR -->
+
+<section
+id="album"
+class="view">
+
+<div class="album">
+
+
+<!-- LEFT -->
+
+<aside class="albumLeft">
+
+<div class="panel">
+
+<h3>ALBÜM AYARLARI</h3>
+
+<div class="row">
+
+<label>Genişlik</label>
+
+<input
+id="albumWidth"
+type="number"
+value="50"
+step=".1">
+
+<label>cm</label>
+
+</div>
+
+<div class="row">
+
+<label>Yükseklik</label>
+
+<input
+id="albumHeight"
+type="number"
+value="30.5"
+step=".1">
+
+<label>cm</label>
+
+</div>
+
+<button
+onclick="applyAlbumSize()"
+class="primary">
+
+Uygula
+
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<h3>1. FOTOĞRAFLAR</h3>
+
+<input
+id="fileInput"
+type="file"
+accept="image/*"
+multiple
+hidden>
+
+<div
+id="dropZone"
+class="drop">
+
+📷 Fotoğrafları yükle
+<br>
+veya buraya sürükle
+
+</div>
+
+<div
+id="photos"
+class="photos">
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>2. ŞABLONLAR</h3>
+
+<div class="templates">
+
+<button onclick="applyTemplate(1)">
+1 Fotoğraf
+</button>
+
+<button onclick="applyTemplate(2)">
+2 Fotoğraf
+</button>
+
+<button onclick="applyTemplate(3)">
+3 Fotoğraf
+</button>
+
+<button onclick="applyTemplate(4)">
+4 Fotoğraf
+</button>
+
+<button onclick="applyTemplate(5)">
+5 Fotoğraf
+</button>
+
+<button onclick="applyTemplate(6)">
+6 Fotoğraf
+</button>
+
+</div>
+
+<div class="row">
+
+<button onclick="previousTemplate()">
+↑ Önceki
+</button>
+
+<button onclick="nextTemplate()">
+↓ Sonraki
+</button>
+
+</div>
+
+<button
+class="primary"
+onclick="fillPage()">
+
+🧩 Sayfayı Doldur
+
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<h3>SAYFALAR</h3>
+
+<div
+id="pages"
+class="pages">
+</div>
+
+<div class="row">
+
+<button onclick="newPage()">
++ Sayfa
+</button>
+
+<button onclick="duplicatePage()">
+⧉ Çoğalt
+</button>
+
+</div>
+
+</div>
+
+</aside>
+
+
+<!-- CENTER -->
+
+<main class="albumCenter">
+
+<div
+id="canvas"
+class="canvas">
+</div>
+
+</main>
+
+
+<!-- RIGHT -->
+
+<aside class="albumRight">
+
+<div class="panel">
+
+<h3>SEÇİLİ FOTOĞRAF</h3>
+
+<div
+id="selectedName"
+class="muted">
+
+Fotoğraf seçilmedi
+
+</div>
+
+<div class="row">
+
+<label>Zoom</label>
+
+<input
+id="photoZoom"
+type="range"
+min="1"
+max="4"
+step=".01"
+value="1"
+style="flex:1">
+
+</div>
+
+<div class="row">
+
+<button onclick="movePhoto(-2,0)">
+←
+</button>
+
+<button onclick="movePhoto(2,0)">
+→
+</button>
+
+<button onclick="movePhoto(0,-2)">
+↑
+</button>
+
+<button onclick="movePhoto(0,2)">
+↓
+</button>
+
+</div>
+
+<div class="row">
+
+<button
+onclick="resetPhoto()">
+
+↺ Kadrajı Sıfırla
+
+</button>
+
+<button
+class="danger"
+onclick="deleteSelectedPhoto()">
+
+🗑️ Kaldır
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>PROJE</h3>
+
+<div class="row">
+
+<button
+onclick="saveProject()">
+
+💾 Kaydet
+
+</button>
+
+<button
+onclick="openProject()">
+
+📂 Aç
+
+</button>
+
+</div>
+
+<div class="row">
+
+<button
+class="primary"
+onclick="exportJPG()">
+
+📦 JPG Dışa Aktar
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>ALBÜM BİLGİSİ</h3>
+
+<div class="muted">
+
+50 × 30,5 cm
+<br><br>
+Trim: 0,5 cm
+<br>
+Safe Zone: 1 cm
+<br><br>
+← → Sayfa
+<br>
+↑ ↓ Şablon
+
+</div>
+
+</div>
+
+</aside>
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+</div>
+
+
 <script>
-'use strict';
-const DPI=300;
-const $=s=>document.querySelector(s);
-const pageEl=$('#page');
-const statusEl=$('#status');
-let W=50,H=30.5;
-let pages=[[]],pageIndex=0;
-let library=[];
-let selectedSet=new Set(),selected=null;
-let cropMode=false,dragState=null,resizeState=null,marqueeState=null;
-let activeTemplateCount=0,activeTemplateVariant=0,templatePhotoIds=[];
-let previewDrag=null;
-let viewZoom=1,gridOn=false,rulerOn=false,spineColor='#1976d2';
-let guides={};
-let undoStack=[],redoStack=[];
-let styleClipboard=null;
-let uidCounter=1;
 
-const templateNames={
-  1:['Tam sayfa'],
-  2:['Yan yana','Üst-alt','Asimetrik'],
-  3:['Sol büyük + sağda 2','Sağ büyük + solda 2','Üst büyük + altta 2','Alt büyük + üstte 2'],
-  4:['Sol büyük + sağda 3','2 × 2 dengeli','Üst büyük + altta 3','Alt büyük + üstte 3','İki büyük + iki küçük','Sağ büyük + solda 3'],
-  5:['Büyük sol + 4 sağ','2 üst + 3 alt','3 üst + 2 alt','2 × 2 + büyük','Büyük + 2 + 2'],
-  6:['3 × 2','2 × 3','Büyük sol + 5 sağ','Büyük üst + 5 alt']
+/* ==========================================================
+   SUPABASE
+   ========================================================== */
+
+const SUPABASE_URL =
+"https://nzriewxchkcfeknkbwuu.supabase.co";
+
+/*
+  BURAYA SUPABASE'DEN
+  PUBLISHABLE KEY GELECEK.
+
+  Service Role Key YAZMA.
+*/
+
+const SUPABASE_KEY =
+"BURAYA_SUPABASE_PUBLISHABLE_KEY";
+
+let supabaseClient=null;
+
+if(
+  window.supabase &&
+  SUPABASE_KEY !==
+  "BURAYA_SUPABASE_PUBLISHABLE_KEY"
+){
+
+supabaseClient=
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+}
+
+
+/* ==========================================================
+   VERİLER
+   ========================================================== */
+
+let clients=
+JSON.parse(
+localStorage.getItem("ceyhun_clients") || "[]"
+);
+
+let albums=
+JSON.parse(
+localStorage.getItem("ceyhun_albums") || "[]"
+);
+
+let appointments=
+JSON.parse(
+localStorage.getItem("ceyhun_appointments") || "[]"
+);
+
+let payments=
+JSON.parse(
+localStorage.getItem("ceyhun_payments") || "[]"
+);
+
+function saveLocal(){
+
+localStorage.setItem(
+"ceyhun_clients",
+JSON.stringify(clients)
+);
+
+localStorage.setItem(
+"ceyhun_albums",
+JSON.stringify(albums)
+);
+
+localStorage.setItem(
+"ceyhun_appointments",
+JSON.stringify(appointments)
+);
+
+localStorage.setItem(
+"ceyhun_payments",
+JSON.stringify(payments)
+);
+
+}
+
+
+/* ==========================================================
+   GİRİŞ
+   ========================================================== */
+
+const loginScreen=
+document.querySelector("#login");
+
+const appScreen=
+document.querySelector("#app");
+
+
+document.querySelector("#loginButton")
+.onclick=
+async function(){
+
+const email=
+document.querySelector("#email")
+.value
+.trim();
+
+const password=
+document.querySelector("#password")
+.value;
+
+const message=
+document.querySelector("#loginMessage");
+
+
+if(!email || !password){
+
+message.textContent=
+"E-posta ve şifreyi gir.";
+
+return;
+
+}
+
+
+/* SUPABASE VARSA */
+
+if(supabaseClient){
+
+const result=
+await supabaseClient
+.auth
+.signInWithPassword({
+
+email,
+password
+
+});
+
+
+if(result.error){
+
+message.textContent=
+result.error.message;
+
+return;
+
+}
+
+await openApp(
+result.data.user.email
+);
+
+return;
+
+}
+
+
+/* DEMO MOD */
+
+await openApp(
+email+" • Demo"
+);
+
 };
-function uid(){return 'p_'+(uidCounter++);} 
-function setStatus(t){statusEl.textContent=t||''; if(t) setTimeout(()=>{if(statusEl.textContent===t)statusEl.textContent=''},1800)}
-function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
-function snap(v,step){return Math.round(v/step)*step}
-function currentItems(){return pages[pageIndex]||[]}
-function visibleItems(){return currentItems().filter(o=>o.src)}
-function libraryById(id){return library.find(x=>x.id===id)||null}
-function pageOfPhoto(id){let out=[];pages.forEach((pg,idx)=>pg.some(o=>o.id===id)&&out.push(idx+1));return out}
-function blankSlot(slot){return {uid:uid(),id:null,src:'',thumb:'',name:'Boş alan',x:slot.x,y:slot.y,w:slot.w,h:slot.h,z:1,cx:0,cy:0,r:0,locked:false,slot:true,groupId:null}}
-function makePhoto(lib,slot){return {uid:uid(),id:lib.id,src:lib.src,thumb:lib.thumb||lib.src,name:lib.name,ratio:lib.ratio||1,x:slot?.x??0,y:slot?.y??0,w:slot?.w??100,h:slot?.h??100,z:1,cx:0,cy:0,r:0,locked:false,slot:!!slot,groupId:null}}
-function currentSelection(){return [...selectedSet].filter(o=>currentItems().includes(o))}
-function snapshot(){return JSON.stringify({W,H,pages,pageIndex,activeTemplateCount,activeTemplateVariant,templatePhotoIds,library:library.map(x=>({id:x.id,name:x.name,data:x.data,ratio:x.ratio,thumb:x.thumb}))})}
-function pushUndo(){undoStack.push(snapshot()); if(undoStack.length>50)undoStack.shift(); redoStack=[]; updateUndoButtons()}
-function restore(serial){const s=JSON.parse(serial);W=s.W;H=s.H;pages=s.pages||[[]];pageIndex=s.pageIndex||0;activeTemplateCount=s.activeTemplateCount||0;activeTemplateVariant=s.activeTemplateVariant||0;templatePhotoIds=s.templatePhotoIds||[];library=s.library||[]; library.forEach(x=>{x.src=x.data||x.src||''}); renderAll();}
-function updateUndoButtons(){ $('#undo').disabled=!undoStack.length; $('#redo').disabled=!redoStack.length }
-$('#undo').onclick=()=>{if(!undoStack.length)return;redoStack.push(snapshot());restore(undoStack.pop());setStatus('Geri alındı')};
-$('#redo').onclick=()=>{if(!redoStack.length)return;undoStack.push(snapshot());restore(redoStack.pop());setStatus('İleri alındı')};
 
-function calcPageScale(){
-  const maxW=Math.max(360,Math.min(window.innerWidth-350,1150));
-  const maxH=Math.max(320,window.innerHeight-120);
-  const fit=Math.min(maxW/(W*5.8),maxH/(H*5.8));
-  return Math.max(.05,fit*viewZoom);
+
+async function openApp(name){
+
+loginScreen.style.display=
+"none";
+
+appScreen.style.display=
+"block";
+
+document.querySelector("#currentUser")
+.textContent=name;
+
+refreshDashboard();
+
 }
-function applyPageSize(){
-  pageEl.style.width=`${W*5.8*calcPageScale()}px`; pageEl.style.height=`${H*5.8*calcPageScale()}px`;
+
+
+document.querySelector("#logoutButton")
+.onclick=
+async function(){
+
+if(supabaseClient){
+
+await supabaseClient
+.auth
+.signOut();
+
 }
-function coverPosition(o){return `${50+o.cx}% ${50+o.cy}%`}
-function mountPhoto(o){
-  const el=document.createElement('div'); el.className='photo'; el.dataset.uid=o.uid; el.style.left=o.x+'%'; el.style.top=o.y+'%'; el.style.width=o.w+'%'; el.style.height=o.h+'%'; el.style.zIndex=String(o.z||1); el.classList.toggle('selected',selectedSet.has(o)); el.classList.toggle('crop',cropMode&&selectedSet.has(o));
-  if(o.src){const im=document.createElement('img');im.src=o.src;im.draggable=false;im.style.objectFit='cover';im.style.objectPosition=coverPosition(o);im.style.transform=`rotate(${o.r||0}deg) scale(${o.z||1})`;el.appendChild(im);}
-  const name=document.createElement('div');name.className='photoName';name.textContent=o.name||'Boş alan';el.appendChild(name);
-  if(selectedSet.has(o)){['nw','ne','sw','se'].forEach(k=>{const h=document.createElement('div');h.className=`handle h-${k}`;h.dataset.handle=k;el.appendChild(h);})}
-  pageEl.appendChild(el);return el;
+
+appScreen.style.display=
+"none";
+
+loginScreen.style.display=
+"flex";
+
+};
+
+
+/* OTURUM KONTROL */
+
+if(supabaseClient){
+
+supabaseClient
+.auth
+.getSession()
+.then(async result=>{
+
+if(result.data.session){
+
+await openApp(
+result.data.session.user.email
+);
+
 }
-function renderGuides(){
-  pageEl.querySelectorAll('.spine,.trim,.safe,.insideTrim,.insideSafe,.rulerTop,.rulerLeft,.snap').forEach(x=>x.remove());
-  const trimLR=parseFloat($('#trimLR').value)||0.5,trimTB=parseFloat($('#trimTB').value)||0.5,trimInside=parseFloat($('#trimInside').value)||0.5,safeLR=parseFloat($('#safeLR').value)||1,safeTB=parseFloat($('#safeTB').value)||1,safeInside=parseFloat($('#safeInside').value)||1;
-  const spine=document.createElement('div');spine.className='spine';spine.style.setProperty('--spine',spineColor);pageEl.appendChild(spine);
-  const trim=document.createElement('div');trim.className='trim';trim.style.inset=`${(trimTB/H)*100}% ${(trimLR/W)*100}% ${(trimTB/H)*100}% ${(trimLR/W)*100}%`;pageEl.appendChild(trim);
-  const safe=document.createElement('div');safe.className='safe';safe.style.inset=`${(safeTB/H)*100}% ${(safeLR/W)*100}% ${(safeTB/H)*100}% ${(safeLR/W)*100}%`;pageEl.appendChild(safe);
-  const it=document.createElement('div');it.className='insideTrim';it.style.left=`calc(50% - ${(trimInside/W)*50}%)`;pageEl.appendChild(it);
-  const is=document.createElement('div');is.className='insideSafe';is.style.left=`calc(50% - ${(safeInside/W)*50}%)`;pageEl.appendChild(is);
-  if(rulerOn){const rt=document.createElement('div');rt.className='rulerTop';rt.textContent=`0 cm                                                  ${W.toFixed(1)} cm`;pageEl.appendChild(rt);const rl=document.createElement('div');rl.className='rulerLeft';rl.textContent=`0                                                ${H.toFixed(1)}`;rl.style.writingMode='vertical-rl';pageEl.appendChild(rl)}
-  if(gridOn){for(let i=1;i<10;i++){const v=document.createElement('div');v.className='snap v';v.style.left=(i*10)+'%';v.style.opacity='.12';pageEl.appendChild(v);const h=document.createElement('div');h.className='snap h';h.style.top=(i*10)+'%';h.style.opacity='.12';pageEl.appendChild(h)}}
+
+});
+
 }
-function renderPage(){
-  pageEl.innerHTML='';pageEl.style.setProperty('--spine',spineColor);applyPageSize();
-  const items=currentItems();
-  if(!items.length){const hint=document.createElement('div');hint.className='emptyHint';hint.textContent='Fotoğrafları soldan sürükle veya bir şablon seç';pageEl.appendChild(hint)}
-  items.forEach(mountPhoto); renderGuides(); renderSnapGuides();
+
+
+/* ==========================================================
+   SAYFA YÖNETİMİ
+   ========================================================== */
+
+function showView(id){
+
+document
+.querySelectorAll(".view")
+.forEach(x=>
+x.classList.remove("active")
+);
+
+document
+.querySelector("#"+id)
+.classList.add("active");
+
 }
-function renderSnapGuides(){
-  pageEl.querySelectorAll('.snapGuide').forEach(x=>x.remove());
+
+
+/* ==========================================================
+   DASHBOARD
+   ========================================================== */
+
+function refreshDashboard(){
+
+document.querySelector("#clientCount")
+.textContent=
+clients.length;
+
+document.querySelector("#albumCount")
+.textContent=
+albums.length;
+
+document.querySelector("#appointmentCount")
+.textContent=
+appointments.length;
+
+const total=
+payments.reduce(
+(sum,x)=>
+sum+Number(x.amount||0),
+0
+);
+
+document.querySelector("#paymentTotal")
+.textContent=
+total.toLocaleString("tr-TR")
++" ₺";
+
+
+document.querySelector("#clientsTable")
+.innerHTML=
+clients.map(x=>`
+
+<tr>
+
+<td>${safe(x.name)}</td>
+
+<td>${safe(x.phone||"-")}</td>
+
+<td>
+<span class="badge">
+Aktif
+</span>
+</td>
+
+</tr>
+
+`).join("");
+
+
+document.querySelector("#appointmentsTable")
+.innerHTML=
+appointments.map(x=>`
+
+<tr>
+
+<td>${safe(x.date||"-")}</td>
+
+<td>${safe(x.title||"-")}</td>
+
+<td>${safe(x.client||"-")}</td>
+
+<td>
+<span class="badge">
+${safe(x.status||"Bekliyor")}
+</span>
+</td>
+
+</tr>
+
+`).join("");
+
+
+document.querySelector("#paymentsTable")
+.innerHTML=
+payments.map(x=>`
+
+<tr>
+
+<td>${safe(x.client||"-")}</td>
+
+<td>
+${Number(x.amount||0)
+.toLocaleString("tr-TR")} ₺
+</td>
+
+<td>
+<span class="badge">
+${safe(x.status||"Bekliyor")}
+</span>
+</td>
+
+</tr>
+
+`).join("");
+
+
+document.querySelector("#albumsGrid")
+.innerHTML=
+albums.map(x=>`
+
+<div class="card">
+
+<h3>
+${safe(x.name)}
+</h3>
+
+<p class="muted">
+${safe(x.client||"")}
+</p>
+
+<button
+class="primary"
+onclick="showView('album')">
+
+🎨 Albümü Aç
+
+</button>
+
+</div>
+
+`).join("");
+
 }
-function fillSlot(slot,lib){
-  if(!slot||!lib)return;
-  const usedElsewhere=pages.some((pg,idx)=>idx!==pageIndex&&pg.some(o=>o.id===lib.id&&o.src));
-  if(usedElsewhere){setStatus('Bu fotoğraf başka bir sayfada zaten kullanılıyor');return;}
-  if(currentItems().some(o=>o!==slot&&o.id===lib.id&&o.src)){setStatus('Bu fotoğraf bu sayfada zaten kullanılıyor');return;}
-  pushUndo();
-  slot.id=lib.id;slot.src=lib.src;slot.thumb=lib.thumb;slot.name=lib.name;slot.ratio=lib.ratio||1;slot.z=1;slot.cx=0;slot.cy=0;slot.r=0;slot.slot=true;
-  selected=slot;selectedSet=new Set([slot]);cropMode=false;renderAll();
+
+
+function safe(value){
+
+return String(value??"")
+.replace(/[&<>"']/g,function(c){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+
+}[c];
+
+});
+
 }
-function renderThumbs(){
-  const box=$('#thumbs');box.innerHTML='';library.forEach(lib=>{const card=document.createElement('div');card.className='thumbCard';card.draggable=true;card.dataset.libId=lib.id;if(selected && selected.id===lib.id)card.classList.add('selected');card.onclick=()=>{const obj=currentItems().find(o=>o.id===lib.id);if(obj){selected=obj;selectedSet=new Set([obj]);cropMode=false;renderAll();}else if(activeTemplateCount){const slot=currentItems().find(o=>o.slot&&!o.src); if(slot)fillSlot(slot,lib); else addToPage(lib)}else addToPage(lib);};card.ondragstart=e=>{e.dataTransfer.setData('text/plain',lib.id);e.dataTransfer.effectAllowed='copyMove'};const img=document.createElement('img');img.src=lib.thumb||lib.src;card.appendChild(img);const n=document.createElement('div');n.className='thumbName';n.textContent=lib.name;card.appendChild(n);const use=document.createElement('div');use.className='thumbUse';const p=pageOfPhoto(lib.id);use.textContent=p.length?p.map(x=>`Sayfa ${x}`).join(', '):'Kullanılmadı';card.appendChild(use);box.appendChild(card)})}
+
+
+/* ==========================================================
+   MÜŞTERİ
+   ========================================================== */
+
+function addClient(){
+
+const name=
+prompt(
+"Müşteri adı soyadı:"
+);
+
+if(!name)return;
+
+const phone=
+prompt(
+"Telefon:"
+);
+
+clients.push({
+
+name,
+phone
+
+});
+
+saveLocal();
+
+refreshDashboard();
+
+}
+
+
+/* ==========================================================
+   ALBÜM
+   ========================================================== */
+
+function createAlbum(){
+
+const name=
+prompt(
+"Albüm adı:"
+);
+
+if(!name)return;
+
+const client=
+prompt(
+"Müşteri:"
+);
+
+albums.push({
+
+name,
+client
+
+});
+
+saveLocal();
+
+refreshDashboard();
+
+}
+
+
+/* ==========================================================
+   ALBÜM EDİTÖRÜ
+   ========================================================== */
+
+let albumWidth=50;
+
+let albumHeight=30.5;
+
+let currentPage=0;
+
+let pages=[
+[]
+];
+
+let photos=[];
+
+let selectedPhoto=null;
+
+let templateIndex=0;
+
+let activeCount=0;
+
+
+const canvas=
+document.querySelector("#canvas");
+
+
+/* ŞABLONLAR */
+
+const templates={
+
+1:[
+[
+{x:0,y:0,w:100,h:100}
+]
+],
+
+2:[
+
+[
+{x:0,y:0,w:50,h:100},
+{x:50,y:0,w:50,h:100}
+],
+
+[
+{x:0,y:0,w:100,h:50},
+{x:0,y:50,w:100,h:50}
+],
+
+[
+{x:0,y:0,w:60,h:100},
+{x:60,y:0,w:40,h:100}
+]
+
+],
+
+3:[
+
+[
+{x:0,y:0,w:60,h:100},
+{x:60,y:0,w:40,h:50},
+{x:60,y:50,w:40,h:50}
+],
+
+[
+{x:0,y:0,w:40,h:50},
+{x:0,y:50,w:40,h:50},
+{x:40,y:0,w:60,h:100}
+],
+
+[
+{x:0,y:0,w:100,h:60},
+{x:0,y:60,w:50,h:40},
+{x:50,y:60,w:50,h:40}
+],
+
+[
+{x:0,y:0,w:50,h:40},
+{x:50,y:0,w:50,h:40},
+{x:0,y:40,w:100,h:60}
+]
+
+],
+
+4:[
+
+[
+{x:0,y:0,w:50,h:100},
+{x:50,y:0,w:25,h:100},
+{x:75,y:0,w:25,h:50},
+{x:75,y:50,w:25,h:50}
+],
+
+[
+{x:0,y:0,w:50,h:50},
+{x:50,y:0,w:50,h:50},
+{x:0,y:50,w:50,h:50},
+{x:50,y:50,w:50,h:50}
+],
+
+[
+{x:0,y:0,w:100,h:60},
+{x:0,y:60,w:33.33,h:40},
+{x:33.33,y:60,w:33.34,h:40},
+{x:66.67,y:60,w:33.33,h:40}
+],
+
+[
+{x:0,y:0,w:33.33,h:40},
+{x:33.33,y:0,w:33.34,h:40},
+{x:66.67,y:0,w:33.33,h:40},
+{x:0,y:40,w:100,h:60}
+]
+
+],
+
+5:[
+
+[
+{x:0,y:0,w:50,h:50},
+{x:50,y:0,w:50,h:50},
+{x:0,y:50,w:33.33,h:50},
+{x:33.33,y:50,w:33.34,h:50},
+{x:66.67,y:50,w:33.33,h:50}
+],
+
+[
+{x:0,y:0,w:33.33,h:50},
+{x:33.33,y:0,w:33.34,h:50},
+{x:66.67,y:0,w:33.33,h:50},
+{x:0,y:50,w:50,h:50},
+{x:50,y:50,w:50,h:50}
+]
+
+],
+
+6:[
+
+[
+{x:0,y:0,w:33.33,h:50},
+{x:33.33,y:0,w:33.34,h:50},
+{x:66.67,y:0,w:33.33,h:50},
+{x:0,y:50,w:33.33,h:50},
+{x:33.33,y:50,w:33.34,h:50},
+{x:66.67,y:50,w:33.33,h:50}
+],
+
+[
+{x:0,y:0,w:50,h:33.33},
+{x:50,y:0,w:50,h:33.33},
+{x:0,y:33.33,w:50,h:33.33},
+{x:50,y:33.33,w:50,h:33.33},
+{x:0,y:66.66,w:50,h:33.34},
+{x:50,y:66.66,w:50,h:33.34}
+]
+
+]
+
+};
+
+
+/* ==========================================================
+   ALBÜM RENDER
+   ========================================================== */
+
+function resizeCanvas(){
+
+const availableW=
+window.innerWidth-560;
+
+const availableH=
+window.innerHeight-150;
+
+const scale=
+Math.min(
+availableW/(albumWidth*5.8),
+availableH/(albumHeight*5.8)
+);
+
+canvas.style.width=
+(albumWidth*5.8*scale)+"px";
+
+canvas.style.height=
+(albumHeight*5.8*scale)+"px";
+
+}
+
+
+function renderAlbum(){
+
+resizeCanvas();
+
+canvas.innerHTML="";
+
+pages[currentPage]
+.forEach((item,index)=>{
+
+const frame=
+document.createElement("div");
+
+frame.className=
+"frame"+
+(selectedPhoto===item?
+" selected":
+"");
+
+frame.style.left=
+item.x+"%";
+
+frame.style.top=
+item.y+"%";
+
+frame.style.width=
+item.w+"%";
+
+frame.style.height=
+item.h+"%";
+
+
+if(item.src){
+
+const img=
+document.createElement("img");
+
+img.src=item.src;
+
+img.style.objectPosition=
+`${50+(item.cx||0)}% ${50+(item.cy||0)}%`;
+
+img.style.transform=
+`scale(${item.zoom||1})`;
+
+frame.appendChild(img);
+
+}
+
+
+const name=
+document.createElement("div");
+
+name.className=
+"frameName";
+
+name.textContent=
+item.name||"Boş alan";
+
+frame.appendChild(name);
+
+
+frame.onpointerdown=
+function(e){
+
+selectedPhoto=item;
+
+renderAlbum();
+
+dragPhoto(e,item);
+
+};
+
+
+canvas.appendChild(frame);
+
+});
+
+
+renderPhotoLibrary();
+
+renderPages();
+
+document.querySelector("#selectedName")
+.textContent=
+selectedPhoto?.name||
+"Fotoğraf seçilmedi";
+
+document.querySelector("#photoZoom")
+.value=
+selectedPhoto?.zoom||1;
+
+}
+
+
+function renderPhotoLibrary(){
+
+const box=
+document.querySelector("#photos");
+
+box.innerHTML="";
+
+photos.forEach(photo=>{
+
+const div=
+document.createElement("div");
+
+div.className=
+"photo"+
+(selectedPhoto?.id===photo.id?
+" selected":
+"");
+
+div.onclick=
+()=>{
+
+addPhotoToPage(photo);
+
+};
+
+div.innerHTML=`
+
+<img src="${photo.src}">
+
+<span>
+${safe(photo.name)}
+</span>
+
+`;
+
+box.appendChild(div);
+
+});
+
+}
+
+
 function renderPages(){
-  const box=$('#pageTabs');box.innerHTML='';pages.forEach((pg,i)=>{const b=document.createElement('button');b.className='pageTab'+(i===pageIndex?' active':'');b.textContent=String(i+1);b.onclick=()=>{pageIndex=i;selected=null;selectedSet.clear();cropMode=false;renderAll()};box.appendChild(b)});
-}
-function updateSelectedPanel(){
-  const o=selected;$('#selectedName').textContent=o?.name||'Fotoğraf seçilmedi';if(o){$('#zoom').value=o.z||1;$('#rot').value=o.r||0;}
-}
-function renderAll(){renderPage();renderThumbs();renderPages();renderTemplateList();updateSelectedPanel();updatePreview();updateUndoButtons()}
 
-function createThumb(file,max=360){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*s));c.height=Math.max(1,Math.round(im.height*s));c.getContext('2d').drawImage(im,0,0,c.width,c.height);resolve({data:fr.result,thumb:c.toDataURL('image/jpeg',.78),ratio:im.width/im.height})};im.onerror=reject;im.src=fr.result};fr.onerror=reject;fr.readAsDataURL(file)})}
-async function addFiles(files){const arr=[...files].filter(f=>f.type.startsWith('image/'));for(const f of arr){const r=await createThumb(f);library.push({id:uid(),name:f.name,data:r.data,src:r.data,thumb:r.thumb,ratio:r.ratio})}renderAll();setStatus(`${arr.length} fotoğraf eklendi`)}
-$('#drop').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=e=>{addFiles(e.target.files);e.target.value=''};['dragover','dragleave','drop'].forEach(type=>$('#drop').addEventListener(type,e=>{e.preventDefault();if(type==='dragover')$('#drop').classList.add('dragover');else $('#drop').classList.remove('dragover');if(type==='drop')addFiles(e.dataTransfer.files)}));
-function addToPage(lib){if(currentItems().some(o=>o.id===lib.id)){setStatus('Bu fotoğraf bu sayfada zaten var');return}pushUndo();const o=makePhoto(lib,{x:10,y:10,w:80,h:80});pages[pageIndex].push(o);selected=o;selectedSet=new Set([o]);renderAll();}
-function removeLibrarySelected(){if(!selected)return;const id=selected.id;const used=pages.flat().some(o=>o.id===id);if(used){if(!confirm('Bu fotoğraf albüm sayfalarında kullanılıyor. Kütüphaneden tamamen silinsin mi?'))return;}pushUndo();library=library.filter(x=>x.id!==id);pages=pages.map(pg=>pg.filter(o=>o.id!==id));selected=null;selectedSet.clear();renderAll();}
-$('#deleteLibrary').onclick=removeLibrarySelected;$('#clearLibrary').onclick=()=>{if(!library.length)return;if(!confirm('Tüm fotoğraflar kütüphaneden ve sayfalardan silinsin mi?'))return;pushUndo();library=[];pages=[[]];pageIndex=0;selected=null;selectedSet.clear();renderAll()};
+const box=
+document.querySelector("#pages");
 
-function slotFor(n,v){
-  const g=0;
-  if(n===1)return [{x:0,y:0,w:100,h:100}];
-  if(n===2){if(v===0)return [{x:0,y:0,w:50,h:100},{x:50,y:0,w:50,h:100}];if(v===1)return [{x:0,y:0,w:100,h:50},{x:0,y:50,w:100,h:50}];return [{x:0,y:0,w:60,h:100},{x:60,y:0,w:40,h:100}]}
-  if(n===3){if(v===0)return [{x:0,y:0,w:60,h:100},{x:60,y:0,w:40,h:50},{x:60,y:50,w:40,h:50}];if(v===1)return [{x:0,y:0,w:40,h:50},{x:0,y:50,w:40,h:50},{x:40,y:0,w:60,h:100}];if(v===2)return [{x:0,y:0,w:100,h:60},{x:0,y:60,w:50,h:40},{x:50,y:60,w:50,h:40}];return [{x:0,y:0,w:50,h:40},{x:50,y:0,w:50,h:40},{x:0,y:40,w:100,h:60}]}
-  if(n===4){if(v===0)return [{x:0,y:0,w:50,h:100},{x:50,y:0,w:25,h:100},{x:75,y:0,w:25,h:50},{x:75,y:50,w:25,h:50}];if(v===1)return [{x:0,y:0,w:50,h:50},{x:50,y:0,w:50,h:50},{x:0,y:50,w:50,h:50},{x:50,y:50,w:50,h:50}];if(v===2)return [{x:0,y:0,w:100,h:60},{x:0,y:60,w:33.333,h:40},{x:33.333,y:60,w:33.334,h:40},{x:66.667,y:60,w:33.333,h:40}];if(v===3)return [{x:0,y:0,w:33.333,h:40},{x:33.333,y:0,w:33.334,h:40},{x:66.667,y:0,w:33.333,h:40},{x:0,y:40,w:100,h:60}];if(v===4)return [{x:0,y:0,w:60,h:100},{x:60,y:0,w:40,h:50},{x:60,y:50,w:20,h:50},{x:80,y:50,w:20,h:50}];return [{x:40,y:0,w:60,h:100},{x:0,y:0,w:40,h:50},{x:0,y:50,w:20,h:50},{x:20,y:50,w:20,h:50}]}
-  if(n===5){if(v===0)return [{x:0,y:0,w:58,h:100},{x:58,y:0,w:42,h:25},{x:58,y:25,w:21,h:75},{x:79,y:25,w:21,h:37.5},{x:79,y:62.5,w:21,h:37.5}];if(v===1)return [{x:0,y:0,w:50,h:50},{x:50,y:0,w:50,h:50},{x:0,y:50,w:33.333,h:50},{x:33.333,y:50,w:33.334,h:50},{x:66.667,y:50,w:33.333,h:50}];if(v===2)return [{x:0,y:0,w:33.333,h:50},{x:33.333,y:0,w:33.334,h:50},{x:66.667,y:0,w:33.333,h:50},{x:0,y:50,w:50,h:50},{x:50,y:50,w:50,h:50}];if(v===3)return [{x:0,y:0,w:50,h:50},{x:50,y:0,w:50,h:50},{x:0,y:50,w:25,h:50},{x:25,y:50,w:25,h:50},{x:50,y:50,w:50,h:50}];return [{x:0,y:0,w:60,h:100},{x:60,y:0,w:40,h:25},{x:60,y:25,w:20,h:75},{x:80,y:25,w:20,h:37.5},{x:80,y:62.5,w:20,h:37.5}]}
-  if(n===6){if(v===0){const cw=33.333,ch=50;return [{x:0,y:0,w:cw,h:ch},{x:cw,y:0,w:cw,h:ch},{x:cw*2,y:0,w:cw,h:ch},{x:0,y:50,w:cw,h:50},{x:cw,y:50,w:cw,h:50},{x:cw*2,y:50,w:cw,h:50}]};if(v===1){const cw=50,ch=33.333;return [{x:0,y:0,w:cw,h:ch},{x:50,y:0,w:cw,h:ch},{x:0,y:ch,w:cw,h:ch},{x:50,y:ch,w:cw,h:ch},{x:0,y:ch*2,w:cw,h:ch},{x:50,y:ch*2,w:cw,h:ch}]};if(v===2)return [{x:0,y:0,w:55,h:100},{x:55,y:0,w:45,h:25},{x:55,y:25,w:22.5,h:37.5},{x:77.5,y:25,w:22.5,h:37.5},{x:55,y:62.5,w:22.5,h:37.5},{x:77.5,y:62.5,w:22.5,h:37.5}];return [{x:0,y:0,w:45,h:55},{x:45,y:0,w:55,h:55},{x:0,y:55,w:33.333,h:45},{x:33.333,y:55,w:33.334,h:45},{x:66.667,y:55,w:33.333,h:22.5},{x:66.667,y:77.5,w:33.333,h:22.5}]}
-  return [{x:0,y:0,w:100,h:100}];
-}
-function chooseTemplateRoster(n,force=false){
-  const ids=[];
-  const pageSrc=currentItems().filter(o=>o.src).map(o=>o.id);
-  const preferred=force ? [...new Set([...currentSelection().map(o=>o.id),...pageSrc])] : [...new Set([...pageSrc,...templatePhotoIds])];
-  for(const id of preferred){ if(ids.length>=n)break; if(libraryById(id)&&!ids.includes(id))ids.push(id); }
-  for(const lib of library){
-    if(ids.length>=n)break;
-    if(ids.includes(lib.id))continue;
-    const usedElsewhere=pages.some((pg,idx)=>idx!==pageIndex&&pg.some(o=>o.id===lib.id&&o.src));
-    if(!usedElsewhere)ids.push(lib.id);
-  }
-  return ids.slice(0,n);
-}
-function applyTemplate(n,v=0,opts={force:false}){
-  if(!library.length&&!currentItems().some(o=>o.src)){setStatus('Önce fotoğraf yükle');return}
-  const variants=templateNames[n]?.length||1;
-  const nextVariant=((v%variants)+variants)%variants;
-  const sameCount=(activeTemplateCount===n);
-  if(sameCount&&!opts.force&&currentItems().some(o=>o.src)){
-    const currentIds=currentItems().filter(o=>o.src).map(o=>o.id).filter((id,i,a)=>a.indexOf(id)===i).slice(0,n);
-    if(currentIds.length===n)templatePhotoIds=currentIds;
-    else if(templatePhotoIds.length!==n)templatePhotoIds=chooseTemplateRoster(n,false);
-  }else{
-    templatePhotoIds=chooseTemplateRoster(n,!!opts.force);
-  }
-  pushUndo();
-  activeTemplateCount=n;activeTemplateVariant=nextVariant;
-  const slots=slotFor(n,activeTemplateVariant);
-  const existing=new Map(currentItems().filter(o=>o.src).map(o=>[o.id,o]));
-  const wanted=templatePhotoIds.map(id=>existing.get(id)||libraryById(id)).filter(Boolean);
-  pages[pageIndex]=slots.map((sl,i)=>{
-    const src=wanted[i];
-    if(!src)return blankSlot(sl);
-    const obj=(src.uid&&src.src)?src:makePhoto(src,sl);
-    obj.x=sl.x;obj.y=sl.y;obj.w=sl.w;obj.h=sl.h;obj.slot=true;
-    if(obj.z==null)obj.z=1;if(obj.cx==null)obj.cx=0;if(obj.cy==null)obj.cy=0;if(obj.r==null)obj.r=0;
-    return obj;
-  });
-  selectedSet=new Set(pages[pageIndex].filter(o=>o.src));
-  selected=pages[pageIndex].find(o=>o.src)||null;
-  cropMode=false;
-  renderAll();
-  setStatus(`${templateNames[n][activeTemplateVariant]} uygulandı — fotoğraflar korundu`);
-}
-function renderTemplateList(){const box=$('#templateList');box.innerHTML='';if(!activeTemplateCount)return;templateNames[activeTemplateCount].forEach((name,i)=>{const b=document.createElement('button');b.textContent=`${i+1}. ${name}`;b.classList.toggle('active',i===activeTemplateVariant);b.title=`${activeTemplateCount} fotoğraf: ${name}. Fotoğraflar otomatik kutulara yerleşir.`;b.onclick=()=>{const ids=currentItems().filter(o=>o.src).map(o=>o.id).filter((id,i,a)=>a.indexOf(id)===i).slice(0,activeTemplateCount);if(ids.length)templatePhotoIds=ids;applyTemplate(activeTemplateCount,i,{force:false})};box.appendChild(b)});$('#templateInfo').textContent=`${activeTemplateCount} fotoğraf • ${templateNames[activeTemplateCount][activeTemplateVariant]} • Düzen ${activeTemplateVariant+1}/${templateNames[activeTemplateCount].length}`}
-function cycleTemplate(delta){if(!activeTemplateCount)return setStatus('Önce 1–6 fotoğraf sayısından birini seç');const n=activeTemplateCount;const currentIds=currentItems().filter(o=>o.src).map(o=>o.id).filter((id,i,a)=>a.indexOf(id)===i).slice(0,n);if(currentIds.length)templatePhotoIds=currentIds;applyTemplate(n,activeTemplateVariant+delta,{force:false})}
-document.querySelectorAll('.countBtn').forEach(btn=>btn.onclick=()=>applyTemplate(Number(btn.dataset.count),0,{force:true}));$('#prevTemplate').onclick=()=>cycleTemplate(-1);$('#nextTemplate').onclick=()=>cycleTemplate(1);$('#randomTemplate').onclick=()=>{if(!activeTemplateCount)return;cycleTemplate(Math.floor(Math.random()*Math.max(1,templateNames[activeTemplateCount].length)))};
+box.innerHTML="";
 
-function replaceSelectedFromLibrary(lib){if(!selected)return;pushUndo();selected.id=lib.id;selected.src=lib.src;selected.name=lib.name;selected.r=0;selected.z=1;selected.cx=0;selected.cy=0;renderAll();setStatus('Fotoğraf kutusu değiştirildi')}
-$('#replacePhoto').onclick=()=>{if(!selected)return setStatus('Önce bir fotoğraf seç');const free=library.find(l=>!pageOfPhoto(l.id).includes(pageIndex+1));if(free)replaceSelectedFromLibrary(free);else setStatus('Değiştirmek için kullanılmamış fotoğraf yok')};
-function fitSelected(){const items=currentSelection();if(!items.length)return;pushUndo();items.forEach(o=>{o.z=1;o.cx=0;o.cy=0;o.r=0});renderAll();setStatus('Fotoğraflar kendi kutularına sığdırıldı')}
-$('#fit').onclick=fitSelected;
-function deletePageSelected(){if(!selectedSet.size)return;pushUndo();pages[pageIndex]=currentItems().filter(o=>!selectedSet.has(o));selectedSet.clear();selected=null;cropMode=false;renderAll()}
-$('#deletePagePhoto').onclick=deletePageSelected;
-$('#clearSelection').onclick=()=>{selectedSet.clear();selected=null;cropMode=false;renderAll()};$('#selectAll').onclick=()=>{selectedSet=new Set(visibleItems());selected=visibleItems()[0]||null;renderAll()};
-$('#lock').onclick=()=>{if(!selectedSet.size)return;pushUndo();currentSelection().forEach(o=>o.locked=!o.locked);renderAll()};
-function changeZ(dir){if(!selected)return;pushUndo();selected.z=Math.max(1,(selected.z||1)+dir);renderAll()}
-$('#front').onclick=()=>changeZ(1);$('#back').onclick=()=>changeZ(-1);
+pages.forEach((page,index)=>{
 
-function doAlign(mode){const items=currentSelection();if(items.length<2)return setStatus('En az 2 fotoğraf seç');pushUndo();if(mode==='left'){const v=Math.min(...items.map(o=>o.x));items.forEach(o=>o.x=v)}if(mode==='centerX'){const v=items.reduce((s,o)=>s+o.x+o.w/2,0)/items.length;items.forEach(o=>o.x=clamp(v-o.w/2,0,100-o.w))}if(mode==='right'){const v=Math.max(...items.map(o=>o.x+o.w));items.forEach(o=>o.x=clamp(v-o.w,0,100-o.w))}if(mode==='top'){const v=Math.min(...items.map(o=>o.y));items.forEach(o=>o.y=v)}if(mode==='centerY'){const v=items.reduce((s,o)=>s+o.y+o.h/2,0)/items.length;items.forEach(o=>o.y=clamp(v-o.h/2,0,100-o.h))}if(mode==='bottom'){const v=Math.max(...items.map(o=>o.y+o.h));items.forEach(o=>o.y=clamp(v-o.h,0,100-o.h))}renderAll()}
-$('#alignLeft').onclick=()=>doAlign('left');$('#alignCenterX').onclick=()=>doAlign('centerX');$('#alignRight').onclick=()=>doAlign('right');$('#alignTop').onclick=()=>doAlign('top');$('#alignCenterY').onclick=()=>doAlign('centerY');$('#alignBottom').onclick=()=>doAlign('bottom');
-function equal(mode){const items=currentSelection();if(items.length<2)return setStatus('En az 2 fotoğraf seç');pushUndo();if(mode==='size'){const w=items[0].w,h=items[0].h;items.forEach(o=>{o.w=w;o.h=h})}if(mode==='width'){const w=items[0].w;items.forEach(o=>o.w=w)}if(mode==='height'){const h=items[0].h;items.forEach(o=>o.h=h)}renderAll()}
-$('#sameSize').onclick=()=>equal('size');$('#sameWidth').onclick=()=>equal('width');$('#sameHeight').onclick=()=>equal('height');
-function distribute(axis){const items=currentSelection();if(items.length<3)return setStatus('En az 3 fotoğraf seç');pushUndo();items.sort((a,b)=>(axis==='x'?a.x:b.y)-(axis==='x'?b.x:b.y));if(axis==='x'){const first=items[0].x,last=items[items.length-1].x+items[items.length-1].w,span=last-first,total=items.reduce((s,o)=>s+o.w,0),gap=(span-total)/(items.length-1);let pos=first;items.forEach(o=>{o.x=pos;pos+=o.w+gap})}else{const first=items[0].y,last=items[items.length-1].y+items[items.length-1].h,span=last-first,total=items.reduce((s,o)=>s+o.h,0),gap=(span-total)/(items.length-1);let pos=first;items.forEach(o=>{o.y=pos;pos+=o.h+gap})}renderAll()}
-$('#distX').onclick=()=>distribute('x');$('#distY').onclick=()=>distribute('y');
-function setGroup(){const items=currentSelection();if(items.length<2)return setStatus('En az 2 fotoğraf seç');pushUndo();const gid=uid();items.forEach(o=>o.groupId=gid);renderAll()}function ungroup(){const items=currentSelection();if(!items.length)return;pushUndo();items.forEach(o=>o.groupId=null);renderAll()}$('#group').onclick=setGroup;$('#ungroup').onclick=ungroup;
-$('#copyStyle').onclick=()=>{if(!selected)return;styleClipboard={w:selected.w,h:selected.h,z:selected.z,cx:selected.cx,cy:selected.cy,r:selected.r};setStatus('Stil kopyalandı')};$('#pasteStyle').onclick=()=>{if(!selected||!styleClipboard)return;pushUndo();Object.assign(selected,styleClipboard);renderAll();setStatus('Stil yapıştırıldı')};
+const button=
+document.createElement("button");
 
-function beginPointer(e,o){
-  if(o.locked)return;
-  const rect=pageEl.getBoundingClientRect();
-  const px=(e.clientX-rect.left)/rect.width*100,py=(e.clientY-rect.top)/rect.height*100;
-  if(cropMode){selected=o;selectedSet=new Set([o]);dragState={type:'crop',o,startX:px,startY:py,cx:o.cx,cy:o.cy};return}
-  const handle=e.target.dataset.handle;
-  if(handle){pushUndo();resizeState={o,startX:px,startY:py,orig:{x:o.x,y:o.y,w:o.w,h:o.h},handle,ratio:o.w/o.h};return}
-  pushUndo();selected=o;if(!e.shiftKey)selectedSet=new Set([o]);else selectedSet.add(o);
-  const group=(o.groupId?currentSelection().filter(x=>x.groupId===o.groupId):[]);
-  dragState={type:'move',o,startX:px,startY:py,ox:o.x,oy:o.y,group:group.map(g=>({o:g,x:g.x,y:g.y}))};renderAll();
-}
-pageEl.addEventListener('pointerdown',e=>{const el=e.target.closest('.photo');if(!el)return;const o=currentItems().find(x=>x.uid===el.dataset.uid);if(o)beginPointer(e,o)});
-window.addEventListener('pointermove',e=>{if(!dragState&&!resizeState)return;const rect=pageEl.getBoundingClientRect();const px=(e.clientX-rect.left)/rect.width*100,py=(e.clientY-rect.top)/rect.height*100;if(dragState){const d=dragState;if(d.type==='move'){let dx=px-d.startX,dy=py-d.startY;d.o.x=clamp(d.ox+dx,0,100-d.o.w);d.o.y=clamp(d.oy+dy,0,100-d.o.h);if(d.group.length){for(const g of d.group){if(g.o===d.o)continue;g.o.x=clamp(g.x+dx,0,100-g.o.w);g.o.y=clamp(g.y+dy,0,100-g.o.h)}}}else{const dx=px-d.startX,dy=py-d.startY;d.o.cx=d.cx+dx;d.o.cy=d.cy+dy;clampCrop(d.o)}updateDOMFast()}if(resizeState){const r=resizeState;let dx=px-r.startX,dy=py-r.startY;let x=r.orig.x,y=r.orig.y,w=r.orig.w,h=r.orig.h;if(r.handle.includes('e'))w=clamp(r.orig.w+dx,.5,100-x);if(r.handle.includes('s'))h=clamp(r.orig.h+dy,.5,100-y);if(r.handle.includes('w')){x=clamp(r.orig.x+dx,0,r.orig.x+r.orig.w-.5);w=r.orig.w-(x-r.orig.x)}if(r.handle.includes('n')){y=clamp(r.orig.y+dy,0,r.orig.y+r.orig.h-.5);h=r.orig.h-(y-r.orig.y)}if(!e.shiftKey){const ratio=r.ratio;if(Math.abs(dx)>Math.abs(dy)){h=w/ratio}else{w=h*ratio}if(r.handle.includes('w'))x=r.orig.x+r.orig.w-w;if(r.handle.includes('n'))y=r.orig.y+r.orig.h-h}r.o.x=clamp(x,0,100-w);r.o.y=clamp(y,0,100-h);r.o.w=clamp(w,.5,100-r.o.x);r.o.h=clamp(h,.5,100-r.o.y);updateDOMFast()}});
-window.addEventListener('pointerup',()=>{if(dragState||resizeState){dragState=null;resizeState=null;renderAll()}});
-function updateDOMFast(){for(const o of currentItems()){const el=pageEl.querySelector(`.photo[data-uid="${o.uid}"]`);if(!el)continue;el.style.left=o.x+'%';el.style.top=o.y+'%';el.style.width=o.w+'%';el.style.height=o.h+'%';const im=el.querySelector('img');if(im){im.style.objectPosition=coverPosition(o);im.style.transform=`rotate(${o.r||0}deg) scale(${o.z||1})`}}updatePreview()}
-pageEl.addEventListener('dblclick',e=>{const el=e.target.closest('.photo');if(!el)return;const o=currentItems().find(x=>x.uid===el.dataset.uid);if(!o)return;selected=o;selectedSet=new Set([o]);cropMode=!cropMode;renderAll();setStatus(cropMode?'Kadraj modu açık':'Kadraj modu kapalı')});
-$('#cropMode').onclick=()=>{if(!selected)return setStatus('Önce bir fotoğraf seç');cropMode=!cropMode;renderAll()};
-$('#zoom').oninput=e=>{if(!selected)return;selected.z=+e.target.value;updateDOMFast()};$('#zoom').onchange=()=>renderAll();$('#rot').oninput=e=>{if(!selected)return;selected.r=+e.target.value;updateDOMFast()};$('#rot').onchange=()=>renderAll();
-pageEl.addEventListener('wheel',e=>{if(!selected||!cropMode)return;e.preventDefault();selected.z=clamp((selected.z||1)+(e.deltaY<0?0.05:-0.05),1,4);$('#zoom').value=selected.z;updateDOMFast()},{passive:false});
+button.textContent=
+index+1;
 
-function cropLimit(o){return 50*Math.max(0,(o.z||1)-1)}
-function clampCrop(o){const lim=cropLimit(o);o.cx=clamp(o.cx||0,-lim,lim);o.cy=clamp(o.cy||0,-lim,lim)}
-function updatePreview(){
-  const img=$('#previewImage'), ph=$('#previewPlaceholder'), name=$('#previewName');
-  if(!selected||!selected.src){img.style.display='none';ph.style.display='block';name.textContent='Fotoğraf seçilmedi';$('#previewZoom').value=1;return;}
-  ph.style.display='none';img.style.display='block';name.textContent=selected.name||'Fotoğraf';img.src=selected.src;img.style.objectPosition=coverPosition(selected);img.style.transform=`rotate(${selected.r||0}deg) scale(${selected.z||1})`;$('#previewZoom').value=selected.z||1;
-}
-function moveCrop(dx,dy){if(!selected||!selected.src||selected.locked)return;pushUndo();selected.cx=(selected.cx||0)+dx;selected.cy=(selected.cy||0)+dy;clampCrop(selected);updateDOMFast();updatePreview();}
-$('#pLeft').onclick=()=>moveCrop(-1,0);$('#pRight').onclick=()=>moveCrop(1,0);$('#pUp').onclick=()=>moveCrop(0,-1);$('#pDown').onclick=()=>moveCrop(0,1);
-$('#pFit').onclick=()=>{if(!selected)return;pushUndo();selected.z=1;selected.cx=0;selected.cy=0;selected.r=0;renderAll();setStatus('Kadraj sıfırlandı')};
-$('#pCenter').onclick=()=>{if(!selected)return;pushUndo();selected.cx=0;selected.cy=0;renderAll();};
-$('#previewZoom').oninput=e=>{if(!selected)return;selected.z=+e.target.value;clampCrop(selected);updateDOMFast();updatePreview()};
-const pf=$('#previewFrame');
-pf.addEventListener('pointerdown',e=>{if(!selected||!selected.src||selected.locked)return;previewDrag={startX:e.clientX,startY:e.clientY,cx:selected.cx||0,cy:selected.cy||0};pf.classList.add('dragging');pf.setPointerCapture?.(e.pointerId);pushUndo()});
-pf.addEventListener('pointermove',e=>{if(!previewDrag||!selected)return;const rect=pf.getBoundingClientRect();selected.cx=previewDrag.cx+(e.clientX-previewDrag.startX)/rect.width*100;selected.cy=previewDrag.cy+(e.clientY-previewDrag.startY)/rect.height*100;clampCrop(selected);updateDOMFast();updatePreview()});
-pf.addEventListener('pointerup',e=>{previewDrag=null;pf.classList.remove('dragging');try{pf.releasePointerCapture?.(e.pointerId)}catch{}});
-pf.addEventListener('pointercancel',()=>{previewDrag=null;pf.classList.remove('dragging')});
+if(index===currentPage)
+button.classList.add("active");
 
-function swapOnDrop(targetO,libId){
-  if(!targetO)return;
-  const other=currentItems().find(o=>o.id===libId&&o.src);
-  if(other){
-    if(other===targetO)return;
-    pushUndo();
-    const a={id:targetO.id,src:targetO.src,name:targetO.name,ratio:targetO.ratio,thumb:targetO.thumb};
-    Object.assign(targetO,{id:other.id,src:other.src,name:other.name,ratio:other.ratio,thumb:other.thumb});
-    Object.assign(other,a);
-    renderAll();setStatus('Fotoğrafların yerleri değiştirildi');return;
-  }
-  const lib=libraryById(libId);if(!lib)return;
-  const usedElsewhere=pages.some((pg,idx)=>idx!==pageIndex&&pg.some(o=>o.id===lib.id&&o.src));
-  if(usedElsewhere){alert('Bu fotoğraf başka bir sayfada zaten kullanılıyor.');return;}
-  pushUndo();targetO.id=lib.id;targetO.src=lib.src;targetO.name=lib.name;targetO.thumb=lib.thumb;targetO.ratio=lib.ratio||1;targetO.z=1;targetO.cx=0;targetO.cy=0;targetO.r=0;targetO.slot=true;renderAll();setStatus('Fotoğraf kutuya yerleştirildi');
+button.onclick=
+()=>{
+
+currentPage=index;
+
+selectedPhoto=null;
+
+renderAlbum();
+
+};
+
+box.appendChild(button);
+
+});
+
 }
 
-document.addEventListener('dragstart',e=>{const card=e.target.closest('.thumbCard');if(card){const lib=library.find(x=>x.name===card.querySelector('.thumbName')?.textContent);if(lib)e.dataTransfer.setData('text/plain',lib.id)}});pageEl.addEventListener('dragover',e=>e.preventDefault());pageEl.addEventListener('drop',e=>{e.preventDefault();const id=e.dataTransfer.getData('text/plain');const el=e.target.closest('.photo');const o=el?currentItems().find(x=>x.uid===el.dataset.uid):null;if(o){pushUndo();swapOnDrop(o,id)}});
 
-function fillPage(){const items=visibleItems();if(!items.length)return setStatus('Sayfada fotoğraf yok');pushUndo();items.forEach(o=>{o.z=1;o.cx=0;o.cy=0;o.r=0});renderAll();setStatus('Seçili şablon korundu, fotoğraflar kutularına tam sığdırıldı')}
-$('#fillPage').onclick=fillPage;
-$('#zeroGap').onclick=()=>{const items=visibleItems();if(!items.length)return;pushUndo();let minX=Math.min(...items.map(o=>o.x)),minY=Math.min(...items.map(o=>o.y)),maxX=Math.max(...items.map(o=>o.x+o.w)),maxY=Math.max(...items.map(o=>o.y+o.h));const bw=maxX-minX,bh=maxY-minY;items.forEach(o=>{o.x=(o.x-minX)/bw*100;o.y=(o.y-minY)/bh*100;o.w=o.w/bw*100;o.h=o.h/bh*100});renderAll();setStatus('Beyaz alanlar kapatıldı')};
+/* ==========================================================
+   FOTOĞRAF YÜKLEME
+   ========================================================== */
 
-$('#newPage').onclick=()=>{pushUndo();pages.push([]);pageIndex=pages.length-1;activeTemplateCount=0;selected=null;selectedSet.clear();renderAll();setStatus('Yeni sayfa oluşturuldu')};$('#duplicatePage').onclick=()=>{pushUndo();pages.push(JSON.parse(JSON.stringify(currentItems())).map(o=>({...o,uid:uid()})));pageIndex=pages.length-1;renderAll();setStatus('Sayfa çoğaltıldı')};
-$('#applySize').onclick=()=>{pushUndo();W=parseFloat($('#wCm').value)||50;H=parseFloat($('#hCm').value)||30.5;renderAll();setStatus('Albüm ölçüsü uygulandı')};
-$('#applyPrintSettings').onclick=()=>{setStatus('Baskı ayarları kaydedildi');localStorage.setItem('ceyhun_print_settings',JSON.stringify({full:$('#fullSpread').value,trimLR:$('#trimLR').value,trimTB:$('#trimTB').value,trimInside:$('#trimInside').value,safeLR:$('#safeLR').value,safeTB:$('#safeTB').value,safeInside:$('#safeInside').value,first:$('#firstSpread').value,last:$('#lastSpread').value}))};
-$('#resetSettings').onclick=()=>{W=50;H=30.5;$('#wCm').value=50;$('#hCm').value=30.5;$('#trimLR').value=.5;$('#trimTB').value=.5;$('#trimInside').value=.5;$('#safeLR').value=1;$('#safeTB').value=1;$('#safeInside').value=1;renderAll();setStatus('Varsayılan 50 × 30,5 ayarlarına dönüldü')};
-function loadSavedSettings(){try{const s=JSON.parse(localStorage.getItem('ceyhun_print_settings')||'null');if(!s)return;$('#fullSpread').value=s.full||'yes';$('#trimLR').value=s.trimLR??.5;$('#trimTB').value=s.trimTB??.5;$('#trimInside').value=s.trimInside??.5;$('#safeLR').value=s.safeLR??1;$('#safeTB').value=s.safeTB??1;$('#safeInside').value=s.safeInside??1}catch{}}
-loadSavedSettings();
+const fileInput=
+document.querySelector("#fileInput");
 
-$('#viewMinus').onclick=()=>{viewZoom=clamp(viewZoom-.1,.4,2);renderAll();$('#viewStatus').textContent=Math.round(viewZoom*100)+'%'};$('#viewPlus').onclick=()=>{viewZoom=clamp(viewZoom+.1,.4,2);renderAll();$('#viewStatus').textContent=Math.round(viewZoom*100)+'%'};$('#viewFit').onclick=()=>{viewZoom=1;renderAll();$('#viewStatus').textContent='100%'};$('#view100').onclick=()=>{viewZoom=1;renderAll();$('#viewStatus').textContent='100%'};
-$('#toggleGrid').onclick=()=>{gridOn=!gridOn;renderAll()};$('#toggleRuler').onclick=()=>{rulerOn=!rulerOn;renderAll()};$('#spineBlack').onclick=()=>{spineColor='#111';renderAll();$('#spineLabel').textContent='Siyah'};$('#spineBlue').onclick=()=>{spineColor='#1976d2';renderAll();$('#spineLabel').textContent='Mavi'};$('#spineRed').onclick=()=>{spineColor='#d32f2f';renderAll();$('#spineLabel').textContent='Kırmızı'};
-$('#addVGuide').onclick=()=>setStatus('Dikey kılavuz: bu sürümde orta kırım çizgisi aktif');$('#addHGuide').onclick=()=>setStatus('Yatay kılavuz: tasarım kılavuzu hazır');$('#clearGuides').onclick=()=>setStatus('Özel kılavuzlar temizlendi');
+document.querySelector("#dropZone")
+.onclick=
+()=>fileInput.click();
 
-function projectData(){return {version:'4.6',app:'CEYHUN FOTOĞRAFÇILIK STUDİO',DPI,W,H,pages,pageIndex,activeTemplateCount,activeTemplateVariant,templatePhotoIds,library:library.map(x=>({id:x.id,name:x.name,data:x.data,ratio:x.ratio,thumb:x.thumb}))}}
-$('#saveProject').onclick=()=>{const blob=new Blob([JSON.stringify(projectData())],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ceyhun_album_proje.cys.json';a.click();URL.revokeObjectURL(a.href);setStatus('Proje kaydedildi')};
-$('#openProject').onclick=()=>{const inp=document.createElement('input');inp.type='file';inp.accept='.json,.cys.json,application/json';inp.onchange=async()=>{const f=inp.files[0];if(!f)return;const t=await f.text();try{const d=JSON.parse(t);W=d.W||50;H=d.H||30.5;pages=d.pages||[[]];pageIndex=d.pageIndex||0;activeTemplateCount=d.activeTemplateCount||0;activeTemplateVariant=d.activeTemplateVariant||0;templatePhotoIds=d.templatePhotoIds||[];library=(d.library||[]).map(x=>({...x,src:x.data||x.src}));renderAll();setStatus('Proje açıldı')}catch{alert('Proje dosyası okunamadı')}};inp.click()};
-$('#print').onclick=()=>window.print();
-async function exportCurrentJpg(idx){const canvas=document.createElement('canvas');canvas.width=Math.round(W*DPI/2.54);canvas.height=Math.round(H*DPI/2.54);const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);for(const o of pages[idx]){if(!o.src)continue;const im=await new Promise((res,rej)=>{const x=new Image();x.onload=()=>res(x);x.onerror=rej;x.src=o.src});const x=o.x/100*canvas.width,y=o.y/100*canvas.height,w=o.w/100*canvas.width,h=o.h/100*canvas.height;const base=Math.max(w/im.width,h/im.height)*(o.z||1);const dw=im.width*base,dh=im.height*base;const ox=(o.cx||0)/100*w,oy=(o.cy||0)/100*h;ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.translate(x+w/2+ox,y+h/2+oy);ctx.rotate((o.r||0)*Math.PI/180);ctx.drawImage(im,-dw/2,-dh/2,dw,dh);ctx.restore()}return new Promise(res=>canvas.toBlob(b=>res(b),'image/jpeg',.95))}
-function crc32(bytes){let table=crc32.table;if(!table){table=crc32.table=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);table[n]=c>>>0}}let c=0xffffffff;for(const b of bytes)c=table[(c^b)&255]^(c>>>8);return (c^0xffffffff)>>>0}
-function u16(v){const a=new Uint8Array(2);new DataView(a.buffer).setUint16(0,v,true);return a}
-function u32(v){const a=new Uint8Array(4);new DataView(a.buffer).setUint32(0,v>>>0,true);return a}
-function concatBytes(parts){let n=parts.reduce((s,p)=>s+p.length,0),o=new Uint8Array(n),pos=0;for(const p of parts){o.set(p,pos);pos+=p.length}return o}
-function makeZip(files){const enc=new TextEncoder(),locals=[],centrals=[];let offset=0;for(const f of files){const name=enc.encode(f.name),data=new Uint8Array(f.bytes),crc=crc32(data);const local=concatBytes([new Uint8Array([0x50,0x4b,0x03,0x04]),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data]);locals.push(local);const central=concatBytes([new Uint8Array([0x50,0x4b,0x01,0x02]),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);centrals.push(central);offset+=local.length}const cd=concatBytes(centrals),body=concatBytes(locals),end=concatBytes([new Uint8Array([0x50,0x4b,0x05,0x06]),u16(0),u16(0),u16(files.length),u16(files.length),u32(cd.length),u32(body.length),u16(0)]);return new Blob([body,cd,end],{type:'application/zip'})}
-async function exportAllZip(){if(!pages.length)return;setStatus('Tüm sayfalar hazırlanıyor…');const files=[];for(let i=0;i<pages.length;i++){const blob=await exportCurrentJpg(i);files.push({name:`album${String(i+1).padStart(3,'0')}.jpg`,bytes:new Uint8Array(await blob.arrayBuffer())})}const zip=makeZip(files);const fname='ceyhun_album_jpgleri.zip';if(window.showDirectoryPicker){try{const dir=await window.showDirectoryPicker({mode:'readwrite'});const h=await dir.getFileHandle(fname,{create:true});const w=await h.createWritable();await w.write(zip);await w.close();setStatus('ZIP seçtiğin klasöre kaydedildi');return}catch(e){if(e&&e.name==='AbortError'){setStatus('Klasör seçimi iptal edildi');return}}}const url=URL.createObjectURL(zip),a=document.createElement('a');a.href=url;a.download=fname;a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);setStatus('Safari/uyumsuz tarayıcı: ZIP indirme klasörüne kaydedildi')}
-$('#exportJpg').onclick=exportAllZip;$('#exportJpgRight').onclick=exportAllZip;
 
-function goPage(delta){const next=pageIndex+delta;if(next<0||next>=pages.length)return setStatus(delta<0?'İlk sayfadasın':'Son sayfadasın');pageIndex=next;selected=null;selectedSet.clear();cropMode=false;activeTemplateCount=0;templatePhotoIds=[];renderAll();setStatus(`Sayfa ${pageIndex+1}`)}
-function onKey(e){
-  if(e.target.matches('input,textarea,select'))return;
-  const cmd=e.metaKey||e.ctrlKey;
-  if(cmd&&e.key.toLowerCase()==='z'){e.preventDefault();return $('#undo').click()}
-  if(cmd&&e.shiftKey&&e.key.toLowerCase()==='z'){e.preventDefault();return $('#redo').click()}
-  if(cropMode&&selected&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){
-    e.preventDefault();const step=e.shiftKey?2:0.5;if(e.key==='ArrowLeft')selected.cx=(selected.cx||0)-step;if(e.key==='ArrowRight')selected.cx=(selected.cx||0)+step;if(e.key==='ArrowUp')selected.cy=(selected.cy||0)-step;if(e.key==='ArrowDown')selected.cy=(selected.cy||0)+step;clampCrop(selected);updateDOMFast();return;
-  }
-  if(e.key==='ArrowLeft'){e.preventDefault();return goPage(-1)}
-  if(e.key==='ArrowRight'){e.preventDefault();return goPage(1)}
-  if(activeTemplateCount&&e.key==='ArrowUp'){e.preventDefault();return cycleTemplate(-1)}
-  if(activeTemplateCount&&e.key==='ArrowDown'){e.preventDefault();return cycleTemplate(1)}
+fileInput.onchange=
+e=>
+loadPhotos(e.target.files);
+
+
+document.querySelector("#dropZone")
+.ondragover=
+e=>e.preventDefault();
+
+
+document.querySelector("#dropZone")
+.ondrop=
+e=>{
+
+e.preventDefault();
+
+loadPhotos(
+e.dataTransfer.files
+);
+
+};
+
+
+function loadPhotos(files){
+
+[...files]
+.filter(x=>
+x.type.startsWith("image/")
+)
+.forEach(file=>{
+
+const reader=
+new FileReader();
+
+reader.onload=
+function(){
+
+photos.push({
+
+id:
+Date.now()+
+Math.random(),
+
+name:file.name,
+
+src:reader.result
+
+});
+
+renderAlbum();
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
 }
-document.addEventListener('keydown',onKey);
-document.addEventListener('keydown',e=>{if((e.key==='Delete'||e.key==='Backspace')&&!e.target.matches('input,textarea,select')){if(selectedSet.size){e.preventDefault();deletePageSelected()}}});
 
-window.addEventListener('resize',()=>{applyPageSize()});
-$('#wCm').value=W;$('#hCm').value=H;renderAll();setStatus('Hazır — 2 Fotoğraf ile başla. ← → sayfa, ↑ ↓ şablon değiştirir.');
+
+/* ==========================================================
+   FOTOĞRAFI SAYFAYA EKLE
+   ========================================================== */
+
+function addPhotoToPage(photo){
+
+if(
+pages[currentPage]
+.some(x=>x.id===photo.id)
+){
+
+selectedPhoto=
+pages[currentPage]
+.find(x=>x.id===photo.id);
+
+renderAlbum();
+
+return;
+
+}
+
+if(
+pages[currentPage].length>=6
+){
+
+alert(
+"Bir sayfada en fazla 6 fotoğraf olabilir."
+);
+
+return;
+
+}
+
+
+const item={
+
+id:photo.id,
+
+src:photo.src,
+
+name:photo.name,
+
+x:5,
+
+y:5,
+
+w:90,
+
+h:90,
+
+zoom:1,
+
+cx:0,
+
+cy:0
+
+};
+
+
+pages[currentPage]
+.push(item);
+
+selectedPhoto=item;
+
+renderAlbum();
+
+}
+
+
+/* ==========================================================
+   ŞABLON
+   ========================================================== */
+
+function applyTemplate(count){
+
+if(
+photos.length===0 &&
+pages[currentPage].length===0
+){
+
+alert(
+"Önce fotoğraf yükle."
+);
+
+return;
+
+}
+
+
+activeCount=count;
+
+templateIndex=0;
+
+const slots=
+templates[count][templateIndex];
+
+const existing=
+pages[currentPage]
+.filter(x=>x.src);
+
+const selected=
+existing.length?
+existing:
+photos.slice(0,count)
+.map(x=>({
+
+id:x.id,
+src:x.src,
+name:x.name,
+zoom:1,
+cx:0,
+cy:0
+
+}));
+
+
+pages[currentPage]=
+slots.map((slot,index)=>{
+
+const photo=
+selected[index];
+
+return{
+
+id:
+photo?.id||
+(Date.now()+Math.random()),
+
+src:
+photo?.src||
+"",
+
+name:
+photo?.name||
+"Boş alan",
+
+x:slot.x,
+y:slot.y,
+w:slot.w,
+h:slot.h,
+
+zoom:
+photo?.zoom||1,
+
+cx:
+photo?.cx||0,
+
+cy:
+photo?.cy||0
+
+};
+
+});
+
+
+selectedPhoto=
+pages[currentPage]
+.find(x=>x.src)||null;
+
+renderAlbum();
+
+}
+
+
+/* ==========================================================
+   ŞABLON DEĞİŞTİR
+   ========================================================== */
+
+function changeTemplate(direction){
+
+if(!activeCount)return;
+
+const list=
+templates[activeCount];
+
+templateIndex=
+(
+templateIndex+
+direction+
+list.length
+)
+%list.length;
+
+const old=
+pages[currentPage]
+.filter(x=>x.src);
+
+const slots=
+list[templateIndex];
+
+pages[currentPage]=
+slots.map((slot,index)=>{
+
+const p=
+old[index]||
+photos[index];
+
+return{
+
+id:p?.id||
+Date.now()+Math.random(),
+
+src:p?.src||"",
+
+name:p?.name||"Boş alan",
+
+x:slot.x,
+y:slot.y,
+w:slot.w,
+h:slot.h,
+
+zoom:p?.zoom||1,
+
+cx:p?.cx||0,
+
+cy:p?.cy||0
+
+};
+
+});
+
+selectedPhoto=
+pages[currentPage]
+.find(x=>x.src)||null;
+
+renderAlbum();
+
+}
+
+
+function previousTemplate(){
+
+changeTemplate(-1);
+
+}
+
+
+function nextTemplate(){
+
+changeTemplate(1);
+
+}
+
+
+/* ==========================================================
+   FOTOĞRAF SÜRÜKLE
+   ========================================================== */
+
+function dragPhoto(e,item){
+
+const rect=
+canvas.getBoundingClientRect();
+
+const startX=
+e.clientX;
+
+const startY=
+e.clientY;
+
+const oldX=item.x;
+
+const oldY=item.y;
+
+
+function move(ev){
+
+const dx=
+(ev.clientX-startX)/
+rect.width*100;
+
+const dy=
+(ev.clientY-startY)/
+rect.height*100;
+
+item.x=
+Math.max(
+0,
+Math.min(
+100-item.w,
+oldX+dx
+)
+);
+
+item.y=
+Math.max(
+0,
+Math.min(
+100-item.h,
+oldY+dy
+)
+);
+
+
+const frames=
+canvas.querySelectorAll(".frame");
+
+const index=
+pages[currentPage]
+.indexOf(item);
+
+if(frames[index]){
+
+frames[index].style.left=
+item.x+"%";
+
+frames[index].style.top=
+item.y+"%";
+
+}
+
+}
+
+
+function up(){
+
+window.removeEventListener(
+"pointermove",
+move
+);
+
+window.removeEventListener(
+"pointerup",
+up
+);
+
+renderAlbum();
+
+}
+
+
+window.addEventListener(
+"pointermove",
+move
+);
+
+window.addEventListener(
+"pointerup",
+up
+);
+
+}
+
+
+/* ==========================================================
+   KADRAJ
+   ========================================================== */
+
+document.querySelector("#photoZoom")
+.oninput=
+function(){
+
+if(!selectedPhoto)return;
+
+selectedPhoto.zoom=
+Number(this.value);
+
+renderAlbum();
+
+};
+
+
+function movePhoto(x,y){
+
+if(!selectedPhoto)return;
+
+selectedPhoto.cx=
+(selectedPhoto.cx||0)+x;
+
+selectedPhoto.cy=
+(selectedPhoto.cy||0)+y;
+
+renderAlbum();
+
+}
+
+
+function resetPhoto(){
+
+if(!selectedPhoto)return;
+
+selectedPhoto.zoom=1;
+
+selectedPhoto.cx=0;
+
+selectedPhoto.cy=0;
+
+renderAlbum();
+
+}
+
+
+function deleteSelectedPhoto(){
+
+if(!selectedPhoto)return;
+
+pages[currentPage]=
+pages[currentPage]
+.filter(
+x=>x!==selectedPhoto
+);
+
+selectedPhoto=null;
+
+renderAlbum();
+
+}
+
+
+/* ==========================================================
+   SAYFA
+   ========================================================== */
+
+function newPage(){
+
+pages.push([]);
+
+currentPage=
+pages.length-1;
+
+selectedPhoto=null;
+
+renderAlbum();
+
+}
+
+
+function duplicatePage(){
+
+pages.push(
+JSON.parse(
+JSON.stringify(
+pages[currentPage]
+)
+)
+);
+
+currentPage=
+pages.length-1;
+
+selectedPhoto=null;
+
+renderAlbum();
+
+}
+
+
+/* ==========================================================
+   SAYFAYI DOLDUR
+   ========================================================== */
+
+function fillPage(){
+
+const items=
+pages[currentPage]
+.filter(x=>x.src);
+
+if(!items.length)return;
+
+const count=
+Math.min(items.length,6);
+
+const slots=
+templates[count][0];
+
+items.forEach((item,index)=>{
+
+const slot=
+slots[index];
+
+if(!slot)return;
+
+item.x=slot.x;
+
+item.y=slot.y;
+
+item.w=slot.w;
+
+item.h=slot.h;
+
+});
+
+renderAlbum();
+
+}
+
+
+/* ==========================================================
+   ALBÜM ÖLÇÜ
+   ========================================================== */
+
+function applyAlbumSize(){
+
+albumWidth=
+Number(
+document.querySelector("#albumWidth").value
+)||50;
+
+albumHeight=
+Number(
+document.querySelector("#albumHeight").value
+)||30.5;
+
+resizeCanvas();
+
+}
+
+
+/* ==========================================================
+   PROJE KAYDET
+   ========================================================== */
+
+function saveProject(){
+
+const project={
+
+version:"5.0",
+
+albumWidth,
+
+albumHeight,
+
+pages,
+
+photos
+
+};
+
+
+const blob=
+new Blob(
+[
+JSON.stringify(project)
+],
+{
+type:"application/json"
+}
+);
+
+
+const a=
+document.createElement("a");
+
+a.href=
+URL.createObjectURL(blob);
+
+a.download=
+"ceyhun-studio-proje.json";
+
+a.click();
+
+}
+
+
+/* ==========================================================
+   PROJE AÇ
+   ========================================================== */
+
+function openProject(){
+
+const input=
+document.createElement("input");
+
+input.type="file";
+
+input.accept=".json";
+
+input.onchange=
+async()=>{
+
+try{
+
+const data=
+JSON.parse(
+await input.files[0].text()
+);
+
+albumWidth=
+data.albumWidth||50;
+
+albumHeight=
+data.albumHeight||30.5;
+
+pages=
+data.pages||[[]];
+
+photos=
+data.photos||[];
+
+currentPage=0;
+
+selectedPhoto=null;
+
+renderAlbum();
+
+}
+
+catch{
+
+alert(
+"Proje dosyası okunamadı."
+);
+
+}
+
+};
+
+input.click();
+
+}
+
+
+/* ==========================================================
+   JPG
+   ========================================================== */
+
+async function exportJPG(){
+
+const page=
+pages[currentPage];
+
+const canvasOut=
+document.createElement("canvas");
+
+canvasOut.width=
+Math.round(albumWidth*118.11);
+
+canvasOut.height=
+Math.round(albumHeight*118.11);
+
+const ctx=
+canvasOut.getContext("2d");
+
+ctx.fillStyle="white";
+
+ctx.fillRect(
+0,
+0,
+canvasOut.width,
+canvasOut.height
+);
+
+
+for(const item of page){
+
+if(!item.src)continue;
+
+const img=
+await new Promise(
+(resolve,reject)=>{
+
+const i=
+new Image();
+
+i.onload=
+()=>resolve(i);
+
+i.onerror=
+reject;
+
+i.src=item.src;
+
+}
+);
+
+
+const x=
+item.x/100*
+canvasOut.width;
+
+const y=
+item.y/100*
+canvasOut.height;
+
+const w=
+item.w/100*
+canvasOut.width;
+
+const h=
+item.h/100*
+canvasOut.height;
+
+const scale=
+Math.max(
+w/img.width,
+h/img.height
+)*
+(item.zoom||1);
+
+
+ctx.save();
+
+ctx.beginPath();
+
+ctx.rect(
+x,
+y,
+w,
+h
+);
+
+ctx.clip();
+
+ctx.translate(
+x+w/2+
+(item.cx||0)/100*w,
+
+y+h/2+
+(item.cy||0)/100*h
+);
+
+ctx.drawImage(
+img,
+-img.width*scale/2,
+-img.height*scale/2,
+img.width*scale,
+img.height*scale
+);
+
+ctx.restore();
+
+}
+
+
+canvasOut.toBlob(
+blob=>{
+
+const a=
+document.createElement("a");
+
+a.href=
+URL.createObjectURL(blob);
+
+a.download=
+`ceyhun-album-sayfa-${currentPage+1}.jpg`;
+
+a.click();
+
+},
+"image/jpeg",
+.95
+);
+
+}
+
+
+/* ==========================================================
+   KLAVYE
+   ========================================================== */
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+e.target.matches(
+"input,textarea,select"
+)
+)return;
+
+
+if(e.key==="ArrowRight"){
+
+if(currentPage<
+pages.length-1){
+
+currentPage++;
+
+selectedPhoto=null;
+
+renderAlbum();
+
+}
+
+}
+
+
+if(e.key==="ArrowLeft"){
+
+if(currentPage>0){
+
+currentPage--;
+
+selectedPhoto=null;
+
+renderAlbum();
+
+}
+
+}
+
+
+if(e.key==="ArrowUp"){
+
+previousTemplate();
+
+}
+
+
+if(e.key==="ArrowDown"){
+
+nextTemplate();
+
+}
+
+});
+
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+
+/* ==========================================================
+   BAŞLANGIÇ
+   ========================================================== */
+
+renderAlbum();
+
+refreshDashboard();
+
 </script>
+
 </body>
 </html>
