@@ -178,7 +178,7 @@
     }
 
     /* =========================================
-       HERO - DAHA DOĞAL / FOTOĞRAFSIZ BÜYÜK ALAN
+       HERO
        ========================================= */
 
     .hero {
@@ -201,6 +201,7 @@
       top: 90px;
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 50%;
+      pointer-events: none;
     }
 
     .hero-content {
@@ -285,17 +286,35 @@
       color: #fff;
     }
 
+    /* İKİLİ KAPAK */
+
     .hero-visual {
       position: relative;
-      max-width: 480px;
+      max-width: 540px;
+      min-height: 620px;
       justify-self: end;
     }
 
     .hero-photo {
-      aspect-ratio: 4 / 5;
       overflow: hidden;
       background: #20201e;
       position: relative;
+    }
+
+    .hero-photo-main {
+      width: 82%;
+      height: 560px;
+      margin-left: auto;
+    }
+
+    .hero-photo-secondary {
+      position: absolute;
+      left: 0;
+      bottom: 55px;
+      width: 42%;
+      height: 285px;
+      border: 8px solid var(--bg);
+      z-index: 3;
     }
 
     .hero-photo img {
@@ -310,13 +329,17 @@
       position: absolute;
       inset: 0;
       box-shadow: inset 0 0 80px rgba(0,0,0,.15);
+      pointer-events: none;
     }
 
     .hero-caption {
+      position: absolute;
+      right: 0;
+      bottom: 5px;
+      width: 82%;
       display: flex;
       justify-content: space-between;
       gap: 20px;
-      margin-top: 13px;
       color: #858079;
       font-size: 9px;
       letter-spacing: .16em;
@@ -451,7 +474,7 @@
     }
 
     /* =========================================
-       STORY / ABOUT
+       STORY
        ========================================= */
 
     .story-grid {
@@ -762,7 +785,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 100px;
-      align-items: end;
+      align-items: start;
     }
 
     .contact-section .section-label {
@@ -794,6 +817,138 @@
 
     .contact-link span:last-child {
       color: #77716a;
+    }
+
+    /* =========================================
+       FEEDBACK / ŞİKAYET ÖNERİ
+       ========================================= */
+
+    .feedback-box {
+      margin-top: 70px;
+      padding-top: 70px;
+      border-top: 1px solid #c9c4bb;
+    }
+
+    .feedback-head {
+      max-width: 650px;
+      margin-bottom: 35px;
+    }
+
+    .feedback-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(35px, 4vw, 55px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .feedback-description {
+      margin-top: 18px;
+      color: #5e5952;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .feedback-form {
+      display: grid;
+      gap: 17px;
+      max-width: 900px;
+    }
+
+    .feedback-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .feedback-group {
+      display: grid;
+      gap: 7px;
+    }
+
+    .feedback-group label {
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #66615a;
+    }
+
+    .feedback-group input,
+    .feedback-group select,
+    .feedback-group textarea {
+      width: 100%;
+      border: 1px solid #c7c1b8;
+      background: #faf8f4;
+      color: #111;
+      padding: 14px 15px;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .feedback-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .feedback-group input:focus,
+    .feedback-group select:focus,
+    .feedback-group textarea:focus {
+      border-color: #77716a;
+    }
+
+    .feedback-consent {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #66615a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .feedback-consent input {
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .feedback-submit {
+      min-height: 55px;
+      width: 100%;
+      border: 0;
+      background: var(--red);
+      color: #fff;
+      letter-spacing: .13em;
+      font-size: 11px;
+      text-transform: uppercase;
+      transition: .25s;
+    }
+
+    .feedback-submit:hover {
+      background: var(--red-hover);
+    }
+
+    .feedback-submit:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    .feedback-status {
+      display: none;
+      padding: 16px 18px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .feedback-status.success {
+      display: block;
+      background: #e4eee2;
+      color: #29462a;
+      border: 1px solid #b8cdb5;
+    }
+
+    .feedback-status.error {
+      display: block;
+      background: #f4e1df;
+      color: #6c2521;
+      border: 1px solid #d9aaa6;
     }
 
     /* =========================================
@@ -1076,6 +1231,16 @@
       .hero-visual {
         width: min(100%, 500px);
         justify-self: start;
+        min-height: 560px;
+      }
+
+      .hero-photo-main {
+        height: 500px;
+      }
+
+      .hero-photo-secondary {
+        bottom: 35px;
+        height: 230px;
       }
 
       .intro-grid,
@@ -1108,6 +1273,11 @@
 
       .step p {
         grid-column: 2;
+      }
+
+      .feedback-box {
+        margin-top: 50px;
+        padding-top: 50px;
       }
     }
 
@@ -1150,6 +1320,27 @@
 
       .btn {
         width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 500px;
+      }
+
+      .hero-photo-main {
+        width: 86%;
+        height: 440px;
+      }
+
+      .hero-photo-secondary {
+        width: 46%;
+        height: 205px;
+        bottom: 35px;
+        border-width: 6px;
+      }
+
+      .hero-caption {
+        width: 86%;
+        font-size: 7px;
       }
 
       .concept-head,
@@ -1210,12 +1401,17 @@
         max-height: 96vh;
       }
 
-      .form-row {
+      .form-row,
+      .feedback-form-row {
         grid-template-columns: 1fr;
       }
 
       .reservation-title {
         font-size: 45px;
+      }
+
+      .feedback-title {
+        font-size: 40px;
       }
     }
   </style>
@@ -1239,13 +1435,9 @@
       <nav class="nav-links" id="navLinks">
 
         <a href="#concepts">Konseptler</a>
-
         <a href="#stories">Hikâyeler</a>
-
         <a href="#services">Hizmetler</a>
-
         <a href="#about">Hakkımızda</a>
-
         <a href="#contact">İletişim</a>
 
         <a href="#" class="reservation-nav" data-reservation>
@@ -1309,20 +1501,31 @@
 
         <div class="hero-visual">
 
-          <div class="hero-photo">
+          <div class="hero-photo hero-photo-main">
 
             <img
-              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg"
+              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/02d7eaab-0808-4067-8257-04a4b79d402f-2.jpg"
               alt="Ceyhun Fotoğrafçılık Studio"
             >
 
           </div>
 
+
+          <div class="hero-photo hero-photo-secondary">
+
+            <img
+              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/d2339a75-f998-4a5d-9b95-14084a640c99.JPG"
+              alt="Ceyhun Fotoğrafçılık Studio"
+            >
+
+          </div>
+
+
           <div class="hero-caption">
 
             <span>Ceyhun Fotoğrafçılık</span>
 
-            <span>Est. Studio</span>
+            <span>Wedding Stories</span>
 
           </div>
 
@@ -1905,7 +2108,7 @@
             eşlik ediyoruz.
           </h2>
 
-          <p class="story-copy" style="margin-top:30px; color:var(--muted); line-height:1.9;">
+          <p style="margin-top:30px; color:var(--muted); line-height:1.9;">
             Ceyhun Fotoğrafçılık Studio olarak düğün gününüzü
             yalnızca belgelemek değil, o günün hissini korumak
             için çalışıyoruz.
@@ -2011,6 +2214,155 @@
 
       </div>
 
+
+      <!-- =========================================
+           ŞİKAYET & ÖNERİ
+           ========================================= -->
+
+      <div class="feedback-box">
+
+        <div class="feedback-head">
+
+          <div class="section-label">
+            Geri Bildirim
+          </div>
+
+          <h2 class="feedback-title">
+            Şikâyetiniz,<br>
+            öneriniz veya teşekkürünüz.
+          </h2>
+
+          <p class="feedback-description">
+            Deneyiminizi bizimle paylaşabilirsiniz.
+            Görüşleriniz Ceyhun Fotoğrafçılık Studio
+            hizmetlerini daha iyi hale getirmemize yardımcı olur.
+          </p>
+
+        </div>
+
+
+        <form
+          class="feedback-form"
+          id="feedbackForm"
+        >
+
+          <div class="feedback-form-row">
+
+            <div class="feedback-group">
+
+              <label for="feedbackName">
+                Ad Soyad
+              </label>
+
+              <input
+                id="feedbackName"
+                type="text"
+                placeholder="Adınız Soyadınız"
+                required
+              >
+
+            </div>
+
+
+            <div class="feedback-group">
+
+              <label for="feedbackPhone">
+                Telefon
+              </label>
+
+              <input
+                id="feedbackPhone"
+                type="tel"
+                placeholder="0552 000 00 00"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="feedback-group">
+
+            <label for="feedbackType">
+              Konu
+            </label>
+
+            <select
+              id="feedbackType"
+              required
+            >
+
+              <option value="">
+                Seçiniz
+              </option>
+
+              <option value="Şikâyet">
+                Şikâyet
+              </option>
+
+              <option value="Öneri">
+                Öneri
+              </option>
+
+              <option value="Memnuniyet / Teşekkür">
+                Memnuniyet / Teşekkür
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="feedback-group">
+
+            <label for="feedbackMessage">
+              Mesajınız
+            </label>
+
+            <textarea
+              id="feedbackMessage"
+              placeholder="Görüşünüzü bizimle paylaşabilirsiniz."
+              required
+            ></textarea>
+
+          </div>
+
+
+          <label class="feedback-consent">
+
+            <input
+              type="checkbox"
+              id="feedbackConsent"
+              required
+            >
+
+            <span>
+              Paylaştığım iletişim bilgilerimin geri bildirim
+              süreci kapsamında benimle iletişime geçilmesi
+              amacıyla kullanılmasını kabul ediyorum.
+            </span>
+
+          </label>
+
+
+          <button
+            type="submit"
+            class="feedback-submit"
+            id="feedbackSubmit"
+          >
+            GERİ BİLDİRİMİ GÖNDER
+          </button>
+
+
+          <div
+            class="feedback-status"
+            id="feedbackStatus"
+          ></div>
+
+        </form>
+
+      </div>
+
     </div>
 
   </section>
@@ -2064,7 +2416,7 @@
         <div class="footer-links">
 
           <a
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/ceyhunphotographer/"
             target="_blank"
             rel="noopener"
           >
@@ -2137,7 +2489,10 @@
       </div>
 
 
-      <form class="reservation-form" id="reservationForm">
+      <form
+        class="reservation-form"
+        id="reservationForm"
+      >
 
         <div class="form-row">
 
@@ -2304,18 +2659,27 @@
   <script>
 
     /* =========================================
-       SUPABASE
+       SUPABASE AYARLARI
        ========================================= */
 
     const SUPABASE_URL =
       "https://nzriewxchkcfeknkbwuu.supabase.co";
 
+    /*
+      BURAYA SADECE SUPABASE PUBLISHABLE KEY GELECEK.
+      SECRET KEY KULLANMA.
+    */
+
     const SUPABASE_PUBLISHABLE_KEY =
-      "BURAYA_PUBLISHABLE_KEY";
+      "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
 
     const BUCKET_NAME =
       "site fotolar";
 
+
+    /* =========================================
+       GALERİ
+       ========================================= */
 
     async function loadGallery() {
 
@@ -2326,7 +2690,7 @@
 
         if (
           !SUPABASE_PUBLISHABLE_KEY ||
-          SUPABASE_PUBLISHABLE_KEY === "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI"
+          SUPABASE_PUBLISHABLE_KEY === "BURAYA_PUBLISHABLE_KEY"
         ) {
 
           throw new Error(
@@ -2626,7 +2990,7 @@
 
 
     /* =========================================
-       RESERVATION FORM → WHATSAPP
+       RESERVATION → WHATSAPP
        ========================================= */
 
     const reservationForm =
@@ -2679,7 +3043,7 @@ ${note || "-"}
 
 Web sitesi üzerinden rezervasyon formunu doldurdum.`;
 
-        
+
         const whatsappUrl =
           `https://wa.me/905522369828?text=${encodeURIComponent(message)}`;
 
@@ -2688,6 +3052,181 @@ Web sitesi üzerinden rezervasyon formunu doldurdum.`;
           whatsappUrl,
           "_blank"
         );
+
+      }
+    );
+
+
+    /* =========================================
+       ŞİKAYET & ÖNERİ → SUPABASE
+       ========================================= */
+
+    const feedbackForm =
+      document.getElementById("feedbackForm");
+
+    const feedbackSubmit =
+      document.getElementById("feedbackSubmit");
+
+    const feedbackStatus =
+      document.getElementById("feedbackStatus");
+
+
+    feedbackForm.addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        feedbackStatus.className =
+          "feedback-status";
+
+        feedbackStatus.textContent =
+          "";
+
+
+        if (
+          !SUPABASE_PUBLISHABLE_KEY ||
+          SUPABASE_PUBLISHABLE_KEY === "BURAYA_PUBLISHABLE_KEY"
+        ) {
+
+          feedbackStatus.className =
+            "feedback-status error";
+
+          feedbackStatus.textContent =
+            "Geri bildirim sistemi henüz yapılandırılmamış. Lütfen daha sonra tekrar deneyin.";
+
+          return;
+
+        }
+
+
+        const name =
+          document
+            .getElementById("feedbackName")
+            .value
+            .trim();
+
+        const phone =
+          document
+            .getElementById("feedbackPhone")
+            .value
+            .trim();
+
+        const type =
+          document
+            .getElementById("feedbackType")
+            .value;
+
+        const message =
+          document
+            .getElementById("feedbackMessage")
+            .value
+            .trim();
+
+        const consent =
+          document
+            .getElementById("feedbackConsent")
+            .checked;
+
+
+        if (!consent) {
+
+          feedbackStatus.className =
+            "feedback-status error";
+
+          feedbackStatus.textContent =
+            "Lütfen iletişim onayını işaretleyin.";
+
+          return;
+
+        }
+
+
+        feedbackSubmit.disabled = true;
+
+        feedbackSubmit.textContent =
+          "GÖNDERİLİYOR...";
+
+
+        try {
+
+          const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/sikayet_oneri`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_PUBLISHABLE_KEY,
+                "Authorization":
+                  `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+                "Prefer":
+                  "return=minimal"
+              },
+
+              body: JSON.stringify({
+
+                ad_soyad: name,
+
+                telefon:
+                  phone || null,
+
+                konu: type,
+
+                mesaj: message
+
+              })
+
+            }
+          );
+
+
+          if (!response.ok) {
+
+            const errorText =
+              await response.text();
+
+            throw new Error(
+              errorText || "Geri bildirim gönderilemedi."
+            );
+
+          }
+
+
+          feedbackForm.reset();
+
+
+          feedbackStatus.className =
+            "feedback-status success";
+
+          feedbackStatus.textContent =
+            "Geri bildiriminiz başarıyla gönderildi. İlginiz için teşekkür ederiz.";
+
+
+        } catch (error) {
+
+          console.error(
+            "Feedback error:",
+            error
+          );
+
+
+          feedbackStatus.className =
+            "feedback-status error";
+
+          feedbackStatus.textContent =
+            "Geri bildiriminiz gönderilemedi. Lütfen tekrar deneyin.";
+
+        } finally {
+
+          feedbackSubmit.disabled =
+            false;
+
+          feedbackSubmit.textContent =
+            "GERİ BİLDİRİMİ GÖNDER";
+
+        }
 
       }
     );
