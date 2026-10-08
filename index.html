@@ -295,6 +295,44 @@ footer{
         height: 420px;
     }
 }
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 92%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 45px;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 10000;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    opacity: 0.7;
+}
 </style>
 </head>
 
