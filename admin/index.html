@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Admin Girişi | Ceyhun Fotoğrafçılık</title>
 
 <style>
@@ -94,6 +95,11 @@ button:hover{
     opacity:.9;
 }
 
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 #error{
     display:none;
     margin-top:18px;
@@ -143,6 +149,7 @@ button:hover{
             id="email"
             type="email"
             placeholder="Admin e-posta adresiniz"
+            autocomplete="email"
             required
         >
 
@@ -152,10 +159,11 @@ button:hover{
             id="password"
             type="password"
             placeholder="Şifreniz"
+            autocomplete="current-password"
             required
         >
 
-        <button type="submit">
+        <button id="loginButton" type="submit">
             Admin Girişi Yap
         </button>
 
@@ -169,18 +177,196 @@ button:hover{
 
 </div>
 
-<script>
+<script type="module">
 
-document.getElementById("loginForm").addEventListener("submit", function(e){
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+/* ==============================
+   SUPABASE AYARLARI
+   ============================== */
+
+const SUPABASE_URL =
+"https://nzriewxchkcfeknkbwuu.supabase.co";
+
+/*
+   Buraya daha önce kullandığımız
+   SUPABASE PUBLISHABLE KEY gelecek.
+
+   Güvenlik nedeniyle anahtarı burada
+   tekrar göstermiyorum.
+*/
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+
+
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+
+
+/* ==============================
+   ELEMENTLER
+   ============================== */
+
+const loginForm =
+document.getElementById("loginForm");
+
+const emailInput =
+document.getElementById("email");
+
+const passwordInput =
+document.getElementById("password");
+
+const loginButton =
+document.getElementById("loginButton");
+
+const errorBox =
+document.getElementById("error");
+
+
+/* ==============================
+   HATA GÖSTER
+   ============================== */
+
+function showError(message){
+
+    errorBox.textContent = message;
+    errorBox.style.display = "block";
+
+}
+
+
+/* ==============================
+   GİRİŞ
+   ============================== */
+
+loginForm.addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    const error = document.getElementById("error");
+    errorBox.style.display = "none";
 
-    error.style.display = "block";
+    const email =
+    emailInput.value.trim();
 
-    error.textContent =
-        "Admin bağlantısı henüz etkinleştirilmedi. Bir sonraki adımda Supabase'e bağlayacağız.";
+    const password =
+    passwordInput.value;
+
+    if(!email || !password){
+
+        showError(
+            "E-posta ve şifre gerekli."
+        );
+
+        return;
+    }
+
+    loginButton.disabled = true;
+
+    loginButton.textContent =
+    "Giriş yapılıyor...";
+
+
+    try{
+
+        const {
+            data,
+            error
+        } = await supabase.auth.signInWithPassword({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        if(!data.user){
+
+            throw new Error(
+                "Kullanıcı bulunamadı."
+            );
+
+        }
+
+
+        /* ==========================
+           PROFİLİ KONTROL ET
+           ========================== */
+
+        const {
+            data: profile,
+            error: profileError
+        } = await supabase
+
+            .from("profiles")
+
+            .select("role, full_name")
+
+            .eq("id", data.user.id)
+
+            .single();
+
+
+        if(profileError){
+
+            await supabase.auth.signOut();
+
+            throw new Error(
+                "Admin profili bulunamadı."
+            );
+
+        }
+
+
+        /* ==========================
+           ADMIN KONTROLÜ
+           ========================== */
+
+        if(profile.role !== "admin"){
+
+            await supabase.auth.signOut();
+
+            throw new Error(
+                "Bu hesap admin yetkisine sahip değil."
+            );
+
+        }
+
+
+        /* ==========================
+           ADMIN PANELİNE GİT
+           ========================== */
+
+        window.location.href =
+        "/admin/panel.html";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            error.message ||
+            "Giriş sırasında bir hata oluştu."
+        );
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+        "Admin Girişi Yap";
+
+    }
 
 });
 
