@@ -28,7 +28,6 @@
       --dark: #171614;
       --muted: #aaa59d;
       --line: rgba(255,255,255,.12);
-      --dark-line: rgba(0,0,0,.12);
       --red: #c62828;
       --red-hover: #e03333;
       --max: 1400px;
@@ -285,8 +284,6 @@
       background: var(--red-hover);
       color: #fff;
     }
-
-    /* İKİLİ KAPAK */
 
     .hero-visual {
       position: relative;
@@ -559,7 +556,7 @@
     }
 
     /* =========================================
-       GALLERY
+       PREMIUM GALLERY
        ========================================= */
 
     .gallery-head {
@@ -574,52 +571,54 @@
       font-size: 13px;
     }
 
+    /*
+      ÖNEMLİ:
+      Galeri artık eski 12 kolonlu sistem değil.
+      Tüm fotoğraflar kontrollü 3 kolon halinde.
+    */
+
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      width: 100%;
     }
 
     .gallery-item {
       position: relative;
       display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
       overflow: hidden;
       background: #171717;
     }
 
-    .gallery-item:nth-child(6n + 1),
-    .gallery-item:nth-child(6n + 4) {
-      grid-column: span 7;
-      aspect-ratio: 1.35 / 1;
-    }
-
-    .gallery-item:nth-child(6n + 2),
-    .gallery-item:nth-child(6n + 3),
-    .gallery-item:nth-child(6n + 5),
-    .gallery-item:nth-child(6n + 6) {
-      grid-column: span 5;
-      aspect-ratio: 1 / 1.05;
-    }
-
     .gallery-item img {
+      display: block;
+      width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform .7s ease;
+      object-position: center;
+      transition:
+        transform .8s cubic-bezier(.2,.65,.2,1),
+        filter .5s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.04);
+      transform: scale(1.035);
+      filter: brightness(.94);
     }
 
     .gallery-overlay {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 24px;
-      background: linear-gradient(transparent, rgba(0,0,0,.75));
+      inset: auto 0 0 0;
+      padding: 60px 22px 22px;
+      background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.72)
+      );
       opacity: 0;
-      transition: .3s;
+      transition: opacity .35s ease;
     }
 
     .gallery-item:hover .gallery-overlay {
@@ -627,9 +626,10 @@
     }
 
     .gallery-overlay span {
-      font-size: 11px;
-      letter-spacing: .12em;
+      font-size: 10px;
+      letter-spacing: .16em;
       text-transform: uppercase;
+      color: #fff;
     }
 
     .gallery-loading {
@@ -820,7 +820,7 @@
     }
 
     /* =========================================
-       FEEDBACK / ŞİKAYET ÖNERİ
+       FEEDBACK
        ========================================= */
 
     .feedback-box {
@@ -1170,7 +1170,7 @@
     }
 
     /* =========================================
-       MOBILE
+       TABLET
        ========================================= */
 
     @media (max-width: 1050px) {
@@ -1187,6 +1187,10 @@
         gap: 50px;
       }
     }
+
+    /* =========================================
+       TABLET / MOBILE
+       ========================================= */
 
     @media (max-width: 900px) {
 
@@ -1279,7 +1283,21 @@
         margin-top: 50px;
         padding-top: 50px;
       }
+
+      /* GALLERY TABLET */
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .gallery-item {
+        aspect-ratio: 4 / 5;
+      }
     }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
 
     @media (max-width: 600px) {
 
@@ -1366,12 +1384,13 @@
         min-height: 190px;
       }
 
+      /* GALLERY MOBILE */
       .gallery-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
       }
 
-      .gallery-item:nth-child(n) {
-        grid-column: auto;
+      .gallery-item {
         aspect-ratio: 4 / 5;
       }
 
@@ -1896,54 +1915,35 @@
       <div class="steps">
 
         <div class="step">
-
           <span class="step-number">01</span>
-
           <h3>Tanışıyoruz.</h3>
-
           <p>
             Önce sizi ve nasıl bir hikâye istediğinizi dinliyoruz.
           </p>
-
         </div>
 
-
         <div class="step">
-
           <span class="step-number">02</span>
-
           <h3>Planlıyoruz.</h3>
-
           <p>
             Mekân, zaman, ışık ve çekim akışını birlikte oluşturuyoruz.
           </p>
-
         </div>
 
-
         <div class="step">
-
           <span class="step-number">03</span>
-
           <h3>Yaşıyoruz.</h3>
-
           <p>
             Çekim sırasında sizi poz vermeye zorlamadan gerçek anları yakalıyoruz.
           </p>
-
         </div>
 
-
         <div class="step">
-
           <span class="step-number">04</span>
-
           <h3>Hikâyenizi teslim ediyoruz.</h3>
-
           <p>
             Seçilen fotoğrafları özenle düzenliyor ve size özel bir arşiv oluşturuyoruz.
           </p>
-
         </div>
 
       </div>
@@ -2659,19 +2659,19 @@
   <script>
 
     /* =========================================
-       SUPABASE AYARLARI
+       SUPABASE
        ========================================= */
 
     const SUPABASE_URL =
       "https://nzriewxchkcfeknkbwuu.supabase.co";
 
     /*
-      BURAYA SADECE SUPABASE PUBLISHABLE KEY GELECEK.
-      SECRET KEY KULLANMA.
+      SADECE BURADAKİ KEY'İ KENDİ
+      SUPABASE PUBLISHABLE KEY'İN İLE DEĞİŞTİR.
     */
 
     const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+      "BURAYA_PUBLISHABLE_KEY";
 
     const BUCKET_NAME =
       "site fotolar";
@@ -2690,13 +2690,11 @@
 
         if (
           !SUPABASE_PUBLISHABLE_KEY ||
-          SUPABASE_PUBLISHABLE_KEY === "BURAYA_PUBLISHABLE_KEY"
+          SUPABASE_PUBLISHABLE_KEY === "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI"
         ) {
-
           throw new Error(
             "Publishable key henüz eklenmemiş."
           );
-
         }
 
 
@@ -2822,7 +2820,6 @@
           gallery.appendChild(item);
 
         });
-
 
       } catch (error) {
 
