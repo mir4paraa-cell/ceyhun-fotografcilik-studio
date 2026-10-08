@@ -458,6 +458,33 @@ style="width:100%;max-width:900px;height:520px;object-fit:cover;border-radius:20
 <footer>
     © 2026 Ceyhun Fotoğrafçılık Studio
 </footer>
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-image" src="" alt="Büyük fotoğraf">
+</div>
 
+<script>
+const galleryImages = document.querySelectorAll('.gallery-grid img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightbox-image');
+const closeButton = document.querySelector('.lightbox-close');
+
+galleryImages.forEach(image => {
+    image.addEventListener('click', () => {
+        lightboxImage.src = image.src;
+        lightbox.classList.add('active');
+    });
+});
+
+closeButton.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+});
+
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+    }
+});
+</script>
 </body>
 </html>
