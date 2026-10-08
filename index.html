@@ -4,39 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ceyhun Fotoğrafçılık Studio | Wedding Photography</title>
+  <title>Ceyhun Fotoğrafçılık | Wedding & Editorial Studio</title>
 
   <meta
     name="description"
-    content="Ceyhun Fotoğrafçılık Studio — Düğün, gelin damat ve özel anların zamansız hikâyeleri."
+    content="Ceyhun Fotoğrafçılık Studio — Diyarbakır düğün fotoğrafçılığı, gelin damat, dış çekim, wedding film ve özel albüm tasarımı."
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
   <style>
+
     :root {
       --bg: #10100f;
       --bg-soft: #171715;
+      --bg-light: #f0ede7;
       --cream: #f1eee8;
       --text: #f5f2ec;
       --dark: #171614;
       --muted: #aaa59d;
+      --muted-dark: #716d66;
       --line: rgba(255,255,255,.12);
+      --line-dark: rgba(0,0,0,.12);
       --red: #c62828;
       --red-hover: #e03333;
+      --white: #fff;
       --max: 1400px;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -44,10 +49,11 @@
     }
 
     body {
+      font-family: "DM Sans", sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-family: "DM Sans", sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     body.modal-open {
@@ -55,8 +61,7 @@
     }
 
     img {
-      display: block;
-      width: 100%;
+      max-width: 100%;
     }
 
     a {
@@ -66,8 +71,8 @@
 
     button,
     input,
-    select,
-    textarea {
+    textarea,
+    select {
       font: inherit;
     }
 
@@ -75,14 +80,19 @@
       cursor: pointer;
     }
 
-    .container {
-      width: min(calc(100% - 48px), var(--max));
-      margin: auto;
+    ::selection {
+      background: var(--red);
+      color: white;
     }
 
-    /* =========================================
+    .container {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+    }
+
+    /* =========================
        NAVBAR
-       ========================================= */
+    ========================= */
 
     .navbar {
       position: fixed;
@@ -90,15 +100,20 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 20px 0;
-      transition: .3s ease;
+      padding: 22px 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.65),
+        transparent
+      );
+      transition: .35s ease;
     }
 
     .navbar.scrolled {
-      background: rgba(16,16,15,.94);
+      background: rgba(16,16,15,.92);
       backdrop-filter: blur(18px);
+      padding: 16px 0;
       border-bottom: 1px solid var(--line);
-      padding: 14px 0;
     }
 
     .nav-inner {
@@ -106,144 +121,171 @@
       margin: auto;
       display: flex;
       align-items: center;
-      gap: 35px;
+      justify-content: space-between;
+      gap: 30px;
     }
 
-    .brand {
+    .logo {
       display: flex;
       flex-direction: column;
       line-height: 1;
-      flex-shrink: 0;
     }
 
-    .brand strong {
-      font-size: 14px;
-      letter-spacing: .16em;
-      font-weight: 600;
+    .logo strong {
+      font-family: "Playfair Display", serif;
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: .02em;
     }
 
-    .brand span {
+    .logo span {
       margin-top: 6px;
+      color: rgba(255,255,255,.58);
       font-size: 8px;
-      letter-spacing: .28em;
-      color: var(--muted);
+      letter-spacing: .2em;
       text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
       align-items: center;
-      margin-left: auto;
+      gap: 28px;
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
     }
 
     .nav-links a {
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: #d8d4ce;
-      transition: .2s;
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover {
-      color: #fff;
-    }
-
-    .reservation-nav {
-      display: inline-flex !important;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 0 17px;
-      background: var(--red);
-      color: #fff !important;
-      letter-spacing: .1em !important;
       transition: .25s ease;
     }
 
-    .reservation-nav:hover {
-      background: var(--red-hover) !important;
-      transform: translateY(-1px);
-    }
-
-    .nav-menu {
-      display: none;
-      margin-left: auto;
-      background: none;
-      border: 0;
+    .nav-links a:hover {
       color: white;
-      font-size: 25px;
     }
 
-    /* =========================================
+    .nav-cta {
+      border: 1px solid rgba(255,255,255,.4);
+      padding: 11px 17px;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: .25s ease;
+    }
+
+    .nav-cta:hover {
+      background: white;
+      color: black;
+    }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: white;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    /* =========================
        HERO
-       ========================================= */
+    ========================= */
 
     .hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
+      min-height: 100vh;
       position: relative;
+      display: flex;
+      align-items: flex-end;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 78% 35%, rgba(255,255,255,.07), transparent 30%),
-        linear-gradient(135deg, #151513 0%, #0e0e0d 55%, #191816 100%);
+      background: #090909;
     }
 
-    .hero::after {
+    .hero::before {
       content: "";
       position: absolute;
-      width: 500px;
-      height: 500px;
-      right: -170px;
-      top: 90px;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 50%;
-      pointer-events: none;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.72),
+          rgba(0,0,0,.18) 65%,
+          rgba(0,0,0,.45)
+        ),
+        linear-gradient(
+          0deg,
+          rgba(0,0,0,.72),
+          transparent 55%
+        );
+      z-index: 2;
+    }
+
+    .hero-photo-main {
+      position: absolute;
+      inset: 0;
+      background:
+        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/02d7eaab-0808-4067-8257-04a4b79d402f-2.jpg")
+        center / cover no-repeat;
+      transform: scale(1.015);
+    }
+
+    .hero-photo-secondary {
+      position: absolute;
+      right: 5%;
+      bottom: 7%;
+      width: 240px;
+      height: 320px;
+      background:
+        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/d2339a75-f998-4a5d-9b95-14084a640c99.JPG")
+        center / cover no-repeat;
+      z-index: 3;
+      border: 1px solid rgba(255,255,255,.25);
+      box-shadow: 0 25px 60px rgba(0,0,0,.45);
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
-      width: min(calc(100% - 48px), var(--max));
-      margin: auto;
-      padding: 150px 0 80px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 90px;
-      align-items: center;
+      z-index: 4;
+      padding-bottom: 100px;
+      max-width: 820px;
     }
 
     .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.68);
       font-size: 10px;
-      letter-spacing: .28em;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: #bcb7ae;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
-    h1 {
-      max-width: 850px;
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: rgba(255,255,255,.65);
+    }
+
+    .hero h1 {
       font-family: "Playfair Display", serif;
-      font-size: clamp(55px, 7vw, 100px);
       font-weight: 400;
-      line-height: .96;
+      font-size: clamp(54px, 7.5vw, 110px);
+      line-height: .95;
       letter-spacing: -.045em;
+      max-width: 900px;
     }
 
-    .hero-copy {
-      max-width: 510px;
-      color: #aaa69f;
+    .hero-description {
+      max-width: 590px;
+      margin-top: 28px;
+      color: rgba(255,255,255,.7);
       font-size: 15px;
-      line-height: 1.9;
-      margin-top: 32px;
+      font-weight: 300;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       gap: 12px;
       margin-top: 34px;
@@ -254,343 +296,322 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
+      min-height: 48px;
       padding: 0 23px;
-      border: 1px solid rgba(255,255,255,.28);
+      border: 1px solid rgba(255,255,255,.3);
       font-size: 10px;
-      letter-spacing: .15em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      transition: .25s ease;
+      transition: .3s ease;
     }
 
-    .btn:hover {
-      background: #fff;
+    .btn-primary {
+      background: white;
       color: #111;
+      border-color: white;
     }
 
-    .btn-solid {
-      background: #fff;
-      color: #111;
-      border-color: #fff;
-    }
-
-    .btn-red {
+    .btn-primary:hover {
       background: var(--red);
       border-color: var(--red);
-      color: #fff;
+      color: white;
     }
 
-    .btn-red:hover {
-      background: var(--red-hover);
-      color: #fff;
+    .btn-outline:hover {
+      background: white;
+      color: #111;
     }
 
-    .hero-visual {
-      position: relative;
-      max-width: 540px;
-      min-height: 620px;
-      justify-self: end;
-    }
-
-    .hero-photo {
-      overflow: hidden;
-      background: #20201e;
-      position: relative;
-    }
-
-    .hero-photo-main {
-      width: 82%;
-      height: 560px;
-      margin-left: auto;
-    }
-
-    .hero-photo-secondary {
-      position: absolute;
-      left: 0;
-      bottom: 55px;
-      width: 42%;
-      height: 285px;
-      border: 8px solid var(--bg);
-      z-index: 3;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(.88);
-    }
-
-    .hero-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      box-shadow: inset 0 0 80px rgba(0,0,0,.15);
-      pointer-events: none;
-    }
-
-    .hero-caption {
-      position: absolute;
-      right: 0;
-      bottom: 5px;
-      width: 82%;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: #858079;
-      font-size: 9px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    /* =========================================
-       GENERAL
-       ========================================= */
-
-    section {
-      padding: 125px 0;
-    }
-
-    .section-label {
-      font-size: 10px;
-      letter-spacing: .25em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(38px, 5vw, 72px);
-      line-height: 1;
-      font-weight: 400;
-      letter-spacing: -.03em;
-    }
-
-    /* =========================================
+    /* =========================
        INTRO
-       ========================================= */
+    ========================= */
 
     .intro {
+      padding: 150px 0;
       background: var(--cream);
-      color: #111;
+      color: var(--dark);
     }
 
     .intro-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.2fr;
       gap: 100px;
-      align-items: end;
+      align-items: start;
     }
 
-    .intro .section-label {
-      color: #77716a;
+    .section-label {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted-dark);
     }
 
-    .intro-copy {
-      max-width: 570px;
+    .intro h2,
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(42px, 5vw, 76px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+
+    .intro h2 {
+      margin-top: 22px;
+    }
+
+    .intro-text {
+      max-width: 610px;
       font-size: 18px;
-      color: #4d4944;
-      line-height: 1.85;
+      line-height: 1.9;
+      color: #514d47;
+      font-weight: 300;
     }
 
-    /* =========================================
+    /* =========================
        CONCEPTS
-       ========================================= */
+    ========================= */
 
     .concepts {
-      background: #111110;
+      padding: 140px 0;
+      background: var(--bg);
     }
 
-    .concept-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 50px;
-      margin-bottom: 60px;
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 70px;
     }
 
-    .concept-description {
-      max-width: 420px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
+    .section-heading h2 {
+      margin-top: 18px;
     }
 
     .concept-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .concept {
-      position: relative;
-      overflow: hidden;
-      background: #1a1a18;
-    }
-
-    .concept-image {
-      height: 500px;
-      overflow: hidden;
-    }
-
-    .concept-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .7s ease;
-    }
-
-    .concept:hover .concept-image img {
-      transform: scale(1.04);
-    }
-
-    .concept-info {
-      padding: 23px 24px 28px;
-      border: 1px solid var(--line);
-      border-top: 0;
-    }
-
-    .concept-number {
-      color: #77736d;
-      font-size: 10px;
-      letter-spacing: .15em;
-    }
-
-    .concept h3 {
-      font-family: "Playfair Display", serif;
-      font-size: 29px;
-      font-weight: 400;
-      margin-top: 10px;
-    }
-
-    .concept p {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 7px;
-    }
-
-    /* =========================================
-       STORY
-       ========================================= */
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 90px;
-      align-items: center;
-    }
-
-    .story-image {
-      height: 700px;
-      overflow: hidden;
-    }
-
-    .story-image img {
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .story-copy {
-      max-width: 570px;
-    }
-
-    .story-copy p {
-      color: var(--muted);
-      margin-top: 28px;
-      font-size: 16px;
-      line-height: 1.9;
-    }
-
-    /* =========================================
-       SERVICES
-       ========================================= */
-
-    .services {
-      background: var(--bg-soft);
-    }
-
-    .services-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-
-    .services-description {
-      max-width: 400px;
-      color: var(--muted);
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid var(--line);
+    }
+
+    .concept-card {
+      min-height: 330px;
+      padding: 32px 30px 40px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .35s ease;
+    }
+
+    .concept-card:first-child {
       border-left: 1px solid var(--line);
     }
 
+    .concept-card:hover {
+      background: var(--bg-soft);
+    }
+
+    .concept-number {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .16em;
+    }
+
+    .concept-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+
+    .concept-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 350px;
+    }
+
+    /* =========================
+       STORIES
+    ========================= */
+
+    .stories {
+      padding: 0 0 150px;
+      background: var(--bg);
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      gap: 18px;
+    }
+
+    .story-large,
+    .story-small {
+      position: relative;
+      overflow: hidden;
+      background: #191918;
+    }
+
+    .story-large {
+      height: 670px;
+    }
+
+    .story-small {
+      height: 670px;
+    }
+
+    .story-large img,
+    .story-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .9s cubic-bezier(.2,.65,.2,1);
+    }
+
+    .story-large:hover img,
+    .story-small:hover img {
+      transform: scale(1.035);
+    }
+
+    .story-caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 25px;
+      z-index: 2;
+    }
+
+    .story-caption span {
+      display: block;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .17em;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 7px;
+    }
+
+    .story-caption strong {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      font-size: 30px;
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      background: var(--cream);
+      color: var(--dark);
+      padding: 140px 0;
+    }
+
+    .services .section-label {
+      color: #777168;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 70px;
+      border-top: 1px solid var(--line-dark);
+    }
+
     .service {
-      min-height: 220px;
-      padding: 32px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      padding: 35px 30px 42px 0;
+      border-bottom: 1px solid var(--line-dark);
+      border-right: 1px solid var(--line-dark);
+      min-height: 210px;
+    }
+
+    .service:nth-child(even) {
+      padding-left: 30px;
+      border-right: 0;
     }
 
     .service-number {
-      font-size: 11px;
-      color: var(--muted);
+      color: #817a71;
+      font-size: 10px;
+      letter-spacing: .16em;
     }
 
     .service h3 {
-      margin-top: 50px;
       font-family: "Playfair Display", serif;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 400;
+      margin: 25px 0 12px;
     }
 
     .service p {
-      color: var(--muted);
-      margin-top: 10px;
+      color: #676158;
+      max-width: 470px;
       font-size: 14px;
     }
 
-    /* =========================================
-       PREMIUM GALLERY
-       ========================================= */
+    /* =========================
+       GALLERY
+    ========================= */
 
-    .gallery-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      margin-bottom: 55px;
+    .gallery-section {
+      padding: 150px 0;
+      background: var(--bg);
     }
 
-    .gallery-note {
+    .gallery-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 65px;
+    }
+
+    .gallery-header h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 6vw, 82px);
+      font-weight: 400;
+      line-height: .95;
+      letter-spacing: -.04em;
+      margin-top: 18px;
+    }
+
+    .gallery-header p {
+      max-width: 390px;
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.8;
     }
 
     /*
-      ÖNEMLİ:
-      Galeri artık eski 12 kolonlu sistem değil.
-      Tüm fotoğraflar kontrollü 3 kolon halinde.
+      YENİ GALERİ SİSTEMİ
+
+      Artık fotoğraflara 4/5 zorlaması yok.
+      Fotoğrafın gerçek oranı okunuyor.
+      Satırlar otomatik olarak dengeleniyor.
     */
 
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
       width: 100%;
+      align-items: stretch;
+    }
+
+    .gallery-row {
+      display: flex;
+      width: 100%;
+      gap: 6px;
+      align-items: stretch;
     }
 
     .gallery-item {
       position: relative;
       display: block;
-      width: 100%;
-      aspect-ratio: 4 / 5;
       overflow: hidden;
-      background: #171717;
+      background: #181817;
+      min-width: 0;
+      flex: 1 1 0;
+      height: 360px;
     }
 
     .gallery-item img {
@@ -601,24 +622,25 @@
       object-position: center;
       transition:
         transform .8s cubic-bezier(.2,.65,.2,1),
-        filter .5s ease;
+        filter .45s ease;
     }
 
     .gallery-item:hover img {
-      transform: scale(1.035);
-      filter: brightness(.94);
+      transform: scale(1.025);
+      filter: brightness(.9);
     }
 
     .gallery-overlay {
       position: absolute;
       inset: auto 0 0 0;
-      padding: 60px 22px 22px;
+      padding: 75px 22px 20px;
       background: linear-gradient(
         transparent,
-        rgba(0,0,0,.72)
+        rgba(0,0,0,.78)
       );
       opacity: 0;
       transition: opacity .35s ease;
+      pointer-events: none;
     }
 
     .gallery-item:hover .gallery-overlay {
@@ -626,846 +648,759 @@
     }
 
     .gallery-overlay span {
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: .16em;
       text-transform: uppercase;
-      color: #fff;
+      color: white;
     }
 
     .gallery-loading {
-      grid-column: 1 / -1;
-      padding: 80px 20px;
+      width: 100%;
+      padding: 90px 20px;
       text-align: center;
       color: var(--muted);
       border: 1px solid var(--line);
     }
 
-    /* =========================================
+    /* =========================
        EXPERIENCE
-       ========================================= */
+    ========================= */
 
     .experience {
-      background: var(--cream);
-      color: #111;
+      padding: 150px 0;
+      background: var(--bg-soft);
     }
 
-    .experience .section-label {
-      color: #77716a;
-    }
-
-    .steps {
-      margin-top: 65px;
-      border-top: 1px solid #c8c3ba;
-    }
-
-    .step {
+    .experience-grid {
       display: grid;
-      grid-template-columns: 100px 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 100px;
+    }
+
+    .experience-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .experience-item {
       padding: 30px 0;
-      border-bottom: 1px solid #c8c3ba;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 55px 1fr;
+      gap: 15px;
     }
 
-    .step-number {
-      color: #77716a;
-      font-size: 12px;
+    .experience-item > span {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .14em;
     }
 
-    .step h3 {
+    .experience-item h3 {
       font-family: "Playfair Display", serif;
-      font-size: 32px;
+      font-size: 27px;
       font-weight: 400;
+      margin-bottom: 8px;
     }
 
-    .step p {
-      color: #615c56;
-      max-width: 420px;
+    .experience-item p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 560px;
     }
 
-    /* =========================================
+    /* =========================
        ALBUM
-       ========================================= */
+    ========================= */
+
+    .album {
+      padding: 150px 0;
+      background: var(--cream);
+      color: var(--dark);
+    }
 
     .album-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
     }
 
     .album-image {
-      height: 620px;
+      height: 680px;
       overflow: hidden;
     }
 
     .album-image img {
+      width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* =========================================
+    .album-copy h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(46px, 5.5vw, 78px);
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: -.04em;
+      margin: 20px 0 25px;
+    }
+
+    .album-copy p {
+      max-width: 510px;
+      color: #5f5a53;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .dark-btn {
+      margin-top: 32px;
+      border: 1px solid #26231f;
+      color: #222;
+    }
+
+    .dark-btn:hover {
+      background: #222;
+      color: white;
+    }
+
+    /* =========================
        QUOTE
-       ========================================= */
+    ========================= */
 
-    .quote {
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+    .quote-section {
+      padding: 170px 0;
+      text-align: center;
+      background: var(--bg);
     }
 
-    .quote-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.72)),
-        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg")
-        center/cover no-repeat;
-    }
-
-    .quote-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
+    .quote-mark {
+      color: var(--red);
+      font-family: Georgia, serif;
+      font-size: 80px;
+      line-height: .5;
     }
 
     .quote-text {
+      max-width: 900px;
+      margin: 35px auto 0;
       font-family: "Playfair Display", serif;
-      font-size: clamp(42px, 6vw, 82px);
-      line-height: 1;
+      font-size: clamp(32px, 4.5vw, 62px);
+      line-height: 1.15;
       font-weight: 400;
     }
 
-    /* =========================================
+    /* =========================
        TESTIMONIALS
-       ========================================= */
+    ========================= */
 
     .testimonials {
+      padding: 140px 0;
       background: var(--bg-soft);
     }
 
     .testimonial-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 60px;
+      gap: 1px;
+      background: var(--line);
+      margin-top: 65px;
     }
 
     .testimonial {
-      padding: 35px;
-      border: 1px solid var(--line);
+      background: var(--bg-soft);
+      padding: 38px 32px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .testimonial p {
-      color: #d0ccc5;
       font-family: "Playfair Display", serif;
-      font-size: 23px;
+      font-size: 24px;
       line-height: 1.45;
+      font-weight: 400;
     }
 
     .testimonial span {
-      display: block;
-      margin-top: 35px;
       color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .13em;
+      font-size: 10px;
+      letter-spacing: .15em;
       text-transform: uppercase;
     }
 
-    /* =========================================
-       CONTACT
-       ========================================= */
+    /* =========================
+       ABOUT
+    ========================= */
 
-    .contact-section {
-      background: #f0ede7;
-      color: #111;
+    .about {
+      padding: 150px 0;
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 110px;
+    }
+
+    .about-copy h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(46px, 5vw, 74px);
+      line-height: 1;
+      font-weight: 400;
+      margin: 18px 0 28px;
+    }
+
+    .about-copy p {
+      color: #605b54;
+      font-size: 15px;
+      line-height: 1.95;
+      max-width: 650px;
+    }
+
+    .about-signature {
+      margin-top: 45px;
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      padding: 150px 0;
+      background: var(--bg);
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: start;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 110px;
     }
 
-    .contact-section .section-label {
-      color: #77716a;
+    .contact-copy h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 5vw, 75px);
+      font-weight: 400;
+      line-height: 1;
+      margin: 18px 0 30px;
     }
 
-    .contact-text {
-      max-width: 530px;
-      color: #5e5952;
-      margin-top: 25px;
-      line-height: 1.8;
+    .contact-copy p {
+      max-width: 500px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
     }
 
     .contact-links {
-      display: grid;
-      gap: 12px;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .contact-link {
-      padding: 22px 0;
-      border-bottom: 1px solid #c9c4bb;
+    .contact-links a {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 15px;
       font-size: 13px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
     }
 
-    .contact-link span:last-child {
-      color: #77716a;
+    .contact-links span {
+      color: var(--muted);
     }
 
-    /* =========================================
-       FEEDBACK
-       ========================================= */
-
-    .feedback-box {
-      margin-top: 70px;
-      padding-top: 70px;
-      border-top: 1px solid #c9c4bb;
+    .contact-form {
+      border-top: 1px solid var(--line);
     }
 
-    .feedback-head {
-      max-width: 650px;
-      margin-bottom: 35px;
+    .field {
+      position: relative;
+      border-bottom: 1px solid var(--line);
     }
 
-    .feedback-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(35px, 4vw, 55px);
-      font-weight: 400;
-      line-height: 1;
-    }
-
-    .feedback-description {
-      margin-top: 18px;
-      color: #5e5952;
-      line-height: 1.8;
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 21px 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
       font-size: 14px;
     }
 
-    .feedback-form {
-      display: grid;
-      gap: 17px;
-      max-width: 900px;
+    .field select {
+      appearance: none;
     }
 
-    .feedback-form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+    .field select option {
+      color: black;
     }
 
-    .feedback-group {
-      display: grid;
-      gap: 7px;
-    }
-
-    .feedback-group label {
-      font-size: 10px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: #66615a;
-    }
-
-    .feedback-group input,
-    .feedback-group select,
-    .feedback-group textarea {
-      width: 100%;
-      border: 1px solid #c7c1b8;
-      background: #faf8f4;
-      color: #111;
-      padding: 14px 15px;
-      outline: none;
-      border-radius: 0;
-    }
-
-    .feedback-group textarea {
+    .field textarea {
       min-height: 140px;
       resize: vertical;
     }
 
-    .feedback-group input:focus,
-    .feedback-group select:focus,
-    .feedback-group textarea:focus {
-      border-color: #77716a;
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #817c74;
     }
 
-    .feedback-consent {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: #66615a;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .feedback-consent input {
-      margin-top: 4px;
-      flex-shrink: 0;
-    }
-
-    .feedback-submit {
-      min-height: 55px;
+    .form-submit {
+      margin-top: 24px;
       width: 100%;
-      border: 0;
-      background: var(--red);
-      color: #fff;
-      letter-spacing: .13em;
-      font-size: 11px;
+      border: 1px solid rgba(255,255,255,.3);
+      background: white;
+      color: black;
+      padding: 17px 20px;
+      font-size: 10px;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      transition: .25s;
+      transition: .3s ease;
     }
 
-    .feedback-submit:hover {
-      background: var(--red-hover);
+    .form-submit:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
     }
 
-    .feedback-submit:disabled {
-      opacity: .65;
-      cursor: wait;
-    }
-
-    .feedback-status {
+    .form-message {
       display: none;
-      padding: 16px 18px;
-      font-size: 13px;
-      line-height: 1.6;
+      padding: 16px 0;
+      font-size: 12px;
+      color: #a9d8a9;
     }
 
-    .feedback-status.success {
-      display: block;
-      background: #e4eee2;
-      color: #29462a;
-      border: 1px solid #b8cdb5;
+    /* =========================
+       FEEDBACK
+    ========================= */
+
+    .feedback {
+      padding: 130px 0;
+      background: #141413;
     }
 
-    .feedback-status.error {
-      display: block;
-      background: #f4e1df;
-      color: #6c2521;
-      border: 1px solid #d9aaa6;
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 100px;
     }
 
-    /* =========================================
+    .feedback h2 {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      font-size: clamp(42px, 4.5vw, 68px);
+      line-height: 1;
+      margin-top: 18px;
+    }
+
+    .feedback-intro {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-top: 28px;
+      max-width: 470px;
+    }
+
+    /* =========================
        CTA
-       ========================================= */
+    ========================= */
 
-    .cta {
+    .final-cta {
+      padding: 170px 0;
       text-align: center;
-      padding: 150px 0;
+      background: var(--red);
+      color: white;
     }
 
-    .cta h2 {
+    .final-cta .section-label {
+      color: rgba(255,255,255,.7);
+    }
+
+    .final-cta h2 {
       font-family: "Playfair Display", serif;
       font-size: clamp(48px, 7vw, 100px);
-      font-weight: 400;
       line-height: .95;
+      font-weight: 400;
+      letter-spacing: -.04em;
+      margin: 20px auto 25px;
       max-width: 1000px;
+    }
+
+    .final-cta p {
+      max-width: 550px;
       margin: auto;
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
     }
 
-    .cta p {
-      max-width: 500px;
-      margin: 30px auto;
-      color: var(--muted);
+    .cta-button {
+      margin-top: 35px;
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      padding: 0 26px;
+      background: white;
+      color: #111;
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      transition: .3s ease;
     }
 
-    .cta .btn {
-      margin-top: 15px;
+    .cta-button:hover {
+      background: #111;
+      color: white;
     }
 
-    /* =========================================
+    /* =========================
        FOOTER
-       ========================================= */
+    ========================= */
 
     footer {
+      padding: 50px 0 35px;
+      background: #0b0b0a;
       border-top: 1px solid var(--line);
-      padding: 45px 0;
     }
 
-    .footer-inner {
+    .footer-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 30px;
+      gap: 40px;
+      padding-bottom: 45px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .footer-copy {
+    .footer-brand strong {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    .footer-brand p {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
+      margin-top: 8px;
     }
 
-    .footer-links {
+    .footer-social {
       display: flex;
       gap: 22px;
+      align-items: center;
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
+      color: var(--muted);
     }
 
-    /* =========================================
-       RESERVATION MODAL
-       ========================================= */
+    .footer-bottom {
+      padding-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      color: #6f6b65;
+      font-size: 10px;
+    }
 
-    .reservation-modal {
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
       position: fixed;
       inset: 0;
       z-index: 3000;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 30px;
+      padding: 20px;
       background: rgba(0,0,0,.78);
       backdrop-filter: blur(12px);
     }
 
-    .reservation-modal.active {
+    .modal.active {
       display: flex;
     }
 
-    .reservation-box {
-      width: min(100%, 780px);
-      max-height: 92vh;
-      overflow-y: auto;
-      background: #f2efe9;
-      color: #111;
+    .modal-box {
       position: relative;
-      padding: 55px;
+      width: min(100%, 650px);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #181817;
+      border: 1px solid var(--line);
+      padding: 45px;
     }
 
-    .reservation-close {
+    .modal-close {
       position: absolute;
-      right: 24px;
-      top: 20px;
-      width: 40px;
-      height: 40px;
-      border: 0;
+      top: 15px;
+      right: 17px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
       background: transparent;
-      font-size: 27px;
-      color: #333;
-    }
-
-    .reservation-top {
-      max-width: 600px;
-      margin-bottom: 35px;
-    }
-
-    .reservation-label {
-      color: #77716a;
-      font-size: 10px;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-    }
-
-    .reservation-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(42px, 6vw, 70px);
-      line-height: .95;
-      font-weight: 400;
-    }
-
-    .reservation-description {
-      margin-top: 20px;
-      color: #615c56;
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    .reservation-offer {
-      display: inline-block;
-      margin-top: 18px;
-      color: var(--red);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .04em;
-    }
-
-    .reservation-form {
-      display: grid;
-      gap: 18px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .form-group {
-      display: grid;
-      gap: 7px;
-    }
-
-    .form-group label {
-      font-size: 10px;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      color: #66615a;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      border: 1px solid #c7c1b8;
-      background: #faf8f4;
-      color: #111;
-      padding: 14px 15px;
-      outline: none;
-      border-radius: 0;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: #77716a;
-    }
-
-    .form-group textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    .kvkk {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: #66615a;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .kvkk input {
-      margin-top: 4px;
-      flex-shrink: 0;
-    }
-
-    .reservation-submit {
-      width: 100%;
-      min-height: 55px;
-      border: 0;
-      background: var(--red);
       color: white;
-      letter-spacing: .13em;
-      font-size: 11px;
-      text-transform: uppercase;
-      transition: .25s;
+      font-size: 18px;
     }
 
-    .reservation-submit:hover {
-      background: var(--red-hover);
+    .modal-box h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 45px;
+      font-weight: 400;
+      line-height: 1;
+      margin: 15px 0 12px;
     }
 
-    .reservation-note {
-      text-align: center;
-      color: #858079;
-      font-size: 10px;
-      margin-top: 10px;
+    .modal-box > p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 30px;
     }
 
-    /* =========================================
-       TABLET
-       ========================================= */
-
-    @media (max-width: 1050px) {
-
-      .nav-links {
-        gap: 17px;
-      }
-
-      .nav-links a {
-        font-size: 9px;
-      }
-
-      .hero-grid {
-        gap: 50px;
-      }
+    .modal-form .field {
+      border-color: var(--line);
     }
 
-    /* =========================================
-       TABLET / MOBILE
-       ========================================= */
+    /* =========================
+       MOBILE
+    ========================= */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
 
-      .nav-links {
+      .nav-links,
+      .nav-cta {
         display: none;
-        position: absolute;
-        top: 70px;
-        left: 16px;
-        right: 16px;
-        padding: 25px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-        background: rgba(15,15,15,.97);
-        border: 1px solid var(--line);
       }
 
-      .nav-links.active {
+      .menu-btn {
         display: flex;
       }
 
-      .nav-links a {
-        font-size: 11px;
-      }
-
-      .nav-menu {
-        display: block;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-content {
-        padding: 145px 0 80px;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-visual {
-        width: min(100%, 500px);
-        justify-self: start;
-        min-height: 560px;
-      }
-
-      .hero-photo-main {
-        height: 500px;
-      }
-
       .hero-photo-secondary {
-        bottom: 35px;
-        height: 230px;
+        width: 170px;
+        height: 235px;
+        right: 25px;
+        bottom: 90px;
       }
 
       .intro-grid,
-      .story-grid,
-      .album-grid,
-      .contact-grid {
+      .experience-grid,
+      .contact-grid,
+      .feedback-grid,
+      .about-grid {
         grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .story-image {
-        height: 520px;
+        gap: 55px;
       }
 
       .concept-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
-      .service-grid {
-        grid-template-columns: 1fr 1fr;
+      .concept-card,
+      .concept-card:first-child {
+        border-left: 1px solid var(--line);
+      }
+
+      .stories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-large,
+      .story-small {
+        height: 520px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service,
+      .service:nth-child(even) {
+        padding: 30px 0;
+        border-right: 0;
+      }
+
+      .gallery-row {
+        gap: 5px;
+      }
+
+      .gallery-item {
+        height: 280px;
+      }
+
+      .album-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .album-image {
+        height: 550px;
       }
 
       .testimonial-grid {
         grid-template-columns: 1fr;
       }
-
-      .step {
-        grid-template-columns: 60px 1fr;
-      }
-
-      .step p {
-        grid-column: 2;
-      }
-
-      .feedback-box {
-        margin-top: 50px;
-        padding-top: 50px;
-      }
-
-      /* GALLERY TABLET */
-      .gallery-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .gallery-item {
-        aspect-ratio: 4 / 5;
-      }
     }
 
-    /* =========================================
-       MOBILE
-       ========================================= */
-
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
 
       .container,
-      .nav-inner,
-      .hero-content {
-        width: min(calc(100% - 32px), var(--max));
-      }
-
-      section {
-        padding: 90px 0;
+      .nav-inner {
+        width: min(calc(100% - 30px), var(--max));
       }
 
       .navbar {
-        padding: 17px 0;
+        padding: 16px 0;
       }
 
-      .brand strong {
-        font-size: 11px;
+      .hero {
+        min-height: 760px;
       }
 
-      .brand span {
-        font-size: 6px;
-      }
-
-      h1 {
-        font-size: 54px;
-      }
-
-      .hero-copy {
-        font-size: 14px;
-      }
-
-      .hero-actions {
-        width: 100%;
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-visual {
-        min-height: 500px;
-      }
-
-      .hero-photo-main {
-        width: 86%;
-        height: 440px;
+      .hero-content {
+        padding-bottom: 55px;
       }
 
       .hero-photo-secondary {
-        width: 46%;
-        height: 205px;
-        bottom: 35px;
-        border-width: 6px;
+        width: 125px;
+        height: 175px;
+        right: 15px;
+        bottom: 120px;
       }
 
-      .hero-caption {
-        width: 86%;
-        font-size: 7px;
+      .hero h1 {
+        font-size: 54px;
+        max-width: 360px;
       }
 
-      .concept-head,
-      .services-head,
-      .gallery-head {
-        flex-direction: column;
-        align-items: flex-start;
+      .hero-description {
+        font-size: 13px;
+        max-width: 330px;
       }
 
-      .concept-grid {
-        grid-template-columns: 1fr;
+      .intro,
+      .concepts,
+      .gallery-section,
+      .experience,
+      .album,
+      .testimonials,
+      .about,
+      .contact,
+      .feedback {
+        padding: 95px 0;
       }
 
-      .concept-image {
-        height: 430px;
+      .stories {
+        padding-bottom: 95px;
       }
 
-      .service-grid {
-        grid-template-columns: 1fr;
+      .final-cta,
+      .quote-section {
+        padding: 110px 0;
       }
 
-      .service {
-        min-height: 190px;
+      .gallery-header {
+        display: block;
       }
 
-      /* GALLERY MOBILE */
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
+      .gallery-header p {
+        margin-top: 25px;
+      }
+
+      /*
+        Mobilde fotoğraflar yine oranlarını koruyor.
+        Tek fotoğraf satırı çok sıkışmasın diye
+        iki farklı yükseklik kullanıyoruz.
+      */
+
+      .gallery-row {
+        flex-wrap: nowrap;
       }
 
       .gallery-item {
-        aspect-ratio: 4 / 5;
+        height: 230px;
       }
 
       .gallery-overlay {
         opacity: 1;
+        padding: 55px 12px 12px;
+      }
+
+      .gallery-overlay span {
+        font-size: 8px;
       }
 
       .album-image {
-        height: 450px;
+        height: 420px;
       }
 
-      .footer-inner {
+      .footer-top,
+      .footer-bottom {
         flex-direction: column;
-        align-items: flex-start;
       }
 
-      .footer-links {
+      .footer-social {
         flex-wrap: wrap;
       }
 
-      .reservation-modal {
-        padding: 10px;
+      .modal-box {
+        padding: 35px 22px 25px;
       }
 
-      .reservation-box {
-        padding: 40px 22px 25px;
-        max-height: 96vh;
-      }
-
-      .form-row,
-      .feedback-form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .reservation-title {
-        font-size: 45px;
-      }
-
-      .feedback-title {
-        font-size: 40px;
+      .modal-box h2 {
+        font-size: 39px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- =========================================
-       NAVIGATION
-       ========================================= -->
+  <!-- =========================
+       NAVBAR
+  ========================== -->
 
   <header class="navbar" id="navbar">
 
     <div class="nav-inner">
 
-      <a href="#" class="brand">
-        <strong>CEYHUN FOTOĞRAFÇILIK</strong>
+      <a href="#top" class="logo">
+        <strong>Ceyhun Fotoğrafçılık</strong>
         <span>Wedding & Editorial Studio</span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-
+      <nav class="nav-links">
         <a href="#concepts">Konseptler</a>
         <a href="#stories">Hikâyeler</a>
         <a href="#services">Hizmetler</a>
+        <a href="#gallery">Galeri</a>
         <a href="#about">Hakkımızda</a>
         <a href="#contact">İletişim</a>
-
-        <a href="#" class="reservation-nav" data-reservation>
-          Rezervasyona Başla
-        </a>
-
       </nav>
 
-      <button class="nav-menu" id="navMenu" aria-label="Menü">
+      <button
+        class="nav-cta"
+        type="button"
+        data-reservation
+      >
+        Rezervasyona Başla
+      </button>
+
+      <button
+        class="menu-btn"
+        type="button"
+        id="menuBtn"
+        aria-label="Menü"
+      >
         ☰
       </button>
 
@@ -1474,98 +1409,67 @@
   </header>
 
 
-  <!-- =========================================
-       HERO
-       ========================================= -->
+  <main id="top">
 
-  <section class="hero">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-    <div class="hero-content">
+    <section class="hero">
 
-      <div class="hero-grid">
+      <div class="hero-photo-main"></div>
 
-        <div>
+      <div class="hero-photo-secondary"></div>
 
-          <div class="eyebrow">
-            Wedding Photography · Diyarbakır
-          </div>
+      <div class="container hero-content">
 
-          <h1>
-            Bir aşkın<br>
-            hikâyesini<br>
-            kadraja aldık.
-          </h1>
-
-          <p class="hero-copy">
-            Sizin için sadece fotoğraf çekmiyoruz.
-            Birlikte yaşadığınız o eşsiz günün duygusunu,
-            yıllar sonra yeniden hissedebileceğiniz
-            zamansız hikâyelere dönüştürüyoruz.
-          </p>
-
-          <div class="hero-actions">
-
-            <a class="btn btn-solid" href="#gallery">
-              Hikâyeleri Gör
-            </a>
-
-            <a class="btn" href="#contact">
-              İletişime Geç
-            </a>
-
-          </div>
-
+        <div class="eyebrow">
+          Wedding Photography · Diyarbakır
         </div>
 
+        <h1>
+          Bir aşkın<br>
+          hikâyesini<br>
+          kadraja aldık.
+        </h1>
 
-        <div class="hero-visual">
+        <p class="hero-description">
+          Sizin için sadece fotoğraf çekmiyoruz.
+          Birlikte yaşadığınız o eşsiz günün duygusunu,
+          yıllar sonra yeniden hissedebileceğiniz
+          zamansız hikâyelere dönüştürüyoruz.
+        </p>
 
-          <div class="hero-photo hero-photo-main">
+        <div class="hero-buttons">
 
-            <img
-              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/02d7eaab-0808-4067-8257-04a4b79d402f-2.jpg"
-              alt="Ceyhun Fotoğrafçılık Studio"
-            >
+          <a
+            href="#gallery"
+            class="btn btn-primary"
+          >
+            Çalışmalarımız
+          </a>
 
-          </div>
-
-
-          <div class="hero-photo hero-photo-secondary">
-
-            <img
-              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/d2339a75-f998-4a5d-9b95-14084a640c99.JPG"
-              alt="Ceyhun Fotoğrafçılık Studio"
-            >
-
-          </div>
-
-
-          <div class="hero-caption">
-
-            <span>Ceyhun Fotoğrafçılık</span>
-
-            <span>Wedding Stories</span>
-
-          </div>
+          <a
+            href="#contact"
+            class="btn btn-outline"
+          >
+            İletişime Geç
+          </a>
 
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       INTRO
-       ========================================= -->
+    <!-- =========================
+         INTRO
+    ========================== -->
 
-  <section class="intro">
+    <section class="intro">
 
-    <div class="container">
-
-      <div class="intro-grid">
+      <div class="container intro-grid">
 
         <div>
 
@@ -1573,529 +1477,621 @@
             Ceyhun Fotoğrafçılık
           </div>
 
-          <h2 class="section-title">
+          <h2>
             Fotoğraf değil,<br>
             his biriktiriyoruz.
           </h2>
 
         </div>
 
-        <p class="intro-copy">
+        <div class="intro-text">
+
           En güzel kareler çoğu zaman planlanmayan anlardır.
-          Bir bakış, küçük bir gülümseme, el ele yürüdüğünüz
-          birkaç saniye...
+
+          Bir bakış, küçük bir gülümseme,
+          el ele yürüdüğünüz birkaç saniye...
+
           Biz o anları fark ediyor ve sizin hikâyenize
           ait doğal bir görsel anlatıya dönüştürüyoruz.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================================
-       CONCEPTS
-       ========================================= -->
-
-  <section class="concepts" id="concepts">
-
-    <div class="container">
-
-      <div class="concept-head">
-
-        <div>
-
-          <div class="section-label">
-            Konseptler
-          </div>
-
-          <h2 class="section-title">
-            Size ait<br>
-            bir atmosfer.
-          </h2>
 
         </div>
 
-        <p class="concept-description">
-          Her çiftin hikâyesi farklı.
-          Bu yüzden çekimlerimizi tek bir kalıba
-          sokmadan, sizin karakterinize ve gününüze
-          göre şekillendiriyoruz.
-        </p>
-
       </div>
 
-
-      <div class="concept-grid">
-
-        <article class="concept">
-
-          <div class="concept-image">
-
-            <img
-              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9545%20Instagram%20Post.JPG"
-              alt="Editorial wedding konsepti"
-              loading="lazy"
-            >
-
-          </div>
-
-          <div class="concept-info">
-
-            <span class="concept-number">
-              01 · EDITORIAL
-            </span>
-
-            <h3>Zarif & Modern</h3>
-
-            <p>
-              Sade, güçlü ve zamansız portreler.
-            </p>
-
-          </div>
-
-        </article>
+    </section>
 
 
-        <article class="concept">
+    <!-- =========================
+         CONCEPTS
+    ========================== -->
 
-          <div class="concept-image">
+    <section class="concepts" id="concepts">
 
-            <img
-              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9548%20Instagram%20Post.JPG"
-              alt="Natural wedding konsepti"
-              loading="lazy"
-            >
+      <div class="container">
 
-          </div>
-
-          <div class="concept-info">
-
-            <span class="concept-number">
-              02 · NATURAL
-            </span>
-
-            <h3>Doğal & İçten</h3>
-
-            <p>
-              Pozdan çok gerçek duyguların olduğu anlar.
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <article class="concept">
-
-          <div class="concept-image">
-
-            <img
-              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9608%20Instagram%20Post.JPG"
-              alt="Wedding story konsepti"
-              loading="lazy"
-            >
-
-          </div>
-
-          <div class="concept-info">
-
-            <span class="concept-number">
-              03 · STORY
-            </span>
-
-            <h3>Hikâye & Duygu</h3>
-
-            <p>
-              Günün tamamını anlatan sinematik kareler.
-            </p>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================================
-       STORIES
-       ========================================= -->
-
-  <section id="stories">
-
-    <div class="container">
-
-      <div class="story-grid">
-
-        <div class="story-image">
-
-          <img
-            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg"
-            alt="Ceyhun Fotoğrafçılık düğün hikâyesi"
-            loading="lazy"
-          >
-
-        </div>
-
-
-        <div class="story-copy">
+        <div class="section-heading">
 
           <div class="section-label">
-            Hikâyeler
+            Yaklaşımımız
           </div>
 
-          <h2 class="section-title">
+          <h2>
             Doğal.<br>
             Zarif.<br>
             Zamansız.
           </h2>
 
-          <p>
-            Fotoğrafçılık anlayışımızın merkezinde gerçek duygular var.
-            Poz vermekten çok hissetmenizi, kameraya bakmaktan çok
-            birbirinize bakmanızı istiyoruz.
-          </p>
+        </div>
 
-          <p>
-            Düğün gününüzün heyecanını, mutluluğunu ve küçük
-            detaylarını sade ama güçlü bir görsel dille anlatıyoruz.
-          </p>
+        <div class="concept-grid">
+
+          <article class="concept-card">
+
+            <div class="concept-number">01</div>
+
+            <div>
+              <h3>Doğal</h3>
+
+              <p>
+                Sizi sürekli poz vermeye zorlamadan,
+                gününüzün gerçek duygularını yakalıyoruz.
+              </p>
+            </div>
+
+          </article>
+
+
+          <article class="concept-card">
+
+            <div class="concept-number">02</div>
+
+            <div>
+              <h3>Zarif</h3>
+
+              <p>
+                Sade kompozisyonlar, yumuşak ışık ve
+                zamansız bir görsel dil.
+              </p>
+            </div>
+
+          </article>
+
+
+          <article class="concept-card">
+
+            <div class="concept-number">03</div>
+
+            <div>
+              <h3>Zamansız</h3>
+
+              <p>
+                Yıllar sonra bile baktığınızda
+                aynı duyguyu hissettirecek kareler.
+              </p>
+            </div>
+
+          </article>
 
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       SERVICES
-       ========================================= -->
+    <!-- =========================
+         STORIES
+    ========================== -->
 
-  <section class="services" id="services">
+    <section class="stories" id="stories">
 
-    <div class="container">
+      <div class="container">
 
-      <div class="services-head">
+        <div class="stories-grid">
 
-        <div>
+          <a
+            href="#gallery"
+            class="story-large"
+          >
+
+            <img
+              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9545%20Instagram%20Post.JPG"
+              alt="Ceyhun Fotoğrafçılık düğün hikâyesi"
+              loading="lazy"
+            >
+
+            <div class="story-caption">
+
+              <span>
+                Wedding Story
+              </span>
+
+              <strong>
+                Birlikte.
+              </strong>
+
+            </div>
+
+          </a>
+
+
+          <a
+            href="#gallery"
+            class="story-small"
+          >
+
+            <img
+              src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4971%20Instagram%20Post.jpg"
+              alt="Ceyhun Fotoğrafçılık gelin damat"
+              loading="lazy"
+            >
+
+            <div class="story-caption">
+
+              <span>
+                Couple Story
+              </span>
+
+              <strong>
+                Sadece siz.
+              </strong>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section class="services" id="services">
+
+      <div class="container">
+
+        <div class="section-heading">
 
           <div class="section-label">
             Hizmetler
           </div>
 
-          <h2 class="section-title">
+          <h2>
             Gününüzün<br>
             tamamı.
           </h2>
 
         </div>
 
-        <p class="services-description">
-          Hikâyenizin her bölümünü aynı estetik anlayışla
-          belgeleyen, size özel fotoğraf ve video çözümleri.
-        </p>
+
+        <div class="services-grid">
+
+          <article class="service">
+
+            <span class="service-number">01</span>
+
+            <h3>
+              Düğün Fotoğrafı
+            </h3>
+
+            <p>
+              Doğal, zamansız ve duygusu güçlü
+              düğün fotoğrafları.
+            </p>
+
+          </article>
+
+
+          <article class="service">
+
+            <span class="service-number">02</span>
+
+            <h3>
+              Gelin & Damat
+            </h3>
+
+            <p>
+              Size özel dış çekim ve
+              editorial portreler.
+            </p>
+
+          </article>
+
+
+          <article class="service">
+
+            <span class="service-number">03</span>
+
+            <h3>
+              Düğün Hikâyesi
+            </h3>
+
+            <p>
+              Hazırlıktan gecenin sonuna kadar
+              bütün hikâyenizi belgeliyoruz.
+            </p>
+
+          </article>
+
+
+          <article class="service">
+
+            <span class="service-number">04</span>
+
+            <h3>
+              Wedding Film
+            </h3>
+
+            <p>
+              Gününüzü hareketli görüntülerle
+              yeniden yaşatın.
+            </p>
+
+          </article>
+
+
+          <article class="service">
+
+            <span class="service-number">05</span>
+
+            <h3>
+              Albüm Tasarımı
+            </h3>
+
+            <p>
+              Fotoğraflarınızı özel tasarım
+              albümlerde ölümsüzleştirin.
+            </p>
+
+          </article>
+
+
+          <article class="service">
+
+            <span class="service-number">06</span>
+
+            <h3>
+              Özel Çekimler
+            </h3>
+
+            <p>
+              Nişan, söz, save the date
+              ve çift çekimleri.
+            </p>
+
+          </article>
+
+        </div>
 
       </div>
 
-
-      <div class="service-grid">
-
-        <div class="service">
-          <span class="service-number">01</span>
-          <h3>Düğün Fotoğrafı</h3>
-          <p>Doğal, zamansız ve duygusu güçlü kareler.</p>
-        </div>
-
-        <div class="service">
-          <span class="service-number">02</span>
-          <h3>Gelin & Damat</h3>
-          <p>Size özel dış çekim ve editorial portreler.</p>
-        </div>
-
-        <div class="service">
-          <span class="service-number">03</span>
-          <h3>Düğün Hikâyesi</h3>
-          <p>Hazırlıktan gecenin sonuna kadar bütün hikâye.</p>
-        </div>
-
-        <div class="service">
-          <span class="service-number">04</span>
-          <h3>Wedding Film</h3>
-          <p>Gününüzü hareketli görüntülerle yeniden yaşatın.</p>
-        </div>
-
-        <div class="service">
-          <span class="service-number">05</span>
-          <h3>Albüm Tasarımı</h3>
-          <p>Fotoğraflarınızı özel tasarım albümlerde ölümsüzleştirin.</p>
-        </div>
-
-        <div class="service">
-          <span class="service-number">06</span>
-          <h3>Özel Çekimler</h3>
-          <p>Nişan, söz, save the date ve çift çekimleri.</p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       GALLERY
-       ========================================= -->
+    <!-- =========================
+         GALLERY
+    ========================== -->
 
-  <section id="gallery">
+    <section class="gallery-section" id="gallery">
 
-    <div class="container">
+      <div class="container">
 
-      <div class="gallery-head">
+        <div class="gallery-header">
 
-        <div>
+          <div>
 
-          <div class="section-label">
-            Seçkiler
+            <div class="section-label">
+              Seçkiler
+            </div>
+
+            <h2>
+              Son hikâyeler.
+            </h2>
+
           </div>
 
-          <h2 class="section-title">
-            Son hikâyeler.
+          <p>
+            En yeni çalışmalarımızdan seçkiler.
+            Fotoğraflar arşivimizden otomatik olarak
+            yüklenir ve kendi oranlarını koruyacak
+            şekilde düzenlenir.
+          </p>
+
+        </div>
+
+
+        <div
+          class="gallery-grid"
+          id="galleryGrid"
+        >
+
+          <div class="gallery-loading">
+            Fotoğraflar yükleniyor...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPERIENCE
+    ========================== -->
+
+    <section class="experience">
+
+      <div class="container experience-grid">
+
+        <div class="section-heading">
+
+          <div class="section-label">
+            Çekim deneyimi
+          </div>
+
+          <h2>
+            Sizin için<br>
+            nasıl çalışıyoruz?
           </h2>
 
         </div>
 
-        <div class="gallery-note">
-          En yeni çalışmalarımızdan seçkiler.
+
+        <div class="experience-list">
+
+          <div class="experience-item">
+
+            <span>01</span>
+
+            <div>
+
+              <h3>
+                Tanışıyoruz.
+              </h3>
+
+              <p>
+                Önce sizi ve nasıl bir hikâye
+                istediğinizi dinliyoruz.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="experience-item">
+
+            <span>02</span>
+
+            <div>
+
+              <h3>
+                Planlıyoruz.
+              </h3>
+
+              <p>
+                Mekân, zaman, ışık ve çekim
+                akışını birlikte oluşturuyoruz.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="experience-item">
+
+            <span>03</span>
+
+            <div>
+
+              <h3>
+                Yaşıyoruz.
+              </h3>
+
+              <p>
+                Çekim sırasında sizi poz vermeye
+                zorlamadan gerçek anları yakalıyoruz.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="experience-item">
+
+            <span>04</span>
+
+            <div>
+
+              <h3>
+                Hikâyenizi teslim ediyoruz.
+              </h3>
+
+              <p>
+                Seçilen fotoğrafları özenle düzenliyor
+                ve size özel bir arşiv oluşturuyoruz.
+              </p>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
 
-
-      <div class="gallery-grid" id="galleryGrid">
-
-        <div class="gallery-loading">
-          Fotoğraflar yükleniyor...
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       EXPERIENCE
-       ========================================= -->
+    <!-- =========================
+         ALBUM
+    ========================== -->
 
-  <section class="experience">
+    <section class="album">
 
-    <div class="container">
-
-      <div class="section-label">
-        Çekim deneyimi
-      </div>
-
-      <h2 class="section-title">
-        Sizin için<br>
-        nasıl çalışıyoruz?
-      </h2>
-
-
-      <div class="steps">
-
-        <div class="step">
-          <span class="step-number">01</span>
-          <h3>Tanışıyoruz.</h3>
-          <p>
-            Önce sizi ve nasıl bir hikâye istediğinizi dinliyoruz.
-          </p>
-        </div>
-
-        <div class="step">
-          <span class="step-number">02</span>
-          <h3>Planlıyoruz.</h3>
-          <p>
-            Mekân, zaman, ışık ve çekim akışını birlikte oluşturuyoruz.
-          </p>
-        </div>
-
-        <div class="step">
-          <span class="step-number">03</span>
-          <h3>Yaşıyoruz.</h3>
-          <p>
-            Çekim sırasında sizi poz vermeye zorlamadan gerçek anları yakalıyoruz.
-          </p>
-        </div>
-
-        <div class="step">
-          <span class="step-number">04</span>
-          <h3>Hikâyenizi teslim ediyoruz.</h3>
-          <p>
-            Seçilen fotoğrafları özenle düzenliyor ve size özel bir arşiv oluşturuyoruz.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================================
-       ALBUM
-       ========================================= -->
-
-  <section>
-
-    <div class="container">
-
-      <div class="album-grid">
+      <div class="container album-grid">
 
         <div class="album-image">
 
           <img
-            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9545%20Instagram%20Post.JPG"
-            alt="Wedding album"
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/2cb2a7e0-d45c-4d13-9627-0bf82570aebc.jpg"
+            alt="Ceyhun Fotoğrafçılık özel düğün albümü"
             loading="lazy"
           >
 
         </div>
 
-        <div class="album-image">
 
-          <img
-            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9548%20Instagram%20Post.JPG"
-            alt="Wedding photography"
-            loading="lazy"
+        <div class="album-copy">
+
+          <div class="section-label">
+            Albüm
+          </div>
+
+          <h2>
+            Anılarınızın<br>
+            son hali.
+          </h2>
+
+          <p>
+            Bir düğün albümü yalnızca fotoğrafların
+            yan yana gelmesi değildir.
+
+            Her sayfanın bir öncekini tamamladığı,
+            yıllar sonra elinize aldığınızda
+            o günü tekrar yaşattığı özel bir hikâyedir.
+
+            Fotoğraflarınızı seçiyor, düzenliyor
+            ve size özel bir albüm tasarlıyoruz.
+          </p>
+
+          <a
+            href="#contact"
+            class="btn dark-btn"
           >
+            Albüm hakkında bilgi
+          </a>
 
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       QUOTE
-       ========================================= -->
+    <!-- =========================
+         QUOTE
+    ========================== -->
 
-  <section class="quote">
+    <section class="quote-section">
 
-    <div class="quote-bg"></div>
+      <div class="container">
 
-    <div class="container">
-
-      <div class="quote-content">
-
-        <div class="section-label">
-          Birlikte
+        <div class="quote-mark">
+          “
         </div>
 
-        <div class="quote-text">
-          “Bazı anlar yaşanır,
-          bazı anlar ömür boyu
-          hatırlanır.”
+        <p class="quote-text">
+          Bazı anlar yaşanır,
+          bazı anlar ömür boyu hatırlanır.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TESTIMONIALS
+    ========================== -->
+
+    <section class="testimonials">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="section-label">
+            Çiftlerimiz
+          </div>
+
+          <h2>
+            Onların<br>
+            hikâyeleri.
+          </h2>
+
+        </div>
+
+
+        <div class="testimonial-grid">
+
+          <article class="testimonial">
+
+            <p>
+              “Fotoğraf çekimi boyunca
+              kendimizi hiç kasmadık.
+              Sonuçta ortaya çıkan fotoğraflar
+              tam olarak bizi yansıtıyor.”
+            </p>
+
+            <span>
+              Mutlu bir çift
+            </span>
+
+          </article>
+
+
+          <article class="testimonial">
+
+            <p>
+              “O günün heyecanını fotoğraflara
+              baktığımızda tekrar hissediyoruz.
+              İyi ki.”
+            </p>
+
+            <span>
+              Gelin & Damat
+            </span>
+
+          </article>
+
+
+          <article class="testimonial">
+
+            <p>
+              “Her detayla ilgilenmeleri ve
+              doğal anları yakalamaları bizim
+              için çok değerliydi.”
+            </p>
+
+            <span>
+              Wedding Story
+            </span>
+
+          </article>
+
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       TESTIMONIALS
-       ========================================= -->
+    <!-- =========================
+         ABOUT
+    ========================== -->
 
-  <section class="testimonials">
+    <section class="about" id="about">
 
-    <div class="container">
-
-      <div class="section-label">
-        Çiftlerimiz
-      </div>
-
-      <h2 class="section-title">
-        Onların<br>
-        hikâyeleri.
-      </h2>
-
-
-      <div class="testimonial-grid">
-
-        <div class="testimonial">
-
-          <p>
-            “Fotoğraf çekimi boyunca kendimizi hiç kasmadık.
-            Sonuçta ortaya çıkan fotoğraflar tam olarak bizi yansıtıyor.”
-          </p>
-
-          <span>
-            Mutlu bir çift
-          </span>
-
-        </div>
-
-
-        <div class="testimonial">
-
-          <p>
-            “O günün heyecanını fotoğraflara baktığımızda
-            tekrar hissediyoruz. İyi ki.”
-          </p>
-
-          <span>
-            Gelin & Damat
-          </span>
-
-        </div>
-
-
-        <div class="testimonial">
-
-          <p>
-            “Her detayla ilgilenmeleri ve doğal anları
-            yakalamaları bizim için çok değerliydi.”
-          </p>
-
-          <span>
-            Wedding Story
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================================
-       ABOUT
-       ========================================= -->
-
-  <section id="about">
-
-    <div class="container">
-
-      <div class="story-grid">
+      <div class="container about-grid">
 
         <div>
 
@@ -2103,197 +2099,293 @@
             Hakkımızda
           </div>
 
-          <h2 class="section-title">
-            Sizin hikâyenize<br>
-            eşlik ediyoruz.
-          </h2>
-
-          <p style="margin-top:30px; color:var(--muted); line-height:1.9;">
-            Ceyhun Fotoğrafçılık Studio olarak düğün gününüzü
-            yalnızca belgelemek değil, o günün hissini korumak
-            için çalışıyoruz.
-          </p>
-
-          <p style="margin-top:20px; color:var(--muted); line-height:1.9;">
-            Bizim için iyi bir fotoğraf; sadece güzel görünen değil,
-            yıllar sonra baktığınızda sizi o ana geri götüren fotoğraftır.
-          </p>
-
         </div>
 
 
-        <div class="story-image">
+        <div class="about-copy">
 
-          <img
-            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9579%20Instagram%20Post.JPG"
-            alt="Ceyhun Fotoğrafçılık"
-            loading="lazy"
-          >
+          <h2>
+            Fotoğrafın
+            ötesinde
+            bir hikâye.
+          </h2>
+
+          <p>
+            Ceyhun Fotoğrafçılık Studio olarak
+            düğün gününüzü yalnızca belgelemek
+            için değil, o günün duygusunu
+            geleceğe taşımak için çalışıyoruz.
+
+            Bizim için iyi bir fotoğraf;
+            teknik olarak kusursuz olmasının
+            yanında gerçek bir duygu taşıyan
+            fotoğraftır.
+
+            Bu yüzden çekimlerimizde doğallığa,
+            sadeliğe ve zamansızlığa önem veriyoruz.
+          </p>
+
+          <div class="about-signature">
+            Ceyhun Fotoğrafçılık
+          </div>
 
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       CONTACT
-       ========================================= -->
+    <!-- =========================
+         CONTACT
+    ========================== -->
 
-  <section class="contact-section" id="contact">
+    <section class="contact" id="contact">
 
-    <div class="container">
+      <div class="container contact-grid">
 
-      <div class="contact-grid">
-
-        <div>
+        <div class="contact-copy">
 
           <div class="section-label">
             İletişim
           </div>
 
-          <h2 class="section-title">
-            Hikâyenizi<br>
-            konuşalım.
+          <h2>
+            Hikâyenizi
+            anlatalım.
           </h2>
 
-          <p class="contact-text">
-            Tarihinizi ve hayalinizdeki çekimi bize anlatın.
-            Size uygun seçenekleri birlikte oluşturalım.
+          <p>
+            Tarihinizi ve hayalinizdeki çekimi
+            bize anlatın. Size özel çekim planını
+            birlikte oluşturalım.
           </p>
 
+
+          <div class="contact-links">
+
+            <a href="tel:+905522369828">
+              <span>
+                Telefon
+              </span>
+
+              <strong>
+                0552 236 98 28
+              </strong>
+            </a>
+
+
+            <a
+              href="https://wa.me/905522369828"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>
+                WhatsApp
+              </span>
+
+              <strong>
+                Mesaj Gönder
+              </strong>
+            </a>
+
+
+            <a
+              href="https://www.instagram.com/ceyhunphotographer/"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>
+                Instagram
+              </span>
+
+              <strong>
+                @ceyhunphotographer
+              </strong>
+            </a>
+
+          </div>
+
         </div>
 
 
-        <div class="contact-links">
+        <form
+          class="contact-form"
+          id="contactForm"
+        >
 
-          <a
-            class="contact-link"
-            href="https://wa.me/905522369828"
-            target="_blank"
-            rel="noopener"
+          <div class="field">
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Ad Soyad"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Telefon"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <input
+              type="text"
+              name="date"
+              placeholder="Düğün / Çekim Tarihi"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <select
+              name="service"
+              required
+            >
+
+              <option value="">
+                Hizmet seçin
+              </option>
+
+              <option>
+                Düğün Fotoğrafı
+              </option>
+
+              <option>
+                Gelin & Damat
+              </option>
+
+              <option>
+                Düğün Hikâyesi
+              </option>
+
+              <option>
+                Wedding Film
+              </option>
+
+              <option>
+                Albüm Tasarımı
+              </option>
+
+              <option>
+                Özel Çekim
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <textarea
+              name="message"
+              placeholder="Bize biraz hikâyenizden bahsedin..."
+            ></textarea>
+
+          </div>
+
+
+          <button
+            class="form-submit"
+            type="submit"
           >
-            <span>WhatsApp</span>
-            <span>→</span>
-          </a>
+            WhatsApp üzerinden iletişime geç
+          </button>
 
+          <div
+            class="form-message"
+            id="contactMessage"
+          ></div>
 
-          <a
-            class="contact-link"
-            href="https://www.instagram.com/ceyhunphotographer/"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>Instagram</span>
-            <span>→</span>
-          </a>
-
-
-          <a
-            class="contact-link"
-            href="tel:+905522369828"
-          >
-            <span>Telefon</span>
-            <span>0552 236 98 28</span>
-          </a>
-
-
-          <a
-            class="contact-link"
-            href="#"
-            data-reservation
-          >
-            <span>Rezervasyon</span>
-            <span>→</span>
-          </a>
-
-        </div>
+        </form>
 
       </div>
 
+    </section>
 
-      <!-- =========================================
-           ŞİKAYET & ÖNERİ
-           ========================================= -->
 
-      <div class="feedback-box">
+    <!-- =========================
+         FEEDBACK
+    ========================== -->
 
-        <div class="feedback-head">
+    <section class="feedback">
+
+      <div class="container feedback-grid">
+
+        <div>
 
           <div class="section-label">
-            Geri Bildirim
+            Geri bildirim
           </div>
 
-          <h2 class="feedback-title">
-            Şikâyetiniz,<br>
-            öneriniz veya teşekkürünüz.
+          <h2>
+            Şikâyetiniz,
+            öneriniz veya
+            teşekkürünüz.
           </h2>
 
-          <p class="feedback-description">
-            Deneyiminizi bizimle paylaşabilirsiniz.
-            Görüşleriniz Ceyhun Fotoğrafçılık Studio
-            hizmetlerini daha iyi hale getirmemize yardımcı olur.
+          <p class="feedback-intro">
+            Deneyiminizi önemsiyoruz.
+            Bir öneriniz, şikâyetiniz veya
+            bizimle paylaşmak istediğiniz
+            güzel bir düşünceniz varsa
+            bize doğrudan iletebilirsiniz.
           </p>
 
         </div>
 
 
         <form
-          class="feedback-form"
+          class="contact-form"
           id="feedbackForm"
         >
 
-          <div class="feedback-form-row">
+          <div class="field">
 
-            <div class="feedback-group">
-
-              <label for="feedbackName">
-                Ad Soyad
-              </label>
-
-              <input
-                id="feedbackName"
-                type="text"
-                placeholder="Adınız Soyadınız"
-                required
-              >
-
-            </div>
-
-
-            <div class="feedback-group">
-
-              <label for="feedbackPhone">
-                Telefon
-              </label>
-
-              <input
-                id="feedbackPhone"
-                type="tel"
-                placeholder="0552 000 00 00"
-              >
-
-            </div>
+            <input
+              type="text"
+              name="feedback_name"
+              placeholder="Ad Soyad"
+              required
+            >
 
           </div>
 
 
-          <div class="feedback-group">
+          <div class="field">
 
-            <label for="feedbackType">
-              Konu
-            </label>
+            <input
+              type="tel"
+              name="feedback_phone"
+              placeholder="Telefon"
+            >
+
+          </div>
+
+
+          <div class="field">
 
             <select
-              id="feedbackType"
+              name="feedback_type"
               required
             >
 
               <option value="">
-                Seçiniz
+                Konu seçin
               </option>
 
               <option value="Şikâyet">
@@ -2304,8 +2396,8 @@
                 Öneri
               </option>
 
-              <option value="Memnuniyet / Teşekkür">
-                Memnuniyet / Teşekkür
+              <option value="Teşekkür">
+                Teşekkür
               </option>
 
             </select>
@@ -2313,107 +2405,99 @@
           </div>
 
 
-          <div class="feedback-group">
-
-            <label for="feedbackMessage">
-              Mesajınız
-            </label>
+          <div class="field">
 
             <textarea
-              id="feedbackMessage"
-              placeholder="Görüşünüzü bizimle paylaşabilirsiniz."
+              name="feedback_message"
+              placeholder="Mesajınız..."
               required
             ></textarea>
 
           </div>
 
 
-          <label class="feedback-consent">
-
-            <input
-              type="checkbox"
-              id="feedbackConsent"
-              required
-            >
-
-            <span>
-              Paylaştığım iletişim bilgilerimin geri bildirim
-              süreci kapsamında benimle iletişime geçilmesi
-              amacıyla kullanılmasını kabul ediyorum.
-            </span>
-
-          </label>
-
-
           <button
             type="submit"
-            class="feedback-submit"
-            id="feedbackSubmit"
+            class="form-submit"
           >
-            GERİ BİLDİRİMİ GÖNDER
+            Gönder
           </button>
 
 
           <div
-            class="feedback-status"
-            id="feedbackStatus"
+            class="form-message"
+            id="feedbackMessage"
           ></div>
 
         </form>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- =========================================
-       CTA
-       ========================================= -->
+    <!-- =========================
+         FINAL CTA
+    ========================== -->
 
-  <section class="cta">
+    <section class="final-cta">
 
-    <div class="container">
+      <div class="container">
 
-      <div class="section-label">
-        2027 Tarihleri
+        <div class="section-label">
+          2027 Tarihleri
+        </div>
+
+        <h2>
+          Sizin gününüz,
+          sizin hikâyeniz.
+        </h2>
+
+        <p>
+          Tarihinizi paylaşın,
+          size özel çekim planımızı
+          birlikte oluşturalım.
+        </p>
+
+        <button
+          type="button"
+          class="cta-button"
+          data-reservation
+        >
+          Rezervasyon & İletişim
+        </button>
+
       </div>
 
-      <h2>
-        Sizin gününüz,
-        sizin hikâyeniz.
-      </h2>
+    </section>
 
-      <p>
-        Tarihinizi paylaşın, size özel çekim planımızı birlikte oluşturalım.
-      </p>
-
-      <a class="btn btn-red" href="#" data-reservation>
-        Rezervasyona Başla
-      </a>
-
-    </div>
-
-  </section>
+  </main>
 
 
-  <!-- =========================================
+  <!-- =========================
        FOOTER
-       ========================================= -->
+  ========================== -->
 
   <footer>
 
     <div class="container">
 
-      <div class="footer-inner">
+      <div class="footer-top">
 
-        <div class="footer-copy">
-          © 2026 Ceyhun Fotoğrafçılık Studio
+        <div class="footer-brand">
+
+          <strong>
+            Ceyhun Fotoğrafçılık
+          </strong>
+
+          <p>
+            Wedding & Editorial Studio
+          </p>
+
         </div>
 
 
-        <div class="footer-links">
+        <div class="footer-social">
 
           <a
             href="https://www.instagram.com/ceyhunphotographer/"
@@ -2439,211 +2523,159 @@
 
       </div>
 
+
+      <div class="footer-bottom">
+
+        <span>
+          © 2026 Ceyhun Fotoğrafçılık Studio
+        </span>
+
+        <span>
+          Diyarbakır · Türkiye
+        </span>
+
+      </div>
+
     </div>
 
   </footer>
 
 
-  <!-- =========================================
+  <!-- =========================
        RESERVATION MODAL
-       ========================================= -->
+  ========================== -->
 
   <div
-    class="reservation-modal"
+    class="modal"
     id="reservationModal"
-    aria-hidden="true"
   >
 
-    <div class="reservation-box">
+    <div class="modal-box">
 
       <button
-        class="reservation-close"
-        id="reservationClose"
+        class="modal-close"
+        id="modalClose"
+        type="button"
         aria-label="Kapat"
       >
         ×
       </button>
 
 
-      <div class="reservation-top">
-
-        <div class="reservation-label">
-          Ceyhun Fotoğrafçılık · 2027
-        </div>
-
-        <h2 class="reservation-title">
-          Masalınızı<br>
-          birlikte tasarlayalım.
-        </h2>
-
-        <p class="reservation-description">
-          İhtiyacınız olan çekim paketini birlikte oluşturalım.
-          Formu doldurun, bilgilerinizi WhatsApp üzerinden
-          bize gönderelim ve size özel teklifimizi hazırlayalım.
-        </p>
-
-        <span class="reservation-offer">
-          ✦ Formu dolduran çiftlere özel teklif
-        </span>
-
+      <div class="section-label">
+        2027 Rezervasyon
       </div>
+
+      <h2>
+        Tarihinizi
+        ayıralım.
+      </h2>
+
+      <p>
+        Bilgilerinizi bırakın.
+        Size WhatsApp üzerinden
+        dönüş yapalım ve çekiminizi
+        birlikte planlayalım.
+      </p>
 
 
       <form
-        class="reservation-form"
+        class="modal-form"
         id="reservationForm"
       >
 
-        <div class="form-row">
+        <div class="field">
 
-          <div class="form-group">
-
-            <label for="name">
-              Ad Soyad
-            </label>
-
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Adınız Soyadınız"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="phone">
-              Telefon
-            </label>
-
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              placeholder="0552 000 00 00"
-              required
-            >
-
-          </div>
+          <input
+            type="text"
+            name="reservation_name"
+            placeholder="Ad Soyad"
+            required
+          >
 
         </div>
 
 
-        <div class="form-row">
+        <div class="field">
 
-          <div class="form-group">
-
-            <label for="date">
-              Düğün / Çekim Tarihi
-            </label>
-
-            <input
-              id="date"
-              name="date"
-              type="date"
-              required
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="type">
-              Çekim Türü
-            </label>
-
-            <select
-              id="type"
-              name="type"
-              required
-            >
-
-              <option value="">
-                Seçiniz
-              </option>
-
-              <option>
-                Düğün Fotoğrafı
-              </option>
-
-              <option>
-                Gelin & Damat Dış Çekim
-              </option>
-
-              <option>
-                Düğün Hikâyesi
-              </option>
-
-              <option>
-                Wedding Film
-              </option>
-
-              <option>
-                Nişan / Söz
-              </option>
-
-              <option>
-                Save The Date
-              </option>
-
-              <option>
-                Özel Çekim
-              </option>
-
-            </select>
-
-          </div>
+          <input
+            type="tel"
+            name="reservation_phone"
+            placeholder="Telefon"
+            required
+          >
 
         </div>
 
 
-        <div class="form-group">
+        <div class="field">
 
-          <label for="note">
-            Bize biraz bahsedin
-          </label>
+          <input
+            type="text"
+            name="reservation_date"
+            placeholder="Düğün / Çekim Tarihi"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <select
+            name="reservation_service"
+            required
+          >
+
+            <option value="">
+              Hizmet seçin
+            </option>
+
+            <option>
+              Düğün Fotoğrafı
+            </option>
+
+            <option>
+              Gelin & Damat
+            </option>
+
+            <option>
+              Düğün Hikâyesi
+            </option>
+
+            <option>
+              Wedding Film
+            </option>
+
+            <option>
+              Albüm
+            </option>
+
+            <option>
+              Özel Çekim
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
 
           <textarea
-            id="note"
-            name="note"
-            placeholder="Hayalinizdeki çekim, mekan, şehir veya özel bir isteğiniz varsa yazabilirsiniz."
+            name="reservation_message"
+            placeholder="Eklemek istediğiniz bir şey varsa..."
           ></textarea>
 
         </div>
 
 
-        <label class="kvkk">
-
-          <input
-            type="checkbox"
-            id="kvkk"
-            required
-          >
-
-          <span>
-            İletişim bilgilerimin, rezervasyon ve teklif süreci
-            kapsamında benimle iletişime geçilmesi amacıyla
-            kullanılmasını kabul ediyorum.
-          </span>
-
-        </label>
-
-
         <button
-          class="reservation-submit"
+          class="form-submit"
           type="submit"
         >
-          PAKETİNİ OLUŞTUR, TEKLİFİNİ AL
+          WhatsApp'tan Gönder
         </button>
-
-
-        <div class="reservation-note">
-          Form gönderildiğinde WhatsApp görüşmesi açılacaktır.
-        </div>
 
       </form>
 
@@ -2652,34 +2684,83 @@
   </div>
 
 
-  <!-- =========================================
-       SCRIPT
-       ========================================= -->
-
   <script>
 
-    /* =========================================
+    /* =====================================================
        SUPABASE
-       ========================================= */
+    ===================================================== */
 
     const SUPABASE_URL =
       "https://nzriewxchkcfeknkbwuu.supabase.co";
 
-    /*
-      SADECE BURADAKİ KEY'İ KENDİ
-      SUPABASE PUBLISHABLE KEY'İN İLE DEĞİŞTİR.
-    */
-
     const SUPABASE_PUBLISHABLE_KEY =
-      "BURAYA_PUBLISHABLE_KEY";
+      "sb_publishable_tZemFcdKUDB-l7ozbA_rK542nOI";
 
     const BUCKET_NAME =
       "site fotolar";
 
 
-    /* =========================================
-       GALERİ
-       ========================================= */
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    const navbar =
+      document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 40) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+    });
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const navLinks =
+      document.querySelector(".nav-links");
+
+    menuBtn.addEventListener("click", () => {
+
+      const isOpen =
+        navLinks.style.display === "flex";
+
+      if (isOpen) {
+
+        navLinks.style.display = "";
+
+      } else {
+
+        navLinks.style.display = "flex";
+
+        navLinks.style.position = "absolute";
+        navLinks.style.top = "70px";
+        navLinks.style.left = "15px";
+        navLinks.style.right = "15px";
+        navLinks.style.padding = "25px";
+        navLinks.style.flexDirection = "column";
+        navLinks.style.alignItems = "flex-start";
+        navLinks.style.background = "rgba(16,16,15,.98)";
+        navLinks.style.border = "1px solid rgba(255,255,255,.12)";
+        navLinks.style.zIndex = "100";
+
+      }
+
+    });
+
+
+    /* =====================================================
+       GALLERY
+       NATURAL RATIO / JUSTIFIED STYLE
+    ===================================================== */
 
     async function loadGallery() {
 
@@ -2714,6 +2795,7 @@
               prefix: "",
               limit: 100,
               offset: 0,
+
               sortBy: {
                 column: "created_at",
                 order: "desc"
@@ -2765,14 +2847,29 @@
           `;
 
           return;
-
         }
 
 
         gallery.innerHTML = "";
 
 
-        imageFiles.forEach((file, index) => {
+        /*
+          Önce bütün fotoğrafları oluşturuyoruz.
+          Daha sonra gerçek genişlik/yükseklik oranlarını
+          okuyup satırlara yerleştiriyoruz.
+        */
+
+        const loadedImages = [];
+
+
+        for (
+          let index = 0;
+          index < imageFiles.length;
+          index++
+        ) {
+
+          const file =
+            imageFiles[index];
 
           const encodedFileName =
             encodeURIComponent(file.name);
@@ -2797,48 +2894,116 @@
             "noopener";
 
 
-          item.innerHTML = `
+          const img =
+            document.createElement("img");
 
-            <img
-              src="${imageUrl}"
-              alt="Ceyhun Fotoğrafçılık düğün fotoğrafı ${index + 1}"
-              loading="lazy"
-            >
+          img.src =
+            imageUrl;
 
-            <div class="gallery-overlay">
+          img.alt =
+            `Ceyhun Fotoğrafçılık düğün fotoğrafı ${index + 1}`;
 
-              <span>
-                Wedding Story ·
-                ${String(index + 1).padStart(2, "0")}
-              </span>
+          img.loading =
+            "lazy";
 
-            </div>
 
+          const overlay =
+            document.createElement("div");
+
+          overlay.className =
+            "gallery-overlay";
+
+          overlay.innerHTML = `
+            <span>
+              Wedding Story · ${String(index + 1).padStart(2, "0")}
+            </span>
           `;
 
 
+          item.appendChild(img);
+          item.appendChild(overlay);
+
           gallery.appendChild(item);
 
-        });
+
+          await new Promise(resolve => {
+
+            if (img.complete) {
+
+              resolve();
+
+            } else {
+
+              img.addEventListener(
+                "load",
+                resolve,
+                { once: true }
+              );
+
+              img.addEventListener(
+                "error",
+                resolve,
+                { once: true }
+              );
+
+            }
+
+          });
+
+
+          const ratio =
+            img.naturalWidth &&
+            img.naturalHeight
+              ? img.naturalWidth / img.naturalHeight
+              : 1;
+
+
+          loadedImages.push({
+            item,
+            ratio
+          });
+
+        }
+
+
+        buildJustifiedGallery(
+          loadedImages
+        );
+
+
+        window.addEventListener(
+          "resize",
+          () => {
+
+            clearTimeout(
+              window.__galleryResizeTimer
+            );
+
+            window.__galleryResizeTimer =
+              setTimeout(() => {
+
+                buildJustifiedGallery(
+                  loadedImages
+                );
+
+              }, 150);
+
+          }
+        );
+
 
       } catch (error) {
 
         console.error(error);
 
         gallery.innerHTML = `
-
           <div class="gallery-loading">
-
             Fotoğraflar yüklenemedi.
-
             <br><br>
-
             <small>
               Supabase Publishable Key ve Storage ayarlarını kontrol edin.
             </small>
-
           </div>
-
         `;
 
       }
@@ -2846,122 +3011,465 @@
     }
 
 
-    /* =========================================
-       NAVBAR
-       ========================================= */
+    /* =====================================================
+       JUSTIFIED GALLERY ALGORITHM
+    ===================================================== */
 
-    const navbar =
-      document.getElementById("navbar");
+    function buildJustifiedGallery(images) {
+
+      const gallery =
+        document.getElementById("galleryGrid");
+
+      gallery.innerHTML = "";
 
 
-    window.addEventListener("scroll", () => {
+      const width =
+        gallery.clientWidth;
 
-      if (window.scrollY > 30) {
 
-        navbar.classList.add("scrolled");
+      if (!width || !images.length) {
+        return;
+      }
 
-      } else {
 
-        navbar.classList.remove("scrolled");
+      let targetHeight = 350;
+
+      if (window.innerWidth <= 1000) {
+        targetHeight = 280;
+      }
+
+      if (window.innerWidth <= 650) {
+        targetHeight = 220;
+      }
+
+
+      const gap = 6;
+
+      let currentRow = [];
+
+      let currentRatio = 0;
+
+
+      function flushRow(
+        row,
+        isLastRow = false
+      ) {
+
+        if (!row.length) {
+          return;
+        }
+
+
+        const rowGap =
+          gap * (row.length - 1);
+
+
+        /*
+          Son satır çok az fotoğraf içeriyorsa
+          aşırı büyütmüyoruz.
+        */
+
+        let rowHeight;
+
+        if (
+          isLastRow &&
+          row.length <= 2
+        ) {
+
+          rowHeight =
+            Math.min(
+              targetHeight,
+              (width - rowGap) /
+                row.reduce(
+                  (sum, x) =>
+                    sum + x.ratio,
+                  0
+                )
+            );
+
+        } else {
+
+          rowHeight =
+            (width - rowGap) /
+            row.reduce(
+              (sum, x) =>
+                sum + x.ratio,
+              0
+            );
+
+        }
+
+
+        rowHeight =
+          Math.max(
+            160,
+            Math.min(
+              targetHeight,
+              rowHeight
+            )
+          );
+
+
+        const rowElement =
+          document.createElement("div");
+
+        rowElement.className =
+          "gallery-row";
+
+
+        row.forEach(image => {
+
+          const item =
+            image.item;
+
+          item.style.height =
+            `${rowHeight}px`;
+
+          item.style.flex =
+            `${image.ratio} 1 0`;
+
+          rowElement.appendChild(item);
+
+        });
+
+
+        gallery.appendChild(
+          rowElement
+        );
 
       }
 
-    });
+
+      for (
+        let i = 0;
+        i < images.length;
+        i++
+      ) {
+
+        const image =
+          images[i];
+
+        currentRow.push(image);
+
+        currentRatio +=
+          image.ratio;
 
 
-    /* =========================================
-       MOBILE MENU
-       ========================================= */
-
-    const navMenu =
-      document.getElementById("navMenu");
-
-    const navLinks =
-      document.getElementById("navLinks");
+        const projectedWidth =
+          currentRatio * targetHeight +
+          gap * (currentRow.length - 1);
 
 
-    navMenu.addEventListener("click", () => {
+        /*
+          Satır yaklaşık olarak ekranı doldurduysa
+          satırı kapat.
+        */
 
-      navLinks.classList.toggle("active");
+        if (
+          projectedWidth >= width
+        ) {
 
-    });
-
-
-    navLinks
-      .querySelectorAll("a")
-      .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-          navLinks.classList.remove("active");
-
-        });
-
-      });
-
-
-    /* =========================================
-       RESERVATION MODAL
-       ========================================= */
-
-    const reservationModal =
-      document.getElementById("reservationModal");
-
-    const reservationClose =
-      document.getElementById("reservationClose");
-
-
-    document
-      .querySelectorAll("[data-reservation]")
-      .forEach(button => {
-
-        button.addEventListener("click", event => {
-
-          event.preventDefault();
-
-          reservationModal.classList.add("active");
-
-          reservationModal.setAttribute(
-            "aria-hidden",
-            "false"
+          flushRow(
+            currentRow,
+            false
           );
 
-          document.body.classList.add("modal-open");
+          currentRow = [];
+          currentRatio = 0;
 
-        });
+        }
 
-      });
+      }
 
 
-    function closeReservation() {
+      if (currentRow.length) {
 
-      reservationModal.classList.remove("active");
+        flushRow(
+          currentRow,
+          true
+        );
 
-      reservationModal.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      document.body.classList.remove("modal-open");
+      }
 
     }
 
 
-    reservationClose.addEventListener(
-      "click",
-      closeReservation
+    loadGallery();
+
+
+    /* =====================================================
+       CONTACT FORM
+    ===================================================== */
+
+    const contactForm =
+      document.getElementById(
+        "contactForm"
+      );
+
+    const contactMessage =
+      document.getElementById(
+        "contactMessage"
+      );
+
+
+    contactForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const formData =
+          new FormData(contactForm);
+
+
+        const name =
+          formData.get("name") || "";
+
+        const phone =
+          formData.get("phone") || "";
+
+        const date =
+          formData.get("date") || "";
+
+        const service =
+          formData.get("service") || "";
+
+        const message =
+          formData.get("message") || "";
+
+
+        const whatsappMessage = `
+Merhaba Ceyhun Fotoğrafçılık.
+
+Yeni bir çekim için bilgi almak istiyorum.
+
+Ad Soyad:
+${name}
+
+Telefon:
+${phone}
+
+Tarih:
+${date}
+
+Hizmet:
+${service}
+
+Mesaj:
+${message}
+        `.trim();
+
+
+        const url =
+          `https://wa.me/905522369828?text=${encodeURIComponent(whatsappMessage)}`;
+
+
+        window.open(
+          url,
+          "_blank",
+          "noopener"
+        );
+
+
+        contactMessage.style.display =
+          "block";
+
+        contactMessage.textContent =
+          "WhatsApp açılıyor...";
+
+      }
     );
 
 
-    reservationModal.addEventListener(
+    /* =====================================================
+       FEEDBACK FORM
+    ===================================================== */
+
+    const feedbackForm =
+      document.getElementById(
+        "feedbackForm"
+      );
+
+    const feedbackMessage =
+      document.getElementById(
+        "feedbackMessage"
+      );
+
+
+    feedbackForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        const formData =
+          new FormData(feedbackForm);
+
+
+        const name =
+          formData.get(
+            "feedback_name"
+          );
+
+        const phone =
+          formData.get(
+            "feedback_phone"
+          );
+
+        const type =
+          formData.get(
+            "feedback_type"
+          );
+
+        const message =
+          formData.get(
+            "feedback_message"
+          );
+
+
+        feedbackMessage.style.display =
+          "block";
+
+        feedbackMessage.style.color =
+          "#aaa59d";
+
+        feedbackMessage.textContent =
+          "Gönderiliyor...";
+
+
+        try {
+
+          const response =
+            await fetch(
+              `${SUPABASE_URL}/rest/v1/sikayet_oneri`,
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type":
+                    "application/json",
+
+                  "apikey":
+                    SUPABASE_PUBLISHABLE_KEY,
+
+                  "Authorization":
+                    `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
+
+                  "Prefer":
+                    "return=minimal"
+                },
+
+                body: JSON.stringify({
+
+                  ad_soyad:
+                    name,
+
+                  telefon:
+                    phone || null,
+
+                  konu:
+                    type,
+
+                  mesaj:
+                    message
+
+                })
+              }
+            );
+
+
+          if (!response.ok) {
+
+            const error =
+              await response.text();
+
+            throw new Error(
+              error
+            );
+
+          }
+
+
+          feedbackMessage.style.color =
+            "#a9d8a9";
+
+          feedbackMessage.textContent =
+            "Mesajınız başarıyla gönderildi. Teşekkür ederiz.";
+
+
+          feedbackForm.reset();
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          feedbackMessage.style.color =
+            "#e68b8b";
+
+          feedbackMessage.textContent =
+            "Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       RESERVATION MODAL
+    ===================================================== */
+
+    const modal =
+      document.getElementById(
+        "reservationModal"
+      );
+
+    const modalClose =
+      document.getElementById(
+        "modalClose"
+      );
+
+
+    document.querySelectorAll(
+      "[data-reservation]"
+    ).forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          modal.classList.add(
+            "active"
+          );
+
+          document.body.classList.add(
+            "modal-open"
+          );
+
+        }
+      );
+
+    });
+
+
+    modalClose.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    modal.addEventListener(
       "click",
       event => {
 
         if (
-          event.target === reservationModal
+          event.target === modal
         ) {
 
-          closeReservation();
+          closeModal();
 
         }
 
@@ -2975,10 +3483,12 @@
 
         if (
           event.key === "Escape" &&
-          reservationModal.classList.contains("active")
+          modal.classList.contains(
+            "active"
+          )
         ) {
 
-          closeReservation();
+          closeModal();
 
         }
 
@@ -2986,254 +3496,163 @@
     );
 
 
-    /* =========================================
-       RESERVATION → WHATSAPP
-       ========================================= */
+    function closeModal() {
+
+      modal.classList.remove(
+        "active"
+      );
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+
+    }
+
+
+    /* =====================================================
+       RESERVATION FORM
+    ===================================================== */
 
     const reservationForm =
-      document.getElementById("reservationForm");
+      document.getElementById(
+        "reservationForm"
+      );
 
 
     reservationForm.addEventListener(
       "submit",
-      event => {
+      function(event) {
 
         event.preventDefault();
 
 
+        const formData =
+          new FormData(
+            reservationForm
+          );
+
+
         const name =
-          document.getElementById("name").value.trim();
+          formData.get(
+            "reservation_name"
+          ) || "";
 
         const phone =
-          document.getElementById("phone").value.trim();
+          formData.get(
+            "reservation_phone"
+          ) || "";
 
         const date =
-          document.getElementById("date").value;
+          formData.get(
+            "reservation_date"
+          ) || "";
 
-        const type =
-          document.getElementById("type").value;
-
-        const note =
-          document.getElementById("note").value.trim();
-
-
-        const formattedDate =
-          date
-            ? new Date(date + "T12:00:00")
-                .toLocaleDateString("tr-TR")
-            : "-";
-
+        const service =
+          formData.get(
+            "reservation_service"
+          ) || "";
 
         const message =
-
-`Merhaba Ceyhun Fotoğrafçılık Studio 👋
-
-2027 rezervasyon / teklif almak istiyorum.
-
-Ad Soyad: ${name}
-Telefon: ${phone}
-Düğün / Çekim Tarihi: ${formattedDate}
-Çekim Türü: ${type}
-
-Not:
-${note || "-"}
-
-Web sitesi üzerinden rezervasyon formunu doldurdum.`;
+          formData.get(
+            "reservation_message"
+          ) || "";
 
 
-        const whatsappUrl =
-          `https://wa.me/905522369828?text=${encodeURIComponent(message)}`;
+        const whatsappMessage = `
+Merhaba Ceyhun Fotoğrafçılık.
+
+2027 için rezervasyon hakkında bilgi almak istiyorum.
+
+Ad Soyad:
+${name}
+
+Telefon:
+${phone}
+
+Düğün / Çekim Tarihi:
+${date}
+
+Hizmet:
+${service}
+
+Ek Bilgi:
+${message}
+        `.trim();
+
+
+        const url =
+          `https://wa.me/905522369828?text=${encodeURIComponent(whatsappMessage)}`;
 
 
         window.open(
-          whatsappUrl,
-          "_blank"
+          url,
+          "_blank",
+          "noopener"
         );
+
+
+        closeModal();
 
       }
     );
 
 
-    /* =========================================
-       ŞİKAYET & ÖNERİ → SUPABASE
-       ========================================= */
+    /* =====================================================
+       SMOOTH SCROLL
+    ===================================================== */
 
-    const feedbackForm =
-      document.getElementById("feedbackForm");
+    document.querySelectorAll(
+      'a[href^="#"]'
+    ).forEach(link => {
 
-    const feedbackSubmit =
-      document.getElementById("feedbackSubmit");
+      link.addEventListener(
+        "click",
+        function(event) {
 
-    const feedbackStatus =
-      document.getElementById("feedbackStatus");
+          const targetId =
+            this.getAttribute("href");
 
-
-    feedbackForm.addEventListener(
-      "submit",
-      async event => {
-
-        event.preventDefault();
-
-
-        feedbackStatus.className =
-          "feedback-status";
-
-        feedbackStatus.textContent =
-          "";
-
-
-        if (
-          !SUPABASE_PUBLISHABLE_KEY ||
-          SUPABASE_PUBLISHABLE_KEY === "BURAYA_PUBLISHABLE_KEY"
-        ) {
-
-          feedbackStatus.className =
-            "feedback-status error";
-
-          feedbackStatus.textContent =
-            "Geri bildirim sistemi henüz yapılandırılmamış. Lütfen daha sonra tekrar deneyin.";
-
-          return;
-
-        }
-
-
-        const name =
-          document
-            .getElementById("feedbackName")
-            .value
-            .trim();
-
-        const phone =
-          document
-            .getElementById("feedbackPhone")
-            .value
-            .trim();
-
-        const type =
-          document
-            .getElementById("feedbackType")
-            .value;
-
-        const message =
-          document
-            .getElementById("feedbackMessage")
-            .value
-            .trim();
-
-        const consent =
-          document
-            .getElementById("feedbackConsent")
-            .checked;
-
-
-        if (!consent) {
-
-          feedbackStatus.className =
-            "feedback-status error";
-
-          feedbackStatus.textContent =
-            "Lütfen iletişim onayını işaretleyin.";
-
-          return;
-
-        }
-
-
-        feedbackSubmit.disabled = true;
-
-        feedbackSubmit.textContent =
-          "GÖNDERİLİYOR...";
-
-
-        try {
-
-          const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/sikayet_oneri`,
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type": "application/json",
-                "apikey": SUPABASE_PUBLISHABLE_KEY,
-                "Authorization":
-                  `Bearer ${SUPABASE_PUBLISHABLE_KEY}`,
-                "Prefer":
-                  "return=minimal"
-              },
-
-              body: JSON.stringify({
-
-                ad_soyad: name,
-
-                telefon:
-                  phone || null,
-
-                konu: type,
-
-                mesaj: message
-
-              })
-
-            }
-          );
-
-
-          if (!response.ok) {
-
-            const errorText =
-              await response.text();
-
-            throw new Error(
-              errorText || "Geri bildirim gönderilemedi."
-            );
-
+          if (
+            !targetId ||
+            targetId === "#"
+          ) {
+            return;
           }
 
 
-          feedbackForm.reset();
+          const target =
+            document.querySelector(
+              targetId
+            );
 
 
-          feedbackStatus.className =
-            "feedback-status success";
-
-          feedbackStatus.textContent =
-            "Geri bildiriminiz başarıyla gönderildi. İlginiz için teşekkür ederiz.";
+          if (!target) {
+            return;
+          }
 
 
-        } catch (error) {
-
-          console.error(
-            "Feedback error:",
-            error
-          );
+          event.preventDefault();
 
 
-          feedbackStatus.className =
-            "feedback-status error";
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
 
-          feedbackStatus.textContent =
-            "Geri bildiriminiz gönderilemedi. Lütfen tekrar deneyin.";
 
-        } finally {
+          if (
+            window.innerWidth <= 1000
+          ) {
 
-          feedbackSubmit.disabled =
-            false;
+            navLinks.style.display =
+              "";
 
-          feedbackSubmit.textContent =
-            "GERİ BİLDİRİMİ GÖNDER";
+          }
 
         }
+      );
 
-      }
-    );
-
-
-    /* =========================================
-       START
-       ========================================= */
-
-    loadGallery();
+    });
 
   </script>
 
