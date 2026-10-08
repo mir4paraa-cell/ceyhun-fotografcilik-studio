@@ -1,1 +1,1332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Ceyhun Fotoğrafçılık Studio</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0b0b0b;
+    color:#fff;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:20px 6%;
+
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.menu{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.menu a{
+    font-size:14px;
+    color:#ddd;
+    transition:.25s;
+}
+
+.menu a:hover{
+    color:#fff;
+}
+
+.login-btn{
+    padding:11px 18px;
+    border:1px solid #fff;
+    border-radius:30px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:130px 20px 90px;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.48),
+            rgba(0,0,0,.82)
+        ),
+        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/02d7eaab-0808-4067-8257-04a4b79d402f-2.jpg");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.small-title{
+    text-transform:uppercase;
+    letter-spacing:5px;
+    font-size:13px;
+    color:#ccc;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(42px,7vw,82px);
+    line-height:1.05;
+    font-weight:500;
+    margin-bottom:25px;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#ccc;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.buttons{
+    margin-top:35px;
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 27px;
+    border-radius:40px;
+    font-weight:600;
+    display:inline-block;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.btn-light{
+    background:#fff;
+    color:#111;
+}
+
+.btn-dark{
+    border:1px solid #777;
+    color:#fff;
+}
+
+/* SECTIONS */
+
+section{
+    padding:100px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title span{
+    color:#999;
+    font-size:13px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.section-title h2{
+    font-size:42px;
+    margin-top:12px;
+    font-weight:500;
+}
+
+/* SERVICES */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.card{
+    background:#151515;
+    border:1px solid #292929;
+    border-radius:20px;
+    padding:35px;
+    min-height:230px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#555;
+}
+
+.card-icon{
+    font-size:35px;
+    margin-bottom:25px;
+}
+
+.card h3{
+    font-size:23px;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#aaa;
+    line-height:1.7;
+}
+
+/* PHOTO GALLERY */
+
+.photo-gallery{
+    padding:110px 7%;
+    background:#f4f1ed;
+    color:#111;
+}
+
+.photo-gallery .section-title span{
+    color:#777;
+}
+
+.photo-gallery .section-title h2{
+    color:#111;
+}
+
+.gallery-grid{
+    columns:3;
+    column-gap:22px;
+    margin-top:50px;
+}
+
+.gallery-grid img{
+    width:100%;
+    height:auto;
+    display:block;
+
+    margin-bottom:22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    break-inside:avoid;
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+.gallery-grid img:hover{
+    transform:scale(1.02);
+    box-shadow:0 18px 40px rgba(0,0,0,.18);
+}
+
+/* STORY */
+
+.story{
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
+}
+
+.story p{
+    color:#bbb;
+    font-size:19px;
+    line-height:1.9;
+}
+
+/* CTA */
+
+.cta{
+    background:
+        linear-gradient(
+            rgba(255,255,255,.94),
+            rgba(255,255,255,.94)
+        ),
+        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    color:#111;
+    text-align:center;
+}
+
+.cta p{
+    max-width:600px;
+    margin:20px auto 30px;
+    color:#555;
+    line-height:1.7;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#101010;
+    text-align:center;
+}
+
+.contact-box{
+    max-width:900px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.contact-item{
+    background:#181818;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:30px 20px;
+    transition:.25s;
+}
+
+.contact-item:hover{
+    transform:translateY(-4px);
+    border-color:#555;
+}
+
+.contact-icon{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.contact-item h3{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.contact-item p{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* FOOTER */
+
+footer{
+    padding:45px 7%;
+    background:#050505;
+    color:#777;
+    text-align:center;
+    font-size:13px;
+}
+
+.footer-social{
+    margin-top:18px;
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.footer-social a{
+    color:#aaa;
+    border:1px solid #333;
+    padding:10px 17px;
+    border-radius:30px;
+    transition:.25s;
+}
+
+.footer-social a:hover{
+    color:#fff;
+    border-color:#777;
+}
+
+/* WHATSAPP FLOATING BUTTON */
+
+.whatsapp{
+    position:fixed;
+
+    right:22px;
+    bottom:22px;
+
+    z-index:9998;
+
+    width:58px;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#25D366;
+    color:#fff;
+
+    font-size:28px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+
+    transition:.25s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.08);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+    display:none;
+
+    position:fixed;
+
+    z-index:9999;
+
+    inset:0;
+
+    background:rgba(0,0,0,.94);
+
+    align-items:center;
+    justify-content:center;
+
+    padding:30px;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:88%;
+    max-height:90vh;
+
+    object-fit:contain;
+
+    border-radius:8px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.lightbox-close{
+    position:absolute;
+
+    top:20px;
+    right:30px;
+
+    color:white;
+
+    font-size:45px;
+    font-weight:300;
+
+    cursor:pointer;
+
+    z-index:10001;
+
+    line-height:1;
+}
+
+.lightbox-close:hover{
+    opacity:.7;
+}
+
+/* LIGHTBOX ARROWS */
+
+.lightbox-prev,
+.lightbox-next{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:10001;
+
+    width:55px;
+    height:70px;
+
+    border:none;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    font-size:38px;
+
+    cursor:pointer;
+
+    border-radius:12px;
+
+    transition:.25s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover{
+    background:rgba(255,255,255,.25);
+}
+
+.lightbox-prev{
+    left:25px;
+}
+
+.lightbox-next{
+    right:25px;
+}
+
+/* DESKTOP */
+
+@media(max-width:900px){
+
+    .gallery-grid{
+        columns:2;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .contact-box{
+        grid-template-columns:1fr;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    nav{
+        padding:16px 5%;
+    }
+
+    .logo{
+        font-size:16px;
+    }
+
+    .menu{
+        gap:10px;
+    }
+
+    .menu a:not(.login-btn){
+        display:none;
+    }
+
+    .login-btn{
+        padding:9px 13px;
+        font-size:12px !important;
+    }
+
+    section{
+        padding:75px 6%;
+    }
+
+    .section-title{
+        margin-bottom:35px;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .hero{
+        padding:120px 20px 70px;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .photo-gallery{
+        padding:80px 5%;
+    }
+
+    .gallery-grid{
+        columns:1;
+        margin-top:35px;
+    }
+
+    .gallery-grid img{
+        margin-bottom:18px;
+        border-radius:10px;
+    }
+
+    .lightbox{
+        padding:15px;
+    }
+
+    .lightbox img{
+        max-width:94%;
+        max-height:82vh;
+    }
+
+    .lightbox-prev,
+    .lightbox-next{
+        width:45px;
+        height:55px;
+        font-size:28px;
+    }
+
+    .lightbox-prev{
+        left:10px;
+    }
+
+    .lightbox-next{
+        right:10px;
+    }
+
+    .lightbox-close{
+        top:12px;
+        right:18px;
+        font-size:38px;
+    }
+
+}
+
+/* SMALL MOBILE */
+
+@media(max-width:380px){
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .logo{
+        font-size:14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        CEYHUN FOTOĞRAFÇILIK
+    </div>
+
+    <div class="menu">
+
+        <a href="#galeri">
+            Fotoğraflar
+        </a>
+
+        <a href="#hikaye">
+            Hikâyemiz
+        </a>
+
+        <a href="#iletisim">
+            İletişim
+        </a>
+
+        <a href="#randevu" class="login-btn">
+            Müşteri Girişi
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            CEYHUN FOTOĞRAFÇILIK STUDIO
+        </div>
+
+        <h1>
+            Bir aşkın hikâyesini
+            kadraja alıyoruz.
+        </h1>
+
+        <p>
+            En özel anlarınızı zamana meydan okuyan,
+            doğal ve zarif fotoğraflarla ölümsüzleştiriyoruz.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20randevu%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                class="btn btn-light"
+                target="_blank"
+            >
+                WhatsApp'tan Randevu
+            </a>
+
+            <a
+                href="#galeri"
+                class="btn btn-dark"
+            >
+                Fotoğraflarımız
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section>
+
+    <div class="section-title">
+
+        <span>
+            Hizmetlerimiz
+        </span>
+
+        <h2>
+            Sizin hikâyeniz,
+            bizim kadrajımız.
+        </h2>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">
+                📸
+            </div>
+
+            <h3>
+                Düğün Fotoğrafçılığı
+            </h3>
+
+            <p>
+                Düğününüzün en özel anlarını doğal,
+                zarif ve zamansız karelerle ölümsüzleştiriyoruz.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                💍
+            </div>
+
+            <h3>
+                Gelin & Damat
+            </h3>
+
+            <p>
+                Size özel dış çekim konseptleriyle
+                aşkınızı kendi hikâyeniz gibi fotoğraflıyoruz.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🎬
+            </div>
+
+            <h3>
+                Düğün Hikâyesi
+            </h3>
+
+            <p>
+                Fotoğraf ve video çalışmalarımızla
+                düğün gününüzü baştan sona hikâyeye dönüştürüyoruz.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PHOTO GALLERY -->
+
+<section class="photo-gallery" id="galeri">
+
+    <div class="section-title">
+
+        <span>
+            Fotoğraflarımız
+        </span>
+
+        <h2>
+            Gerçek Hikâyeler
+        </h2>
+
+    </div>
+
+
+    <div class="gallery-grid">
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/02d7eaab-0808-4067-8257-04a4b79d402f-2.jpg"
+            alt="Ceyhun Fotoğrafçılık"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg"
+            alt="Düğün fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6607%20Instagram%20Post.jpg"
+            alt="Gelin damat fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6611%20Instagram%20Post.jpg"
+            alt="Düğün fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6641%20Instagram%20Post.jpg"
+            alt="Gelin damat"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6656%20Instagram%20Post.jpg"
+            alt="Dış çekim"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6665%20Instagram%20Post.jpg"
+            alt="Gelin damat çekimi"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6667%20Instagram%20Post.jpg"
+            alt="Düğün hikâyesi"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/2cb2a7e0-d45c-4d13-9627-0bf82570aebc.jpg"
+            alt="Gelin damat"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4971%20Instagram%20Post.jpg"
+            alt="Düğün fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4982%20Instagram%20Post.jpg"
+            alt="Dış çekim"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4991%20Instagram%20Post.jpg"
+            alt="Gelin damat fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A5027%20Instagram%20Post.jpg"
+            alt="Düğün fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/c37183ec-40f6-4889-922e-32c3785b324f.JPG"
+            alt="Gelin damat"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg"
+            alt="Düğün çekimi"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9666.jpg"
+            alt="Gelin damat"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/d2339a75-f998-4a5d-9b95-14084a640c99.JPG"
+            alt="Dış çekim"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/dc506eab-5f6d-4e0c-a416-444e1a344dc8.jpg"
+            alt="Düğün fotoğrafı"
+        >
+
+        <img
+            src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/IMG_3183.PNG"
+            alt="Ceyhun Fotoğrafçılık"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section id="hikaye">
+
+    <div class="story">
+
+        <div class="section-title">
+
+            <span>
+                Hikâyemiz
+            </span>
+
+            <h2>
+                Anı değil,
+                hikâye çekiyoruz.
+            </h2>
+
+        </div>
+
+        <p>
+            Bizim için düğün fotoğrafçılığı sadece güzel bir fotoğraf
+            çekmekten ibaret değil. Bir bakışın, bir gülüşün,
+            el ele tutuşmanın ve o gün yaşanan tüm küçük anların
+            hikâyesini yakalamak...
+            İşte bizim işimiz tam olarak bu.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta" id="randevu">
+
+    <div class="section-title">
+
+        <span>
+            Birlikte başlayalım
+        </span>
+
+        <h2>
+            Sizin hikâyenizi
+            çekmeye hazırız.
+        </h2>
+
+    </div>
+
+    <p>
+        Tarihinizi paylaşın, size uygun çekim seçeneklerini
+        birlikte planlayalım.
+    </p>
+
+    <div class="buttons">
+
+        <a
+            href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20randevu%20almak%20istiyorum."
+            class="btn"
+            style="background:#111;color:#fff;"
+            target="_blank"
+        >
+            WhatsApp'tan Ulaş
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="iletisim">
+
+    <div class="section-title">
+
+        <span>
+            İletişim
+        </span>
+
+        <h2>
+            Bize ulaşın.
+        </h2>
+
+    </div>
+
+
+    <div class="contact-box">
+
+        <a
+            href="tel:+905522369828"
+            class="contact-item"
+        >
+
+            <div class="contact-icon">
+                📞
+            </div>
+
+            <h3>
+                Telefon
+            </h3>
+
+            <p>
+                0552 236 98 28
+            </p>
+
+        </a>
+
+
+        <a
+            href="https://wa.me/905522369828"
+            class="contact-item"
+            target="_blank"
+        >
+
+            <div class="contact-icon">
+                💬
+            </div>
+
+            <h3>
+                WhatsApp
+            </h3>
+
+            <p>
+                Hemen mesaj gönderin.
+            </p>
+
+        </a>
+
+
+        <a
+            href="https://www.instagram.com/ceyhunphotographer/"
+            class="contact-item"
+            target="_blank"
+        >
+
+            <div class="contact-icon">
+                📷
+            </div>
+
+            <h3>
+                Instagram
+            </h3>
+
+            <p>
+                @ceyhunphotographer
+            </p>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        © 2026 Ceyhun Fotoğrafçılık Studio
+    </div>
+
+    <div class="footer-social">
+
+        <a
+            href="https://www.instagram.com/ceyhunphotographer/"
+            target="_blank"
+        >
+            Instagram
+        </a>
+
+        <a
+            href="https://wa.me/905522369828"
+            target="_blank"
+        >
+            WhatsApp
+        </a>
+
+        <a
+            href="tel:+905522369828"
+        >
+            0552 236 98 28
+        </a>
+
+    </div>
+
+</footer>
+
+
+<!-- WHATSAPP FLOATING -->
+
+<a
+    href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20bilgi%20almak%20istiyorum."
+    class="whatsapp"
+    target="_blank"
+    aria-label="WhatsApp"
+>
+    ☎
+</a>
+
+
+<!-- LIGHTBOX -->
+
+<div id="lightbox" class="lightbox">
+
+    <span class="lightbox-close">
+        &times;
+    </span>
+
+    <button
+        class="lightbox-prev"
+        aria-label="Önceki fotoğraf"
+    >
+        &#10094;
+    </button>
+
+    <img
+        id="lightbox-image"
+        src=""
+        alt="Büyük fotoğraf"
+    >
+
+    <button
+        class="lightbox-next"
+        aria-label="Sonraki fotoğraf"
+    >
+        &#10095;
+    </button>
+
+</div>
+
+
+<script>
+
+/* GALLERY */
+
+const galleryImages =
+    document.querySelectorAll('.gallery-grid img');
+
+const lightbox =
+    document.getElementById('lightbox');
+
+const lightboxImage =
+    document.getElementById('lightbox-image');
+
+const closeButton =
+    document.querySelector('.lightbox-close');
+
+const prevButton =
+    document.querySelector('.lightbox-prev');
+
+const nextButton =
+    document.querySelector('.lightbox-next');
+
+let currentImage = 0;
+
+
+/* OPEN PHOTO */
+
+galleryImages.forEach((image,index)=>{
+
+    image.addEventListener('click',()=>{
+
+        currentImage = index;
+
+        showImage();
+
+        lightbox.classList.add('active');
+
+        document.body.style.overflow = 'hidden';
+
+    });
+
+});
+
+
+/* SHOW PHOTO */
+
+function showImage(){
+
+    lightboxImage.src =
+        galleryImages[currentImage].src;
+
+}
+
+
+/* NEXT */
+
+function nextImage(){
+
+    currentImage++;
+
+    if(currentImage >= galleryImages.length){
+
+        currentImage = 0;
+
+    }
+
+    showImage();
+
+}
+
+
+/* PREVIOUS */
+
+function previousImage(){
+
+    currentImage--;
+
+    if(currentImage < 0){
+
+        currentImage =
+            galleryImages.length - 1;
+
+    }
+
+    showImage();
+
+}
+
+
+/* BUTTONS */
+
+nextButton.addEventListener(
+    'click',
+    nextImage
+);
+
+prevButton.addEventListener(
+    'click',
+    previousImage
+);
+
+
+/* CLOSE */
+
+closeButton.addEventListener(
+    'click',
+    closeLightbox
+);
+
+
+/* CLICK OUTSIDE */
+
+lightbox.addEventListener(
+    'click',
+    (e)=>{
+
+        if(e.target === lightbox){
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+
+/* CLOSE FUNCTION */
+
+function closeLightbox(){
+
+    lightbox.classList.remove('active');
+
+    document.body.style.overflow = '';
+
+}
+
+
+/* KEYBOARD */
+
+document.addEventListener(
+    'keydown',
+    (e)=>{
+
+        if(
+            !lightbox.classList.contains('active')
+        ){
+
+            return;
+
+        }
+
+        if(e.key === 'ArrowRight'){
+
+            nextImage();
+
+        }
+
+        if(e.key === 'ArrowLeft'){
+
+            previousImage();
+
+        }
+
+        if(e.key === 'Escape'){
+
+            closeLightbox();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
