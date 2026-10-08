@@ -3,149 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ceyhun Fotoğrafçılık | Düğün & Dış Çekim</title>
-<meta name="description" content="Ceyhun Fotoğrafçılık - Düğün, gelin damat ve dış çekim fotoğrafçılığı. Randevunuzu oluşturun.">
+
+<meta name="description" content="Ceyhun Fotoğrafçılık - Düğün, gelin damat ve dış çekim fotoğrafçılığı. Randevunuzu kolayca oluşturun.">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f8f6f2;
-  color:#222;
-  line-height:1.5;
+  background:#f7f4ef;
+  color:#272522;
+  overflow-x:hidden;
 }
-a{text-decoration:none;color:inherit}
-button,input,select,textarea{font:inherit}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+/* =====================================================
+   GENEL
+===================================================== */
 
 .container{
-  width:min(1100px,92%);
+  width:min(1120px,92%);
   margin:auto;
 }
 
-/* HEADER */
+section{
+  position:relative;
+}
+
+.ust-baslik{
+  font-size:11px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:#8d8379;
+  margin-bottom:14px;
+}
+
+.baslik{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(38px,5vw,60px);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-2px;
+}
+
+.aciklama{
+  color:#716b64;
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
 header{
-  position:sticky;
+  position:fixed;
   top:0;
-  z-index:100;
-  background:rgba(248,246,242,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid #e5e0d8;
+  left:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(247,244,239,.82);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(50,45,40,.08);
 }
 
 .nav{
-  height:72px;
+  height:70px;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
 .logo{
+  font-family:Georgia,"Times New Roman",serif;
   font-size:18px;
-  font-weight:700;
-  letter-spacing:1.5px;
+  letter-spacing:.5px;
 }
 
-.logo span{
+.logo small{
   display:block;
-  font-size:9px;
-  font-weight:400;
+  font-family:Arial,sans-serif;
+  font-size:8px;
   letter-spacing:3px;
-  margin-top:1px;
-  color:#8a8379;
+  color:#958b80;
+  margin-top:2px;
 }
 
-.nav-links{
+.menu{
   display:flex;
-  gap:28px;
   align-items:center;
-  font-size:13px;
-  color:#5d5851;
+  gap:28px;
+  font-size:12px;
+  color:#625d57;
 }
 
-.nav-links a:hover{color:#111}
+.menu a:hover{
+  color:#111;
+}
 
-.nav-btn{
-  background:#222;
-  color:white;
-  padding:11px 18px;
+.randevu-btn{
+  background:#252320;
+  color:#fff;
+  padding:12px 19px;
   border-radius:30px;
   font-size:12px;
-  font-weight:600;
+  font-weight:bold;
 }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
+
 .hero{
-  min-height:calc(100vh - 72px);
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:50px;
+  min-height:100vh;
+  padding-top:70px;
+  display:flex;
   align-items:center;
-  padding:55px 0;
+  overflow:hidden;
 }
 
-.hero-text{
-  max-width:500px;
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background-size:cover;
+  background-position:center;
+  opacity:.13;
+  transform:scale(1.04);
 }
 
-.small-title{
-  color:#918a80;
-  font-size:11px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  margin-bottom:18px;
+.hero-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,
+    #f7f4ef 0%,
+    rgba(247,244,239,.88) 42%,
+    rgba(247,244,239,.35) 100%
+  );
+}
+
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr .9fr;
+  align-items:center;
+  gap:50px;
+  padding:70px 0;
+}
+
+.hero-left{
+  max-width:580px;
 }
 
 .hero h1{
-  font-family:Georgia,serif;
+  font-family:Georgia,"Times New Roman",serif;
   font-weight:400;
-  font-size:clamp(45px,6vw,78px);
-  line-height:.98;
-  letter-spacing:-3px;
-  margin-bottom:24px;
+  font-size:clamp(48px,7vw,88px);
+  line-height:.94;
+  letter-spacing:-5px;
+  margin-bottom:28px;
 }
 
 .hero h1 em{
+  color:#907968;
   font-style:italic;
-  color:#8d7969;
 }
 
-.hero p{
-  color:#69635c;
-  max-width:450px;
+.hero-text{
+  max-width:480px;
+  color:#68615a;
   font-size:15px;
+  line-height:1.7;
   margin-bottom:30px;
 }
 
-.hero-buttons{
+.hero-actions{
   display:flex;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
 }
 
-.primary{
-  background:#222;
+.buyuk-randevu{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#252320;
   color:#fff;
-  border:0;
-  padding:15px 24px;
-  border-radius:30px;
-  cursor:pointer;
-  font-weight:600;
+  padding:17px 27px;
+  border-radius:40px;
   font-size:13px;
+  font-weight:bold;
+  box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
 
-.secondary{
-  border:1px solid #d5cfc7;
-  padding:14px 22px;
-  border-radius:30px;
+.galeri-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px 23px;
+  border:1px solid #d8d0c7;
+  border-radius:40px;
   font-size:13px;
-  background:transparent;
+  background:rgba(255,255,255,.35);
 }
 
 .hero-photo{
-  height:620px;
-  border-radius:220px 220px 12px 12px;
+  height:600px;
+  border-radius:220px 220px 18px 18px;
   overflow:hidden;
+  box-shadow:0 25px 70px rgba(55,45,35,.13);
   background:#ddd;
 }
 
@@ -156,234 +241,294 @@ header{
   display:block;
 }
 
-/* MINI SERVICES */
-.services{
-  padding:25px 0 90px;
+/* =====================================================
+   KISA HİZMETLER
+===================================================== */
+
+.hizmetler{
+  padding:30px 0 85px;
 }
 
-.service-grid{
+.hizmet-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px;
+  gap:15px;
 }
 
-.service{
-  background:#fff;
-  border:1px solid #e8e2da;
+.hizmet{
+  background:rgba(255,255,255,.75);
+  border:1px solid #e6dfd6;
   border-radius:18px;
   padding:25px;
-  min-height:145px;
 }
 
-.service-number{
-  font-size:11px;
-  color:#a0968b;
-  margin-bottom:20px;
+.hizmet-numara{
+  font-size:10px;
+  color:#a09488;
+  margin-bottom:22px;
 }
 
-.service h3{
-  font-family:Georgia,serif;
-  font-size:22px;
+.hizmet h3{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:23px;
   font-weight:400;
-  margin-bottom:7px;
+  margin-bottom:8px;
 }
 
-.service p{
-  color:#777069;
+.hizmet p{
   font-size:13px;
+  color:#777069;
 }
 
-/* GALLERY */
-.gallery-section{
-  padding:80px 0;
+/* =====================================================
+   GALERİ
+===================================================== */
+
+.galeri{
+  padding:80px 0 100px;
+  background:#eeeae4;
 }
 
-.section-head{
+.galeri-baslik{
   display:flex;
-  justify-content:space-between;
   align-items:end;
-  margin-bottom:30px;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:35px;
 }
 
-.section-head h2{
-  font-family:Georgia,serif;
-  font-size:42px;
-  font-weight:400;
+.galeri-baslik-yazi{
+  max-width:600px;
 }
 
-.section-head p{
-  color:#777069;
-  font-size:13px;
+.galeri-baslik p{
+  max-width:320px;
 }
 
-.gallery{
-  columns:3 250px;
-  column-gap:15px;
+.foto-grid{
+  columns:3 240px;
+  column-gap:14px;
 }
 
-.gallery img{
+.foto-kutu{
+  width:100%;
+  margin-bottom:14px;
+  break-inside:avoid;
+  overflow:hidden;
+  border-radius:12px;
+  background:#ddd;
+  cursor:pointer;
+  position:relative;
+}
+
+.foto-kutu img{
   width:100%;
   display:block;
-  margin-bottom:15px;
-  border-radius:10px;
-  break-inside:avoid;
-  cursor:pointer;
-  transition:.3s;
+  transition:transform .45s ease;
 }
 
-.gallery img:hover{
-  opacity:.88;
+.foto-kutu:hover img{
+  transform:scale(1.035);
 }
 
-/* APPOINTMENT */
-.appointment{
-  padding:90px 0;
-}
-
-.appointment-box{
-  background:#222;
+.foto-kutu:after{
+  content:"Fotoğrafı büyüt";
+  position:absolute;
+  left:12px;
+  bottom:12px;
+  background:rgba(0,0,0,.55);
   color:#fff;
-  border-radius:28px;
-  padding:55px;
+  padding:7px 10px;
+  border-radius:20px;
+  font-size:10px;
+  opacity:0;
+  transition:.25s;
+}
+
+.foto-kutu:hover:after{
+  opacity:1;
+}
+
+/* =====================================================
+   RANDEVU
+===================================================== */
+
+.randevu{
+  padding:100px 0;
+  background:#272522;
+  color:#fff;
+  overflow:hidden;
+}
+
+.randevu-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-size:cover;
+  background-position:center;
+  opacity:.08;
+}
+
+.randevu-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#272522;
+}
+
+.randevu .container{
+  position:relative;
+  z-index:2;
+}
+
+.randevu-kutu{
   display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:60px;
+  grid-template-columns:.85fr 1.15fr;
+  gap:65px;
+  align-items:center;
 }
 
-.appointment-intro{
-  align-self:center;
+.randevu-yazi{
+  max-width:410px;
 }
 
-.appointment-intro .small-title{
-  color:#aaa29a;
+.randevu-yazi .ust-baslik{
+  color:#aaa197;
 }
 
-.appointment-intro h2{
-  font-family:Georgia,serif;
+.randevu-yazi h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(42px,5vw,65px);
   font-weight:400;
-  font-size:48px;
-  line-height:1;
-  margin-bottom:20px;
+  line-height:.98;
+  letter-spacing:-3px;
+  margin-bottom:22px;
 }
 
-.appointment-intro p{
-  color:#bbb5ae;
+.randevu-yazi p{
+  color:#bdb6ad;
   font-size:14px;
-  max-width:350px;
+  line-height:1.7;
 }
 
 .form{
   display:grid;
-  gap:12px;
+  gap:11px;
 }
 
 .form input,
 .form select,
 .form textarea{
   width:100%;
-  border:1px solid #494643;
-  background:#2c2b29;
+  border:1px solid #484541;
+  background:#302f2c;
   color:#fff;
-  padding:15px;
+  padding:15px 16px;
   border-radius:10px;
   outline:none;
 }
 
 .form input::placeholder,
 .form textarea::placeholder{
-  color:#9e9992;
+  color:#aaa49d;
 }
 
 .form input:focus,
 .form select:focus,
 .form textarea:focus{
-  border-color:#aaa;
-}
-
-.form textarea{
-  height:105px;
-  resize:vertical;
+  border-color:#aaa197;
 }
 
 .form select{
-  color:#aaa;
+  color:#aaa49d;
 }
 
 .form select option{
   color:#222;
 }
 
+.form textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
 .form button{
   border:0;
-  background:#f3eee7;
-  color:#222;
-  padding:16px;
+  background:#f5efe7;
+  color:#24221f;
+  padding:17px;
   border-radius:10px;
-  cursor:pointer;
-  font-weight:700;
-  margin-top:4px;
-}
-
-.form-note{
-  font-size:11px;
-  color:#8e8983;
-  line-height:1.4;
-}
-
-.status{
-  display:none;
-  background:#31302e;
-  border-radius:10px;
-  padding:12px;
-  color:#d9d4cd;
+  font-weight:bold;
   font-size:13px;
+  cursor:pointer;
 }
 
-/* CONTACT */
-.contact{
-  padding:60px 0 90px;
+.form button:hover{
+  background:#fff;
+}
+
+.form-bilgi{
+  color:#8e8983;
+  font-size:10px;
+  line-height:1.5;
+}
+
+/* =====================================================
+   ALT ÇAĞRI
+===================================================== */
+
+.son-cagri{
+  padding:90px 0;
   text-align:center;
 }
 
-.contact h2{
-  font-family:Georgia,serif;
-  font-size:42px;
+.son-cagri .container{
+  max-width:700px;
+}
+
+.son-cagri h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(38px,5vw,60px);
   font-weight:400;
-  margin-bottom:12px;
+  line-height:1;
+  margin-bottom:17px;
 }
 
-.contact p{
-  color:#756f68;
+.son-cagri p{
+  color:#756e67;
   font-size:14px;
-  margin-bottom:25px;
+  margin-bottom:27px;
 }
 
-.contact-buttons{
+.son-linkler{
   display:flex;
   justify-content:center;
   gap:10px;
   flex-wrap:wrap;
 }
 
-.contact-buttons a{
-  padding:13px 22px;
+.son-linkler a{
+  border:1px solid #d9d1c8;
+  padding:12px 20px;
   border-radius:30px;
-  border:1px solid #d8d1c9;
-  font-size:13px;
+  font-size:12px;
 }
 
-.contact-buttons a:first-child{
-  background:#222;
-  color:white;
-  border-color:#222;
+.son-linkler a:first-child{
+  background:#252320;
+  color:#fff;
+  border-color:#252320;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
+
 footer{
-  border-top:1px solid #e5e0d8;
-  padding:25px 0;
-  color:#8b847b;
-  font-size:11px;
+  border-top:1px solid #ded7cf;
+  padding:24px 0;
+  color:#8b837a;
+  font-size:10px;
 }
 
 .footer-inner{
@@ -391,116 +536,137 @@ footer{
   justify-content:space-between;
 }
 
-/* FLOATING WHATSAPP */
+/* =====================================================
+   SABİT WHATSAPP
+===================================================== */
+
 .whatsapp{
   position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:200;
-  background:#222;
-  color:white;
-  padding:14px 20px;
+  right:18px;
+  bottom:18px;
+  z-index:900;
+  background:#252320;
+  color:#fff;
+  padding:14px 19px;
   border-radius:30px;
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-  font-size:13px;
-  font-weight:600;
+  font-size:12px;
+  font-weight:bold;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-/* MODAL */
+/* =====================================================
+   FOTOĞRAF MODAL
+===================================================== */
+
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.88);
-  z-index:500;
+  z-index:3000;
+  background:rgba(0,0,0,.92);
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:25px;
 }
 
-.modal.show{display:flex}
+.modal.acik{
+  display:flex;
+}
 
 .modal img{
   max-width:95%;
   max-height:90vh;
   object-fit:contain;
-  border-radius:5px;
 }
 
-.modal-close{
+.modal-kapat{
   position:absolute;
+  top:18px;
   right:25px;
-  top:20px;
-  color:white;
-  font-size:35px;
+  color:#fff;
+  font-size:36px;
   cursor:pointer;
+  line-height:1;
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBİL
+===================================================== */
+
 @media(max-width:800px){
 
-  .nav{
-    height:65px;
-  }
-
-  .nav-links{
+  .menu{
     display:none;
   }
 
-  .nav-btn{
-    padding:10px 15px;
+  .nav{
+    height:64px;
   }
 
   .hero{
+    min-height:auto;
+  }
+
+  .hero-inner{
     grid-template-columns:1fr;
-    padding:40px 0 60px;
     gap:35px;
+    padding:55px 0 65px;
   }
 
   .hero h1{
-    font-size:50px;
-    letter-spacing:-2px;
+    font-size:53px;
+    letter-spacing:-3px;
   }
 
   .hero-photo{
     height:470px;
-    border-radius:150px 150px 12px 12px;
+    border-radius:150px 150px 15px 15px;
   }
 
-  .service-grid{
+  .hizmet-grid{
     grid-template-columns:1fr;
   }
 
-  .section-head{
+  .hizmetler{
+    padding-bottom:65px;
+  }
+
+  .galeri{
+    padding:65px 0 75px;
+  }
+
+  .galeri-baslik{
     display:block;
   }
 
-  .section-head h2{
-    font-size:36px;
-    margin-bottom:8px;
+  .galeri-baslik p{
+    margin-top:12px;
   }
 
-  .gallery{
-    columns:2 140px;
+  .foto-grid{
+    columns:2 130px;
+    column-gap:10px;
   }
 
-  .appointment{
-    padding:55px 0;
+  .foto-kutu{
+    margin-bottom:10px;
   }
 
-  .appointment-box{
+  .foto-kutu:after{
+    display:none;
+  }
+
+  .randevu{
+    padding:70px 0;
+  }
+
+  .randevu-kutu{
     grid-template-columns:1fr;
-    padding:30px 20px;
-    gap:30px;
-    border-radius:22px;
+    gap:35px;
   }
 
-  .appointment-intro h2{
-    font-size:39px;
-  }
-
-  .contact h2{
-    font-size:36px;
+  .randevu-yazi h2{
+    font-size:45px;
   }
 
   .footer-inner{
@@ -513,22 +679,23 @@ footer{
   }
 
   .whatsapp{
-    right:15px;
-    bottom:15px;
+    right:12px;
+    bottom:12px;
   }
 }
 
 @media(max-width:420px){
+
   .hero h1{
-    font-size:43px;
+    font-size:45px;
   }
 
   .hero-photo{
     height:420px;
   }
 
-  .gallery{
-    columns:2 130px;
+  .foto-grid{
+    columns:2 120px;
   }
 }
 </style>
@@ -536,124 +703,242 @@ footer{
 
 <body>
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
+
   <div class="container nav">
+
     <a href="#" class="logo">
       CEYHUN FOTOĞRAFÇILIK
-      <span>STUDIO</span>
+      <small>STUDIO</small>
     </a>
 
-    <nav class="nav-links">
-      <a href="#fotograflar">Fotoğraflar</a>
+    <nav class="menu">
+      <a href="#galeri">Fotoğraflar</a>
       <a href="#hizmetler">Çekimler</a>
       <a href="#randevu">Randevu</a>
     </nav>
 
-    <a href="#randevu" class="nav-btn">Randevu Al</a>
+    <a href="#randevu" class="randevu-btn">
+      Randevu Al
+    </a>
+
   </div>
+
 </header>
 
-<main>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
-  <div class="container hero-text">
-    <div class="small-title">Diyarbakır · Düğün Fotoğrafçılığı</div>
 
-    <h1>
-      En güzel<br>
-      anınız,<br>
-      <em>en güzel</em> haliyle.
-    </h1>
-
-    <p>
-      Düğün, gelin damat ve dış çekimlerinizi
-      doğal, zarif ve size özel fotoğraflarla
-      ölümsüzleştiriyoruz.
-    </p>
-
-    <div class="hero-buttons">
-      <a href="#randevu" class="primary">📅 Randevu Al</a>
-      <a href="#fotograflar" class="secondary">Fotoğraflara Bak</a>
-    </div>
+  <div
+    class="hero-bg"
+    id="heroBackground">
   </div>
 
-  <div class="container hero-photo">
-    <img id="heroImage" alt="Ceyhun Fotoğrafçılık">
-  </div>
-</section>
+  <div class="container hero-inner">
 
+    <div class="hero-left">
 
-<section class="services" id="hizmetler">
-  <div class="container service-grid">
-
-    <div class="service">
-      <div class="service-number">01</div>
-      <h3>Düğün</h3>
-      <p>Düğün gününüzün en güzel anlarını doğal şekilde yakalıyoruz.</p>
-    </div>
-
-    <div class="service">
-      <div class="service-number">02</div>
-      <h3>Gelin & Damat</h3>
-      <p>Size özel dış çekim ve romantik çift fotoğrafları.</p>
-    </div>
-
-    <div class="service">
-      <div class="service-number">03</div>
-      <h3>Dış Çekim</h3>
-      <p>İstediğiniz mekânda, size ait bir hikâye oluşturuyoruz.</p>
-    </div>
-
-  </div>
-</section>
-
-
-<section class="gallery-section" id="fotograflar">
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <div class="small-title">Fotoğraf Galerisi</div>
-        <h2>Gerçek anlar.</h2>
+      <div class="ust-baslik">
+        Diyarbakır · Düğün Fotoğrafçılığı
       </div>
 
-      <p>Çalışmalarımızdan küçük bir seçki.</p>
+      <h1>
+        Güzel bir gün,<br>
+        güzel bir <em>hikâye.</em>
+      </h1>
+
+      <p class="hero-text">
+        Düğün, gelin damat ve dış çekimlerinizi
+        doğal ve zamansız fotoğraflarla
+        ölümsüzleştiriyoruz.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#randevu" class="buyuk-randevu">
+          📅 Randevu Oluştur
+        </a>
+
+        <a href="#galeri" class="galeri-link">
+          Fotoğrafları Gör
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="gallery" id="gallery">
-      <div style="padding:30px;color:#888">Fotoğraflar yükleniyor...</div>
+
+    <div class="hero-photo">
+
+      <img
+        id="heroImage"
+        alt="Ceyhun Fotoğrafçılık"
+      >
+
     </div>
 
   </div>
+
 </section>
 
 
-<section class="appointment" id="randevu">
+<!-- =====================================================
+     HİZMETLER
+===================================================== -->
+
+<section class="hizmetler" id="hizmetler">
+
+  <div class="container hizmet-grid">
+
+    <div class="hizmet">
+
+      <div class="hizmet-numara">01</div>
+
+      <h3>Düğün</h3>
+
+      <p>
+        Düğün gününüzün en güzel
+        anlarını doğal şekilde yakalıyoruz.
+      </p>
+
+    </div>
+
+
+    <div class="hizmet">
+
+      <div class="hizmet-numara">02</div>
+
+      <h3>Gelin & Damat</h3>
+
+      <p>
+        Size özel dış çekim ve
+        romantik çift fotoğrafları.
+      </p>
+
+    </div>
+
+
+    <div class="hizmet">
+
+      <div class="hizmet-numara">03</div>
+
+      <h3>Dış Çekim</h3>
+
+      <p>
+        İstediğiniz mekânda
+        size ait bir hikâye.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALERİ
+===================================================== -->
+
+<section class="galeri" id="galeri">
+
   <div class="container">
 
-    <div class="appointment-box">
+    <div class="galeri-baslik">
 
-      <div class="appointment-intro">
+      <div class="galeri-baslik-yazi">
 
-        <div class="small-title">
+        <div class="ust-baslik">
+          Fotoğraf Galerisi
+        </div>
+
+        <h2 class="baslik">
+          Gerçek anlar,<br>
+          gerçek hikâyeler.
+        </h2>
+
+      </div>
+
+      <p class="aciklama">
+        Çekimlerimizden küçük bir seçki.
+        Fotoğrafların üzerine tıklayarak
+        büyütebilirsiniz.
+      </p>
+
+    </div>
+
+
+    <div
+      class="foto-grid"
+      id="fotoGrid">
+
+      <div style="
+        padding:30px;
+        color:#888;
+        font-size:13px;
+      ">
+        Fotoğraflar yükleniyor...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     RANDEVU
+===================================================== -->
+
+<section class="randevu" id="randevu">
+
+  <div
+    class="randevu-bg"
+    id="randevuBackground">
+  </div>
+
+
+  <div class="container">
+
+    <div class="randevu-kutu">
+
+
+      <div class="randevu-yazi">
+
+        <div class="ust-baslik">
           Randevu
         </div>
 
         <h2>
           Tarihinizi<br>
           birlikte<br>
-          ayarlayalım.
+          planlayalım.
         </h2>
 
         <p>
-          Formu doldurun. Bilgileriniz WhatsApp üzerinden
-          bize iletilsin. Size kısa sürede dönüş yapalım.
+          Formu doldurun.
+          Bilgileriniz hazır bir WhatsApp
+          mesajı olarak bize iletilsin.
+          Müsaitliğimizi kontrol edip
+          size dönüş yapalım.
         </p>
 
       </div>
 
 
-      <form class="form" id="appointmentForm">
+      <form
+        class="form"
+        id="randevuForm">
+
 
         <input
           id="adSoyad"
@@ -662,6 +947,7 @@ footer{
           required
         >
 
+
         <input
           id="telefon"
           type="tel"
@@ -669,36 +955,63 @@ footer{
           required
         >
 
+
         <input
           id="tarih"
           type="date"
           required
         >
 
-        <select id="cekimeTuru" required>
-          <option value="">Çekim türünü seçin</option>
-          <option>Düğün Fotoğrafı</option>
-          <option>Gelin & Damat</option>
-          <option>Dış Çekim</option>
-          <option>Nişan / Söz</option>
-          <option>Düğün Fotoğrafı + Video</option>
-          <option>Diğer</option>
+
+        <select
+          id="cekim"
+          required>
+
+          <option value="">
+            Çekim türünü seçin
+          </option>
+
+          <option>
+            Düğün Fotoğrafı
+          </option>
+
+          <option>
+            Gelin & Damat
+          </option>
+
+          <option>
+            Dış Çekim
+          </option>
+
+          <option>
+            Nişan / Söz
+          </option>
+
+          <option>
+            Düğün Fotoğrafı + Video
+          </option>
+
+          <option>
+            Diğer
+          </option>
+
         </select>
+
 
         <textarea
           id="not"
           placeholder="Varsa bize kısaca bahsedin..."
         ></textarea>
 
+
         <button type="submit">
           RANDEVU TALEBİ GÖNDER
         </button>
 
-        <div class="status" id="status"></div>
 
-        <div class="form-note">
-          Gönder butonuna bastığınızda WhatsApp açılır ve
-          randevu bilgileriniz hazır mesaj olarak iletilir.
+        <div class="form-bilgi">
+          Gönderdiğinizde WhatsApp açılır ve
+          bilgileriniz hazır mesaj olarak iletilir.
         </div>
 
       </form>
@@ -706,24 +1019,43 @@ footer{
     </div>
 
   </div>
+
 </section>
 
 
-<section class="contact">
+<!-- =====================================================
+     SON ÇAĞRI
+===================================================== -->
+
+<section class="son-cagri">
+
   <div class="container">
 
-    <div class="small-title">Ceyhun Fotoğrafçılık</div>
+    <div class="ust-baslik">
+      Ceyhun Fotoğrafçılık
+    </div>
 
-    <h2>Bir kahve içip<br>tanışalım.</h2>
+    <h2>
+      Bir kahve içip<br>
+      tanışalım.
+    </h2>
 
     <p>
-      Aklınızdaki çekimi konuşalım.
-      Tarihinizi birlikte planlayalım.
+      Tarihinizi konuşalım,
+      çekiminizi birlikte planlayalım.
     </p>
 
-    <div class="contact-buttons">
-      <a href="https://wa.me/905522369828" target="_blank">
-        WhatsApp'tan Yaz
+
+    <div class="son-linkler">
+
+      <a href="#randevu">
+        📅 Randevu Al
+      </a>
+
+      <a
+        href="https://wa.me/905522369828"
+        target="_blank">
+        WhatsApp
       </a>
 
       <a href="tel:+905522369828">
@@ -732,42 +1064,78 @@ footer{
 
       <a
         href="https://www.instagram.com/ceyhunphotographer/"
-        target="_blank"
-      >
+        target="_blank">
         Instagram
       </a>
+
     </div>
 
   </div>
+
 </section>
 
-</main>
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
+
   <div class="container footer-inner">
-    <div>© 2026 Ceyhun Fotoğrafçılık Studio</div>
-    <div>Diyarbakır · Türkiye</div>
+
+    <div>
+      © 2026 Ceyhun Fotoğrafçılık Studio
+    </div>
+
+    <div>
+      Diyarbakır · Türkiye
+    </div>
+
   </div>
+
 </footer>
 
+
+<!-- =====================================================
+     WHATSAPP
+===================================================== -->
 
 <a
   class="whatsapp"
   href="https://wa.me/905522369828"
-  target="_blank"
->
+  target="_blank">
+
   WhatsApp
+
 </a>
 
 
-<div class="modal" id="modal">
-  <div class="modal-close" id="modalClose">×</div>
-  <img id="modalImg" src="" alt="">
+<!-- =====================================================
+     FOTOĞRAF MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="modal">
+
+  <div
+    class="modal-kapat"
+    id="modalKapat">
+    ×
+  </div>
+
+  <img
+    id="modalImage"
+    alt="Ceyhun Fotoğrafçılık">
+
 </div>
 
 
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://nzriewxchkcfeknkbwuu.supabase.co";
@@ -782,28 +1150,32 @@ const WHATSAPP =
 "905522369828";
 
 
-let images = [];
+let fotograflar = [];
 
 
-/* FOTOĞRAFLARI SUPABASE'DEN ÇEK */
+/* =====================================================
+   FOTOĞRAFLARI GETİR
+===================================================== */
 
-async function loadGallery(){
+async function fotograflariGetir(){
 
-  const gallery =
-    document.getElementById("gallery");
+  const grid =
+    document.getElementById("fotoGrid");
 
   try{
 
-    const response =
+    const cevap =
       await fetch(
         `${SUPABASE_URL}/storage/v1/object/list/${encodeURIComponent(BUCKET)}`,
         {
           method:"POST",
+
           headers:{
             apikey:SUPABASE_KEY,
             Authorization:`Bearer ${SUPABASE_KEY}`,
             "Content-Type":"application/json"
           },
+
           body:JSON.stringify({
             prefix:"",
             limit:100,
@@ -816,192 +1188,303 @@ async function loadGallery(){
         }
       );
 
-    if(!response.ok){
-      throw new Error("Fotoğraflar alınamadı");
+
+    if(!cevap.ok){
+      throw new Error("Fotoğraf listesi alınamadı");
     }
 
-    const files =
-      await response.json();
 
-    images =
-      files
-      .filter(f =>
-        f.name &&
-        /\.(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/i.test(f.name)
+    const dosyalar =
+      await cevap.json();
+
+
+    fotograflar =
+      dosyalar
+      .filter(dosya =>
+        dosya.name &&
+        /\.(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$/i
+          .test(dosya.name)
       )
-      .map(f => ({
-        name:f.name,
+      .map(dosya =>({
+
+        ad:dosya.name,
+
         url:
-        `${SUPABASE_URL}/storage/v1/object/public/${encodeURIComponent(BUCKET)}/${encodeURIComponent(f.name)}`
+        `${SUPABASE_URL}/storage/v1/object/public/${encodeURIComponent(BUCKET)}/${encodeURIComponent(dosya.name)}`
+
       }));
 
 
-    gallery.innerHTML = "";
+    grid.innerHTML="";
 
 
-    if(!images.length){
+    if(!fotograflar.length){
 
-      gallery.innerHTML =
-        `<div style="padding:30px;color:#888">
-          Henüz fotoğraf eklenmemiş.
-        </div>`;
+      grid.innerHTML=`
+        <div style="
+          padding:40px;
+          color:#777;
+          font-size:13px;
+        ">
+          Galeride henüz fotoğraf bulunmuyor.
+        </div>
+      `;
 
       return;
     }
 
 
-    /* HERO */
+    /* =================================================
+       HERO FOTOĞRAFI
+    ================================================= */
 
-    document.getElementById("heroImage").src =
-      images[0].url;
+    const ilkFoto =
+      fotograflar[0].url;
 
 
-    /* GALERİ */
+    document
+      .getElementById("heroImage")
+      .src = ilkFoto;
 
-    images.forEach((image,index)=>{
 
-      const img =
-        document.createElement("img");
+    /* =================================================
+       ARKA PLAN FOTOĞRAFLARI
+    ================================================= */
 
-      img.src =
-        image.url;
+    document
+      .getElementById("heroBackground")
+      .style
+      .backgroundImage =
+      `url("${ilkFoto}")`;
 
-      img.alt =
-        "Ceyhun Fotoğrafçılık";
 
-      img.loading =
-        index < 6 ? "eager" : "lazy";
+    const ikinciFoto =
+      fotograflar[1]
+      ? fotograflar[1].url
+      : ilkFoto;
 
-      img.addEventListener("click",()=>{
 
-        document.getElementById("modalImg").src =
-          image.url;
+    document
+      .getElementById("randevuBackground")
+      .style
+      .backgroundImage =
+      `url("${ikinciFoto}")`;
 
-        document.getElementById("modal")
-          .classList.add("show");
 
-      });
+    /* =================================================
+       GALERİ
+    ================================================= */
 
-      gallery.appendChild(img);
+    fotograflar.forEach(
+      (foto,index)=>{
 
-    });
+        const kutu =
+          document.createElement("div");
+
+        kutu.className =
+          "foto-kutu";
+
+
+        const img =
+          document.createElement("img");
+
+        img.src =
+          foto.url;
+
+        img.alt =
+          "Ceyhun Fotoğrafçılık";
+
+
+        if(index>5){
+          img.loading="lazy";
+        }
+
+
+        kutu.appendChild(img);
+
+
+        kutu.addEventListener(
+          "click",
+          ()=>fotoAc(foto.url)
+        );
+
+
+        grid.appendChild(kutu);
+
+      }
+    );
 
   }
 
-  catch(error){
+  catch(hata){
 
-    console.error(error);
+    console.error(hata);
 
-    gallery.innerHTML =
-      `<div style="padding:30px;color:#888">
-        Fotoğraflar şu anda yüklenemiyor.
-      </div>`;
+    grid.innerHTML=`
+      <div style="
+        padding:40px;
+        color:#777;
+        font-size:13px;
+      ">
+        Fotoğraflar yüklenirken bir sorun oluştu.
+      </div>
+    `;
 
   }
 
 }
 
 
-loadGallery();
+/* =====================================================
+   FOTOĞRAF AÇ
+===================================================== */
 
+function fotoAc(url){
 
-/* FOTOĞRAF MODALI */
+  document
+    .getElementById("modalImage")
+    .src = url;
 
-document
-.getElementById("modalClose")
-.addEventListener("click",()=>{
 
   document
     .getElementById("modal")
-    .classList.remove("show");
+    .classList
+    .add("acik");
 
-});
+}
+
+
+/* =====================================================
+   FOTOĞRAF KAPAT
+===================================================== */
+
+document
+  .getElementById("modalKapat")
+  .addEventListener(
+    "click",
+    ()=>{
+      document
+        .getElementById("modal")
+        .classList
+        .remove("acik");
+    }
+  );
 
 
 document
-.getElementById("modal")
-.addEventListener("click",(e)=>{
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    e=>{
 
-  if(e.target.id === "modal"){
+      if(e.target.id==="modal"){
 
-    document
-      .getElementById("modal")
-      .classList.remove("show");
+        document
+          .getElementById("modal")
+          .classList
+          .remove("acik");
 
-  }
+      }
 
-});
+    }
+  );
 
 
-/* TARİH */
+/* =====================================================
+   TARİHİ BUGÜNDEN ÖNCE SEÇTİRMEME
+===================================================== */
 
-const today =
-  new Date().toISOString().split("T")[0];
+const bugun =
+  new Date()
+  .toISOString()
+  .split("T")[0];
+
 
 document
   .getElementById("tarih")
-  .min = today;
+  .min = bugun;
 
 
-/* RANDEVU */
+/* =====================================================
+   RANDEVU FORMU
+===================================================== */
 
 document
-.getElementById("appointmentForm")
-.addEventListener("submit",function(e){
+  .getElementById("randevuForm")
+  .addEventListener(
+    "submit",
+    function(e){
 
-  e.preventDefault();
-
-
-  const ad =
-    document
-      .getElementById("adSoyad")
-      .value.trim();
-
-  const telefon =
-    document
-      .getElementById("telefon")
-      .value.trim();
-
-  const tarih =
-    document
-      .getElementById("tarih")
-      .value;
-
-  const tur =
-    document
-      .getElementById("cekimeTuru")
-      .value;
-
-  const not =
-    document
-      .getElementById("not")
-      .value.trim();
+      e.preventDefault();
 
 
-  if(!ad || !telefon || !tarih || !tur){
-
-    alert(
-      "Lütfen ad soyad, telefon, tarih ve çekim türünü doldurun."
-    );
-
-    return;
-
-  }
+      const ad =
+        document
+          .getElementById("adSoyad")
+          .value
+          .trim();
 
 
-  const tarihTR =
-    new Date(tarih + "T00:00:00")
-      .toLocaleDateString(
-        "tr-TR",
-        {
-          day:"2-digit",
-          month:"2-digit",
-          year:"numeric"
-        }
-      );
+      const telefon =
+        document
+          .getElementById("telefon")
+          .value
+          .trim();
 
 
-  const message =
+      const tarih =
+        document
+          .getElementById("tarih")
+          .value;
+
+
+      const cekim =
+        document
+          .getElementById("cek im")
+          ?.value ||
+        document
+          .getElementById("cekim")
+          .value;
+
+
+      const not =
+        document
+          .getElementById("not")
+          .value
+          .trim();
+
+
+      if(
+        !ad ||
+        !telefon ||
+        !tarih ||
+        !cekim
+      ){
+
+        alert(
+          "Lütfen gerekli alanları doldurun."
+        );
+
+        return;
+
+      }
+
+
+      const tarihTR =
+        new Date(
+          tarih + "T00:00:00"
+        )
+        .toLocaleDateString(
+          "tr-TR",
+          {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+          }
+        );
+
+
+      const mesaj =
 `Merhaba Ceyhun Fotoğrafçılık 👋
 
 Randevu talebi oluşturmak istiyorum.
@@ -1009,54 +1492,30 @@ Randevu talebi oluşturmak istiyorum.
 👤 Ad Soyad: ${ad}
 📞 Telefon: ${telefon}
 📅 Tarih: ${tarihTR}
-📷 Çekim Türü: ${tur}
+📷 Çekim Türü: ${cekim}
 ${not ? `💬 Not: ${not}` : ""}
 
 Müsaitliğinizi öğrenebilir miyim?`;
 
 
-  const url =
-    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
+      const whatsappURL =
+        `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mesaj)}`;
 
 
-  const status =
-    document.getElementById("status");
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
 
-  status.style.display =
-    "block";
-
-  status.innerText =
-    "WhatsApp açılıyor...";
-
-
-  window.open(url,"_blank");
+    }
+  );
 
 
-});
+/* =====================================================
+   BAŞLAT
+===================================================== */
 
-
-/* NAV RANDEVU BUTONLARI */
-
-document
-.querySelectorAll('a[href="#randevu"]')
-.forEach(link=>{
-
-  link.addEventListener("click",()=>{
-
-    setTimeout(()=>{
-
-      const name =
-        document.getElementById("adSoyad");
-
-      if(name){
-        name.focus();
-      }
-
-    },600);
-
-  });
-
-});
+fotograflariGetir();
 
 </script>
 
