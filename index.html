@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Ceyhun Fotoğrafçılık Studio</title>
-  <meta name="description" content="Ceyhun Fotoğrafçılık Studio — Düğün, nişan ve dış çekim fotoğrafçılığı.">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta
+    name="description"
+    content="Ceyhun Fotoğrafçılık Studio — Düğün, dış çekim ve aşk hikâyelerinizi zamansız karelere dönüştürüyoruz."
+  >
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -21,15 +23,10 @@
     }
 
     body {
+      background: #0b0b0b;
+      color: #fff;
       font-family: Arial, Helvetica, sans-serif;
-      background: #faf9f7;
-      color: #222;
       overflow-x: hidden;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
     }
 
     a {
@@ -37,128 +34,91 @@
       text-decoration: none;
     }
 
-    /* HEADER */
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 22px 5%;
-      transition: .35s ease;
-      color: white;
-    }
-
-    header.scrolled {
-      background: rgba(255,255,255,.96);
-      color: #222;
-      box-shadow: 0 5px 25px rgba(0,0,0,.06);
-    }
-
-    .nav {
-      max-width: 1400px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 18px;
-      letter-spacing: 3px;
-      font-weight: 600;
-    }
-
-    nav {
-      display: flex;
-      gap: 28px;
-      font-size: 13px;
-    }
-
-    nav a {
-      opacity: .9;
-      transition: .25s;
-    }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
     /* HERO */
 
     .hero {
-      height: 100vh;
-      min-height: 650px;
+      min-height: 100vh;
       position: relative;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
+      align-items: flex-end;
       overflow: hidden;
-      background: #222;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,.35),
-        rgba(0,0,0,.18),
-        rgba(0,0,0,.55)
-      );
-      z-index: 1;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.85),
+          rgba(0,0,0,.15) 65%,
+          rgba(0,0,0,.35)
+        ),
+        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg")
+        center center / cover no-repeat;
     }
 
     .hero-content {
+      width: 100%;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 0 35px 90px;
       position: relative;
       z-index: 2;
-      padding: 30px;
-      max-width: 900px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 35px;
+      left: 35px;
+      z-index: 3;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
 
     .hero-small {
       font-size: 12px;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 25px;
-      opacity: .9;
+      opacity: .75;
+      margin-bottom: 20px;
     }
 
     .hero h1 {
       font-family: Georgia, serif;
-      font-size: clamp(48px, 7vw, 100px);
-      line-height: .95;
+      font-size: clamp(48px, 8vw, 105px);
       font-weight: 400;
-      margin-bottom: 28px;
+      line-height: .95;
+      max-width: 900px;
+      margin-bottom: 30px;
     }
 
     .hero p {
+      max-width: 500px;
       font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.78);
+      margin-bottom: 35px;
+    }
+
+    .button {
+      display: inline-flex;
+      padding: 16px 28px;
+      border: 1px solid rgba(255,255,255,.55);
+      transition: .3s ease;
+      font-size: 13px;
       letter-spacing: 1px;
-      opacity: .92;
+    }
+
+    .button:hover {
+      background: #fff;
+      color: #111;
     }
 
     /* GENERAL */
 
     section {
-      padding: 120px 5%;
+      padding: 120px 35px;
     }
 
-    .section-inner {
-      max-width: 1400px;
+    .container {
+      max-width: 1250px;
       margin: auto;
     }
 
@@ -166,101 +126,22 @@
       font-size: 11px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: #8b8178;
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      font-family: Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(38px, 5vw, 70px);
-      line-height: 1;
+      color: #999;
       margin-bottom: 25px;
     }
 
-    .section-text {
-      max-width: 600px;
-      color: #777;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    /* GALLERY */
-
-    .gallery-section {
-      background: #faf9f7;
-    }
-
-    .gallery-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 40px;
-      margin-bottom: 55px;
-    }
-
-    .photo-count {
-      color: #999;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .gallery {
-      column-count: 4;
-      column-gap: 18px;
-    }
-
-    .gallery-item {
-      width: 100%;
-      margin-bottom: 18px;
-      break-inside: avoid;
-      overflow: hidden;
-      cursor: pointer;
-      background: #eee;
-      position: relative;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: auto;
-      transition: transform .6s cubic-bezier(.2,.7,.2,1);
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.035);
-    }
-
-    .gallery-item::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0);
-      transition: .3s;
-      pointer-events: none;
-    }
-
-    .gallery-item:hover::after {
-      background: rgba(0,0,0,.06);
-    }
-
-    .loading {
-      text-align: center;
-      padding: 70px 20px;
-      color: #999;
-      font-size: 14px;
-    }
-
-    .error {
-      text-align: center;
-      padding: 50px 20px;
-      color: #a35d5d;
-      line-height: 1.8;
+    .title {
+      font-family: Georgia, serif;
+      font-size: clamp(40px, 6vw, 75px);
+      font-weight: 400;
+      line-height: 1.05;
     }
 
     /* STORY */
 
     .story {
-      background: #eeeae5;
+      background: #f4f1eb;
+      color: #111;
     }
 
     .story-grid {
@@ -270,273 +151,226 @@
       align-items: center;
     }
 
-    .story-image {
-      width: 100%;
-      max-height: 750px;
-      object-fit: cover;
+    .story-text p {
+      margin-top: 30px;
+      max-width: 520px;
+      font-size: 17px;
+      line-height: 1.9;
+      color: #555;
     }
 
-    .story-copy p {
-      max-width: 550px;
-      color: #68635f;
-      line-height: 1.9;
-      margin-bottom: 25px;
-      font-size: 15px;
+    .story-image {
+      width: 100%;
+      height: 650px;
+      object-fit: cover;
     }
 
     /* SERVICES */
 
     .services {
-      background: #faf9f7;
+      background: #111;
     }
 
     .services-grid {
+      margin-top: 70px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #ddd8d2;
-      margin-top: 55px;
+      border-top: 1px solid #333;
     }
 
     .service {
-      background: #faf9f7;
-      padding: 55px 35px;
-      min-height: 240px;
+      padding: 40px 30px 50px 0;
+      border-bottom: 1px solid #333;
+      border-right: 1px solid #333;
+    }
+
+    .service:nth-child(3n) {
+      border-right: 0;
+      padding-left: 30px;
+    }
+
+    .service:nth-child(3n+2) {
+      padding-left: 30px;
     }
 
     .service-number {
-      font-family: Georgia, serif;
-      font-size: 28px;
-      color: #aaa;
-      margin-bottom: 25px;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 45px;
     }
 
     .service h3 {
       font-family: Georgia, serif;
+      font-size: 30px;
       font-weight: 400;
-      font-size: 25px;
       margin-bottom: 18px;
     }
 
     .service p {
-      color: #777;
+      color: #888;
       line-height: 1.7;
       font-size: 14px;
+      max-width: 300px;
+    }
+
+    /* GALLERY */
+
+    .gallery {
+      background: #0b0b0b;
+    }
+
+    .gallery-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .gallery-head p {
+      max-width: 400px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .gallery-grid {
+      columns: 3 300px;
+      column-gap: 18px;
+    }
+
+    .gallery-item {
+      width: 100%;
+      margin-bottom: 18px;
+      display: block;
+      break-inside: avoid;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform .6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* QUOTE */
+
+    .quote {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
+        url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg")
+        center / cover no-repeat;
+    }
+
+    .quote-inner {
+      max-width: 1000px;
+    }
+
+    .quote h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(45px, 7vw, 90px);
+      font-weight: 400;
+      line-height: 1.05;
     }
 
     /* CTA */
 
     .cta {
-      padding: 150px 5%;
+      background: #f4f1eb;
+      color: #111;
       text-align: center;
-      background: #242321;
-      color: white;
-    }
-
-    .cta .eyebrow {
-      color: #b9b0a6;
     }
 
     .cta h2 {
       font-family: Georgia, serif;
-      font-size: clamp(42px, 6vw, 80px);
       font-weight: 400;
+      font-size: clamp(45px, 7vw, 85px);
       margin-bottom: 35px;
     }
 
-    .cta-button {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,.6);
-      padding: 17px 32px;
-      font-size: 13px;
-      letter-spacing: 1px;
-      transition: .3s;
+    .cta .button {
+      border-color: #111;
     }
 
-    .cta-button:hover {
-      background: white;
-      color: #222;
-    }
-
-    /* CONTACT */
-
-    .contact {
-      background: #faf9f7;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      margin-top: 25px;
-    }
-
-    .contact-item span {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #999;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .contact-item strong {
-      font-size: 17px;
-      font-weight: 400;
+    .cta .button:hover {
+      background: #111;
+      color: #fff;
     }
 
     /* FOOTER */
 
     footer {
-      padding: 35px 5%;
-      background: #1d1c1a;
-      color: #aaa;
-      font-size: 12px;
+      background: #080808;
+      padding: 60px 35px;
+      color: #777;
     }
 
     .footer-inner {
-      max-width: 1400px;
+      max-width: 1250px;
       margin: auto;
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 30px;
     }
 
-    /* LIGHTBOX */
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.95);
-      z-index: 5000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox img {
-      max-width: 92vw;
-      max-height: 90vh;
-      object-fit: contain;
-    }
-
-    .lightbox-close,
-    .lightbox-prev,
-    .lightbox-next {
-      position: fixed;
-      border: 0;
-      background: rgba(255,255,255,.12);
-      color: white;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 22px;
-      z-index: 5001;
-    }
-
-    .lightbox-close {
-      top: 25px;
-      right: 25px;
-    }
-
-    .lightbox-prev {
-      left: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .lightbox-next {
-      right: 25px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .lightbox-number {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,.75);
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    /* WHATSAPP */
-
-    .whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #25d366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      box-shadow: 0 10px 30px rgba(0,0,0,.2);
-      font-size: 23px;
+    footer strong {
+      color: #fff;
+      font-weight: 400;
     }
 
     /* MOBILE */
 
-    @media (max-width: 1000px) {
-      .gallery {
-        column-count: 3;
+    @media (max-width: 800px) {
+
+      .logo {
+        left: 20px;
+        top: 25px;
       }
 
-      .story-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 700px) {
-
-      header {
-        padding: 18px 20px;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        min-height: 600px;
+      .hero-content {
+        padding: 0 20px 55px;
       }
 
       section {
         padding: 80px 20px;
       }
 
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .story-image {
+        height: 500px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service,
+      .service:nth-child(3n),
+      .service:nth-child(3n+2) {
+        padding: 30px 0;
+        border-right: 0;
+      }
+
       .gallery-head {
         display: block;
       }
 
-      .photo-count {
-        margin-top: 15px;
+      .gallery-head p {
+        margin-top: 25px;
       }
 
-      .gallery {
-        column-count: 2;
+      .gallery-grid {
+        columns: 2 150px;
         column-gap: 10px;
       }
 
@@ -544,35 +378,12 @@
         margin-bottom: 10px;
       }
 
-      .story-grid,
-      .contact-grid {
-        gap: 45px;
-      }
-
-      .service {
-        padding: 40px 25px;
-      }
-
-      .cta {
-        padding: 100px 20px;
+      .quote {
+        min-height: 70vh;
       }
 
       .footer-inner {
-        flex-direction: column;
-      }
-
-      .lightbox-prev,
-      .lightbox-next {
-        width: 42px;
-        height: 42px;
-      }
-
-      .lightbox-prev {
-        left: 10px;
-      }
-
-      .lightbox-next {
-        right: 10px;
+        display: block;
       }
     }
   </style>
@@ -580,106 +391,61 @@
 
 <body>
 
-<header id="header">
-  <div class="nav">
+  <!-- HERO -->
 
-    <a href="#" class="logo">
+  <header class="hero">
+
+    <div class="logo">
       CEYHUN FOTOĞRAFÇILIK
-    </a>
-
-    <nav>
-      <a href="#galeri">Galeri</a>
-      <a href="#hikaye">Hikâyemiz</a>
-      <a href="#hizmetler">Hizmetler</a>
-      <a href="#iletisim">İletişim</a>
-    </nav>
-
-  </div>
-</header>
-
-
-<!-- HERO -->
-
-<section class="hero">
-
-  <img
-    class="hero-bg"
-    src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg"
-    alt="Ceyhun Fotoğrafçılık"
-  >
-
-  <div class="hero-content">
-
-    <div class="hero-small">
-      Ceyhun Fotoğrafçılık Studio
     </div>
 
-    <h1>
-      Her aşkın<br>
-      bir hikâyesi vardır.
-    </h1>
+    <div class="hero-content">
 
-    <p>
-      Biz o hikâyeyi kadraja alıyoruz.
-    </p>
+      <div class="hero-small">
+        Wedding Photography Studio
+      </div>
 
-  </div>
+      <h1>
+        Aşkınızın hikâyesini kadraja alıyoruz.
+      </h1>
 
-</section>
+      <p>
+        Bir günün heyecanını, bir bakışın duygusunu
+        ve birlikte geçirdiğiniz anları zamansız karelere dönüştürüyoruz.
+      </p>
+
+      <a href="#galeri" class="button">
+        HİKÂYELERİ KEŞFET
+      </a>
+
+    </div>
+
+  </header>
 
 
-<!-- GALLERY -->
+  <!-- STORY -->
 
-<section class="gallery-section" id="galeri">
+  <section class="story">
 
-  <div class="section-inner">
+    <div class="container story-grid">
 
-    <div class="gallery-head">
-
-      <div>
+      <div class="story-text">
 
         <div class="eyebrow">
-          Fotoğraf galerisi
+          Ceyhun Fotoğrafçılık Studio
         </div>
 
-        <h2 class="section-title">
-          Aşkın kadrajı
+        <h2 class="title">
+          Sadece fotoğraf çekmiyoruz.
         </h2>
 
-        <p class="section-text">
-          En güzel anlarınızı, yıllar sonra bile aynı duyguyla
-          hatırlayabilmeniz için fotoğraflıyoruz.
+        <p>
+          Çünkü düğün günü sadece güzel fotoğraflardan ibaret değil.
+          Bir bakış, bir gülümseme, el ele tutuştuğunuz o küçük an...
+          Biz bütün bu hikâyeyi sizin için saklıyoruz.
         </p>
 
       </div>
-
-      <div class="photo-count" id="photoCount">
-        Fotoğraflar yükleniyor...
-      </div>
-
-    </div>
-
-
-    <div id="gallery" class="gallery"></div>
-
-    <div id="loading" class="loading">
-      Fotoğraflar yükleniyor...
-    </div>
-
-    <div id="error" class="error" style="display:none;"></div>
-
-  </div>
-
-</section>
-
-
-<!-- STORY -->
-
-<section class="story" id="hikaye">
-
-  <div class="section-inner">
-
-    <div class="story-grid">
 
       <img
         class="story-image"
@@ -687,700 +453,228 @@
         alt="Ceyhun Fotoğrafçılık"
       >
 
-      <div class="story-copy">
+    </div>
 
-        <div class="eyebrow">
-          Bizim hikâyemiz
+  </section>
+
+
+  <!-- SERVICES -->
+
+  <section class="services">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Hizmetler
+      </div>
+
+      <h2 class="title">
+        Hikâyenize uygun<br>
+        çekimler.
+      </h2>
+
+      <div class="services-grid">
+
+        <div class="service">
+          <div class="service-number">01</div>
+          <h3>Düğün Fotoğrafçılığı</h3>
+          <p>
+            Düğün gününüzün en özel anlarını doğal,
+            zarif ve zamansız karelerle ölümsüzleştiriyoruz.
+          </p>
         </div>
 
-        <h2 class="section-title">
-          Sadece fotoğraf değil,<br>
-          bir hatıra.
-        </h2>
+        <div class="service">
+          <div class="service-number">02</div>
+          <h3>Dış Çekim</h3>
+          <p>
+            Size özel seçilen mekânlarda,
+            hikâyenizi anlatan sinematik dış çekimler.
+          </p>
+        </div>
 
-        <p>
-          Bir düğün günü saniyeler içinde geçer.
-          Ama o günün hisleri, bakışları ve küçük detayları
-          yıllarca sizinle kalır.
-        </p>
+        <div class="service">
+          <div class="service-number">03</div>
+          <h3>Save The Date</h3>
+          <p>
+            Düğününüzden önce başlayan hikâyenizi
+            romantik ve modern karelerle anlatıyoruz.
+          </p>
+        </div>
 
-        <p>
-          Bizim işimiz sadece fotoğraf çekmek değil;
-          o anı olduğu gibi hissettirmek.
-        </p>
+        <div class="service">
+          <div class="service-number">04</div>
+          <h3>Düğün Hikâyesi</h3>
+          <p>
+            Günün tamamını hissettiren,
+            duygusu yüksek fotoğraf ve video hikâyeleri.
+          </p>
+        </div>
 
-      </div>
+        <div class="service">
+          <div class="service-number">05</div>
+          <h3>Sinematik Video</h3>
+          <p>
+            Sesleri, bakışları ve hareketleriyle
+            düğün gününüzü yeniden yaşatacak filmler.
+          </p>
+        </div>
 
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section class="services" id="hizmetler">
-
-  <div class="section-inner">
-
-    <div class="eyebrow">
-      Hizmetler
-    </div>
-
-    <h2 class="section-title">
-      Sizin hikâyeniz,<br>
-      bizim kadrajımız.
-    </h2>
-
-
-    <div class="services-grid">
-
-      <div class="service">
-
-        <div class="service-number">01</div>
-
-        <h3>
-          Düğün Fotoğrafçılığı
-        </h3>
-
-        <p>
-          Düğününüzün en özel anlarını doğal,
-          zarif ve zamansız karelerle ölümsüzleştiriyoruz.
-        </p>
-
-      </div>
-
-
-      <div class="service">
-
-        <div class="service-number">02</div>
-
-        <h3>
-          Dış Çekim
-        </h3>
-
-        <p>
-          Size özel mekânlarda, doğal ışık ve
-          sinematik dokunuşlarla aşk hikâyenizi çekiyoruz.
-        </p>
-
-      </div>
-
-
-      <div class="service">
-
-        <div class="service-number">03</div>
-
-        <h3>
-          Düğün Hikâyesi
-        </h3>
-
-        <p>
-          Gününüzün heyecanını, mutluluğunu ve
-          duygusunu baştan sona bir hikâyeye dönüştürüyoruz.
-        </p>
+        <div class="service">
+          <div class="service-number">06</div>
+          <h3>Özel Albüm</h3>
+          <p>
+            Yıllar sonra bile elinize aldığınızda
+            aynı duyguyu hissettirecek özel tasarım albümler.
+          </p>
+        </div>
 
       </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- CTA -->
+  <!-- GALLERY -->
 
-<section class="cta">
+  <section class="gallery" id="galeri">
 
-  <div class="eyebrow">
-    Birlikte başlayalım
-  </div>
+    <div class="container">
 
-  <h2>
-    Hikâyenizi<br>
-    anlatalım.
-  </h2>
+      <div class="gallery-head">
 
-  <a
-    class="cta-button"
-    href="https://wa.me/905000000000"
-    target="_blank"
-  >
-    WhatsApp'tan iletişime geç
-  </a>
+        <div>
+          <div class="eyebrow">
+            Seçkilerimiz
+          </div>
 
-</section>
+          <h2 class="title">
+            Gerçek<br>
+            hikâyeler.
+          </h2>
+        </div>
+
+        <p>
+          Her çiftin hikâyesi farklı.
+          Biz de her hikâyeyi kendine özgü
+          bir bakış açısıyla anlatıyoruz.
+        </p>
+
+      </div>
 
 
-<!-- CONTACT -->
+      <div class="gallery-grid">
 
-<section class="contact" id="iletisim">
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A0332%20Instagram%20Post.JPG" alt="">
+        </a>
 
-  <div class="section-inner">
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A0335%20Instagram%20Post.JPG" alt="">
+        </a>
 
-    <div class="contact-grid">
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A0350%20Instagram%20Post.JPG" alt="">
+        </a>
+
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkefeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A1576%20Instagram%20Post.JPG" alt="">
+        </a>
+
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A1585%20Instagram%20Post.JPG" alt="">
+        </a>
+
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg" alt="">
+        </a>
+
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6607%20Instagram%20Post.jpg" alt="">
+        </a>
+
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A6656%20Instagram%20Post.jpg" alt="">
+        </a>
+
+        <a class="gallery-item" href="#">
+          <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg" alt="">
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUOTE -->
+
+  <section class="quote">
+
+    <div class="container quote-inner">
+
+      <div class="eyebrow">
+        Birlikte
+      </div>
+
+      <h2>
+        Bir gün bitecek.<br>
+        Ama hikâyeniz<br>
+        hep kalacak.
+      </h2>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        Haydi başlayalım
+      </div>
+
+      <h2>
+        Hikâyenizi<br>
+        birlikte anlatalım.
+      </h2>
+
+      <a class="button" href="#">
+        ÇEKİM İÇİN İLETİŞİME GEÇ
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
 
       <div>
-
-        <div class="eyebrow">
-          İletişim
-        </div>
-
-        <h2 class="section-title">
-          Tanışalım.
-        </h2>
-
-        <p class="section-text">
-          Tarihinizi ve hayalinizi bizimle paylaşın.
-          Size özel çekim planınızı birlikte oluşturalım.
-        </p>
-
+        <strong>CEYHUN FOTOĞRAFÇILIK STUDIO</strong>
       </div>
 
+      <div>
+        Düğün • Dış Çekim • Video • Albüm
+      </div>
 
-      <div class="contact-info">
-
-        <div class="contact-item">
-          <span>Telefon</span>
-          <strong>+90 XXX XXX XX XX</strong>
-        </div>
-
-        <div class="contact-item">
-          <span>Instagram</span>
-          <strong>@ceyhunfotografcilik</strong>
-        </div>
-
-        <div class="contact-item">
-          <span>Çalışma alanı</span>
-          <strong>Düğün • Nişan • Dış Çekim</strong>
-        </div>
-
+      <div>
+        © 2026 Ceyhun Fotoğrafçılık
       </div>
 
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-  <div class="footer-inner">
-
-    <div>
-      © 2026 Ceyhun Fotoğrafçılık Studio
-    </div>
-
-    <div>
-      Tüm hakları saklıdır.
-    </div>
-
-  </div>
-
-</footer>
-
-
-<!-- LIGHTBOX -->
-
-<div class="lightbox" id="lightbox">
-
-  <button class="lightbox-close" id="lightboxClose">
-    ×
-  </button>
-
-  <button class="lightbox-prev" id="lightboxPrev">
-    ‹
-  </button>
-
-  <img id="lightboxImage" src="" alt="">
-
-  <button class="lightbox-next" id="lightboxNext">
-    ›
-  </button>
-
-  <div class="lightbox-number" id="lightboxNumber"></div>
-
-</div>
-
-
-<!-- WHATSAPP -->
-
-<a
-  class="whatsapp"
-  href="https://wa.me/905000000000"
-  target="_blank"
-  aria-label="WhatsApp"
->
-  ☎
-</a>
-
-
-<script>
-
-  /*
-   =========================================================
-   SUPABASE
-   =========================================================
-
-   AŞAĞIDAKİ SUPABASE KEY SATIRINA
-   MEVCUT index.html DOSYANDAKİ KEY'İ YAZ.
-
-   BURAYA YENİ KEY YAZMA.
-  */
-
-  const SUPABASE_URL =
-    "https://nzriewxchkcfeknkbwuu.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-  const BUCKET =
-    "site fotolar";
-
-
-  /*
-   =========================================================
-   GLOBAL GALERİ
-   =========================================================
-  */
-
-  let photos = [];
-  let currentPhoto = 0;
-
-
-  /*
-   =========================================================
-   HEADER
-   =========================================================
-  */
-
-  const header =
-    document.getElementById("header");
-
-  window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-
-  });
-
-
-  /*
-   =========================================================
-   FOTOĞRAF LİSTELEME
-   =========================================================
-
-   BU FONKSİYON:
-   - 19 FOTOĞRAFLA SINIRLI DEĞİL
-   - 1000 FOTOĞRAMA KADAR LİSTELER
-   - TÜM DOSYALARI ALIR
-   - SADECE GÖRSELLERİ GÖSTERİR
-  */
-
-  async function loadAllPhotos() {
-
-    const gallery =
-      document.getElementById("gallery");
-
-    const loading =
-      document.getElementById("loading");
-
-    const error =
-      document.getElementById("error");
-
-    const count =
-      document.getElementById("photoCount");
-
-
-    try {
-
-      loading.style.display = "block";
-      error.style.display = "none";
-
-
-      /*
-       Supabase Storage'dan tüm dosyaları al
-      */
-
-      const {
-        data,
-        error: listError
-      } = await supabaseClient
-        .storage
-        .from(BUCKET)
-        .list("", {
-          limit: 1000,
-          offset: 0,
-          sortBy: {
-            column: "created_at",
-            order: "desc"
-          }
-        });
-
-
-      if (listError) {
-        throw listError;
-      }
-
-
-      /*
-       Görsel dosyalarını filtrele
-      */
-
-      const imageExtensions = [
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".webp",
-        ".gif",
-        ".avif"
-      ];
-
-
-      const imageFiles =
-        (data || []).filter(file => {
-
-          if (!file || !file.name) {
-            return false;
-          }
-
-          const name =
-            file.name.toLowerCase();
-
-          return imageExtensions.some(ext =>
-            name.endsWith(ext)
-          );
-
-        });
-
-
-      /*
-       Fotoğrafları public URL'e çevir
-      */
-
-      photos =
-        imageFiles.map(file => {
-
-          const {
-            data: publicData
-          } = supabaseClient
-            .storage
-            .from(BUCKET)
-            .getPublicUrl(file.name);
-
-          return {
-            name: file.name,
-            url: publicData.publicUrl
-          };
-
-        });
-
-
-      /*
-       Galeriyi temizle
-      */
-
-      gallery.innerHTML = "";
-
-
-      /*
-       Fotoğraf sayısını göster
-      */
-
-      count.textContent =
-        `${photos.length} fotoğraf`;
-
-
-      /*
-       Hiç fotoğraf yoksa
-      */
-
-      if (photos.length === 0) {
-
-        loading.style.display = "none";
-
-        error.style.display = "block";
-
-        error.innerHTML =
-          "Supabase <strong>site fotolar</strong> klasöründe görüntülenebilir fotoğraf bulunamadı.";
-
-        return;
-      }
-
-
-      /*
-       TÜM FOTOĞRAFLARI OLUŞTUR
-      */
-
-      photos.forEach((photo, index) => {
-
-        const item =
-          document.createElement("div");
-
-        item.className =
-          "gallery-item";
-
-
-        const img =
-          document.createElement("img");
-
-        img.src =
-          photo.url;
-
-        img.alt =
-          photo.name;
-
-        img.loading =
-          "lazy";
-
-        img.decoding =
-          "async";
-
-
-        /*
-         Fotoğraf yüklenemezse
-         */
-
-        img.onerror = () => {
-
-          item.style.display =
-            "none";
-
-        };
-
-
-        /*
-         Tıklayınca lightbox
-         */
-
-        item.addEventListener(
-          "click",
-          () => {
-
-            openLightbox(index);
-
-          }
-        );
-
-
-        item.appendChild(img);
-
-        gallery.appendChild(item);
-
-      });
-
-
-      loading.style.display =
-        "none";
-
-
-    } catch (err) {
-
-      console.error(
-        "Supabase fotoğraf hatası:",
-        err
-      );
-
-      loading.style.display =
-        "none";
-
-      error.style.display =
-        "block";
-
-      error.innerHTML = `
-        Fotoğraflar yüklenirken bir sorun oluştu.<br><br>
-        <small>${err.message || err}</small>
-      `;
-
-    }
-
-  }
-
-
-  /*
-   =========================================================
-   LIGHTBOX
-   =========================================================
-  */
-
-  const lightbox =
-    document.getElementById("lightbox");
-
-  const lightboxImage =
-    document.getElementById("lightboxImage");
-
-  const lightboxNumber =
-    document.getElementById("lightboxNumber");
-
-
-  function openLightbox(index) {
-
-    if (!photos.length) {
-      return;
-    }
-
-    currentPhoto =
-      index;
-
-    updateLightbox();
-
-    lightbox.classList.add("active");
-
-    document.body.style.overflow =
-      "hidden";
-
-  }
-
-
-  function updateLightbox() {
-
-    const photo =
-      photos[currentPhoto];
-
-    if (!photo) {
-      return;
-    }
-
-    lightboxImage.src =
-      photo.url;
-
-    lightboxImage.alt =
-      photo.name;
-
-    lightboxNumber.textContent =
-      `${currentPhoto + 1} / ${photos.length}`;
-
-  }
-
-
-  function closeLightbox() {
-
-    lightbox.classList.remove(
-      "active"
-    );
-
-    document.body.style.overflow =
-      "";
-
-  }
-
-
-  function nextPhoto() {
-
-    if (!photos.length) {
-      return;
-    }
-
-    currentPhoto =
-      (currentPhoto + 1) % photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  function previousPhoto() {
-
-    if (!photos.length) {
-      return;
-    }
-
-    currentPhoto =
-      (currentPhoto - 1 + photos.length)
-      % photos.length;
-
-    updateLightbox();
-
-  }
-
-
-  document
-    .getElementById("lightboxClose")
-    .addEventListener(
-      "click",
-      closeLightbox
-    );
-
-
-  document
-    .getElementById("lightboxNext")
-    .addEventListener(
-      "click",
-      nextPhoto
-    );
-
-
-  document
-    .getElementById("lightboxPrev")
-    .addEventListener(
-      "click",
-      previousPhoto
-    );
-
-
-  lightbox.addEventListener(
-    "click",
-    event => {
-
-      if (event.target === lightbox) {
-        closeLightbox();
-      }
-
-    }
-  );
-
-
-  /*
-   Klavye kontrolü
-  */
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (!lightbox.classList.contains("active")) {
-        return;
-      }
-
-      if (event.key === "Escape") {
-        closeLightbox();
-      }
-
-      if (event.key === "ArrowRight") {
-        nextPhoto();
-      }
-
-      if (event.key === "ArrowLeft") {
-        previousPhoto();
-      }
-
-    }
-  );
-
-
-  /*
-   =========================================================
-   BAŞLAT
-   =========================================================
-  */
-
-  loadAllPhotos();
-
-</script>
+  </footer>
 
 </body>
 </html>
