@@ -1,265 +1,197 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f6f2eb">
-<meta name="description" content="Ceyhun Fotoğrafçılık Studio - Diyarbakır nişan, düğün, gelin damat ve dış çekim fotoğrafçılığı.">
+<meta name="theme-color" content="#29231f">
+<meta name="description" content="Ceyhun Fotoğrafçılık Studio Diyarbakır. Düğün, nişan, gelin damat ve dış çekim paketleri.">
 <title>Ceyhun Fotoğrafçılık Studio | Diyarbakır</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --cream:#f6f2eb;
+  --cream:#f7f3ed;
   --white:#fffdf9;
-  --dark:#292724;
-  --muted:#746e67;
-  --gold:#a68155;
-  --red:#9b3035;
-  --red-dark:#762328;
+  --dark:#29231f;
+  --muted:#777067;
+  --gold:#c6a16d;
+  --red:#8d3037;
+  --line:#b9a58a42;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{font-family:"DM Sans",sans-serif;color:var(--dark);background:var(--cream);line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--cream);line-height:1.65}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-.wrap{width:min(1100px,calc(100% - 40px));margin:auto}
-h1,h2,h3,.price{font-family:"Playfair Display",serif}
-header{position:sticky;top:0;z-index:100;background:#f6f2ebed;backdrop-filter:blur(15px);border-bottom:1px solid #29272415}
-.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-weight:700;font-size:14px;letter-spacing:.04em}
-.logo span{display:block;font-size:10px;letter-spacing:.16em;color:var(--muted)}
-nav{display:flex;align-items:center;gap:22px;font-size:12px}
+.wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+h1,h2,h3,.price{font-family:'Cormorant Garamond',serif}
+header{position:sticky;top:0;z-index:100;background:#f7f3edf0;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:13px;font-weight:800;letter-spacing:.08em}
+.logo span{display:block;font-size:10px;color:var(--muted);letter-spacing:.2em}
+nav{display:flex;align-items:center;gap:22px;font-size:12px;font-weight:700}
 nav a:hover{color:var(--red)}
 .nav-cta,.btn-red,.package-button,.submit,.feedback-button{background:var(--red);color:white}
-.nav-cta{padding:10px 17px;border-radius:30px}
-.eyebrow{display:flex;align-items:center;gap:8px;color:#8b8279;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-.eyebrow:before{content:"";width:23px;height:1px;background:var(--red)}
-.section-heading{font-size:clamp(32px,4vw,47px);line-height:1.08;letter-spacing:-.025em}
+.nav-cta{padding:11px 17px;border-radius:6px}
+.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--red);margin-bottom:12px}
+.eyebrow:before{content:"✦";margin-right:9px;color:var(--gold)}
+.section-heading{font-size:clamp(38px,5vw,60px);line-height:1.02;font-weight:700}
 .muted{color:var(--muted);font-size:13px}
 
-/* FOTOĞRAFLI PAKETLER */
-.packages-area{padding:37px 0 0}
-.packages-intro{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:24px}
-.packages-intro p{max-width:390px;color:var(--muted);font-size:13px}
-.packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.package{
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  min-width:0;
-  min-height:480px;
-  display:flex;
-  flex-direction:column;
-  padding:25px 23px;
-  color:#fff;
-  border:1px solid #c7a87570;
-  border-radius:21px;
-  background:#201a16;
-  box-shadow:0 12px 30px #24180f20;
-  transition:transform .3s,box-shadow .3s;
-}
-.package::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-2;
-  background-size:cover;
-  background-position:center;
-  transition:transform .5s ease;
-}
-.package::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background:linear-gradient(180deg,#17120c45 0%,#17120c90 42%,#100d0bf5 100%);
-}
-.package:nth-child(1)::before{
-  background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%201%20Instagram%20Post.JPG");
-}
-.package:nth-child(2)::before{
-  background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%203%20Instagram%20Post.JPG");
-}
-.package:nth-child(3)::before{
-  background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4971%20Instagram%20Post.jpg");
-}
-.package:hover{transform:translateY(-5px);box-shadow:0 18px 40px #20170f35}
-.package:hover::before{transform:scale(1.05)}
-.package.featured{border-color:#d6b47c;box-shadow:0 16px 38px #29272425}
-.package-label{
-  align-self:flex-start;
-  padding:5px 10px;
-  border-radius:30px;
-  background:#f2dfc3;
-  color:#49331f;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  margin-bottom:12px;
-}
-.package.featured .package-label{background:#a68155;color:white}
-.package h3{font-size:28px;line-height:1.2}
-.package-desc{font-size:12px;color:#f3e9dd;min-height:58px;margin-top:7px}
-.old-price{font-size:13px;color:#f2d9c7;text-decoration:line-through;text-decoration-thickness:1.5px;margin-top:15px}
-.price{font-size:35px;line-height:1.2;margin:1px 0 3px;white-space:nowrap;color:#fff}
-.price small{font:500 11px "DM Sans",sans-serif;color:#e7d7c2}
-.saving{font-size:10px;font-weight:700;color:#e7c48f;margin-top:3px}
-.package-divider{height:1px;background:#ffffff40;margin:15px 0}
-.package ul{list-style:none;display:grid;gap:9px;margin-bottom:22px}
-.package li{position:relative;padding-left:19px;color:#f3e9dd;font-size:12px}
-.package li:before{content:"✓";position:absolute;left:0;color:#d9b77e;font-weight:700}
-.package-button{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  min-height:46px;
-  margin-top:auto;
-  padding:10px;
-  border-radius:28px;
-  background:#a68155;
-  color:white;
-  font-size:11px;
-  font-weight:700;
-  transition:background .2s;
-}
-.package-button:hover{background:#89663f}
-.payment-note{margin:17px 0 0;padding:15px 18px;border-radius:13px;background:#e9dfd1;color:#584738;text-align:center;font-size:12px}
-.payment-note strong{color:var(--red-dark)}
-.payment-note a{text-decoration:underline;font-weight:700}
+/* PAKETLER */
+.packages-area{padding:55px 0 0}
+.packages-intro{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:30px}
+.packages-intro>p{max-width:390px;color:var(--muted);font-size:13px;border-left:2px solid var(--gold);padding-left:17px}
+.packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.package{min-width:0;display:flex;flex-direction:column;overflow:hidden;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 35px #3323150b;transition:.25s}
+.package:hover{transform:translateY(-5px);box-shadow:0 20px 45px #33231518}
+.package.featured{background:var(--dark);color:white;border-color:var(--dark);transform:translateY(-7px)}
+.package.featured:hover{transform:translateY(-11px)}
+.package-photos{position:relative;display:grid;grid-template-columns:1fr;height:205px;overflow:hidden;background:#e1d8cc}
+.package-photos img{width:100%;height:100%;min-width:0;object-fit:cover;object-position:center 40%;display:block;transition:transform .6s}
+.package:hover .package-photos img{transform:scale(1.04)}
+.package-photos.double-photo{grid-template-columns:1fr 1fr;gap:3px}
+.package-photos:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#17120dc9);pointer-events:none}
+.photo-caption{position:absolute;z-index:2;left:16px;bottom:12px;color:white;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 10px #000}
+.package-content{padding:22px 23px 24px;display:flex;flex-direction:column;flex:1}
+.package-label{align-self:flex-start;padding:6px 10px;background:#eee3d4;color:#795c39;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:13px}
+.featured .package-label{background:var(--gold);color:var(--dark)}
+.package h3{font-size:clamp(29px,2.7vw,37px);line-height:1.05;font-weight:700}
+.package-desc{font-size:12px;line-height:1.8;color:var(--muted);margin-top:10px;min-height:65px}
+.featured .package-desc{color:#d1c6b8}
+.price{font-size:44px;line-height:1.15;font-weight:700;color:var(--red);margin-top:12px;white-space:nowrap}
+.featured .price{color:#e5c38f}
+.package-divider{height:1px;background:var(--line);margin:16px 0}
+.featured .package-divider{background:#ffffff28}
+.package ul{list-style:none;display:grid;gap:9px;margin-bottom:24px}
+.package li{font-size:12px;color:#57514b;padding-left:21px;position:relative;line-height:1.55}
+.package li:before{content:"✦";position:absolute;left:0;color:var(--gold)}
+.featured li{color:#eee5db}
+.package-button{display:flex;justify-content:center;align-items:center;text-align:center;min-height:48px;margin-top:auto;padding:11px;border-radius:5px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;transition:.2s}
+.package-button:hover{background:#69242a}
+.featured .package-button{background:var(--gold);color:var(--dark)}
+.featured .package-button:hover{background:#e5c38f}
+.payment-note{margin-top:22px;background:#eee4d7;border:1px solid var(--line);border-radius:8px;padding:15px;text-align:center;font-size:12px;color:#574737}
+.payment-note strong{color:var(--red)}
+.payment-note a{text-decoration:underline;font-weight:800}
 
-/* TANITIM */
-.hero{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:42px;padding-top:58px;padding-bottom:48px}
-.hero h1{font-size:clamp(47px,6vw,75px);line-height:.99;letter-spacing:-.045em;margin-bottom:20px}
-.hero-copy>p{max-width:450px;color:var(--muted);font-size:15px}
-.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.btn{display:inline-flex;justify-content:center;align-items:center;min-height:45px;padding:0 19px;border-radius:30px;font-size:12px;font-weight:700}
-.btn-red{box-shadow:0 8px 25px #9b303526}
-.btn-gold{background:var(--gold);color:white}
-.hero-note{margin-top:14px;color:var(--red);font-size:11px;font-weight:700}
-.hero-image{height:440px;border-radius:24px;overflow:hidden;background:#e8e0d5}
-.hero-image img{width:100%;height:100%;display:block;object-fit:cover}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #302b2620;border-bottom:1px solid #302b2620;padding:23px 0;margin-bottom:25px}
+/* HERO */
+.hero{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:45px;padding-top:75px;padding-bottom:45px}
+.hero h1{font-size:clamp(52px,7vw,82px);line-height:.9;letter-spacing:-.035em;margin-bottom:22px}
+.hero-copy>p{max-width:440px;color:var(--muted);font-size:14px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 19px;border-radius:5px;font-size:11px;font-weight:800}
+.btn-red{box-shadow:0 8px 22px #8d303720}
+.btn-gold{background:var(--gold);color:var(--dark)}
+.hero-note{margin-top:15px;font-size:11px;color:var(--red);font-weight:700}
+.hero-image{height:440px;border-radius:6px 35px 6px 35px;overflow:hidden;background:#e5dcd0;box-shadow:0 24px 55px #30251a1a}
+.hero-image img{width:100%;height:100%;object-fit:cover;display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);padding:24px 0;margin-bottom:15px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat{text-align:center;padding:8px}
-.stat-number{font-family:"Playfair Display",serif;font-size:27px}
-.stat-label{color:#8b847b;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
-section.content-section{padding-top:55px;padding-bottom:55px}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:25px}
+.stat-number{font-size:31px;font-weight:700}
+.stat-label{color:var(--muted);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+
+/* ÇEKİMLER VE GALERİ */
+.content-section{padding-top:65px;padding-bottom:45px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:27px}
 .section-head p{max-width:390px}
-
-/* ÇEKİM HİZMETLERİ */
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.service{position:relative;isolation:isolate;overflow:hidden;min-height:360px;padding:19px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:20px;color:white;background:#51483e}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.service{min-height:350px;position:relative;isolation:isolate;overflow:hidden;border-radius:8px 25px 8px 25px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;color:white;background:#39312b}
 .service:before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .5s}
-.service:hover:before{transform:scale(1.04)}
-.service:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,#14110ef0,transparent 80%)}
-.service:nth-child(1):before{background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%201%20Instagram%20Post.JPG")}
-.service:nth-child(2):before{background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%203%20Instagram%20Post.JPG")}
-.service:nth-child(3):before{background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4971%20Instagram%20Post.jpg")}
-.service h3{font-size:28px;line-height:1.15;margin-bottom:8px}
-.service p{font-size:12px;color:#ffffffd1;margin-bottom:14px}
-.service-tag{align-self:flex-start;padding:5px 9px;border-radius:20px;background:#ffffffdf;color:#39332d;font-size:9px;font-weight:700;margin-bottom:auto}
-.service-link{display:inline-flex;align-self:flex-start;padding:8px 13px;border-radius:20px;background:var(--red);font-size:10px;font-weight:700}
-
-/* GALERİ */
+.service:hover:before{transform:scale(1.05)}
+.service:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,#17120ef5,transparent 85%)}
+.service:nth-child(1):before{background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/c37183ec-40f6-4889-922e-32c3785b324f.JPG")}
+.service:nth-child(2):before{background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9218%20Instagram%20Post.JPG")}
+.service:nth-child(3):before{background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9579%20Instagram%20Post.JPG")}
+.service-tag{align-self:flex-start;background:#ffffffeb;color:#39312b;padding:5px 9px;border-radius:3px;font-size:9px;font-weight:800;margin-bottom:auto}
+.service h3{font-size:32px;line-height:1.1;margin-bottom:8px}
+.service p{font-size:12px;color:#eee;margin-bottom:15px}
+.service-link{align-self:flex-start;background:var(--red);padding:8px 12px;border-radius:4px;font-size:10px;font-weight:800}
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.gallery-item{height:330px;overflow:hidden;border-radius:15px;background:#e8e1d7;cursor:pointer}
-.gallery-item img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s}
+.gallery-item{height:320px;overflow:hidden;border-radius:6px 18px 6px 18px;background:#e5dcd0;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .gallery-item:hover img{transform:scale(1.04)}
-.gallery-status{grid-column:1/-1;padding:24px;text-align:center;background:#fffdf9;border-radius:12px;color:var(--muted);font-size:13px}
-.gallery-help{margin-top:12px;font-size:11px;color:var(--muted)}
+.gallery-status{grid-column:1/-1;text-align:center;padding:25px;background:var(--white);border-radius:8px;color:var(--muted);font-size:13px}
+.gallery-help{margin-top:12px;color:var(--muted);font-size:11px}
 
 /* RANDEVU */
-.appointment{padding-top:30px;padding-bottom:65px}
-.appointment-box{background:#292724;color:white;border-radius:24px;padding:35px;display:grid;grid-template-columns:.85fr 1.15fr;gap:38px}
-.appointment-title{font-size:clamp(36px,4vw,52px);line-height:1.05;margin-bottom:15px}
-.appointment-info p{color:#bcb6af;font-size:13px}
-.contact-links{margin-top:22px;display:grid;gap:8px;font-size:13px}
-.contact-links a:hover{color:#d2a875}
-form{display:grid;gap:11px}
+.appointment{padding-top:35px;padding-bottom:60px}
+.appointment-box{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;background:var(--dark);color:white;border-radius:12px;padding:35px}
+.appointment-title{font-size:clamp(42px,5vw,58px);line-height:.95;margin-bottom:18px}
+.appointment-info p{font-size:13px;color:#c8c0b7}
+.contact-links{display:grid;gap:10px;margin-top:23px;font-size:13px}
+.contact-links a:hover{color:var(--gold)}
+form{display:grid;gap:12px}
 .field{display:grid;gap:5px}
-.field label{font-size:10px;letter-spacing:.06em;color:#aaa49d}
-.field input,.field select,.field textarea{width:100%;border:1px solid #ffffff26;background:#ffffff0d;color:white;border-radius:10px;padding:12px;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#b84348}
-.field input::placeholder,.field textarea::placeholder{color:#aaa39a}
+.field label{font-size:10px;letter-spacing:.08em;font-weight:800;color:#aaa198}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #ffffff2c;border-radius:6px;background:#ffffff0b;color:white;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field input::placeholder,.field textarea::placeholder{color:#aaa198}
 .field select option{color:#222;background:white}
 .field textarea{min-height:80px;resize:vertical}
-.submit{border:0;min-height:47px;border-radius:30px;font-size:10px;font-weight:700;cursor:pointer}
-.submit:hover{background:var(--red-dark)}
+.submit{min-height:48px;border:0;border-radius:5px;font-size:10px;font-weight:800;cursor:pointer}
+.submit:hover,.feedback-button:hover{background:#69242a}
 
-/* ŞİKÂYET VE ÖNERİ */
+/* ŞİKÂYET FORMU VE ALT BİLGİ */
 .feedback-section{padding-bottom:55px}
-.feedback-box{padding:27px;background:#fffdf9;border:1px solid #382d2019;border-radius:20px}
-.feedback-head{display:flex;justify-content:space-between;align-items:center;gap:20px}
-.feedback-title{font-size:29px}
-.feedback-subtitle{margin-top:5px;color:var(--muted);font-size:12px}
-.feedback-button{border:0;padding:12px 16px;border-radius:25px;font-size:10px;font-weight:700;cursor:pointer}
-.feedback-button:hover{background:var(--red-dark)}
-.feedback-form{display:none;margin-top:20px}
+.feedback-box{padding:25px;background:var(--white);border:1px solid var(--line);border-radius:10px}
+.feedback-head{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.feedback-title{font-size:34px}
+.feedback-subtitle{font-size:12px;color:var(--muted);margin-top:3px}
+.feedback-button{border:0;border-radius:5px;padding:12px 16px;font-size:10px;font-weight:800;cursor:pointer}
+.feedback-form{display:none;margin-top:22px}
 .feedback-form.open{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .feedback-form .full,.feedback-message,.feedback-send{grid-column:1/-1}
 .feedback-form .field label{color:var(--muted)}
-.feedback-form input,.feedback-form select,.feedback-form textarea{width:100%;border:1px solid #322d2820;background:white;color:var(--dark);border-radius:10px;padding:12px;outline:none}
-.feedback-form textarea{min-height:90px}
-.feedback-message{display:none;padding:12px;border-radius:10px;background:#eee7dd;color:#655b50;font-size:12px}
+.feedback-form input,.feedback-form select,.feedback-form textarea{background:white;color:var(--dark);border:1px solid var(--line);border-radius:6px;padding:12px;width:100%}
+.feedback-message{display:none;padding:12px;border-radius:6px;background:#eee4d7;color:#574737;font-size:12px}
 .feedback-message.show{display:block}
-.feedback-send{min-height:45px;border:0;border-radius:25px;background:var(--red);color:white;font-size:11px;font-weight:700;cursor:pointer}
-.feedback-send:hover{background:var(--red-dark)}
-.feedback-send:disabled{opacity:.6;cursor:wait}
-
-footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;color:#7c756d;font-size:11px}
-.footer-links{display:flex;gap:16px}
-.whatsapp{position:fixed;right:18px;bottom:18px;z-index:90;padding:13px 17px;border-radius:30px;background:#218c50;color:white;font-size:12px;font-weight:700;box-shadow:0 10px 30px #164e302b}
-.whatsapp:hover{background:#176c3b}
-.modal{position:fixed;inset:0;z-index:300;background:#0f0d0bee;display:none;align-items:center;justify-content:center;padding:25px}
+.feedback-send{min-height:45px;background:var(--red);color:white;border:0;border-radius:5px;font-size:10px;font-weight:800;cursor:pointer}
+footer{display:flex;justify-content:space-between;gap:20px;padding:25px 0 90px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.footer-links{display:flex;gap:18px}
+.whatsapp{position:fixed;z-index:90;right:20px;bottom:20px;background:#218c58;color:white;padding:13px 18px;border-radius:30px;font-size:11px;font-weight:800;box-shadow:0 7px 25px #0002}
+.modal{display:none;position:fixed;inset:0;z-index:200;background:#100d0bf2;align-items:center;justify-content:center;padding:30px}
 .modal.active{display:flex}
-.modal img{max-width:94vw;max-height:88vh;object-fit:contain}
-.close-modal{position:fixed;top:18px;right:20px;width:42px;height:42px;border-radius:50%;border:1px solid #ffffff55;background:#ffffff19;color:white;font-size:25px;cursor:pointer}
-
-@media(max-width:800px){
-  nav{gap:12px}
-  nav a:not(.nav-cta){display:none}
-  .packages-intro{display:block}
-  .packages-intro p{margin-top:12px}
-  .hero{grid-template-columns:1fr;gap:23px;padding-top:32px}
-  .hero-image{height:380px;order:-1}
-  .packages{grid-template-columns:1fr}
-  .package{min-height:0;padding:25px}
-  .package-desc{min-height:0}
-  .services{grid-template-columns:1fr}
-  .service{min-height:330px}
-  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gallery-item{height:260px}
-  .section-head{display:block}
-  .section-head p{margin-top:12px}
-  .appointment-box{grid-template-columns:1fr;padding:27px 21px;gap:25px}
+.modal img{max-width:95%;max-height:88vh;object-fit:contain}
+.close-modal{position:absolute;top:20px;right:25px;color:white;background:transparent;border:0;font-size:40px;cursor:pointer}
+@media(max-width:850px){
+ nav{gap:12px;font-size:11px}
+ .packages{grid-template-columns:1fr;max-width:560px;margin:auto}
+ .package.featured{transform:none}
+ .package.featured:hover{transform:translateY(-5px)}
+ .package-photos{height:245px}
+ .hero{gap:25px;padding-top:45px}
+ .hero-image{height:360px}
+ .appointment-box{gap:25px;padding:25px}
 }
-@media(max-width:480px){
-  .wrap{width:calc(100% - 28px)}
-  .nav{min-height:65px}
-  .logo{font-size:12px}
-  .nav-cta{font-size:10px;padding:9px 12px}
-  .packages-area{padding-top:27px}
-  .hero h1{font-size:49px}
-  .hero-image{height:300px}
-  .hero-buttons{display:grid}
-  .btn{width:100%}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .gallery{gap:7px}
-  .gallery-item{height:200px}
-  .appointment-box{padding:23px 16px}
-  .feedback-box{padding:20px 15px}
-  .feedback-head{display:block}
-  .feedback-button{width:100%;margin-top:15px}
-  .feedback-form.open{grid-template-columns:1fr}
-  .feedback-form .full,.feedback-message,.feedback-send{grid-column:auto}
-  footer{flex-direction:column}
-  .whatsapp{right:10px;bottom:10px}
+@media(max-width:620px){
+ .wrap{width:calc(100% - 28px)}
+ .nav{min-height:66px}
+ nav a:not(.nav-cta){display:none}
+ .packages-area{padding-top:32px}
+ .packages-intro{display:block}
+ .packages-intro>p{margin-top:17px}
+ .package-photos{height:220px}
+ .package-content{padding:20px}
+ .package-desc{min-height:0}
+ .hero{grid-template-columns:1fr;padding-top:42px;gap:25px}
+ .hero h1{font-size:61px}
+ .hero-image{height:330px}
+ .stats{grid-template-columns:1fr 1fr;gap:10px}
+ .section-head{display:block}
+ .section-head>p{margin-top:12px}
+ .services{grid-template-columns:1fr}
+ .service{min-height:310px}
+ .gallery{grid-template-columns:1fr 1fr;gap:8px}
+ .gallery-item{height:230px}
+ .appointment-box{grid-template-columns:1fr;padding:22px}
+ .feedback-form.open{grid-template-columns:1fr}
+ .feedback-form .field{grid-column:1/-1}
+ .feedback-head{align-items:flex-start}
+ .feedback-title{font-size:29px}
+ footer{flex-direction:column}
 }
 </style>
 </head>
@@ -284,86 +216,104 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
       <div class="eyebrow">Ceyhun Fotoğrafçılık Studio</div>
       <h1 class="section-heading">Size uygun paketi<br>birlikte seçelim.</h1>
     </div>
-    <p>Nişan ve düğün gününüzü, dış çekiminizi ve albümünüzü bütçenize uygun paketle planlayın. Tarih ve müsaitlik için bize ulaşın.</p>
+    <p>Düğün gününüzü, dış çekiminizi ve albümünüzü bütçenize uygun paketle planlayın. Tarih ve müsaitlik için bize ulaşın.</p>
   </div>
 
   <div class="packages">
+    <!-- NİŞAN PAKETİ -->
     <article class="package">
-      <div class="package-label">Nişan Çekimi</div>
-      <h3>Başlangıç Paketi</h3>
-      <p class="package-desc">Nişan gününüzün heyecanını ve mutluluğunu zarif karelerle ölümsüzleştirin.</p>
-      <div class="old-price">14.999 ₺</div>
-      <div class="price">11.999 ₺</div>
-      <div class="saving">3.000 ₺ fiyat avantajı</div>
-      <div class="package-divider"></div>
-      <ul>
-        <li>Nişan çiftine özel fotoğraf çekimi</li>
-        <li>Seçilen fotoğrafların düzenlenmesi</li>
-        <li>Profesyonel renk düzenleme</li>
-        <li>Dijital fotoğraf teslimi</li>
-        <li>Büyük albüm</li>
-      </ul>
-      <a class="package-button" target="_blank" rel="noopener noreferrer"
-         href="https://wa.me/905522369828?text=Merhaba%2C%20Nisan%20Baslangic%20Paketi%20(11.999%20TL)%20hakkinda%20bilgi%20almak%20istiyorum.">
-        Nişan Paketi İçin Bilgi Al
-      </a>
+      <div class="package-photos">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%201%20Instagram%20Post.JPG"
+             alt="Nişan ve söz çekimi" loading="lazy">
+        <span class="photo-caption">Söz & Nişan · Özel anlar</span>
+      </div>
+      <div class="package-content">
+        <div class="package-label">Başlangıç Paketi</div>
+        <h3>Nişan Zarafeti</h3>
+        <p class="package-desc">Söz ve nişan gününüzün en özel detayları, zarif ve doğal karelerle.</p>
+        <div class="price">11.999 ₺</div>
+        <div class="package-divider"></div>
+        <ul>
+          <li>Nişan / söz çekimi</li>
+          <li>Seçili fotoğrafların düzenlenmesi</li>
+          <li>Profesyonel renk düzenleme</li>
+          <li>Dijital fotoğraf teslimi</li>
+          <li>Büyük albüm</li>
+        </ul>
+        <a class="package-button" target="_blank" rel="noopener"
+           href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20Ni%C5%9Fan%20Zarafeti%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">
+          Nişan Paketi İçin Bilgi Al
+        </a>
+      </div>
     </article>
 
+    <!-- DÜĞÜN PREMIUM -->
     <article class="package featured">
-      <div class="package-label">Düğün Çekimi</div>
-      <h3>Premium Paket</h3>
-      <p class="package-desc">Düğün hikâyenizi çekimden albüme kadar bir arada sunan kapsamlı paket.</p>
-      <div class="old-price">18.999 ₺</div>
-      <div class="price">15.999 ₺</div>
-      <div class="saving">3.000 ₺ fiyat avantajı</div>
-      <div class="package-divider"></div>
-      <ul>
-        <li>Düğün günü fotoğraf çekimi</li>
-        <li>Kına ve düğün dış çekimi</li>
-        <li>Gelin ve damada özel çekim</li>
-        <li>Profesyonel renk düzenleme</li>
-        <li>Özenli fotoğraf seçimi</li>
-        <li>Dijital fotoğraf teslimi</li>
-        <li>1 büyük albüm</li>
-        <li>2 aile albümü</li>
-        <li>1 büyük kanvas tablo</li>
-      </ul>
-      <a class="package-button" target="_blank" rel="noopener noreferrer"
-         href="https://wa.me/905522369828?text=Merhaba%2C%20Dugun%20Premium%20Paketi%20(15.999%20TL)%20hakkinda%20bilgi%20almak%20istiyorum.">
-        Premium Paket İçin Bilgi Al
-      </a>
+      <div class="package-photos double-photo">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9218%20Instagram%20Post.JPG"
+             alt="Düğün Premium çekimi" loading="lazy">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9579%20Instagram%20Post.JPG"
+             alt="Gelin damat dış çekimi" loading="lazy">
+        <span class="photo-caption">Gelin & Damat · Premium</span>
+      </div>
+      <div class="package-content">
+        <div class="package-label">En Çok Tercih Edilen</div>
+        <h3>Düğün Premium</h3>
+        <p class="package-desc">Düğün hikâyenizi çekimden albüme kadar bir arada sunan özel paket.</p>
+        <div class="price">15.999 ₺</div>
+        <div class="package-divider"></div>
+        <ul>
+          <li>Düğün günü fotoğraf çekimi</li>
+          <li>Kına ve düğün dış çekimi</li>
+          <li>Gelin & damat özel çekimi</li>
+          <li>Profesyonel renk düzenleme</li>
+          <li>Özenli fotoğraf seçimi</li>
+          <li>Dijital fotoğraf teslimi</li>
+          <li>1 büyük albüm</li>
+          <li>2 aile albümü</li>
+          <li>1 büyük kanvas tablo</li>
+        </ul>
+        <a class="package-button" target="_blank" rel="noopener"
+           href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20D%C3%BC%C4%9F%C3%BCn%20Premium%20paketi%20i%C3%A7in%20bilgi%20almak%20istiyorum.">
+          Premium Paket İçin Bilgi Al
+        </a>
+      </div>
     </article>
 
+    <!-- KAPSAMLI DÜĞÜN ÇEKİMİ -->
     <article class="package">
-      <div class="package-label">Kapsamlı Düğün Çekimi</div>
-      <h3>Özel Paket</h3>
-      <p class="package-desc">Lüks albüm ve özel detaylarla düğün anılarınızı özenle saklayın.</p>
-      <div class="old-price">25.000 ₺</div>
-      <div class="price">20.000 ₺</div>
-      <div class="saving">5.000 ₺ fiyat avantajı</div>
-      <div class="package-divider"></div>
-      <ul>
-        <li>Düğün ve dış çekim</li>
-        <li>Kına ve düğün çekimi</li>
-        <li>En büyük lüks albüm</li>
-        <li>35–40 seçilmiş fotoğraf</li>
-        <li>2 aile albümü</li>
-        <li>Büyük lüks kanvas tablo</li>
-        <li>Kişiye özel teslim planı</li>
-      </ul>
-      <a class="package-button" target="_blank" rel="noopener noreferrer"
-         href="https://wa.me/905522369828?text=Merhaba%2C%20Dugun%20Ozel%20Paketi%20(20.000%20TL)%20hakkinda%20bilgi%20almak%20istiyorum.">
-        Özel Paket İçin Bilgi Al
-      </a>
+      <div class="package-photos">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/c37183ec-40f6-4889-922e-32c3785b324f.JPG"
+             alt="Kapsamlı Düğün Çekimi" loading="lazy">
+        <span class="photo-caption">Düğün hikâyenizin her anı</span>
+      </div>
+      <div class="package-content">
+        <div class="package-label">Kapsamlı Çekim</div>
+        <h3>Kapsamlı Düğün Çekimi</h3>
+        <p class="package-desc">Düğününüzün hikâyesini tüm özel anlarıyla ölümsüzleştiren kapsamlı deneyim.</p>
+        <div class="price">20.000 ₺</div>
+        <div class="package-divider"></div>
+        <ul>
+          <li>Düğün ve dış çekim</li>
+          <li>Kına ve düğün çekimi</li>
+          <li>En büyük lüks albüm</li>
+          <li>35–40 seçilmiş fotoğraf</li>
+          <li>2 aile albümü</li>
+          <li>Büyük lüks kanvas tablo</li>
+          <li>Kişiye özel teslim planı</li>
+        </ul>
+        <a class="package-button" target="_blank" rel="noopener"
+           href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20Kapsaml%C4%B1%20D%C3%BC%C4%9F%C3%BCn%20%C3%87ekimi%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">
+          Kapsamlı Paket İçin Bilgi Al
+        </a>
+      </div>
     </article>
   </div>
 
   <div class="payment-note">
     💳 <strong>Kredi kartıyla ödeme ve taksit seçenekleri</strong> için
-    <a target="_blank" rel="noopener noreferrer"
-       href="https://wa.me/905522369828?text=Merhaba%2C%20kredi%20kartiyla%20odeme%20ve%20taksit%20secenekleri%20hakkinda%20bilgi%20almak%20istiyorum.">
-       WhatsApp'tan bilgi alın.
-    </a>
+    <a target="_blank" rel="noopener"
+       href="https://wa.me/905522369828?text=Merhaba%2C%20kredi%20kart%C4%B1yla%20%C3%B6deme%20ve%20taksit%20se%C3%A7enekleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">WhatsApp'tan bilgi alın.</a>
   </div>
 </section>
 
@@ -398,24 +348,23 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
       <div class="eyebrow">Size uygun çekimi seçin</div>
       <h2 class="section-heading">Hayalinizdeki çekim<br>burada.</h2>
     </div>
-    <p class="muted">İster nişan gününüz, ister düğün günü ya da sadece ikinize ait özel bir çekim. Size uygun paketi birlikte belirleyelim.</p>
+    <p class="muted">İster düğün günü, ister sadece ikinize ait özel bir çekim. Size uygun paketi birlikte belirleyelim.</p>
   </div>
-
   <div class="services">
     <article class="service">
-      <div class="service-tag">Nişan & Söz</div>
-      <h3>Nişan Çekimi</h3>
-      <p>Nişan gününüzün mutluluğunu, heyecanını ve en güzel anlarını ölümsüzleştirelim.</p>
+      <div class="service-tag">Düğün Günü</div>
+      <h3>Düğün Çekimi</h3>
+      <p>Gününüzün en güzel anlarını samimi ve doğal karelerle ölümsüzleştirelim.</p>
       <a href="#paketler" class="service-link">Paketleri İncele ↗</a>
     </article>
     <article class="service">
-      <div class="service-tag">Düğün Günü</div>
+      <div class="service-tag">Size Özel Konsept</div>
       <h3>Gelin & Damat</h3>
       <p>Size özel, doğal ve romantik gelin damat fotoğraf çekimleri.</p>
       <a href="#paketler" class="service-link">Paketleri İncele ↗</a>
     </article>
     <article class="service">
-      <div class="service-tag">Özel Konsept</div>
+      <div class="service-tag">Özel Anlar</div>
       <h3>Dış Çekim</h3>
       <p>Sevdiğiniz bir mekânda, doğal ve eğlenceli fotoğraflar.</p>
       <a href="#paketler" class="service-link">Paketleri İncele ↗</a>
@@ -434,7 +383,7 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
   <div class="gallery" id="gallery">
     <div class="gallery-status">Fotoğraflar yükleniyor...</div>
   </div>
-  <p class="gallery-help" id="galleryHelp">Fotoğraflar yüklenmezse depodaki dosya adlarını ve herkese açık erişim ayarını kontrol etmek gerekir.</p>
+  <p class="gallery-help" id="galleryHelp">Fotoğraflar Supabase deposundan yüklenir.</p>
 </section>
 
 <section class="appointment wrap" id="randevu">
@@ -445,40 +394,27 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
       <p>Formu doldurun. Randevu bilgileriniz WhatsApp mesajı olarak hazırlanır; gönderimi siz tamamlarsınız.</p>
       <div class="contact-links">
         <a href="tel:+905522369828">☎ 0552 236 98 28</a>
-        <a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener noreferrer">Instagram hesabımız ↗</a>
+        <a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener">Instagram hesabımız ↗</a>
       </div>
     </div>
-
     <form id="appointmentForm">
-      <div class="field">
-        <label for="ad">AD SOYAD</label>
-        <input id="ad" type="text" placeholder="Adınız ve soyadınız" required>
-      </div>
-      <div class="field">
-        <label for="telefon">TELEFON</label>
-        <input id="telefon" type="tel" placeholder="0552 000 00 00" required>
-      </div>
-      <div class="field">
-        <label for="tarih">ÇEKİM TARİHİ</label>
-        <input id="tarih" type="date" required>
-      </div>
+      <div class="field"><label for="ad">AD SOYAD</label><input id="ad" type="text" placeholder="Adınız ve soyadınız" required></div>
+      <div class="field"><label for="telefon">TELEFON</label><input id="telefon" type="tel" placeholder="0552 000 00 00" required></div>
+      <div class="field"><label for="tarih">ÇEKİM TARİHİ</label><input id="tarih" type="date" required></div>
       <div class="field">
         <label for="cekim">PAKET / ÇEKİM</label>
         <select id="cekim" required>
           <option value="">Paket veya çekim seçin</option>
-          <option value="Nişan Başlangıç Paketi - 11.999 TL">Nişan Başlangıç Paketi - 11.999 ₺</option>
-          <option value="Düğün Premium Paket - 15.999 TL">Düğün Premium Paket - 15.999 ₺</option>
-          <option value="Düğün Özel Paket - 20.000 TL">Düğün Özel Paket - 20.000 ₺</option>
+          <option value="Nişan Zarafeti - 11.999 TL">Nişan Zarafeti - 11.999 ₺</option>
+          <option value="Düğün Premium - 15.999 TL">Düğün Premium - 15.999 ₺</option>
+          <option value="Kapsamlı Düğün Çekimi - 20.000 TL">Kapsamlı Düğün Çekimi - 20.000 ₺</option>
           <option value="Düğün Çekimi">Düğün Çekimi</option>
           <option value="Gelin & Damat Çekimi">Gelin & Damat Çekimi</option>
           <option value="Dış Çekim">Dış Çekim</option>
-          <option value="Nişan / Söz Çekimi">Nişan / Söz Çekimi</option>
+          <option value="Nişan / Söz">Nişan / Söz</option>
         </select>
       </div>
-      <div class="field">
-        <label for="not">NOTUNUZ</label>
-        <textarea id="not" placeholder="Özel isteğinizi yazabilirsiniz."></textarea>
-      </div>
+      <div class="field"><label for="not">NOTUNUZ</label><textarea id="not" placeholder="Özel isteğinizi yazabilirsiniz."></textarea></div>
       <button type="submit" class="submit">WHATSAPP'TAN RANDEVU TALEBİ GÖNDER</button>
     </form>
   </div>
@@ -493,16 +429,9 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
       </div>
       <button type="button" class="feedback-button" id="feedbackToggle">FORMU AÇ</button>
     </div>
-
     <form class="feedback-form" id="feedbackForm">
-      <div class="field">
-        <label for="feedbackAd">AD SOYAD</label>
-        <input id="feedbackAd" type="text" placeholder="Adınız ve soyadınız" required>
-      </div>
-      <div class="field">
-        <label for="feedbackTelefon">TELEFON</label>
-        <input id="feedbackTelefon" type="tel" placeholder="0552 000 00 00">
-      </div>
+      <div class="field"><label for="feedbackAd">AD SOYAD</label><input id="feedbackAd" type="text" placeholder="Adınız ve soyadınız" required></div>
+      <div class="field"><label for="feedbackTelefon">TELEFON</label><input id="feedbackTelefon" type="tel" placeholder="0552 000 00 00"></div>
       <div class="field full">
         <label for="feedbackKonu">KONU</label>
         <select id="feedbackKonu" required>
@@ -513,10 +442,7 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
           <option value="Diğer">Diğer</option>
         </select>
       </div>
-      <div class="field full">
-        <label for="feedbackMesaj">MESAJINIZ</label>
-        <textarea id="feedbackMesaj" placeholder="Görüşünüzü yazabilirsiniz." required></textarea>
-      </div>
+      <div class="field full"><label for="feedbackMesaj">MESAJINIZ</label><textarea id="feedbackMesaj" placeholder="Görüşünüzü yazabilirsiniz." required></textarea></div>
       <div class="feedback-message" id="feedbackMessage" role="status"></div>
       <button type="submit" class="feedback-send">GÖNDER</button>
     </form>
@@ -527,12 +453,12 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 <footer class="wrap">
   <div>© 2026 Ceyhun Fotoğrafçılık Studio</div>
   <div class="footer-links">
-    <a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener">Instagram</a>
     <a href="tel:+905522369828">Telefon</a>
   </div>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer">WhatsApp'tan Yaz</a>
+<a class="whatsapp" href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Fotoğraf görüntüleyici">
   <button class="close-modal" id="closeModal" type="button" aria-label="Kapat">×</button>
@@ -540,240 +466,213 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 </div>
 
 <script>
-"use strict";
+'use strict';
 
-const SUPABASE_URL = "https://nzriewxchkcfeknkbwuu.supabase.co";
-const SUPABASE_KEY = "sb_publishable_tZemFcdKUDB-l7ozbA_rK542nOI";
-const BUCKET = "site fotolar";
-const BASE = SUPABASE_URL + "/storage/v1/object/public/" + encodeURIComponent(BUCKET) + "/";
+const SUPABASE_URL = 'https://nzriewxchkcfeknkbwuu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_tZemFcdKUDB-l7ozbA_rK542nOI';
+const BUCKET = 'site fotolar';
+const BASE = SUPABASE_URL + '/storage/v1/object/public/' + encodeURIComponent(BUCKET) + '/';
 
 const fileNames = [
-  "02d7eaab-0808-4067-8257-04a4b79d402f-2.jpg",
-  "gamze 1 Instagram Post.JPG",
-  "gamze 2 Instagram Post.JPG",
-  "gamze 3 Instagram Post.JPG",
-  "gamze 4 Instagram Post.JPG",
-  "gamze 5 Instagram Post.JPG",
-  "_T2A4971 Instagram Post.jpg",
-  "_T2A4982 Instagram Post.jpg",
-  "_T2A4991 Instagram Post.jpg",
-  "_T2A5027 Instagram Post.jpg",
-  "C37A9660.jpg",
-  "C37A9666.jpg"
+  'c37183ec-40f6-4889-922e-32c3785b324f.JPG',
+  '1E4A9218 Instagram Post.JPG',
+  '1E4A9579 Instagram Post.JPG',
+  'gamze 1 Instagram Post.JPG',
+  'gamze 2 Instagram Post.JPG',
+  'gamze 3 Instagram Post.JPG',
+  'gamze 4 Instagram Post.JPG',
+  'gamze 5 Instagram Post.JPG',
+  '_T2A4971 Instagram Post.jpg',
+  '_T2A4982 Instagram Post.jpg',
+  '_T2A4991 Instagram Post.jpg',
+  '_T2A5027 Instagram Post.jpg',
+  'C37A9660.jpg',
+  'C37A9666.jpg'
 ];
 
 const imageUrls = fileNames.map(name => BASE + encodeURIComponent(name));
-const gallery = document.getElementById("gallery");
-const heroImage = document.getElementById("heroImage");
-const modal = document.getElementById("modal");
-const modalImage = document.getElementById("modalImage");
-
+const gallery = document.getElementById('gallery');
+const heroImage = document.getElementById('heroImage');
+const modal = document.getElementById('modal');
+const modalImage = document.getElementById('modalImage');
 let loadedCount = 0;
 let failedCount = 0;
 
 function openModal(src) {
   modalImage.src = src;
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
-  modal.classList.remove("active");
-  modalImage.src = "";
-  document.body.style.overflow = "";
+  modal.classList.remove('active');
+  modalImage.src = '';
+  document.body.style.overflow = '';
 }
-
-document.getElementById("closeModal").addEventListener("click", closeModal);
-
-modal.addEventListener("click", event => {
+document.getElementById('closeModal').addEventListener('click', closeModal);
+modal.addEventListener('click', event => {
   if (event.target === modal) closeModal();
 });
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeModal();
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeModal();
 });
 
-/* Supabase fotoğraflarını galeriye yükle */
+function updateGalleryStatus() {
+  if (loadedCount > 0) {
+    document.getElementById('galleryHelp').textContent = loadedCount + ' fotoğraf yüklendi.';
+  }
+  if (loadedCount === 0 && failedCount === imageUrls.length) {
+    gallery.innerHTML = '<div class="gallery-status">Fotoğraflar yüklenemedi. Supabase Storage içindeki dosya adlarını ve herkese açık erişim ayarını kontrol edin.</div>';
+    document.getElementById('galleryHelp').textContent = 'Fotoğraflar yüklenemedi.';
+  }
+}
+
 gallery.replaceChildren();
-
 imageUrls.forEach((src, index) => {
-  const item = document.createElement("div");
-  item.className = "gallery-item";
+  const item = document.createElement('div');
+  item.className = 'gallery-item';
 
-  const img = document.createElement("img");
+  const img = document.createElement('img');
   img.src = src;
-  img.alt = "Ceyhun Fotoğrafçılık çekim örneği " + (index + 1);
-  img.loading = index < 3 ? "eager" : "lazy";
-  img.decoding = "async";
+  img.alt = 'Ceyhun Fotoğrafçılık çekim örneği ' + (index + 1);
+  img.loading = index < 3 ? 'eager' : 'lazy';
+  img.decoding = 'async';
 
-  img.addEventListener("load", () => {
+  img.addEventListener('load', () => {
     loadedCount++;
     updateGalleryStatus();
   });
-
-  img.addEventListener("error", () => {
+  img.addEventListener('error', () => {
     failedCount++;
     item.remove();
     updateGalleryStatus();
   });
 
   item.appendChild(img);
-  item.addEventListener("click", () => {
+  item.addEventListener('click', () => {
     if (img.complete && img.naturalWidth > 0) openModal(src);
   });
-
   gallery.appendChild(item);
 });
 
-function updateGalleryStatus() {
-  if (loadedCount > 0) {
-    document.getElementById("galleryHelp").textContent = loadedCount + " fotoğraf yüklendi.";
-  }
-
-  if (loadedCount === 0 && failedCount === imageUrls.length) {
-    gallery.innerHTML = '<div class="gallery-status">Fotoğraflar yüklenemedi. Supabase Storage içindeki "site fotolar" klasörünün herkese açık olduğunu ve dosya adlarını kontrol edin.</div>';
-    document.getElementById("galleryHelp").textContent =
-      "Bu durumda depodaki fotoğrafların herkese açık bağlantılarını kontrol etmemiz gerekiyor.";
-  }
-}
-
-/* Kapak fotoğrafı: bir fotoğraf açılmazsa sıradakini dene */
 let heroIndex = 0;
-
 function setHeroImage(index) {
   if (index >= imageUrls.length) {
-    heroImage.alt = "Kapak fotoğrafı yüklenemedi";
-    heroImage.style.display = "none";
+    heroImage.style.display = 'none';
     return;
   }
-
-  heroImage.style.display = "block";
+  heroImage.style.display = 'block';
   heroImage.src = imageUrls[index];
 }
-
-heroImage.addEventListener("error", () => {
+heroImage.addEventListener('error', () => {
   heroIndex++;
   setHeroImage(heroIndex);
 });
-
 setHeroImage(heroIndex);
 
-/* Randevu tarihini bugünden önce seçilemeyecek şekilde ayarla */
-const appointmentForm = document.getElementById("appointmentForm");
-const dateInput = document.getElementById("tarih");
+/* RANDEVU FORMU WHATSAPP MESAJI HAZIRLAR */
+const appointmentForm = document.getElementById('appointmentForm');
+const dateInput = document.getElementById('tarih');
 const now = new Date();
 
 dateInput.min = [
   now.getFullYear(),
-  String(now.getMonth() + 1).padStart(2, "0"),
-  String(now.getDate()).padStart(2, "0")
-].join("-");
+  String(now.getMonth() + 1).padStart(2, '0'),
+  String(now.getDate()).padStart(2, '0')
+].join('-');
 
-/* Randevu formu WhatsApp mesajı hazırlar */
-appointmentForm.addEventListener("submit", event => {
+appointmentForm.addEventListener('submit', event => {
   event.preventDefault();
 
-  const ad = document.getElementById("ad").value.trim();
-  const telefon = document.getElementById("telefon").value.trim();
+  const ad = document.getElementById('ad').value.trim();
+  const telefon = document.getElementById('telefon').value.trim();
   const tarih = dateInput.value;
-  const cekim = document.getElementById("cekim").value;
-  const not = document.getElementById("not").value.trim();
+  const cekim = document.getElementById('cekim').value;
+  const not = document.getElementById('not').value.trim();
 
   if (!ad || !telefon || !tarih || !cekim) {
-    alert("Lütfen gerekli alanları doldurun.");
+    alert('Lütfen gerekli alanları doldurun.');
     return;
   }
 
-  const formattedDate = new Date(tarih + "T12:00:00").toLocaleDateString("tr-TR");
-
+  const formattedDate = new Date(tarih + 'T12:00:00').toLocaleDateString('tr-TR');
   const message = [
-    "Merhaba Ceyhun Fotoğrafçılık 👋",
-    "",
-    "📸 RANDEVU TALEBİ",
-    "Ad Soyad: " + ad,
-    "Telefon: " + telefon,
-    "Tarih: " + formattedDate,
-    "Paket / Çekim: " + cekim,
-    not ? "Not: " + not : "",
-    "",
-    "Müsaitlik, paket detayları ve kredi kartı/taksit seçenekleri hakkında bilgi almak istiyorum."
-  ].filter(Boolean).join("\n");
+    'Merhaba Ceyhun Fotoğrafçılık 👋',
+    '',
+    '📸 RANDEVU TALEBİ',
+    'Ad Soyad: ' + ad,
+    'Telefon: ' + telefon,
+    'Tarih: ' + formattedDate,
+    'Paket / Çekim: ' + cekim,
+    not ? 'Not: ' + not : '',
+    '',
+    'Müsaitlik ve paket detayları hakkında bilgi almak istiyorum.'
+  ].filter(Boolean).join('\n');
 
   window.open(
-    "https://wa.me/905522369828?text=" + encodeURIComponent(message),
-    "_blank",
-    "noopener,noreferrer"
+    'https://wa.me/905522369828?text=' + encodeURIComponent(message),
+    '_blank',
+    'noopener,noreferrer'
   );
 });
 
-/* Şikâyet ve öneri formunu aç/kapat */
-const feedbackToggle = document.getElementById("feedbackToggle");
-const feedbackForm = document.getElementById("feedbackForm");
-const feedbackMessage = document.getElementById("feedbackMessage");
+/* ŞİKÂYET VE ÖNERİ FORMU */
+const feedbackToggle = document.getElementById('feedbackToggle');
+const feedbackForm = document.getElementById('feedbackForm');
+const feedbackMessage = document.getElementById('feedbackMessage');
 
-feedbackToggle.addEventListener("click", () => {
-  const isOpen = feedbackForm.classList.toggle("open");
-  feedbackToggle.textContent = isOpen ? "FORMU KAPAT" : "FORMU AÇ";
-
+feedbackToggle.addEventListener('click', () => {
+  const isOpen = feedbackForm.classList.toggle('open');
+  feedbackToggle.textContent = isOpen ? 'FORMU KAPAT' : 'FORMU AÇ';
   if (isOpen) {
-    feedbackForm.scrollIntoView({behavior:"smooth",block:"center"});
+    feedbackForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
 
-/* Supabase sikayet_oneri tablosuna gönder */
-feedbackForm.addEventListener("submit", async event => {
+feedbackForm.addEventListener('submit', async event => {
   event.preventDefault();
 
-  const adSoyad = document.getElementById("feedbackAd").value.trim();
-  const telefon = document.getElementById("feedbackTelefon").value.trim();
-  const konu = document.getElementById("feedbackKonu").value;
-  const mesaj = document.getElementById("feedbackMesaj").value.trim();
-  const button = feedbackForm.querySelector(".feedback-send");
+  const adSoyad = document.getElementById('feedbackAd').value.trim();
+  const telefon = document.getElementById('feedbackTelefon').value.trim();
+  const konu = document.getElementById('feedbackKonu').value;
+  const mesaj = document.getElementById('feedbackMesaj').value.trim();
+  const button = feedbackForm.querySelector('.feedback-send');
 
   if (!adSoyad || !konu || !mesaj) {
-    feedbackMessage.textContent = "Lütfen gerekli alanları doldurun.";
-    feedbackMessage.classList.add("show");
+    feedbackMessage.textContent = 'Lütfen gerekli alanları doldurun.';
+    feedbackMessage.classList.add('show');
     return;
   }
 
   button.disabled = true;
-  button.textContent = "GÖNDERİLİYOR...";
-  feedbackMessage.classList.remove("show");
+  button.textContent = 'GÖNDERİLİYOR...';
+  feedbackMessage.classList.remove('show');
 
   try {
-    const response = await fetch(SUPABASE_URL + "/rest/v1/sikayet_oneri", {
-      method: "POST",
+    const response = await fetch(SUPABASE_URL + '/rest/v1/sikayet_oneri', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        apikey: SUPABASE_KEY,
-        Authorization: "Bearer " + SUPABASE_KEY,
-        Prefer: "return=minimal"
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({
-        ad_soyad: adSoyad,
-        telefon: telefon,
-        konu: konu,
-        mesaj: mesaj
-      })
+      body: JSON.stringify({ ad_soyad: adSoyad, telefon, konu, mesaj })
     });
 
     if (!response.ok) {
-      const details = await response.text();
-      throw new Error(details || "Gönderim başarısız");
+      throw new Error(await response.text() || 'Gönderim başarısız');
     }
 
-    feedbackMessage.textContent = "Mesajınız başarıyla gönderildi. Teşekkür ederiz.";
-    feedbackMessage.classList.add("show");
+    feedbackMessage.textContent = 'Mesajınız başarıyla gönderildi. Teşekkür ederiz.';
+    feedbackMessage.classList.add('show');
     feedbackForm.reset();
-
   } catch (error) {
-    feedbackMessage.textContent = "Mesaj gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden ulaşın.";
-    feedbackMessage.classList.add("show");
-    console.error("Şikâyet/öneri gönderim hatası:", error);
-
+    feedbackMessage.textContent = 'Mesaj gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden ulaşın.';
+    feedbackMessage.classList.add('show');
+    console.error('Şikâyet/öneri gönderim hatası:', error);
   } finally {
     button.disabled = false;
-    button.textContent = "GÖNDER";
+    button.textContent = 'GÖNDER';
   }
 });
 </script>
