@@ -1,1297 +1,346 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ceyhun Fotoğrafçılık Studio</title>
-
-<meta name="description"
-content="Ceyhun Fotoğrafçılık Studio — Düğün, nişan, dış çekim ve özel gün fotoğrafçılığı.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ceyhun Studio | Yönetim Paneli</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#faf9f7;
-  color:#171717;
-  line-height:1.6;
-}
-
-img{
-  max-width:100%;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* HEADER */
-
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:50;
-  padding:20px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  transition:.3s;
-  color:white;
-}
-
-header.scrolled{
-  background:rgba(250,249,247,.96);
-  color:#171717;
-  box-shadow:0 5px 30px rgba(0,0,0,.08);
-}
-
-.logo{
-  font-size:18px;
-  font-weight:700;
-  letter-spacing:2px;
-}
-
-nav{
-  display:flex;
-  gap:28px;
-  font-size:14px;
-}
-
-nav a{
-  opacity:.9;
-}
-
-nav a:hover{
-  opacity:1;
-}
-
-/* HERO */
-
-.hero{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:white;
-  overflow:hidden;
-  background:#111;
-}
-
-.hero-bg{
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(
-      rgba(0,0,0,.38),
-      rgba(0,0,0,.55)
-    ),
-    url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A2347.jpg");
-  background-size:cover;
-  background-position:center;
-  transform:scale(1.02);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  padding:30px;
-}
-
-.hero-kicker{
-  text-transform:uppercase;
-  letter-spacing:5px;
-  font-size:12px;
-  margin-bottom:25px;
-  opacity:.9;
-}
-
-.hero h1{
-  font-family:Georgia,serif;
-  font-weight:400;
-  font-size:clamp(48px,8vw,105px);
-  line-height:.95;
-  max-width:1000px;
-}
-
-.hero p{
-  max-width:650px;
-  margin:30px auto;
-  font-size:17px;
-  opacity:.9;
-}
-
-.hero-btn{
-  display:inline-block;
-  padding:14px 28px;
-  border:1px solid rgba(255,255,255,.7);
-  border-radius:50px;
-  transition:.3s;
-}
-
-.hero-btn:hover{
-  background:white;
-  color:#111;
-}
-
-.scroll{
-  position:absolute;
-  bottom:28px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:11px;
-  letter-spacing:3px;
-  opacity:.7;
-}
-
-/* GENERAL */
-
-.section{
-  padding:110px 5%;
-  max-width:1500px;
-  margin:auto;
-}
-
-.section-heading{
-  max-width:700px;
-  margin-bottom:50px;
-}
-
-.eyebrow{
-  text-transform:uppercase;
-  letter-spacing:4px;
-  font-size:11px;
-  color:#777;
-  margin-bottom:15px;
-}
-
-.section h2{
-  font-family:Georgia,serif;
-  font-weight:400;
-  font-size:clamp(38px,5vw,65px);
-  line-height:1;
-}
-
-.section-heading p{
-  color:#777;
-  margin-top:20px;
-}
-
-/* GALLERY */
-
-.gallery{
-  columns:4 250px;
-  column-gap:18px;
-}
-
-.gallery-item{
-  break-inside:avoid;
-  margin-bottom:18px;
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  background:#eee;
-}
-
-.gallery-item img{
-  width:100%;
-  display:block;
-  transition:transform .7s ease;
-}
-
-.gallery-item:hover img{
-  transform:scale(1.035);
-}
-
-.gallery-overlay{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:flex-end;
-  padding:18px;
-  background:linear-gradient(
-    transparent,
-    rgba(0,0,0,.45)
-  );
-  opacity:0;
-  transition:.3s;
-  color:white;
-  font-size:12px;
-}
-
-.gallery-item:hover .gallery-overlay{
-  opacity:1;
-}
-
-/* LOADING */
-
-.gallery-loading{
-  padding:80px 20px;
-  text-align:center;
-  color:#777;
-}
-
-.spinner{
-  width:30px;
-  height:30px;
-  border:2px solid #ddd;
-  border-top-color:#222;
-  border-radius:50%;
-  animation:spin .8s linear infinite;
-  margin:0 auto 20px;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-/* STORY */
-
-.story{
-  background:#171717;
-  color:white;
-}
-
-.story-inner{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:center;
-}
-
-.story-image{
-  height:650px;
-  background:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg")
-  center/cover;
-}
-
-.story-text h2{
-  font-family:Georgia,serif;
-  font-size:clamp(40px,5vw,70px);
-  font-weight:400;
-  line-height:1;
-}
-
-.story-text p{
-  color:#bbb;
-  margin-top:25px;
-  max-width:500px;
-}
-
-/* SERVICES */
-
-.services{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.service{
-  background:white;
-  border:1px solid #e8e6e2;
-  padding:35px;
-  min-height:220px;
-}
-
-.service-number{
-  font-size:12px;
-  color:#999;
-}
-
-.service h3{
-  font-family:Georgia,serif;
-  font-size:27px;
-  font-weight:400;
-  margin-top:30px;
-}
-
-.service p{
-  color:#777;
-  margin-top:12px;
-  font-size:14px;
-}
-
-/* CTA */
-
-.cta{
-  text-align:center;
-  padding:140px 25px;
-  background:#e9e4dc;
-}
-
-.cta h2{
-  font-family:Georgia,serif;
-  font-weight:400;
-  font-size:clamp(42px,6vw,75px);
-  line-height:1;
-}
-
-.cta p{
-  color:#666;
-  max-width:600px;
-  margin:25px auto 35px;
-}
-
-.cta-btn{
-  display:inline-block;
-  background:#171717;
-  color:white;
-  padding:15px 30px;
-  border-radius:50px;
-}
-
-/* CONTACT */
-
-.contact{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:70px;
-  align-items:center;
-}
-
-.contact h2{
-  font-family:Georgia,serif;
-  font-size:60px;
-  font-weight:400;
-  line-height:1;
-}
-
-.contact-info{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.contact-card{
-  background:white;
-  border:1px solid #e5e2dd;
-  padding:22px;
-}
-
-.contact-card small{
-  color:#999;
-  display:block;
-  margin-bottom:5px;
-}
-
-.contact-card strong{
-  font-weight:500;
-}
-
-/* FOOTER */
-
-footer{
-  background:#111;
-  color:white;
-  padding:45px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-footer small{
-  color:#888;
-}
-
-/* WHATSAPP */
-
-.whatsapp{
-  position:fixed;
-  right:25px;
-  bottom:25px;
-  z-index:80;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:#171717;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:23px;
-  box-shadow:0 8px 30px rgba(0,0,0,.2);
-}
-
-/* LIGHTBOX */
-
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.95);
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-}
-
-.lightbox.open{
-  display:flex;
-}
-
-.lightbox img{
-  max-width:90vw;
-  max-height:88vh;
-  object-fit:contain;
-}
-
-.close{
-  position:absolute;
-  top:20px;
-  right:25px;
-  width:45px;
-  height:45px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  color:#111;
-  font-size:25px;
-  cursor:pointer;
-}
-
-.prev,
-.next{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:50px;
-  height:50px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  color:#111;
-  font-size:28px;
-  cursor:pointer;
-}
-
-.prev{
-  left:25px;
-}
-
-.next{
-  right:25px;
-}
-
-.photo-name{
-  position:absolute;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,.65);
-  color:white;
-  padding:8px 15px;
-  border-radius:20px;
-  font-size:12px;
-  max-width:70%;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-  header{
-    padding:18px 5%;
-  }
-
-  nav{
-    gap:12px;
-    font-size:12px;
-  }
-
-  nav a:nth-child(n+4){
-    display:none;
-  }
-
-  .section{
-    padding:80px 5%;
-  }
-
-  .gallery{
-    columns:2 140px;
-    column-gap:10px;
-  }
-
-  .gallery-item{
-    margin-bottom:10px;
-  }
-
-  .story-inner,
-  .contact{
-    grid-template-columns:1fr;
-    gap:40px;
-  }
-
-  .story-image{
-    height:450px;
-  }
-
-  .services{
-    grid-template-columns:1fr;
-  }
-
-  .contact h2{
-    font-size:45px;
-  }
-
-  .prev{
-    left:10px;
-  }
-
-  .next{
-    right:10px;
-  }
-
-  .lightbox{
-    padding:10px;
-  }
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f5f3;color:#191919}
+button,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.wrap{max-width:1100px;margin:auto;padding:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}
+h1{font-size:25px;margin:0}
+.muted{color:#777;font-size:14px}
+.card{background:#fff;border:1px solid #e5e5e1;border-radius:16px;padding:24px;margin-bottom:20px}
+.login{max-width:430px;margin:9vh auto}
+label{display:block;font-size:13px;margin:15px 0 7px}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;background:white}
+.btn{border:0;border-radius:9px;padding:12px 17px;background:#171717;color:#fff}
+.btn:disabled{opacity:.5;cursor:wait}
+.btn-light{background:#eee;color:#171717}
+.btn-danger{background:#a32929}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+#status{margin-top:15px;font-size:14px;white-space:pre-wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:15px}
+.photo{border:1px solid #e7e7e3;border-radius:12px;overflow:hidden;background:#fff}
+.photo img{width:100%;height:190px;object-fit:cover;display:block;background:#eee}
+.photo-info{padding:11px}
+.filename{font-size:12px;overflow-wrap:anywhere;margin-bottom:10px}
+.photo-info button{width:100%}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+#fileInput{padding:10px}
+.notice{font-size:13px;color:#666;line-height:1.6}
+@media(max-width:600px){.wrap{padding:15px}.card{padding:17px}.top{align-items:flex-start}h1{font-size:21px}}
 </style>
 </head>
-
 <body>
+<div class="wrap">
 
-<header id="header">
+  <section id="loginView" class="card login">
+    <h1>CEYHUN STUDIO</h1>
+    <p class="muted">Yönetim paneline giriş yap</p>
 
-  <a href="#home" class="logo">
-    CEYHUN FOTOĞRAFÇILIK
-  </a>
+    <form id="loginForm">
+      <label for="email">E-posta</label>
+      <input id="email" type="email" autocomplete="username"
+             required placeholder="Yönetici e-postan">
 
-  <nav>
-    <a href="#home">Ana Sayfa</a>
-    <a href="#gallery">Galerimiz</a>
-    <a href="#story">Hikâyemiz</a>
-    <a href="#services">Hizmetler</a>
-    <a href="#contact">İletişim</a>
-  </nav>
+      <label for="password">Şifre</label>
+      <input id="password" type="password"
+             autocomplete="current-password" required
+             placeholder="Şifren">
 
-</header>
+      <div class="actions">
+        <button class="btn" id="loginBtn" type="submit">Giriş yap</button>
+      </div>
+    </form>
+    <div id="loginStatus" role="status"></div>
+  </section>
 
-
-<!-- HERO -->
-
-<section class="hero" id="home">
-
-  <div class="hero-bg"></div>
-
-  <div class="hero-content">
-
-    <div class="hero-kicker">
-      Wedding • Story • Emotion
+  <section id="adminView" class="hidden">
+    <div class="top">
+      <div>
+        <h1>CEYHUN STUDIO</h1>
+        <p class="muted">Fotoğraf yönetimi</p>
+      </div>
+      <button class="btn btn-light" id="logoutBtn">Güvenli çıkış</button>
     </div>
 
-    <h1>
-      Her aşkın<br>
-      bir hikâyesi vardır.
-    </h1>
-
-    <p>
-      Biz o hikâyeyi kadraja alıyoruz.
-      Sizin için en özel anları zamansız
-      fotoğraflara dönüştürüyoruz.
-    </p>
-
-    <a href="#gallery" class="hero-btn">
-      Hikâyelerimize Bak
-    </a>
-
-  </div>
-
-  <div class="scroll">
-    AŞAĞI KAYDIR
-  </div>
-
-</section>
-
-
-<!-- GALLERY -->
-
-<section class="section" id="gallery">
-
-  <div class="section-heading">
-
-    <div class="eyebrow">
-      Seçkilerimiz
+    <div class="card">
+      <h2>Fotoğraf yükle</h2>
+      <p class="muted">JPG, PNG, WEBP ve diğer görsel dosyalarını seç.</p>
+      <input id="fileInput" type="file" accept="image/*" multiple>
+      <div class="actions">
+        <button class="btn" id="uploadBtn">Seçilen fotoğrafları yükle</button>
+        <button class="btn btn-light" id="refreshBtn">Galeriyi yenile</button>
+      </div>
+      <div id="status" role="status"></div>
     </div>
 
-    <h2>
-      Aşkın<br>
-      kadrajı.
-    </h2>
-
-    <p>
-      Gerçek hikâyelerden, gerçek duygulardan
-      ve unutulmayacak anlardan bir seçki.
-    </p>
-
-  </div>
-
-
-  <div id="galleryContainer">
-
-    <div class="gallery-loading">
-
-      <div class="spinner"></div>
-
-      Fotoğraflar yükleniyor...
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- STORY -->
-
-<section class="story" id="story">
-
-  <div class="section">
-
-    <div class="story-inner">
-
-      <div class="story-image"></div>
-
-      <div class="story-text">
-
-        <div class="eyebrow">
-          Bizim hikâyemiz
+    <div class="card">
+      <div class="toolbar">
+        <div>
+          <h2>Mevcut fotoğraflar</h2>
+          <p class="muted" id="photoCount">Galeri hazırlanıyor...</p>
         </div>
-
-        <h2>
-          Sadece<br>
-          fotoğraf<br>
-          çekmiyoruz.
-        </h2>
-
-        <p>
-          Bir bakışı, bir gülüşü, bir dokunuşu
-          ve o günün hissettirdiği her şeyi
-          hatırlanabilir hale getiriyoruz.
-        </p>
-
-        <p>
-          Çünkü yıllar sonra fotoğraflara
-          baktığınızda sadece nasıl göründüğünüzü
-          değil, o an ne hissettiğinizi de
-          hatırlamanızı istiyoruz.
-        </p>
-
       </div>
-
+      <div id="gallery" class="grid" style="margin-top:20px"></div>
     </div>
-
-  </div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section class="section" id="services">
-
-  <div class="section-heading">
-
-    <div class="eyebrow">
-      Hizmetler
-    </div>
-
-    <h2>
-      Sizin hikâyeniz,<br>
-      bizim kadrajımız.
-    </h2>
-
-  </div>
-
-
-  <div class="services">
-
-    <div class="service">
-
-      <div class="service-number">
-        01
-      </div>
-
-      <h3>
-        Düğün
-      </h3>
-
-      <p>
-        Düğününüzün en özel anlarını
-        doğal ve zamansız karelerle
-        ölümsüzleştiriyoruz.
-      </p>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="service-number">
-        02
-      </div>
-
-      <h3>
-        Dış Çekim
-      </h3>
-
-      <p>
-        Size özel mekanlarda, doğal ışık
-        ve özgün hikâyeler eşliğinde
-        romantik çekimler.
-      </p>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="service-number">
-        03
-      </div>
-
-      <h3>
-        Nişan & Özel Gün
-      </h3>
-
-      <p>
-        Hayatınızdaki önemli anları
-        sade, zarif ve size özel
-        fotoğraflarla saklıyoruz.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section class="cta">
-
-  <h2>
-    Hikâyenizi<br>
-    birlikte anlatalım.
-  </h2>
-
-  <p>
-    Tarihinizi belirleyin, gerisini bize bırakın.
-  </p>
-
-  <a
-    class="cta-btn"
-    href="https://wa.me/905522369828"
-    target="_blank">
-    WhatsApp'tan Ulaş
-  </a>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section class="section" id="contact">
-
-  <div class="contact">
-
-    <div>
-
-      <div class="eyebrow">
-        İletişim
-      </div>
-
-      <h2>
-        Bir kahve<br>
-        içelim.
-      </h2>
-
-    </div>
-
-
-    <div class="contact-info">
-
-      <div class="contact-card">
-
-        <small>
-          WhatsApp
-        </small>
-
-        <strong>
-          Çekim ve fiyat bilgisi için yazın
-        </strong>
-
-      </div>
-
-
-      <div class="contact-card">
-
-        <small>
-          Instagram
-        </small>
-
-        <strong>
-          @ceyhunfotografcilik
-        </strong>
-
-      </div>
-
-
-      <div class="contact-card">
-
-        <small>
-          Çalışma
-        </small>
-
-        <strong>
-          Düğün • Nişan • Dış Çekim
-        </strong>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<footer>
-
-  <strong>
-    CEYHUN FOTOĞRAFÇILIK
-  </strong>
-
-  <small>
-    © 2026 Tüm hakları saklıdır.
-  </small>
-
-</footer>
-
-
-<!-- WHATSAPP -->
-
-<a
-  class="whatsapp"
-  href="https://wa.me/905000000000"
-  target="_blank"
-  aria-label="WhatsApp">
-  ◉
-</a>
-
-
-<!-- LIGHTBOX -->
-
-<div id="lightbox" class="lightbox">
-
-  <button
-    class="close"
-    onclick="closeLightbox()">
-    ×
-  </button>
-
-  <button
-    class="prev"
-    onclick="previousPhoto()">
-    ‹
-  </button>
-
-  <img
-    id="lightboxImage"
-    src=""
-    alt="">
-
-  <button
-    class="next"
-    onclick="nextPhoto()">
-    ›
-  </button>
-
-  <div
-    id="photoName"
-    class="photo-name">
-  </div>
-
+    <p class="notice">
+      Bu panel yalnızca yönetici olarak yetkilendirilen hesabı kabul eder.
+      Fotoğraf yükleme ve silme işlemleri için Supabase Storage izinleri de
+      doğru yapılandırılmalıdır.
+    </p>
+  </section>
 </div>
 
-
 <script>
+const SUPABASE_URL = "https://nzriewxchkcfeknkbwuu.supabase.co";
+const SUPABASE_KEY = "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+const BUCKET = "site fotolar";
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const SUPABASE_URL =
-"https://nzriewxchkcfeknkbwuu.supabase.co";
+const $ = id => document.getElementById(id);
+let currentUser = null;
+let busy = false;
 
-/*
-   BURAYA DAHA ÖNCE KULLANDIĞIN
-   SUPABASE PUBLISHABLE KEY'İNİ KOY.
+function message(text) {
+  $("status").textContent = text;
+}
+function loginMessage(text) {
+  $("loginStatus").textContent = text;
+}
+function setBusy(value) {
+  busy = value;
+  $("uploadBtn").disabled = value;
+  $("refreshBtn").disabled = value;
+  $("logoutBtn").disabled = value;
+}
+function showLogin() {
+  $("loginView").classList.remove("hidden");
+  $("adminView").classList.add("hidden");
+}
+function showAdmin() {
+  $("loginView").classList.add("hidden");
+  $("adminView").classList.remove("hidden");
+}
 
-   Bana göndermene gerek yok.
-*/
+async function verifyAdmin(user) {
+  const { data, error } = await db
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
 
-const SUPABASE_KEY =
-"sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+  if (error) throw error;
+  return !!data;
+}
 
-
-const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-
-const BUCKET =
-"site fotolar";
-
-
-let galleryPhotos = [];
-
-let currentPhoto = 0;
-
-
-/* =====================================================
-   FOTOĞRAFLARI SUPABASE'DEN GETİR
-===================================================== */
-
-async function loadGallery(){
-
-  const container =
-    document.getElementById(
-      "galleryContainer"
-    );
-
-  try{
-
-    const {
-      data,
-      error
-    } = await supabaseClient
-      .storage
-      .from(BUCKET)
-      .list("",{
-        limit:1000,
-        offset:0,
-        sortBy:{
-          column:"name",
-          order:"asc"
-        }
-      });
-
-
-    if(error)
-      throw error;
-
-
-    galleryPhotos =
-      data.filter(file=>{
-
-        if(!file.name)
-          return false;
-
-        const ext =
-          file.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-        return [
-          "jpg",
-          "jpeg",
-          "png",
-          "webp",
-          "gif",
-          "avif"
-        ].includes(ext);
-
-      });
-
-
-    if(!galleryPhotos.length){
-
-      container.innerHTML = `
-        <div class="gallery-loading">
-          Henüz fotoğraf bulunamadı.
-        </div>
-      `;
-
+async function enterAdmin(user) {
+  try {
+    const allowed = await verifyAdmin(user);
+    if (!allowed) {
+      await db.auth.signOut();
+      currentUser = null;
+      showLogin();
+      loginMessage("Bu hesap yönetici olarak yetkilendirilmemiş.");
       return;
     }
+    currentUser = user;
+    showAdmin();
+    loginMessage("");
+    await loadGallery();
+  } catch (error) {
+    showLogin();
+    loginMessage("Yönetici kontrolü yapılamadı: " + error.message);
+  }
+}
 
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  $("loginBtn").disabled = true;
+  loginMessage("Giriş kontrol ediliyor...");
 
-    let html =
-      `<div class="gallery">`;
+  try {
+    const { data, error } = await db.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    });
+    if (error) throw error;
+    await enterAdmin(data.user);
+  } catch (error) {
+    loginMessage("Giriş başarısız: " + error.message);
+  } finally {
+    $("loginBtn").disabled = false;
+  }
+});
 
+$("logoutBtn").addEventListener("click", async () => {
+  if (busy) return;
+  const { error } = await db.auth.signOut();
+  currentUser = null;
+  showLogin();
+  loginMessage(error ? error.message : "Güvenli çıkış yapıldı.");
+});
 
-    galleryPhotos.forEach(
-      (photo,index)=>{
+async function loadGallery() {
+  if (!currentUser) return;
+  message("Fotoğraflar getiriliyor...");
+  $("gallery").replaceChildren();
+  $("photoCount").textContent = "Yükleniyor...";
 
-        const {
-          data:urlData
-        } =
-          supabaseClient
-            .storage
-            .from(BUCKET)
-            .getPublicUrl(
-              photo.name
-            );
+  const { data, error } = await db.storage
+    .from(BUCKET)
+    .list("", {
+      limit: 1000,
+      offset: 0,
+      sortBy: { column: "name", order: "asc" }
+    });
 
-
-        html += `
-
-          <div
-            class="gallery-item"
-            onclick="openLightbox(${index})">
-
-            <img
-              src="${urlData.publicUrl}"
-              alt="Ceyhun Fotoğrafçılık"
-              loading="lazy">
-
-            <div class="gallery-overlay">
-              Ceyhun Fotoğrafçılık
-            </div>
-
-          </div>
-
-        `;
-
-      }
-    );
-
-
-    html += `</div>`;
-
-
-    container.innerHTML =
-      html;
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    container.innerHTML = `
-
-      <div class="gallery-loading">
-
-        <strong>
-          Fotoğraflar yüklenemedi.
-        </strong>
-
-        <p style="margin-top:10px;">
-          Lütfen daha sonra tekrar deneyin.
-        </p>
-
-      </div>
-
-    `;
-
+  if (error) {
+    message("Galeri alınamadı: " + error.message);
+    $("photoCount").textContent = "Fotoğraflar alınamadı";
+    return;
   }
 
-}
+  const photos = (data || []).filter(file =>
+    file.name &&
+    /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(file.name)
+  );
 
+  $("photoCount").textContent = photos.length + " fotoğraf";
+  message("");
 
-/* =====================================================
-   LIGHTBOX
-===================================================== */
-
-function openLightbox(index){
-
-  currentPhoto =
-    index;
-
-  updateLightbox();
-
-  document
-    .getElementById("lightbox")
-    .classList
-    .add("open");
-
-}
-
-
-function updateLightbox(){
-
-  const photo =
-    galleryPhotos[currentPhoto];
-
-  if(!photo)
+  if (!photos.length) {
+    $("gallery").textContent = "Henüz fotoğraf bulunamadı.";
     return;
+  }
 
-
-  const {
-    data:urlData
-  } =
-    supabaseClient
-      .storage
+  for (const photo of photos) {
+    const { data: publicData } = db.storage
       .from(BUCKET)
-      .getPublicUrl(
-        photo.name
-      );
+      .getPublicUrl(photo.name);
 
+    const card = document.createElement("article");
+    card.className = "photo";
 
-  document
-    .getElementById(
-      "lightboxImage"
-    )
-    .src =
-      urlData.publicUrl;
+    const img = document.createElement("img");
+    img.src = publicData.publicUrl;
+    img.alt = photo.name;
+    img.loading = "lazy";
 
+    const info = document.createElement("div");
+    info.className = "photo-info";
 
-  document
-    .getElementById(
-      "photoName"
-    )
-    .textContent =
-      photo.name;
+    const filename = document.createElement("div");
+    filename.className = "filename";
+    filename.textContent = photo.name;
 
-}
+    const del = document.createElement("button");
+    del.className = "btn btn-danger";
+    del.textContent = "Fotoğrafı sil";
+    del.addEventListener("click", () => deletePhoto(photo.name));
 
-
-function closeLightbox(){
-
-  document
-    .getElementById(
-      "lightbox"
-    )
-    .classList
-    .remove("open");
-
-}
-
-
-function nextPhoto(){
-
-  if(!galleryPhotos.length)
-    return;
-
-  currentPhoto++;
-
-  if(
-    currentPhoto >=
-    galleryPhotos.length
-  )
-    currentPhoto = 0;
-
-  updateLightbox();
-
-}
-
-
-function previousPhoto(){
-
-  if(!galleryPhotos.length)
-    return;
-
-  currentPhoto--;
-
-  if(currentPhoto < 0)
-    currentPhoto =
-      galleryPhotos.length - 1;
-
-  updateLightbox();
-
-}
-
-
-/* =====================================================
-   KLAVYE
-===================================================== */
-
-document.addEventListener(
-  "keydown",
-  event=>{
-
-    const lightbox =
-      document.getElementById(
-        "lightbox"
-      );
-
-
-    if(
-      !lightbox.classList
-        .contains("open")
-    )
-      return;
-
-
-    if(event.key === "Escape")
-      closeLightbox();
-
-
-    if(event.key === "ArrowRight")
-      nextPhoto();
-
-
-    if(event.key === "ArrowLeft")
-      previousPhoto();
-
+    info.append(filename, del);
+    card.append(img, info);
+    $("gallery").append(card);
   }
-);
+}
 
+async function deletePhoto(name) {
+  if (!currentUser || busy) return;
+  if (!confirm('"' + name + '" fotoğrafını kalıcı olarak silmek istiyor musun?')) return;
 
-/* =====================================================
-   HEADER
-===================================================== */
+  setBusy(true);
+  message("Siliniyor...");
 
-window.addEventListener(
-  "scroll",
-  ()=>{
-
-    const header =
-      document.getElementById(
-        "header"
-      );
-
-
-    if(window.scrollY > 50)
-      header.classList.add(
-        "scrolled"
-      );
-
-    else
-      header.classList.remove(
-        "scrolled"
-      );
-
+  try {
+    const { error } = await db.storage.from(BUCKET).remove([name]);
+    if (error) throw error;
+    message("Fotoğraf silindi.");
+    await loadGallery();
+  } catch (error) {
+    message("Silme başarısız: " + error.message);
+  } finally {
+    setBusy(false);
   }
-);
+}
 
+$("uploadBtn").addEventListener("click", async () => {
+  if (!currentUser || busy) return;
 
-/* =====================================================
-   BAŞLAT
-===================================================== */
+  const files = Array.from($("fileInput").files || []);
+  if (!files.length) {
+    message("Önce yüklemek istediğin fotoğrafları seç.");
+    return;
+  }
 
-loadGallery();
+  setBusy(true);
+  let uploaded = 0;
+  const errors = [];
 
+  try {
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) {
+        errors.push(file.name + ": Görsel dosyası değil.");
+        continue;
+      }
+
+      const safeName = file.name
+        .normalize("NFKD")
+        .replace(/[^\w.-]+/g, "_");
+
+      const uniqueName = Date.now() + "_" +
+        Math.random().toString(36).slice(2, 8) + "_" + safeName;
+
+      const { error } = await db.storage
+        .from(BUCKET)
+        .upload(uniqueName, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type
+        });
+
+      if (error) errors.push(file.name + ": " + error.message);
+      else uploaded++;
+    }
+
+    $("fileInput").value = "";
+    message(
+      uploaded + " fotoğraf yüklendi." +
+      (errors.length ? "\nSorunlar:\n" + errors.join("\n") : "")
+    );
+    await loadGallery();
+  } catch (error) {
+    message("Yükleme başarısız: " + error.message);
+  } finally {
+    setBusy(false);
+  }
+});
+
+$("refreshBtn").addEventListener("click", loadGallery);
+
+(async function init() {
+  const { data, error } = await db.auth.getSession();
+  if (error) {
+    loginMessage("Oturum kontrol edilemedi: " + error.message);
+    return;
+  }
+  if (data.session) await enterAdmin(data.session.user);
+})();
+
+db.auth.onAuthStateChange((event, session) => {
+  if (event === "SIGNED_OUT") {
+    currentUser = null;
+    showLogin();
+  }
+});
 </script>
-
 </body>
 </html>
