@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f6f2eb">
-<meta name="description" content="Ceyhun Fotoğrafçılık Studio - Diyarbakır düğün, gelin damat ve dış çekim fotoğrafçılığı.">
+<meta name="description" content="Ceyhun Fotoğrafçılık Studio - Diyarbakır nişan, düğün, gelin damat ve dış çekim fotoğrafçılığı.">
 <title>Ceyhun Fotoğrafçılık Studio | Diyarbakır</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -40,32 +41,94 @@ nav a:hover{color:var(--red)}
 .section-heading{font-size:clamp(32px,4vw,47px);line-height:1.08;letter-spacing:-.025em}
 .muted{color:var(--muted);font-size:13px}
 
-/* PAKETLER SAYFANIN EN ÜSTÜNDE */
+/* FOTOĞRAFLI PAKETLER */
 .packages-area{padding:37px 0 0}
 .packages-intro{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:24px}
 .packages-intro p{max-width:390px;color:var(--muted);font-size:13px}
 .packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.package{min-width:0;display:flex;flex-direction:column;padding:25px 23px;border:1px solid #382f2619;border-radius:21px;background:#fffdf9e8;box-shadow:0 8px 25px #32281a06;transition:transform .2s,box-shadow .2s}
-.package:hover{transform:translateY(-3px);box-shadow:0 15px 35px #32281a12}
-.package.featured{background:#292724;color:white;border-color:#292724;box-shadow:0 16px 38px #29272420}
-.package-label{align-self:flex-start;padding:5px 10px;border-radius:30px;background:#e9dccb;color:#80613e;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
-.featured .package-label{background:var(--red);color:white}
-.package h3{font-size:29px;line-height:1.2}
-.package-desc{font-size:12px;color:var(--muted);min-height:40px;margin-top:6px}
-.featured .package-desc{color:#c4beb7}
-.price{font-size:34px;line-height:1.2;margin:14px 0 3px;white-space:nowrap}
-.price small{font:500 11px "DM Sans",sans-serif;color:#91877b}
-.featured .price small{color:#c4beb7}
-.package-divider{height:1px;background:#322d2818;margin:15px 0}
-.featured .package-divider{background:#ffffff20}
+.package{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-width:0;
+  min-height:480px;
+  display:flex;
+  flex-direction:column;
+  padding:25px 23px;
+  color:#fff;
+  border:1px solid #c7a87570;
+  border-radius:21px;
+  background:#201a16;
+  box-shadow:0 12px 30px #24180f20;
+  transition:transform .3s,box-shadow .3s;
+}
+.package::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-size:cover;
+  background-position:center;
+  transition:transform .5s ease;
+}
+.package::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,#17120c45 0%,#17120c90 42%,#100d0bf5 100%);
+}
+.package:nth-child(1)::before{
+  background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%201%20Instagram%20Post.JPG");
+}
+.package:nth-child(2)::before{
+  background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%203%20Instagram%20Post.JPG");
+}
+.package:nth-child(3)::before{
+  background-image:url("https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/_T2A4971%20Instagram%20Post.jpg");
+}
+.package:hover{transform:translateY(-5px);box-shadow:0 18px 40px #20170f35}
+.package:hover::before{transform:scale(1.05)}
+.package.featured{border-color:#d6b47c;box-shadow:0 16px 38px #29272425}
+.package-label{
+  align-self:flex-start;
+  padding:5px 10px;
+  border-radius:30px;
+  background:#f2dfc3;
+  color:#49331f;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.package.featured .package-label{background:#a68155;color:white}
+.package h3{font-size:28px;line-height:1.2}
+.package-desc{font-size:12px;color:#f3e9dd;min-height:58px;margin-top:7px}
+.old-price{font-size:13px;color:#f2d9c7;text-decoration:line-through;text-decoration-thickness:1.5px;margin-top:15px}
+.price{font-size:35px;line-height:1.2;margin:1px 0 3px;white-space:nowrap;color:#fff}
+.price small{font:500 11px "DM Sans",sans-serif;color:#e7d7c2}
+.saving{font-size:10px;font-weight:700;color:#e7c48f;margin-top:3px}
+.package-divider{height:1px;background:#ffffff40;margin:15px 0}
 .package ul{list-style:none;display:grid;gap:9px;margin-bottom:22px}
-.package li{position:relative;padding-left:19px;color:#625c55;font-size:12px}
-.package li:before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700}
-.featured li{color:#e1dbd4}
-.package-button{display:flex;justify-content:center;align-items:center;text-align:center;min-height:46px;margin-top:auto;padding:10px;border-radius:28px;font-size:11px;font-weight:700;transition:background .2s}
-.package-button:hover,.btn-red:hover,.submit:hover,.feedback-button:hover{background:var(--red-dark)}
-.featured .package-button{background:#fff;color:var(--dark)}
-.featured .package-button:hover{background:#eadfce}
+.package li{position:relative;padding-left:19px;color:#f3e9dd;font-size:12px}
+.package li:before{content:"✓";position:absolute;left:0;color:#d9b77e;font-weight:700}
+.package-button{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  min-height:46px;
+  margin-top:auto;
+  padding:10px;
+  border-radius:28px;
+  background:#a68155;
+  color:white;
+  font-size:11px;
+  font-weight:700;
+  transition:background .2s;
+}
+.package-button:hover{background:#89663f}
 .payment-note{margin:17px 0 0;padding:15px 18px;border-radius:13px;background:#e9dfd1;color:#584738;text-align:center;font-size:12px}
 .payment-note strong{color:var(--red-dark)}
 .payment-note a{text-decoration:underline;font-weight:700}
@@ -88,6 +151,8 @@ nav a:hover{color:var(--red)}
 section.content-section{padding-top:55px;padding-bottom:55px}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:25px}
 .section-head p{max-width:390px}
+
+/* ÇEKİM HİZMETLERİ */
 .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .service{position:relative;isolation:isolate;overflow:hidden;min-height:360px;padding:19px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:20px;color:white;background:#51483e}
 .service:before{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .5s}
@@ -125,14 +190,16 @@ form{display:grid;gap:11px}
 .field select option{color:#222;background:white}
 .field textarea{min-height:80px;resize:vertical}
 .submit{border:0;min-height:47px;border-radius:30px;font-size:10px;font-weight:700;cursor:pointer}
+.submit:hover{background:var(--red-dark)}
 
-/* ŞİKAYET */
+/* ŞİKÂYET VE ÖNERİ */
 .feedback-section{padding-bottom:55px}
 .feedback-box{padding:27px;background:#fffdf9;border:1px solid #382d2019;border-radius:20px}
 .feedback-head{display:flex;justify-content:space-between;align-items:center;gap:20px}
 .feedback-title{font-size:29px}
 .feedback-subtitle{margin-top:5px;color:var(--muted);font-size:12px}
 .feedback-button{border:0;padding:12px 16px;border-radius:25px;font-size:10px;font-weight:700;cursor:pointer}
+.feedback-button:hover{background:var(--red-dark)}
 .feedback-form{display:none;margin-top:20px}
 .feedback-form.open{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .feedback-form .full,.feedback-message,.feedback-send{grid-column:1/-1}
@@ -142,6 +209,9 @@ form{display:grid;gap:11px}
 .feedback-message{display:none;padding:12px;border-radius:10px;background:#eee7dd;color:#655b50;font-size:12px}
 .feedback-message.show{display:block}
 .feedback-send{min-height:45px;border:0;border-radius:25px;background:var(--red);color:white;font-size:11px;font-weight:700;cursor:pointer}
+.feedback-send:hover{background:var(--red-dark)}
+.feedback-send:disabled{opacity:.6;cursor:wait}
+
 footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;color:#7c756d;font-size:11px}
 .footer-links{display:flex;gap:16px}
 .whatsapp{position:fixed;right:18px;bottom:18px;z-index:90;padding:13px 17px;border-radius:30px;background:#218c50;color:white;font-size:12px;font-weight:700;box-shadow:0 10px 30px #164e302b}
@@ -152,35 +222,44 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 .close-modal{position:fixed;top:18px;right:20px;width:42px;height:42px;border-radius:50%;border:1px solid #ffffff55;background:#ffffff19;color:white;font-size:25px;cursor:pointer}
 
 @media(max-width:800px){
- nav{gap:12px}nav a:not(.nav-cta){display:none}
- .packages-intro{display:block}.packages-intro p{margin-top:12px}
- .hero{grid-template-columns:1fr;gap:23px;padding-top:32px}
- .hero-image{height:380px;order:-1}
- .packages{grid-template-columns:1fr}
- .package{padding:23px}
- .package-desc{min-height:0}
- .services{grid-template-columns:1fr}
- .service{min-height:330px}
- .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
- .gallery-item{height:260px}
- .section-head{display:block}.section-head p{margin-top:12px}
- .appointment-box{grid-template-columns:1fr;padding:27px 21px;gap:25px}
+  nav{gap:12px}
+  nav a:not(.nav-cta){display:none}
+  .packages-intro{display:block}
+  .packages-intro p{margin-top:12px}
+  .hero{grid-template-columns:1fr;gap:23px;padding-top:32px}
+  .hero-image{height:380px;order:-1}
+  .packages{grid-template-columns:1fr}
+  .package{min-height:0;padding:25px}
+  .package-desc{min-height:0}
+  .services{grid-template-columns:1fr}
+  .service{min-height:330px}
+  .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gallery-item{height:260px}
+  .section-head{display:block}
+  .section-head p{margin-top:12px}
+  .appointment-box{grid-template-columns:1fr;padding:27px 21px;gap:25px}
 }
 @media(max-width:480px){
- .wrap{width:calc(100% - 28px)}
- .nav{min-height:65px}.logo{font-size:12px}.nav-cta{font-size:10px;padding:9px 12px}
- .packages-area{padding-top:27px}
- .hero h1{font-size:49px}.hero-image{height:300px}
- .hero-buttons{display:grid}.btn{width:100%}
- .stats{grid-template-columns:repeat(2,1fr)}
- .gallery{gap:7px}.gallery-item{height:200px}
- .appointment-box{padding:23px 16px}
- .feedback-box{padding:20px 15px}
- .feedback-head{display:block}.feedback-button{width:100%;margin-top:15px}
- .feedback-form.open{grid-template-columns:1fr}
- .feedback-form .full,.feedback-message,.feedback-send{grid-column:auto}
- footer{flex-direction:column}
- .whatsapp{right:10px;bottom:10px}
+  .wrap{width:calc(100% - 28px)}
+  .nav{min-height:65px}
+  .logo{font-size:12px}
+  .nav-cta{font-size:10px;padding:9px 12px}
+  .packages-area{padding-top:27px}
+  .hero h1{font-size:49px}
+  .hero-image{height:300px}
+  .hero-buttons{display:grid}
+  .btn{width:100%}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .gallery{gap:7px}
+  .gallery-item{height:200px}
+  .appointment-box{padding:23px 16px}
+  .feedback-box{padding:20px 15px}
+  .feedback-head{display:block}
+  .feedback-button{width:100%;margin-top:15px}
+  .feedback-form.open{grid-template-columns:1fr}
+  .feedback-form .full,.feedback-message,.feedback-send{grid-column:auto}
+  footer{flex-direction:column}
+  .whatsapp{right:10px;bottom:10px}
 }
 </style>
 </head>
@@ -199,43 +278,49 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 </header>
 
 <main>
-<!-- PAKETLER ARTIK İLK BÖLÜMDE -->
 <section class="packages-area wrap" id="paketler">
   <div class="packages-intro">
     <div>
       <div class="eyebrow">Ceyhun Fotoğrafçılık Studio</div>
       <h1 class="section-heading">Size uygun paketi<br>birlikte seçelim.</h1>
     </div>
-    <p>Düğün gününüzü, dış çekiminizi ve albümünüzü bütçenize uygun paketle planlayın. Tarih ve müsaitlik için bize ulaşın.</p>
+    <p>Nişan ve düğün gününüzü, dış çekiminizi ve albümünüzü bütçenize uygun paketle planlayın. Tarih ve müsaitlik için bize ulaşın.</p>
   </div>
 
   <div class="packages">
     <article class="package">
-      <div class="package-label">Başlangıç Paketi</div>
-      <h3>Gold</h3>
-      <p class="package-desc">En güzel anlarınıza odaklanan sade ve şık çekim paketi.</p>
+      <div class="package-label">Nişan Çekimi</div>
+      <h3>Başlangıç Paketi</h3>
+      <p class="package-desc">Nişan gününüzün heyecanını ve mutluluğunu zarif karelerle ölümsüzleştirin.</p>
+      <div class="old-price">14.999 ₺</div>
       <div class="price">11.999 ₺</div>
+      <div class="saving">3.000 ₺ fiyat avantajı</div>
       <div class="package-divider"></div>
       <ul>
-        <li>Gelin & damat çekimi</li>
-        <li>Seçili fotoğrafların düzenlenmesi</li>
+        <li>Nişan çiftine özel fotoğraf çekimi</li>
+        <li>Seçilen fotoğrafların düzenlenmesi</li>
         <li>Profesyonel renk düzenleme</li>
         <li>Dijital fotoğraf teslimi</li>
         <li>Büyük albüm</li>
       </ul>
-      <a class="package-button" target="_blank" rel="noopener noreferrer" href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20Gold%20Paket%20(11.999%20TL)%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">Gold Paket İçin Bilgi Al</a>
+      <a class="package-button" target="_blank" rel="noopener noreferrer"
+         href="https://wa.me/905522369828?text=Merhaba%2C%20Nisan%20Baslangic%20Paketi%20(11.999%20TL)%20hakkinda%20bilgi%20almak%20istiyorum.">
+        Nişan Paketi İçin Bilgi Al
+      </a>
     </article>
 
     <article class="package featured">
-      <div class="package-label">En Çok Tercih Edilen</div>
-      <h3>Premium</h3>
-      <p class="package-desc">Düğün hikâyenizi çekimden albüme kadar bir arada sunan paket.</p>
+      <div class="package-label">Düğün Çekimi</div>
+      <h3>Premium Paket</h3>
+      <p class="package-desc">Düğün hikâyenizi çekimden albüme kadar bir arada sunan kapsamlı paket.</p>
+      <div class="old-price">18.999 ₺</div>
       <div class="price">15.999 ₺</div>
+      <div class="saving">3.000 ₺ fiyat avantajı</div>
       <div class="package-divider"></div>
       <ul>
         <li>Düğün günü fotoğraf çekimi</li>
         <li>Kına ve düğün dış çekimi</li>
-        <li>Gelin & damat özel çekimi</li>
+        <li>Gelin ve damada özel çekim</li>
         <li>Profesyonel renk düzenleme</li>
         <li>Özenli fotoğraf seçimi</li>
         <li>Dijital fotoğraf teslimi</li>
@@ -243,14 +328,19 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
         <li>2 aile albümü</li>
         <li>1 büyük kanvas tablo</li>
       </ul>
-      <a class="package-button" target="_blank" rel="noopener noreferrer" href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20Premium%20Paket%20(15.999%20TL)%20i%C3%A7in%20bilgi%20almak%20istiyorum.">Premium Paket İçin Bilgi Al</a>
+      <a class="package-button" target="_blank" rel="noopener noreferrer"
+         href="https://wa.me/905522369828?text=Merhaba%2C%20Dugun%20Premium%20Paketi%20(15.999%20TL)%20hakkinda%20bilgi%20almak%20istiyorum.">
+        Premium Paket İçin Bilgi Al
+      </a>
     </article>
 
     <article class="package">
-      <div class="package-label">Size Özel</div>
-      <h3>Özel</h3>
-      <p class="package-desc">Lüks albüm ve ek detaylarla kişiye özel kapsamlı deneyim.</p>
+      <div class="package-label">Kapsamlı Düğün Çekimi</div>
+      <h3>Özel Paket</h3>
+      <p class="package-desc">Lüks albüm ve özel detaylarla düğün anılarınızı özenle saklayın.</p>
+      <div class="old-price">25.000 ₺</div>
       <div class="price">20.000 ₺</div>
+      <div class="saving">5.000 ₺ fiyat avantajı</div>
       <div class="package-divider"></div>
       <ul>
         <li>Düğün ve dış çekim</li>
@@ -261,13 +351,19 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
         <li>Büyük lüks kanvas tablo</li>
         <li>Kişiye özel teslim planı</li>
       </ul>
-      <a class="package-button" target="_blank" rel="noopener noreferrer" href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20%C3%96zel%20Paket%20(20.000%20TL)%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">Özel Paket İçin Bilgi Al</a>
+      <a class="package-button" target="_blank" rel="noopener noreferrer"
+         href="https://wa.me/905522369828?text=Merhaba%2C%20Dugun%20Ozel%20Paketi%20(20.000%20TL)%20hakkinda%20bilgi%20almak%20istiyorum.">
+        Özel Paket İçin Bilgi Al
+      </a>
     </article>
   </div>
 
   <div class="payment-note">
     💳 <strong>Kredi kartıyla ödeme ve taksit seçenekleri</strong> için
-    <a target="_blank" rel="noopener noreferrer" href="https://wa.me/905522369828?text=Merhaba%2C%20kredi%20kart%C4%B1yla%20%C3%B6deme%20ve%20taksit%20se%C3%A7enekleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.">WhatsApp'tan bilgi alın.</a>
+    <a target="_blank" rel="noopener noreferrer"
+       href="https://wa.me/905522369828?text=Merhaba%2C%20kredi%20kartiyla%20odeme%20ve%20taksit%20secenekleri%20hakkinda%20bilgi%20almak%20istiyorum.">
+       WhatsApp'tan bilgi alın.
+    </a>
   </div>
 </section>
 
@@ -298,24 +394,28 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 
 <section class="content-section wrap" id="cekimler">
   <div class="section-head">
-    <div><div class="eyebrow">Size uygun çekimi seçin</div><h2 class="section-heading">Hayalinizdeki çekim<br>burada.</h2></div>
-    <p class="muted">İster düğün günü, ister sadece ikinize ait özel bir çekim. Size uygun paketi birlikte belirleyelim.</p>
+    <div>
+      <div class="eyebrow">Size uygun çekimi seçin</div>
+      <h2 class="section-heading">Hayalinizdeki çekim<br>burada.</h2>
+    </div>
+    <p class="muted">İster nişan gününüz, ister düğün günü ya da sadece ikinize ait özel bir çekim. Size uygun paketi birlikte belirleyelim.</p>
   </div>
+
   <div class="services">
     <article class="service">
-      <div class="service-tag">Düğün Günü</div>
-      <h3>Düğün Çekimi</h3>
-      <p>Gününüzün en güzel anlarını samimi ve doğal karelerle ölümsüzleştirelim.</p>
+      <div class="service-tag">Nişan & Söz</div>
+      <h3>Nişan Çekimi</h3>
+      <p>Nişan gününüzün mutluluğunu, heyecanını ve en güzel anlarını ölümsüzleştirelim.</p>
       <a href="#paketler" class="service-link">Paketleri İncele ↗</a>
     </article>
     <article class="service">
-      <div class="service-tag">Size Özel Konsept</div>
+      <div class="service-tag">Düğün Günü</div>
       <h3>Gelin & Damat</h3>
       <p>Size özel, doğal ve romantik gelin damat fotoğraf çekimleri.</p>
       <a href="#paketler" class="service-link">Paketleri İncele ↗</a>
     </article>
     <article class="service">
-      <div class="service-tag">Özel Anlar</div>
+      <div class="service-tag">Özel Konsept</div>
       <h3>Dış Çekim</h3>
       <p>Sevdiğiniz bir mekânda, doğal ve eğlenceli fotoğraflar.</p>
       <a href="#paketler" class="service-link">Paketleri İncele ↗</a>
@@ -325,7 +425,10 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 
 <section class="content-section wrap" id="fotograflar">
   <div class="section-head">
-    <div><div class="eyebrow">Fotoğraf galerisi</div><h2 class="section-heading">Gerçek anlar.</h2></div>
+    <div>
+      <div class="eyebrow">Fotoğraf galerisi</div>
+      <h2 class="section-heading">Gerçek anlar.</h2>
+    </div>
     <p class="muted">Galerideki fotoğraflara dokunarak büyük görüntüleyebilirsiniz.</p>
   </div>
   <div class="gallery" id="gallery">
@@ -347,22 +450,35 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
     </div>
 
     <form id="appointmentForm">
-      <div class="field"><label for="ad">AD SOYAD</label><input id="ad" type="text" placeholder="Adınız ve soyadınız" required></div>
-      <div class="field"><label for="telefon">TELEFON</label><input id="telefon" type="tel" placeholder="0552 000 00 00" required></div>
-      <div class="field"><label for="tarih">ÇEKİM TARİHİ</label><input id="tarih" type="date" required></div>
-      <div class="field"><label for="cekim">PAKET / ÇEKİM</label>
+      <div class="field">
+        <label for="ad">AD SOYAD</label>
+        <input id="ad" type="text" placeholder="Adınız ve soyadınız" required>
+      </div>
+      <div class="field">
+        <label for="telefon">TELEFON</label>
+        <input id="telefon" type="tel" placeholder="0552 000 00 00" required>
+      </div>
+      <div class="field">
+        <label for="tarih">ÇEKİM TARİHİ</label>
+        <input id="tarih" type="date" required>
+      </div>
+      <div class="field">
+        <label for="cekim">PAKET / ÇEKİM</label>
         <select id="cekim" required>
           <option value="">Paket veya çekim seçin</option>
-          <option value="Gold Paket - 11.999 TL">Gold Paket - 11.999 ₺</option>
-          <option value="Premium Paket - 15.999 TL">Premium Paket - 15.999 ₺</option>
-          <option value="Özel Paket - 20.000 TL">Özel Paket - 20.000 ₺</option>
+          <option value="Nişan Başlangıç Paketi - 11.999 TL">Nişan Başlangıç Paketi - 11.999 ₺</option>
+          <option value="Düğün Premium Paket - 15.999 TL">Düğün Premium Paket - 15.999 ₺</option>
+          <option value="Düğün Özel Paket - 20.000 TL">Düğün Özel Paket - 20.000 ₺</option>
           <option value="Düğün Çekimi">Düğün Çekimi</option>
           <option value="Gelin & Damat Çekimi">Gelin & Damat Çekimi</option>
           <option value="Dış Çekim">Dış Çekim</option>
-          <option value="Nişan / Söz">Nişan / Söz</option>
+          <option value="Nişan / Söz Çekimi">Nişan / Söz Çekimi</option>
         </select>
       </div>
-      <div class="field"><label for="not">NOTUNUZ</label><textarea id="not" placeholder="Özel isteğinizi yazabilirsiniz."></textarea></div>
+      <div class="field">
+        <label for="not">NOTUNUZ</label>
+        <textarea id="not" placeholder="Özel isteğinizi yazabilirsiniz."></textarea>
+      </div>
       <button type="submit" class="submit">WHATSAPP'TAN RANDEVU TALEBİ GÖNDER</button>
     </form>
   </div>
@@ -371,14 +487,36 @@ footer{padding:25px 0 85px;display:flex;justify-content:space-between;gap:15px;c
 <section class="feedback-section wrap">
   <div class="feedback-box">
     <div class="feedback-head">
-      <div><h2 class="feedback-title">Şikâyet & Öneri</h2><p class="feedback-subtitle">Görüşleriniz bizim için değerli.</p></div>
+      <div>
+        <h2 class="feedback-title">Şikâyet & Öneri</h2>
+        <p class="feedback-subtitle">Görüşleriniz bizim için değerli.</p>
+      </div>
       <button type="button" class="feedback-button" id="feedbackToggle">FORMU AÇ</button>
     </div>
+
     <form class="feedback-form" id="feedbackForm">
-      <div class="field"><label for="feedbackAd">AD SOYAD</label><input id="feedbackAd" type="text" placeholder="Adınız ve soyadınız" required></div>
-      <div class="field"><label for="feedbackTelefon">TELEFON</label><input id="feedbackTelefon" type="tel" placeholder="0552 000 00 00"></div>
-      <div class="field full"><label for="feedbackKonu">KONU</label><select id="feedbackKonu" required><option value="">Konu seçin</option><option value="Şikayet">Şikâyet</option><option value="Öneri">Öneri</option><option value="Memnuniyet">Memnuniyet</option><option value="Diğer">Diğer</option></select></div>
-      <div class="field full"><label for="feedbackMesaj">MESAJINIZ</label><textarea id="feedbackMesaj" placeholder="Görüşünüzü yazabilirsiniz." required></textarea></div>
+      <div class="field">
+        <label for="feedbackAd">AD SOYAD</label>
+        <input id="feedbackAd" type="text" placeholder="Adınız ve soyadınız" required>
+      </div>
+      <div class="field">
+        <label for="feedbackTelefon">TELEFON</label>
+        <input id="feedbackTelefon" type="tel" placeholder="0552 000 00 00">
+      </div>
+      <div class="field full">
+        <label for="feedbackKonu">KONU</label>
+        <select id="feedbackKonu" required>
+          <option value="">Konu seçin</option>
+          <option value="Şikayet">Şikâyet</option>
+          <option value="Öneri">Öneri</option>
+          <option value="Memnuniyet">Memnuniyet</option>
+          <option value="Diğer">Diğer</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="feedbackMesaj">MESAJINIZ</label>
+        <textarea id="feedbackMesaj" placeholder="Görüşünüzü yazabilirsiniz." required></textarea>
+      </div>
       <div class="feedback-message" id="feedbackMessage" role="status"></div>
       <button type="submit" class="feedback-send">GÖNDER</button>
     </form>
@@ -429,6 +567,7 @@ const gallery = document.getElementById("gallery");
 const heroImage = document.getElementById("heroImage");
 const modal = document.getElementById("modal");
 const modalImage = document.getElementById("modalImage");
+
 let loadedCount = 0;
 let failedCount = 0;
 
@@ -437,20 +576,24 @@ function openModal(src) {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 }
+
 function closeModal() {
   modal.classList.remove("active");
   modalImage.src = "";
   document.body.style.overflow = "";
 }
+
 document.getElementById("closeModal").addEventListener("click", closeModal);
+
 modal.addEventListener("click", event => {
   if (event.target === modal) closeModal();
 });
+
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") closeModal();
 });
 
-/* Fotoğrafları doğrudan bilinen dosya adreslerinden yükle. */
+/* Supabase fotoğraflarını galeriye yükle */
 gallery.replaceChildren();
 
 imageUrls.forEach((src, index) => {
@@ -478,14 +621,15 @@ imageUrls.forEach((src, index) => {
   item.addEventListener("click", () => {
     if (img.complete && img.naturalWidth > 0) openModal(src);
   });
+
   gallery.appendChild(item);
 });
 
 function updateGalleryStatus() {
   if (loadedCount > 0) {
-    const help = document.getElementById("galleryHelp");
-    help.textContent = loadedCount + " fotoğraf yüklendi.";
+    document.getElementById("galleryHelp").textContent = loadedCount + " fotoğraf yüklendi.";
   }
+
   if (loadedCount === 0 && failedCount === imageUrls.length) {
     gallery.innerHTML = '<div class="gallery-status">Fotoğraflar yüklenemedi. Supabase Storage içindeki "site fotolar" klasörünün herkese açık olduğunu ve dosya adlarını kontrol edin.</div>';
     document.getElementById("galleryHelp").textContent =
@@ -493,33 +637,39 @@ function updateGalleryStatus() {
   }
 }
 
-/* Kapak fotoğrafı: ilk fotoğraf açılamazsa sıradakini dene. */
+/* Kapak fotoğrafı: bir fotoğraf açılmazsa sıradakini dene */
 let heroIndex = 0;
+
 function setHeroImage(index) {
   if (index >= imageUrls.length) {
     heroImage.alt = "Kapak fotoğrafı yüklenemedi";
     heroImage.style.display = "none";
     return;
   }
+
   heroImage.style.display = "block";
   heroImage.src = imageUrls[index];
 }
+
 heroImage.addEventListener("error", () => {
   heroIndex++;
   setHeroImage(heroIndex);
 });
+
 setHeroImage(heroIndex);
 
-/* Randevu bilgilerini WhatsApp mesajına dönüştür. */
+/* Randevu tarihini bugünden önce seçilemeyecek şekilde ayarla */
 const appointmentForm = document.getElementById("appointmentForm");
 const dateInput = document.getElementById("tarih");
 const now = new Date();
+
 dateInput.min = [
   now.getFullYear(),
   String(now.getMonth() + 1).padStart(2, "0"),
   String(now.getDate()).padStart(2, "0")
 ].join("-");
 
+/* Randevu formu WhatsApp mesajı hazırlar */
 appointmentForm.addEventListener("submit", event => {
   event.preventDefault();
 
@@ -535,6 +685,7 @@ appointmentForm.addEventListener("submit", event => {
   }
 
   const formattedDate = new Date(tarih + "T12:00:00").toLocaleDateString("tr-TR");
+
   const message = [
     "Merhaba Ceyhun Fotoğrafçılık 👋",
     "",
@@ -548,10 +699,14 @@ appointmentForm.addEventListener("submit", event => {
     "Müsaitlik, paket detayları ve kredi kartı/taksit seçenekleri hakkında bilgi almak istiyorum."
   ].filter(Boolean).join("\n");
 
-  window.open("https://wa.me/905522369828?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+  window.open(
+    "https://wa.me/905522369828?text=" + encodeURIComponent(message),
+    "_blank",
+    "noopener,noreferrer"
+  );
 });
 
-/* Şikâyet ve öneri formunu aç/kapat. */
+/* Şikâyet ve öneri formunu aç/kapat */
 const feedbackToggle = document.getElementById("feedbackToggle");
 const feedbackForm = document.getElementById("feedbackForm");
 const feedbackMessage = document.getElementById("feedbackMessage");
@@ -559,10 +714,13 @@ const feedbackMessage = document.getElementById("feedbackMessage");
 feedbackToggle.addEventListener("click", () => {
   const isOpen = feedbackForm.classList.toggle("open");
   feedbackToggle.textContent = isOpen ? "FORMU KAPAT" : "FORMU AÇ";
-  if (isOpen) feedbackForm.scrollIntoView({behavior:"smooth",block:"center"});
+
+  if (isOpen) {
+    feedbackForm.scrollIntoView({behavior:"smooth",block:"center"});
+  }
 });
 
-/* Mevcut Supabase şikâyet/öneri tablosuna gönder. */
+/* Supabase sikayet_oneri tablosuna gönder */
 feedbackForm.addEventListener("submit", async event => {
   event.preventDefault();
 
@@ -607,10 +765,12 @@ feedbackForm.addEventListener("submit", async event => {
     feedbackMessage.textContent = "Mesajınız başarıyla gönderildi. Teşekkür ederiz.";
     feedbackMessage.classList.add("show");
     feedbackForm.reset();
+
   } catch (error) {
     feedbackMessage.textContent = "Mesaj gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden ulaşın.";
     feedbackMessage.classList.add("show");
     console.error("Şikâyet/öneri gönderim hatası:", error);
+
   } finally {
     button.disabled = false;
     button.textContent = "GÖNDER";
