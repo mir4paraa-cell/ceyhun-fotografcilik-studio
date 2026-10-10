@@ -12,13 +12,14 @@ body{margin:0;font-family:Arial,sans-serif;background:#f5f5f3;color:#191919}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
-.wrap{max-width:1400px;margin:auto;padding:24px}
-.top,.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.wrap{max-width:1250px;margin:auto;padding:24px}
+.top,.toolbar,.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
 .top{margin-bottom:25px}
 h1{font-size:25px;margin:0}
 h2{font-size:20px;margin:0 0 12px}
 h3{font-size:16px}
-.muted{color:#777;font-size:14px}
+p{line-height:1.5}
+.muted{color:#777;font-size:13px}
 .card{background:white;border:1px solid #e5e5e1;border-radius:16px;padding:22px;margin-bottom:20px}
 .login{max-width:430px;margin:9vh auto}
 label{display:block;font-size:13px;margin:12px 0 6px}
@@ -27,27 +28,29 @@ textarea{min-height:75px;resize:vertical}
 .btn{border:0;border-radius:9px;padding:11px 15px;background:#171717;color:white}
 .btn-light{background:#eee;color:#171717}
 .btn-danger{background:#a32929;color:white}
-.btn-success{background:#176b43;color:white}
-.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:disabled{opacity:.5;cursor:wait}
 .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .tab{background:#e9e9e5;color:#222;border:0;padding:12px 15px;border-radius:9px}
 .tab.active{background:#171717;color:white}
-#status,#loginStatus,#reservationStatus,#photoStatus{margin-top:12px;font-size:14px;white-space:pre-wrap;line-height:1.5}
+#status,#loginStatus,#reservationStatus,#photoStatus{margin-top:12px;font-size:13px;white-space:pre-wrap;line-height:1.5}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
 .stat{background:white;border:1px solid #e5e5e1;border-radius:14px;padding:18px}
-.stat strong{display:block;font-size:25px;margin-top:8px}
+.stat strong{display:block;font-size:25px;margin-top:8px;overflow-wrap:anywhere}
 .table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:1200px}
+table{width:100%;border-collapse:collapse;min-width:900px}
 th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #eee;vertical-align:top;font-size:13px}
 th{color:#666;font-weight:600;background:#fafaf8}
-td select,td input{min-width:120px;padding:8px;font-size:13px}
+td select,td input{min-width:110px;padding:8px;font-size:13px}
 .customer{font-weight:bold;margin-bottom:5px}
-.small{font-size:12px;color:#777;line-height:1.5;overflow-wrap:anywhere}
+.small{font-size:12px;color:#777;line-height:1.55;overflow-wrap:anywhere;margin-top:4px}
 .pill{display:inline-block;border-radius:30px;background:#eee;padding:5px 9px;font-size:12px}
-.balance{font-weight:bold;margin-top:8px;padding:7px;border-radius:7px;background:#f4f4f1}
-.balance.paid{background:#e5f5eb;color:#176b43}
-.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
+.pill.ok{background:#e2f3e7;color:#206c39}
+.pill.no{background:#f8e8e8;color:#8d3037}
+.price-line{font-size:12px;line-height:1.65;margin-top:5px}
+.price-line strong{font-size:14px}
+.extra-line{display:inline-block;margin:3px 3px 0 0;padding:4px 7px;background:#eee8dd;border-radius:5px;font-size:11px}
+.calendar-head{margin-bottom:16px}
 .calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
 .day-name{text-align:center;color:#777;font-size:12px;padding:8px 0}
 .day{min-height:95px;background:#fafaf8;border:1px solid #eee;border-radius:8px;padding:7px;font-size:13px;overflow-wrap:anywhere}
@@ -62,13 +65,14 @@ td select,td input{min-width:120px;padding:8px;font-size:13px}
 .filename{font-size:12px;overflow-wrap:anywhere;margin-bottom:10px}
 .photo-info button{width:100%}
 .notice{font-size:12px;color:#777;line-height:1.6}
-.row-actions{display:flex;flex-direction:column;gap:7px;min-width:105px}
-.row-actions .btn{font-size:12px;padding:9px}
 @media(max-width:600px){
- .wrap{padding:13px}.card{padding:15px}h1{font-size:21px}
- .day{min-height:65px;padding:4px;font-size:11px}
- .event{font-size:10px;padding:3px}
- .calendar{gap:3px}
+.wrap{padding:13px}
+.card{padding:15px}
+h1{font-size:21px}
+.day{min-height:65px;padding:4px;font-size:11px}
+.event{font-size:10px;padding:3px}
+.calendar{gap:3px}
+.stat strong{font-size:21px}
 }
 </style>
 </head>
@@ -76,738 +80,531 @@ td select,td input{min-width:120px;padding:8px;font-size:13px}
 <div class="wrap">
 
 <section id="loginView" class="card login">
-  <h1>CEYHUN STUDIO</h1>
-  <p class="muted">Yönetim paneline giriş yap</p>
-  <form id="loginForm">
-    <label for="email">E-posta</label>
-    <input id="email" type="email" autocomplete="username" required placeholder="Yönetici e-postan">
-    <label for="password">Şifre</label>
-    <input id="password" type="password" autocomplete="current-password" required placeholder="Şifren">
-    <div class="actions"><button class="btn" id="loginBtn">Giriş yap</button></div>
-  </form>
-  <div id="loginStatus" role="status"></div>
+<h1>CEYHUN STUDIO</h1>
+<p class="muted">Yönetim paneline giriş yap</p>
+<form id="loginForm">
+<label for="email">E-posta</label>
+<input id="email" type="email" autocomplete="username" required placeholder="Yönetici e-postan">
+<label for="password">Şifre</label>
+<input id="password" type="password" autocomplete="current-password" required placeholder="Şifren">
+<div class="actions"><button class="btn" id="loginBtn" type="submit">Giriş yap</button></div>
+</form>
+<div id="loginStatus" role="status"></div>
 </section>
 
 <section id="adminView" class="hidden">
-  <div class="top">
-    <div>
-      <h1>CEYHUN STUDIO</h1>
-      <p class="muted">Fotoğrafçılık yönetim merkezi</p>
-    </div>
-    <button class="btn btn-light" id="logoutBtn">Güvenli çıkış</button>
-  </div>
+<div class="top">
+<div>
+<h1>CEYHUN STUDIO</h1>
+<p class="muted">Fotoğrafçılık yönetim merkezi</p>
+</div>
+<button class="btn btn-light" id="logoutBtn">Güvenli çıkış</button>
+</div>
 
-  <div class="tabs">
-    <button class="tab active" data-tab="reservations">Rezervasyonlar</button>
-    <button class="tab" data-tab="calendar">Çekim takvimi</button>
-    <button class="tab" data-tab="photos">Fotoğraf galerisi</button>
-  </div>
+<div class="tabs">
+<button class="tab active" data-tab="reservations">Rezervasyonlar</button>
+<button class="tab" data-tab="calendar">Çekim takvimi</button>
+<button class="tab" data-tab="photos">Fotoğraf galerisi</button>
+</div>
 
-  <section id="reservationsSection">
-    <div class="stats">
-      <div class="stat"><span class="muted">Toplam rezervasyon</span><strong id="totalCount">0</strong></div>
-      <div class="stat"><span class="muted">Bekleyen işler</span><strong id="pendingCount">0</strong></div>
-      <div class="stat"><span class="muted">Toplam paket tutarı</span><strong id="totalRevenue">0 ₺</strong></div>
-      <div class="stat"><span class="muted">Toplam alınan ödeme</span><strong id="totalPaid">0 ₺</strong></div>
-      <div class="stat"><span class="muted">Toplam kalan borç</span><strong id="totalBalance">0 ₺</strong></div>
-    </div>
+<section id="reservationsSection">
+<div class="stats">
+<div class="stat"><span class="muted">Toplam rezervasyon</span><strong id="totalCount">0</strong></div>
+<div class="stat"><span class="muted">Bekleyen işler</span><strong id="pendingCount">0</strong></div>
+<div class="stat"><span class="muted">Toplam paket tutarı</span><strong id="totalRevenue">0 ₺</strong></div>
+<div class="stat"><span class="muted">Alınan kapora</span><strong id="totalDeposit">0 ₺</strong></div>
+<div class="stat"><span class="muted">Kalan ödeme</span><strong id="totalBalance">0 ₺</strong></div>
+</div>
 
-    <div class="card">
-      <div class="toolbar">
-        <div>
-          <h2>Müşteri rezervasyonları</h2>
-          <p class="muted">Müşteri, çekim ve ödeme bilgileri</p>
-        </div>
-        <button class="btn btn-light" id="reloadReservations">Yenile</button>
-      </div>
-      <label for="reservationSearch">Müşteri ara</label>
-      <input id="reservationSearch" placeholder="İsim, telefon, paket veya konum yaz...">
-      <div id="reservationStatus" role="status"></div>
-      <div class="table-wrap" style="margin-top:16px">
-        <table>
-          <thead>
-            <tr>
-              <th>Müşteri</th>
-              <th>Çekim tarihi</th>
-              <th>Paket / fiyat</th>
-              <th>Kapora</th>
-              <th>Ek ödeme</th>
-              <th>Kalan borç</th>
-              <th>Ödeme durumu</th>
-              <th>Rezervasyon durumu</th>
-              <th>İşlemler</th>
-            </tr>
-          </thead>
-          <tbody id="reservationRows">
-            <tr><td colspan="9" class="empty">Rezervasyonlar yükleniyor...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+<div class="card">
+<div class="toolbar">
+<div>
+<h2>Müşteri rezervasyonları</h2>
+<p class="muted">Müşteri, paket, ek hizmetler ve ödeme bilgileri</p>
+</div>
+<button class="btn btn-light" id="reloadReservations">Yenile</button>
+</div>
+<label for="reservationSearch">Müşteri ara</label>
+<input id="reservationSearch" placeholder="İsim, telefon, paket, ek hizmet veya konum yaz...">
+<div id="reservationStatus" role="status"></div>
+<div class="table-wrap" style="margin-top:16px">
+<table>
+<thead>
+<tr>
+<th>Müşteri / çekim bilgileri</th>
+<th>Paket ve fiyat detayı</th>
+<th>Kapora / kalan</th>
+<th>Ödeme durumu</th>
+<th>Rezervasyon durumu</th>
+<th>Kaydet</th>
+</tr>
+</thead>
+<tbody id="reservationRows">
+<tr><td colspan="6" class="empty">Rezervasyonlar yükleniyor...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 
-  <section id="calendarSection" class="hidden">
-    <div class="card">
-      <div class="calendar-head">
-        <button class="btn btn-light" id="prevMonth">← Önceki</button>
-        <h2 id="monthTitle">Takvim</h2>
-        <button class="btn btn-light" id="nextMonth">Sonraki →</button>
-      </div>
-      <p class="muted">Bir çekime tıklayarak müşteri kaydına ulaşabilirsin.</p>
-      <div id="calendar" class="calendar"></div>
-    </div>
-  </section>
+<section id="calendarSection" class="hidden">
+<div class="card">
+<div class="calendar-head">
+<button class="btn btn-light" id="prevMonth">← Önceki</button>
+<h2 id="monthTitle">Takvim</h2>
+<button class="btn btn-light" id="nextMonth">Sonraki →</button>
+</div>
+<p class="muted">Bir çekime tıklayarak müşteri kaydına ulaşabilirsin.</p>
+<div id="calendar" class="calendar"></div>
+</div>
+</section>
 
-  <section id="photosSection" class="hidden">
-    <div class="card">
-      <h2>Fotoğraf yükle</h2>
-      <p class="muted">JPG, PNG, WEBP ve diğer görsel dosyaları.</p>
-      <input id="fileInput" type="file" accept="image/*" multiple>
-      <div class="actions">
-        <button class="btn" id="uploadBtn">Fotoğrafları yükle</button>
-        <button class="btn btn-light" id="refreshBtn">Galeriyi yenile</button>
-      </div>
-      <div id="photoStatus" role="status"></div>
-    </div>
-    <div class="card">
-      <h2>Mevcut fotoğraflar</h2>
-      <p class="muted" id="photoCount">Galeri hazırlanıyor...</p>
-      <div id="gallery" class="grid" style="margin-top:18px"></div>
-    </div>
-  </section>
+<section id="photosSection" class="hidden">
+<div class="card">
+<h2>Fotoğraf yükle</h2>
+<p class="muted">JPG, PNG, WEBP ve diğer görsel dosyaları.</p>
+<input id="fileInput" type="file" accept="image/*" multiple>
+<div class="actions">
+<button class="btn" id="uploadBtn">Fotoğrafları yükle</button>
+<button class="btn btn-light" id="refreshBtn">Galeriyi yenile</button>
+</div>
+<div id="photoStatus" role="status"></div>
+</div>
+<div class="card">
+<h2>Mevcut fotoğraflar</h2>
+<p class="muted" id="photoCount">Galeri hazırlanıyor...</p>
+<div id="gallery" class="grid" style="margin-top:18px"></div>
+</div>
+</section>
 
-  <p class="notice">Yönetici erişimi Supabase kimlik doğrulaması ve veritabanı izinleriyle kontrol edilir.</p>
+<p class="notice">Yönetici erişimi Supabase kimlik doğrulaması ve veritabanı izinleriyle kontrol edilir.</p>
 </section>
 </div>
 
 <script>
-const SUPABASE_URL = "https://nzriewxchkcfeknkbwuu.supabase.co";
-const SUPABASE_KEY = "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
-const BUCKET = "site fotolar";
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const $ = id => document.getElementById(id);
+'use strict';
 
-let currentUser = null;
-let busy = false;
-let reservations = [];
-let calendarMonth = new Date();
-let activeTab = "reservations";
+const SUPABASE_URL="https://nzriewxchkcfeknkbwuu.supabase.co";
+const SUPABASE_KEY="sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+const BUCKET="site fotolar";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
 
-function loginMessage(text) { $("loginStatus").textContent = text; }
-function reservationMessage(text) { $("reservationStatus").textContent = text; }
-function photoMessage(text) { $("photoStatus").textContent = text; }
+let currentUser=null;
+let busy=false;
+let reservations=[];
+let calendarMonth=new Date();
+let activeTab="reservations";
 
-function money(value) {
-  return (Number(value) || 0).toLocaleString("tr-TR", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2
-  }) + " ₺";
+function loginMessage(text){$("loginStatus").textContent=text}
+function reservationMessage(text){$("reservationStatus").textContent=text}
+function photoMessage(text){$("photoStatus").textContent=text}
+function money(value){return (Number(value)||0).toLocaleString("tr-TR",{maximumFractionDigits:2})+" ₺"}
+
+function escapeHTML(value){
+return String(value??"").replace(/[&<>"']/g,char=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+})[char]);
 }
 
-function getDeposit(r) {
-  return Math.max(0, Number(r.deposit_amount) || 0);
+function basePrice(r){
+const value=Number(r.base_package_price);
+return Number.isFinite(value)&&r.base_package_price!==null&&r.base_package_price!==""?value:Number(r.package_price)||0;
 }
 
-function getExtraPayment(r) {
-  return Math.max(0, Number(r.additional_payment) || 0);
+function extraServices(r){
+const value=String(r.extra_services||"").trim();
+return value&&value!=="Ek hizmet seçilmedi"?value:"";
 }
 
-function getPrice(r) {
-  return Math.max(0, Number(r.package_price) || 0);
+function totalPrice(r){return Number(r.package_price)||0}
+function depositPrice(r){return Number(r.deposit_amount)||0}
+function additionalPayment(r){return Number(r.additional_payment)||0}
+function remainingBalance(r){return totalPrice(r)-depositPrice(r)-additionalPayment(r)}
+
+function showLogin(){
+$("loginView").classList.remove("hidden");
+$("adminView").classList.add("hidden");
+}
+function showAdmin(){
+$("loginView").classList.add("hidden");
+$("adminView").classList.remove("hidden");
 }
 
-function getPaid(r) {
-  return getDeposit(r) + getExtraPayment(r);
+function setTab(tab){
+activeTab=tab;
+document.querySelectorAll(".tab").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));
+$("reservationsSection").classList.toggle("hidden",tab!=="reservations");
+$("calendarSection").classList.toggle("hidden",tab!=="calendar");
+$("photosSection").classList.toggle("hidden",tab!=="photos");
+if(tab==="calendar")renderCalendar();
+if(tab==="photos")loadGallery();
+}
+document.querySelectorAll(".tab").forEach(button=>button.addEventListener("click",()=>setTab(button.dataset.tab)));
+
+async function verifyAdmin(user){
+const {data,error}=await db.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();
+if(error)throw error;
+return !!data;
 }
 
-function getBalance(r) {
-  return Math.max(0, getPrice(r) - getPaid(r));
+async function enterAdmin(user){
+try{
+const allowed=await verifyAdmin(user);
+if(!allowed){
+await db.auth.signOut();
+currentUser=null;
+showLogin();
+loginMessage("Bu hesap yönetici olarak yetkilendirilmemiş.");
+return;
+}
+currentUser=user;
+showAdmin();
+loginMessage("");
+await Promise.all([loadReservations(),loadGallery()]);
+}catch(error){
+showLogin();
+loginMessage("Yönetici kontrolü yapılamadı: "+error.message);
+}
 }
 
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  })[char]);
+$("loginForm").addEventListener("submit",async event=>{
+event.preventDefault();
+$("loginBtn").disabled=true;
+loginMessage("Giriş kontrol ediliyor...");
+try{
+const {data,error}=await db.auth.signInWithPassword({
+email:$("email").value.trim(),
+password:$("password").value
+});
+if(error)throw error;
+await enterAdmin(data.user);
+}catch(error){
+loginMessage("Giriş başarısız: "+error.message);
+}finally{
+$("loginBtn").disabled=false;
 }
-
-function showLogin() {
-  $("loginView").classList.remove("hidden");
-  $("adminView").classList.add("hidden");
-}
-
-function showAdmin() {
-  $("loginView").classList.add("hidden");
-  $("adminView").classList.remove("hidden");
-}
-
-function setTab(tab) {
-  activeTab = tab;
-  document.querySelectorAll(".tab").forEach(button =>
-    button.classList.toggle("active", button.dataset.tab === tab)
-  );
-  $("reservationsSection").classList.toggle("hidden", tab !== "reservations");
-  $("calendarSection").classList.toggle("hidden", tab !== "calendar");
-  $("photosSection").classList.toggle("hidden", tab !== "photos");
-  if (tab === "calendar") renderCalendar();
-  if (tab === "photos") loadGallery();
-}
-
-document.querySelectorAll(".tab").forEach(button =>
-  button.addEventListener("click", () => setTab(button.dataset.tab))
-);
-
-async function verifyAdmin(user) {
-  const { data, error } = await db.from("admin_users")
-    .select("user_id").eq("user_id", user.id).maybeSingle();
-  if (error) throw error;
-  return !!data;
-}
-
-async function enterAdmin(user) {
-  try {
-    const allowed = await verifyAdmin(user);
-    if (!allowed) {
-      await db.auth.signOut();
-      currentUser = null;
-      showLogin();
-      loginMessage("Bu hesap yönetici olarak yetkilendirilmemiş.");
-      return;
-    }
-    currentUser = user;
-    showAdmin();
-    loginMessage("");
-    await Promise.all([loadReservations(), loadGallery()]);
-  } catch (error) {
-    showLogin();
-    loginMessage("Yönetici kontrolü yapılamadı: " + error.message);
-  }
-}
-
-$("loginForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  $("loginBtn").disabled = true;
-  loginMessage("Giriş kontrol ediliyor...");
-  try {
-    const { data, error } = await db.auth.signInWithPassword({
-      email: $("email").value.trim(),
-      password: $("password").value
-    });
-    if (error) throw error;
-    await enterAdmin(data.user);
-  } catch (error) {
-    loginMessage("Giriş başarısız: " + error.message);
-  } finally {
-    $("loginBtn").disabled = false;
-  }
 });
 
-$("logoutBtn").addEventListener("click", async () => {
-  const { error } = await db.auth.signOut();
-  currentUser = null;
-  showLogin();
-  loginMessage(error ? error.message : "Güvenli çıkış yapıldı.");
+$("logoutBtn").addEventListener("click",async()=>{
+const {error}=await db.auth.signOut();
+currentUser=null;
+showLogin();
+loginMessage(error?error.message:"Güvenli çıkış yapıldı.");
 });
 
-async function loadReservations() {
-  if (!currentUser) return;
-  reservationMessage("Rezervasyonlar yükleniyor...");
-  $("reservationRows").innerHTML =
-    '<tr><td colspan="9" class="empty">Yükleniyor...</td></tr>';
+async function loadReservations(){
+if(!currentUser)return;
+reservationMessage("Rezervasyonlar yükleniyor...");
+$("reservationRows").innerHTML='<tr><td colspan="6" class="empty">Yükleniyor...</td></tr>';
 
-  const { data, error } = await db.from("reservations")
-    .select("*").order("shoot_date", { ascending: true });
+const {data,error}=await db.from("reservations").select("*").order("shoot_date",{ascending:true});
 
-  if (error) {
-    reservations = [];
-    $("reservationRows").innerHTML =
-      '<tr><td colspan="9" class="empty">Kayıtlar alınamadı.</td></tr>';
-    reservationMessage("Rezervasyonlar alınamadı: " + error.message);
-    updateStats();
-    return;
-  }
-
-  reservations = data || [];
-  reservationMessage(reservations.length + " rezervasyon bulundu.");
-  updateStats();
-  renderReservations();
-  renderCalendar();
+if(error){
+reservations=[];
+$("reservationRows").innerHTML='<tr><td colspan="6" class="empty">Kayıtlar alınamadı.</td></tr>';
+reservationMessage("Rezervasyonlar alınamadı: "+error.message);
+updateStats();
+return;
+}
+reservations=data||[];
+reservationMessage(reservations.length+" rezervasyon bulundu.");
+updateStats();
+renderReservations();
+renderCalendar();
 }
 
-function updateStats() {
-  $("totalCount").textContent = reservations.length;
-
-  $("pendingCount").textContent = reservations.filter(r =>
-    !r.reservation_status ||
-    !["Tamamlandı", "İptal"].includes(r.reservation_status)
-  ).length;
-
-  $("totalRevenue").textContent = money(
-    reservations.reduce((sum, r) => sum + getPrice(r), 0)
-  );
-
-  $("totalPaid").textContent = money(
-    reservations.reduce((sum, r) => sum + getPaid(r), 0)
-  );
-
-  $("totalBalance").textContent = money(
-    reservations.reduce((sum, r) => sum + getBalance(r), 0)
-  );
+function updateStats(){
+$("totalCount").textContent=reservations.length;
+$("pendingCount").textContent=reservations.filter(r=>!r.reservation_status||!["Tamamlandı","İptal"].includes(r.reservation_status)).length;
+$("totalRevenue").textContent=money(reservations.reduce((sum,r)=>sum+totalPrice(r),0));
+$("totalDeposit").textContent=money(reservations.reduce((sum,r)=>sum+depositPrice(r),0));
+$("totalBalance").textContent=money(reservations.reduce((sum,r)=>sum+remainingBalance(r),0));
 }
 
-function renderReservations() {
-  const query = $("reservationSearch").value.trim().toLocaleLowerCase("tr");
-
-  const filtered = reservations.filter(r => {
-    const text = [
-      r.bride_name, r.groom_name, r.bride_phone, r.groom_phone,
-      r.event_type, r.shoot_location, r.venue_address, r.package_name
-    ].join(" ").toLocaleLowerCase("tr");
-    return text.includes(query);
-  });
-
-  if (!filtered.length) {
-    $("reservationRows").innerHTML =
-      '<tr><td colspan="9" class="empty">Aramayla eşleşen rezervasyon bulunamadı.</td></tr>';
-    return;
-  }
-
-  $("reservationRows").innerHTML = filtered.map(r => {
-    const deposit = getDeposit(r);
-    const extra = getExtraPayment(r);
-    const balance = getBalance(r);
-    const paid = balance === 0 && getPrice(r) > 0;
-
-    return `
-    <tr>
-      <td>
-        <div class="customer">${escapeHTML([r.bride_name,r.groom_name].filter(Boolean).join(" & ") || "İsimsiz müşteri")}</div>
-        <div class="small">Gelin: ${escapeHTML(r.bride_phone || "—")}<br>Damat: ${escapeHTML(r.groom_phone || "—")}</div>
-        <div class="small">${escapeHTML(r.event_type || "")}</div>
-        <div class="small">${escapeHTML(r.shoot_location || "")}</div>
-        <div class="small">${escapeHTML(r.venue_address || "")}</div>
-        ${r.notes ? `<div class="small">Not: ${escapeHTML(r.notes)}</div>` : ""}
-      </td>
-      <td>${escapeHTML(r.shoot_date || "Tarih yok")}</td>
-      <td>
-        <div>${escapeHTML(r.package_name || "Paket belirtilmemiş")}</div>
-        <strong>${money(getPrice(r))}</strong>
-      </td>
-      <td>
-        <input type="number" min="0" step="0.01"
-          id="deposit-${escapeHTML(r.id)}" value="${deposit}" aria-label="Kapora">
-      </td>
-      <td>
-        <input type="number" min="0" step="0.01"
-          id="extra-${escapeHTML(r.id)}" value="${extra}" aria-label="Ek ödeme toplamı">
-        <div class="small">Kapora sonrası ek ödemelerin toplamı</div>
-      </td>
-      <td>
-        <div class="balance ${paid ? "paid" : ""}" id="balance-${escapeHTML(r.id)}">
-          ${money(balance)}
-        </div>
-        <div class="small">Toplam ödenen: ${money(deposit + extra)}</div>
-      </td>
-      <td>
-        <select id="payment-${escapeHTML(r.id)}" aria-label="Ödeme durumu">
-          ${optionList(["Bekliyor","Kapora alındı","Kısmi ödeme","Ödendi"],r.payment_status)}
-        </select>
-      </td>
-      <td>
-        <select id="status-${escapeHTML(r.id)}" aria-label="Rezervasyon durumu">
-          ${optionList(["Yeni","Onaylandı","Çekim yapıldı","Tamamlandı","İptal"],r.reservation_status)}
-        </select>
-      </td>
-      <td>
-        <div class="row-actions">
-          <button class="btn save-row" data-id="${escapeHTML(r.id)}">Kaydet</button>
-          <button class="btn btn-success close-account" data-id="${escapeHTML(r.id)}">Hesap Kapandı</button>
-          <button class="btn btn-danger delete-row" data-id="${escapeHTML(r.id)}">Rezervasyonu Sil</button>
-        </div>
-      </td>
-    </tr>`;
-  }).join("");
-
-  filtered.forEach(r => {
-    const depositInput = $("deposit-" + r.id);
-    const extraInput = $("extra-" + r.id);
-
-    const updateBalancePreview = () => {
-      const deposit = Math.max(0, Number(depositInput.value) || 0);
-      const extra = Math.max(0, Number(extraInput.value) || 0);
-      const balance = Math.max(0, getPrice(r) - deposit - extra);
-      const balanceEl = $("balance-" + r.id);
-      balanceEl.textContent = money(balance);
-      balanceEl.classList.toggle("paid", balance === 0 && getPrice(r) > 0);
-    };
-
-    depositInput.addEventListener("input", updateBalancePreview);
-    extraInput.addEventListener("input", updateBalancePreview);
-  });
-
-  document.querySelectorAll(".save-row").forEach(button =>
-    button.addEventListener("click", () => saveReservation(button.dataset.id))
-  );
-
-  document.querySelectorAll(".close-account").forEach(button =>
-    button.addEventListener("click", () => closeAccount(button.dataset.id))
-  );
-
-  document.querySelectorAll(".delete-row").forEach(button =>
-    button.addEventListener("click", () => deleteReservation(button.dataset.id))
-  );
-}
-
-function optionList(options, selected) {
-  const current = selected || options[0];
-  const all = [...new Set([current, ...options].filter(Boolean))];
-  return all.map(item =>
-    `<option value="${escapeHTML(item)}" ${item === current ? "selected" : ""}>${escapeHTML(item)}</option>`
-  ).join("");
-}
-
-async function saveReservation(id) {
-  if (!currentUser || busy) return;
-
-  const deposit = Number($("deposit-" + id).value);
-  const extra = Number($("extra-" + id).value);
-  const payment = $("payment-" + id).value;
-  const status = $("status-" + id).value;
-
-  if (!Number.isFinite(deposit) || deposit < 0 ||
-      !Number.isFinite(extra) || extra < 0) {
-    alert("Kapora ve ek ödeme sıfır veya daha büyük olmalı.");
-    return;
-  }
-
-  const reservation = reservations.find(r => String(r.id) === String(id));
-  if (!reservation) return;
-
-  const totalPaid = deposit + extra;
-  const price = getPrice(reservation);
-
-  if (totalPaid > price && price > 0) {
-    if (!confirm("Toplam ödeme paket fiyatından yüksek. Yine de kaydedilsin mi?")) return;
-  }
-
-  busy = true;
-  reservationMessage("Ödeme ve rezervasyon bilgileri kaydediliyor...");
-
-  try {
-    let finalPayment = payment;
-    if (price > 0 && totalPaid >= price) finalPayment = "Ödendi";
-    else if (totalPaid > 0 && totalPaid < price) {
-      finalPayment = deposit > 0 && extra === 0 ? "Kapora alındı" : "Kısmi ödeme";
-    } else if (totalPaid === 0) {
-      finalPayment = "Bekliyor";
-    }
-
-    const { error } = await db.from("reservations").update({
-      deposit_amount: deposit,
-      additional_payment: extra,
-      payment_status: finalPayment,
-      reservation_status: status
-    }).eq("id", id);
-
-    if (error) throw error;
-
-    reservationMessage("Ödeme ve rezervasyon bilgileri kaydedildi.");
-    await loadReservations();
-  } catch (error) {
-    reservationMessage("Kaydedilemedi: " + error.message);
-  } finally {
-    busy = false;
-  }
-}
-
-async function closeAccount(id) {
-  if (!currentUser || busy) return;
-
-  const reservation = reservations.find(r => String(r.id) === String(id));
-  if (!reservation) return;
-
-  const price = getPrice(reservation);
-  const deposit = getDeposit(reservation);
-
-  if (!confirm(
-    "Bu müşterinin hesabını kapatmak istiyor musun?\n\n" +
-    "Paket fiyatı: " + money(price) + "\n" +
-    "Mevcut kapora: " + money(deposit) + "\n\n" +
-    "İşlem, ek ödemeyi kalan tutara tamamlayıp ödeme durumunu Ödendi yapar."
-  )) return;
-
-  busy = true;
-  reservationMessage("Müşteri hesabı kapatılıyor...");
-
-  try {
-    const remaining = Math.max(0, price - deposit);
-
-    const { error } = await db.from("reservations").update({
-      additional_payment: remaining,
-      payment_status: "Ödendi"
-    }).eq("id", id);
-
-    if (error) throw error;
-
-    reservationMessage("Hesap kapatıldı. Ödeme durumu Ödendi olarak kaydedildi.");
-    await loadReservations();
-  } catch (error) {
-    reservationMessage("Hesap kapatılamadı: " + error.message);
-  } finally {
-    busy = false;
-  }
-}
-
-async function deleteReservation(id) {
-  if (!currentUser || busy) return;
-
-  const reservation = reservations.find(r => String(r.id) === String(id));
-  if (!reservation) return;
-
-  const name = [reservation.bride_name, reservation.groom_name]
-    .filter(Boolean).join(" & ") || "İsimsiz müşteri";
-
-  if (!confirm(
-    name + " adlı müşterinin rezervasyonunu kalıcı olarak silmek istiyor musun?\n\n" +
-    "Bu işlem geri alınamaz."
-  )) return;
-
-  busy = true;
-  reservationMessage("Rezervasyon siliniyor...");
-
-  try {
-    const { error } = await db.from("reservations")
-      .delete()
-      .eq("id", id);
-
-    if (error) throw error;
-
-    reservations = reservations.filter(r => String(r.id) !== String(id));
-    updateStats();
-    renderReservations();
-    renderCalendar();
-    reservationMessage("Rezervasyon veritabanından kalıcı olarak silindi.");
-  } catch (error) {
-    reservationMessage("Rezervasyon silinemedi: " + error.message);
-  } finally {
-    busy = false;
-  }
-}
-
-$("reservationSearch").addEventListener("input", renderReservations);
-$("reloadReservations").addEventListener("click", loadReservations);
-
-function renderCalendar() {
-  const year = calendarMonth.getFullYear();
-  const month = calendarMonth.getMonth();
-
-  $("monthTitle").textContent = calendarMonth.toLocaleDateString("tr-TR", {
-    month:"long", year:"numeric"
-  });
-
-  const first = new Date(year, month, 1);
-  const offset = (first.getDay() + 6) % 7;
-  const days = new Date(year, month + 1, 0).getDate();
-  const previousDays = new Date(year, month, 0).getDate();
-  const today = new Date();
-
-  const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
-
-  let html = ["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"]
-    .map(day => `<div class="day-name">${day}</div>`).join("");
-
-  for (let i=0; i<42; i++) {
-    let dayNumber, date, other = false;
-
-    if (i < offset) {
-      dayNumber = previousDays - offset + i + 1;
-      date = new Date(year, month - 1, dayNumber);
-      other = true;
-    } else if (i >= offset + days) {
-      dayNumber = i - offset - days + 1;
-      date = new Date(year, month + 1, dayNumber);
-      other = true;
-    } else {
-      dayNumber = i - offset + 1;
-      date = new Date(year, month, dayNumber);
-    }
-
-    const key = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
-    const events = reservations.filter(r =>
-      r.shoot_date === key && r.reservation_status !== "İptal"
-    );
-
-    html += `<div class="day ${other?"other":""} ${key===todayKey?"today":""}">
-      <strong>${dayNumber}</strong>
-      ${events.map(r => `<div class="event" data-reservation="${escapeHTML(r.id)}">
-        ${escapeHTML([r.bride_name,r.groom_name].filter(Boolean).join(" & ") || r.package_name || "Çekim")}
-      </div>`).join("")}
-    </div>`;
-  }
-
-  $("calendar").innerHTML = html;
-
-  $("calendar").querySelectorAll("[data-reservation]").forEach(el => {
-    el.addEventListener("click", () => {
-      $("reservationSearch").value = "";
-      renderReservations();
-      setTab("reservations");
-
-      const row = reservations.find(r => String(r.id) === el.dataset.reservation);
-      if (row) reservationMessage("Seçilen müşteri: " +
-        [row.bride_name,row.groom_name].filter(Boolean).join(" & "));
-    });
-  });
-}
-
-$("prevMonth").addEventListener("click", () => {
-  calendarMonth = new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);
-  renderCalendar();
+function renderReservations(){
+const query=$("reservationSearch").value.trim().toLocaleLowerCase("tr");
+const filtered=reservations.filter(r=>{
+const text=[
+r.bride_name,r.groom_name,r.bride_phone,r.groom_phone,
+r.event_type,r.shoot_location,r.venue_address,r.package_name,
+r.extra_services,r.notes
+].join(" ").toLocaleLowerCase("tr");
+return text.includes(query);
 });
 
-$("nextMonth").addEventListener("click", () => {
-  calendarMonth = new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);
-  renderCalendar();
-});
-
-async function loadGallery() {
-  if (!currentUser) return;
-
-  $("gallery").replaceChildren();
-  $("photoCount").textContent = "Yükleniyor...";
-
-  const { data, error } = await db.storage.from(BUCKET).list("", {
-    limit:1000, offset:0, sortBy:{column:"name",order:"asc"}
-  });
-
-  if (error) {
-    photoMessage("Galeri alınamadı: " + error.message);
-    $("photoCount").textContent = "Fotoğraflar alınamadı";
-    return;
-  }
-
-  const photos = (data || []).filter(file =>
-    file.name && /\.(jpg|jpeg|png|webp|gif|avif)$/i.test(file.name)
-  );
-
-  $("photoCount").textContent = photos.length + " fotoğraf";
-  photoMessage("");
-
-  if (!photos.length) {
-    $("gallery").textContent = "Henüz fotoğraf bulunamadı.";
-    return;
-  }
-
-  for (const photo of photos) {
-    const { data: publicData } = db.storage.from(BUCKET).getPublicUrl(photo.name);
-    const card = document.createElement("article");
-    card.className = "photo";
-
-    const img = document.createElement("img");
-    img.src = publicData.publicUrl;
-    img.alt = photo.name;
-    img.loading = "lazy";
-
-    const info = document.createElement("div");
-    info.className = "photo-info";
-
-    const filename = document.createElement("div");
-    filename.className = "filename";
-    filename.textContent = photo.name;
-
-    const del = document.createElement("button");
-    del.className = "btn btn-danger";
-    del.textContent = "Fotoğrafı sil";
-    del.addEventListener("click", () => deletePhoto(photo.name));
-
-    info.append(filename,del);
-    card.append(img,info);
-    $("gallery").append(card);
-  }
+if(!filtered.length){
+$("reservationRows").innerHTML='<tr><td colspan="6" class="empty">Aramayla eşleşen rezervasyon bulunamadı.</td></tr>';
+return;
 }
 
-async function deletePhoto(name) {
-  if (!currentUser || busy) return;
-  if (!confirm(`"${name}" fotoğrafını kalıcı olarak silmek istiyor musun?`)) return;
+$("reservationRows").innerHTML=filtered.map(r=>{
+const extras=extraServices(r);
+const accepted=r.contract_accepted===true;
+const base=basePrice(r);
+const total=totalPrice(r);
+const extraTotal=Math.max(0,total-base);
+const remaining=remainingBalance(r);
 
-  busy = true;
-  try {
-    const { error } = await db.storage.from(BUCKET).remove([name]);
-    if (error) throw error;
+return `
+<tr>
+<td>
+<div class="customer">${escapeHTML([r.bride_name,r.groom_name].filter(Boolean).join(" & ")||"İsimsiz müşteri")}</div>
+<div class="small">Gelin: ${escapeHTML(r.bride_phone||"—")}<br>Damat: ${escapeHTML(r.groom_phone||"—")}</div>
+<div class="small"><strong>Tarih:</strong> ${escapeHTML(r.shoot_date||"Tarih yok")}</div>
+<div class="small"><strong>Şehir / yer:</strong> ${escapeHTML(r.shoot_location||"—")}</div>
+<div class="small"><strong>Adres:</strong> ${escapeHTML(r.venue_address||"—")}</div>
+<div class="small"><strong>Çekim / hizmet:</strong> ${escapeHTML(r.event_type||"—")}</div>
+${r.notes?`<div class="small"><strong>Notlar:</strong><br>${escapeHTML(r.notes)}</div>`:""}
+<div class="small"><span class="pill ${accepted?"ok":"no"}">Sözleşme / bilgilendirme: ${accepted?"Kabul edildi":"Kabul edilmedi / eski kayıt"}</span></div>
+</td>
+<td>
+<div><strong>${escapeHTML(r.package_name||"Paket belirtilmemiş")}</strong></div>
+<div class="price-line">Paket ana fiyatı: <strong>${money(base)}</strong></div>
+<div class="price-line">Ek hizmet tutarı: <strong>${money(extraTotal)}</strong></div>
+${extras?`<div class="small"><strong>Ek hizmetler:</strong></div><div>${extras.split(",").map(item=>`<span class="extra-line">${escapeHTML(item.trim())}</span>`).join("")}</div>`:`<div class="small">Ek hizmet seçilmedi</div>`}
+<div class="price-line">TOPLAM: <strong>${money(total)}</strong></div>
+</td>
+<td>
+<label for="deposit-${escapeHTML(r.id)}">Kapora</label>
+<input type="number" min="0" step="0.01" id="deposit-${escapeHTML(r.id)}" value="${depositPrice(r)}" aria-label="Kapora">
+<label for="additional-${escapeHTML(r.id)}">Ek alınan ödeme</label>
+<input type="number" min="0" step="0.01" id="additional-${escapeHTML(r.id)}" value="${additionalPayment(r)}" aria-label="Ek alınan ödeme">
+<div class="price-line">Kalan: <strong>${money(remaining)}</strong></div>
+</td>
+<td>
+<select id="payment-${escapeHTML(r.id)}" aria-label="Ödeme durumu">
+${optionList(["Bekliyor","Kapora alındı","Kısmi ödeme","Ödendi"],r.payment_status)}
+</select>
+</td>
+<td>
+<select id="status-${escapeHTML(r.id)}" aria-label="Rezervasyon durumu">
+${optionList(["Yeni","Bekliyor","Onaylandı","Çekim yapıldı","Tamamlandı","İptal"],r.reservation_status)}
+</select>
+</td>
+<td><button class="btn save-row" data-id="${escapeHTML(r.id)}">Kaydet</button></td>
+</tr>`;
+}).join("");
 
-    photoMessage("Fotoğraf silindi.");
-    await loadGallery();
-  } catch (error) {
-    photoMessage("Silme başarısız: " + error.message);
-  } finally {
-    busy = false;
-  }
+document.querySelectorAll(".save-row").forEach(button=>button.addEventListener("click",()=>saveReservation(button.dataset.id)));
+
+filtered.forEach(r=>{
+const depositInput=$("deposit-"+r.id);
+const additionalInput=$("additional-"+r.id);
+if(!depositInput||!additionalInput)return;
+const refreshRemaining=()=>{
+const remain=totalPrice(r)-(Number(depositInput.value)||0)-(Number(additionalInput.value)||0);
+const label=depositInput.parentElement.querySelector(".price-line strong");
+if(label)label.textContent=money(remain);
+};
+depositInput.addEventListener("input",refreshRemaining);
+additionalInput.addEventListener("input",refreshRemaining);
+});
 }
 
-$("uploadBtn").addEventListener("click", async () => {
-  if (!currentUser || busy) return;
+function optionList(options,selected){
+const current=selected||options[0];
+const all=[...new Set([current,...options].filter(Boolean))];
+return all.map(item=>`<option value="${escapeHTML(item)}" ${item===current?"selected":""}>${escapeHTML(item)}</option>`).join("");
+}
 
-  const files = Array.from($("fileInput").files || []);
-  if (!files.length) {
-    photoMessage("Önce yüklemek istediğin fotoğrafları seç.");
-    return;
-  }
+async function saveReservation(id){
+if(!currentUser)return;
+const deposit=Number($("deposit-"+id).value);
+const additional=Number($("additional-"+id).value);
+const payment=$("payment-"+id).value;
+const status=$("status-"+id).value;
+const reservation=reservations.find(r=>String(r.id)===String(id));
+if(!reservation)return;
 
-  busy = true;
-  $("uploadBtn").disabled = true;
+if(!Number.isFinite(deposit)||deposit<0||!Number.isFinite(additional)||additional<0){
+alert("Kapora ve ek ödeme sıfır veya daha büyük olmalı.");
+return;
+}
+if(deposit+additional>totalPrice(reservation)){
+if(!confirm("Girilen ödemeler toplam fiyatı aşıyor. Yine de kaydedilsin mi?"))return;
+}
 
-  let uploaded = 0;
-  const errors = [];
+reservationMessage("Değişiklikler kaydediliyor...");
+const {error}=await db.from("reservations").update({
+deposit_amount:deposit,
+additional_payment:additional,
+payment_status:payment,
+reservation_status:status
+}).eq("id",id);
 
-  try {
-    for (const file of files) {
-      if (!file.type.startsWith("image/")) {
-        errors.push(file.name + ": Görsel dosyası değil.");
-        continue;
-      }
+if(error){
+reservationMessage("Kaydedilemedi: "+error.message);
+return;
+}
+reservationMessage("Rezervasyon güncellendi.");
+await loadReservations();
+}
 
-      const safeName = file.name.normalize("NFKD").replace(/[^\w.-]+/g,"_");
-      const uniqueName = Date.now() + "_" +
-        Math.random().toString(36).slice(2,8) + "_" + safeName;
+$("reservationSearch").addEventListener("input",renderReservations);
+$("reloadReservations").addEventListener("click",loadReservations);
 
-      const { error } = await db.storage.from(BUCKET).upload(uniqueName,file,{
-        cacheControl:"3600",upsert:false,contentType:file.type
-      });
+function renderCalendar(){
+const year=calendarMonth.getFullYear();
+const month=calendarMonth.getMonth();
+$("monthTitle").textContent=calendarMonth.toLocaleDateString("tr-TR",{month:"long",year:"numeric"});
+const first=new Date(year,month,1);
+const offset=(first.getDay()+6)%7;
+const days=new Date(year,month+1,0).getDate();
+const previousDays=new Date(year,month,0).getDate();
+const today=new Date();
+const todayKey=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
 
-      if (error) errors.push(file.name + ": " + error.message);
-      else uploaded++;
-    }
-
-    $("fileInput").value = "";
-    photoMessage(uploaded + " fotoğraf yüklendi." +
-      (errors.length ? "\nSorunlar:\n" + errors.join("\n") : ""));
-
-    await loadGallery();
-  } catch (error) {
-    photoMessage("Yükleme başarısız: " + error.message);
-  } finally {
-    busy = false;
-    $("uploadBtn").disabled = false;
-  }
+let html=["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"].map(day=>`<div class="day-name">${day}</div>`).join("");
+for(let i=0;i<42;i++){
+let dayNumber,date,other=false;
+if(i<offset){
+dayNumber=previousDays-offset+i+1;
+date=new Date(year,month-1,dayNumber);
+other=true;
+}else if(i>=offset+days){
+dayNumber=i-offset-days+1;
+date=new Date(year,month+1,dayNumber);
+other=true;
+}else{
+dayNumber=i-offset+1;
+date=new Date(year,month,dayNumber);
+}
+const key=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+const events=reservations.filter(r=>r.shoot_date===key&&r.reservation_status!=="İptal");
+html+=`<div class="day ${other?"other":""} ${key===todayKey?"today":""}">
+<strong>${dayNumber}</strong>
+${events.map(r=>`<div class="event" data-reservation="${escapeHTML(r.id)}">${escapeHTML([r.bride_name,r.groom_name].filter(Boolean).join(" & ")||r.package_name||"Çekim")}</div>`).join("")}
+</div>`;
+}
+$("calendar").innerHTML=html;
+$("calendar").querySelectorAll("[data-reservation]").forEach(el=>{
+el.addEventListener("click",()=>{
+$("reservationSearch").value="";
+renderReservations();
+setTab("reservations");
+const row=reservations.find(r=>String(r.id)===el.dataset.reservation);
+if(row)reservationMessage("Seçilen müşteri: "+[row.bride_name,row.groom_name].filter(Boolean).join(" & "));
+});
+});
+}
+$("prevMonth").addEventListener("click",()=>{
+calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);
+renderCalendar();
+});
+$("nextMonth").addEventListener("click",()=>{
+calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);
+renderCalendar();
 });
 
-$("refreshBtn").addEventListener("click", loadGallery);
+async function loadGallery(){
+if(!currentUser)return;
+$("gallery").replaceChildren();
+$("photoCount").textContent="Yükleniyor...";
+const {data,error}=await db.storage.from(BUCKET).list("",{
+limit:1000,offset:0,sortBy:{column:"name",order:"asc"}
+});
+if(error){
+photoMessage("Galeri alınamadı: "+error.message);
+$("photoCount").textContent="Fotoğraflar alınamadı";
+return;
+}
+const photos=(data||[]).filter(file=>file.name&&/\.(jpg|jpeg|png|webp|gif|avif)$/i.test(file.name));
+$("photoCount").textContent=photos.length+" fotoğraf";
+photoMessage("");
+if(!photos.length){
+$("gallery").textContent="Henüz fotoğraf bulunamadı.";
+return;
+}
+for(const photo of photos){
+const {data:publicData}=db.storage.from(BUCKET).getPublicUrl(photo.name);
+const card=document.createElement("article");
+card.className="photo";
+const img=document.createElement("img");
+img.src=publicData.publicUrl;
+img.alt=photo.name;
+img.loading="lazy";
+const info=document.createElement("div");
+info.className="photo-info";
+const filename=document.createElement("div");
+filename.className="filename";
+filename.textContent=photo.name;
+const del=document.createElement("button");
+del.className="btn btn-danger";
+del.textContent="Fotoğrafı sil";
+del.addEventListener("click",()=>deletePhoto(photo.name));
+info.append(filename,del);
+card.append(img,info);
+$("gallery").append(card);
+}
+}
 
-(async function init() {
-  const { data, error } = await db.auth.getSession();
+async function deletePhoto(name){
+if(!currentUser||busy)return;
+if(!confirm(`"${name}" fotoğrafını kalıcı olarak silmek istiyor musun?`))return;
+busy=true;
+try{
+const {error}=await db.storage.from(BUCKET).remove([name]);
+if(error)throw error;
+photoMessage("Fotoğraf silindi.");
+await loadGallery();
+}catch(error){
+photoMessage("Silme başarısız: "+error.message);
+}finally{
+busy=false;
+}
+}
 
-  if (error) {
-    loginMessage("Oturum kontrol edilemedi: " + error.message);
-    return;
-  }
+$("uploadBtn").addEventListener("click",async()=>{
+if(!currentUser||busy)return;
+const files=Array.from($("fileInput").files||[]);
+if(!files.length){
+photoMessage("Önce yüklemek istediğin fotoğrafları seç.");
+return;
+}
+busy=true;
+$("uploadBtn").disabled=true;
+let uploaded=0;
+const errors=[];
+try{
+for(const file of files){
+if(!file.type.startsWith("image/")){
+errors.push(file.name+": Görsel dosyası değil.");
+continue;
+}
+const safeName=file.name.normalize("NFKD").replace(/[^\w.-]+/g,"_");
+const uniqueName=Date.now()+"_"+Math.random().toString(36).slice(2,8)+"_"+safeName;
+const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{
+cacheControl:"3600",upsert:false,contentType:file.type
+});
+if(error)errors.push(file.name+": "+error.message);
+else uploaded++;
+}
+$("fileInput").value="";
+photoMessage(uploaded+" fotoğraf yüklendi."+(errors.length?"\nSorunlar:\n"+errors.join("\n"):""));
+await loadGallery();
+}catch(error){
+photoMessage("Yükleme başarısız: "+error.message);
+}finally{
+busy=false;
+$("uploadBtn").disabled=false;
+}
+});
+$("refreshBtn").addEventListener("click",loadGallery);
 
-  if (data.session) await enterAdmin(data.session.user);
+(async function init(){
+const {data,error}=await db.auth.getSession();
+if(error){
+loginMessage("Oturum kontrol edilemedi: "+error.message);
+return;
+}
+if(data.session)await enterAdmin(data.session.user);
 })();
-
-db.auth.onAuthStateChange((event) => {
-  if (event === "SIGNED_OUT") {
-    currentUser = null;
-    showLogin();
-  }
+db.auth.onAuthStateChange(event=>{
+if(event==="SIGNED_OUT"){
+currentUser=null;
+showLogin();
+}
 });
 </script>
 </body>
