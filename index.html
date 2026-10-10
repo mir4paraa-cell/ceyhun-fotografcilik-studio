@@ -248,6 +248,115 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:25px 0 90px;b
   .purchase-grid{grid-template-columns:1fr}
   .purchase-field.full{grid-column:auto}
   .purchase-summary strong{font-size:24px}
+}/* CEYHUN STUDIO - HEDİYE ÇARKI */
+#wheel-launch {
+  position: fixed;
+  left: 18px;
+  bottom: 22px;
+  z-index: 999;
+  border: 0;
+  border-radius: 50px;
+  padding: 15px 20px;
+  color: #fff;
+  background: linear-gradient(135deg, #b8924b, #75501c);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 28px #0004;
+}
+
+#wheel-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #090909ed;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+#wheel-overlay.open {
+  display: flex;
+}
+
+#wheel-box {
+  width: 100%;
+  max-width: 440px;
+  padding: 26px;
+  border: 1px solid #b8924b;
+  border-radius: 22px;
+  background: #171614;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+#wheel-box h2 {
+  color: #d9b56d;
+  margin: 0 0 8px;
+}
+
+#wheel-box p {
+  color: #ccc;
+  font-size: 14px;
+}
+
+#wheel-close {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+#wheel-form input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 10px 0;
+  border-radius: 9px;
+  border: 1px solid #555;
+  background: #242321;
+  color: #fff;
+}
+
+#wheel-submit,
+#wheel-whatsapp {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  margin-top: 14px;
+  border: 0;
+  border-radius: 9px;
+  background: #b8924b;
+  color: #111;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#wheel-submit:disabled {
+  opacity: .5;
+  cursor: wait;
+}
+
+#wheel-result {
+  display: none;
+  margin-top: 18px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #29261f;
+  overflow-wrap: anywhere;
+}
+
+#wheel-result strong {
+  color: #e5c47f;
 }
 </style>
 </head>
@@ -1131,6 +1240,187 @@ document.addEventListener('keydown',event=>{
     if(purchaseModal.classList.contains('active'))closePurchaseForm();
   }
 });
+</script>
+  <!-- CEYHUN STUDIO HEDİYE ÇARKI -->
+<button id="wheel-launch" type="button">🎁 HEDİYE ÇARKINI AÇ</button>
+
+<div id="wheel-overlay" role="dialog" aria-modal="true" aria-labelledby="wheel-title">
+  <div id="wheel-box">
+    <button id="wheel-close" type="button" aria-label="Kapat">×</button>
+
+    <h2 id="wheel-title">Şansını Dene!</h2>
+    <p>Ceyhun Studio'dan sana özel hediyeni keşfet.</p>
+
+    <form id="wheel-form">
+      <input
+        id="wheel-name"
+        type="text"
+        placeholder="Adın ve soyadın"
+        autocomplete="name"
+        required
+      >
+
+      <input
+        id="wheel-phone"
+        type="tel"
+        placeholder="05XX XXX XX XX"
+        autocomplete="tel"
+        required
+      >
+
+      <label for="wheel-date">Düğün tarihin</label>
+      <input id="wheel-date" type="date" required>
+
+      <div
+        class="cf-turnstile"
+        data-sitekey="0x4AAAAAAFTbj-x2vP-Zi5dH"
+      ></div>
+
+      <button id="wheel-submit" type="submit">
+        🎡 HEDİYEMİ ÖĞREN
+      </button>
+    </form>
+
+    <div id="wheel-result" aria-live="polite"></div>
+  </div>
+</div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+(() => {
+  const launch = document.getElementById('wheel-launch');
+  const overlay = document.getElementById('wheel-overlay');
+  const close = document.getElementById('wheel-close');
+  const form = document.getElementById('wheel-form');
+  const submit = document.getElementById('wheel-submit');
+  const result = document.getElementById('wheel-result');
+
+  if (!launch || !overlay || !close || !form || !submit || !result) return;
+
+  launch.addEventListener('click', () => {
+    overlay.classList.add('open');
+  });
+
+  close.addEventListener('click', () => {
+    overlay.classList.remove('open');
+  });
+
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay) overlay.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') overlay.classList.remove('open');
+  });
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const name = document.getElementById('wheel-name').value.trim();
+    const phone = document.getElementById('wheel-phone').value.trim();
+    const weddingDate = document.getElementById('wheel-date').value;
+    const turnstileToken =
+      form.querySelector('[name="cf-turnstile-response"]')?.value || '';
+
+    if (!turnstileToken) {
+      result.style.display = 'block';
+      result.textContent = 'Lütfen güvenlik doğrulamasını tamamla.';
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'İşleniyor...';
+    result.style.display = 'block';
+    result.textContent = 'Hediyen kontrol ediliyor...';
+
+    try {
+      const response = await fetch('/api/wheel-spin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, weddingDate, turnstileToken })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'İşlem tamamlanamadı. Lütfen tekrar dene.');
+      }
+
+      const reward = String(data.reward_key || data.reward || data.status || '').toLowerCase();
+      const coupon = data.coupon_code || data.coupon || '';
+      const expiry = data.expires_at || data.expiresAt || '';
+
+      const rewards = {
+        discount5: '%5 İNDİRİM',
+        discount10: '%10 İNDİRİM',
+        canvas: 'BÜYÜK BOY KANVAS TABLO',
+        album: 'ALBÜM HEDİYESİ',
+        surprise: 'SÜRPRİZ HEDİYE',
+        thanks: 'GÖSTERDİĞİN İLGİ İÇİN TEŞEKKÜRLER'
+      };
+
+      const normalized = reward.replace(/[^a-z0-9]/g, '');
+      const rewardName =
+        rewards[normalized] ||
+        (normalized.includes('discount5') ? rewards.discount5 :
+        normalized.includes('discount10') ? rewards.discount10 :
+        normalized.includes('canvas') ? rewards.canvas :
+        normalized.includes('album') ? rewards.album :
+        normalized.includes('surprise') ? rewards.surprise :
+        normalized.includes('thanks') ? rewards.thanks : '');
+
+      if (!rewardName) {
+        throw new Error('Ödül bilgisi beklenen formatta gelmedi. API yanıtını kontrol etmeliyiz.');
+      }
+
+      result.replaceChildren();
+
+      const heading = document.createElement('strong');
+      heading.textContent = rewardName;
+      result.appendChild(heading);
+
+      if (normalized !== 'thanks' && coupon) {
+        const couponText = document.createElement('p');
+        couponText.textContent = 'Kupon kodun: ' + coupon;
+        result.appendChild(couponText);
+
+        if (expiry) {
+          const expiryText = document.createElement('p');
+          expiryText.textContent = 'Son kullanım: ' + expiry;
+          result.appendChild(expiryText);
+        }
+
+        const whatsapp = document.createElement('a');
+        whatsapp.id = 'wheel-whatsapp';
+        whatsapp.href = 'https://wa.me/905522369828?text=' +
+          encodeURIComponent(
+            'Merhaba Ceyhun Studio! Hediye çarkından ' +
+            rewardName + ' kazandım. Kupon kodum: ' + coupon +
+            '. Rezervasyon hakkında bilgi almak istiyorum.'
+          );
+        whatsapp.target = '_blank';
+        whatsapp.rel = 'noopener noreferrer';
+        whatsapp.textContent = 'WhatsApp ile Rezervasyon';
+        result.appendChild(whatsapp);
+      } else if (normalized === 'thanks') {
+        const note = document.createElement('p');
+        note.textContent = 'Bu kampanyadaki hediye kontenjanı dolmuş olabilir. Bizi tercih ettiğin için teşekkür ederiz.';
+        result.appendChild(note);
+      } else {
+        const note = document.createElement('p');
+        note.textContent = 'Ödül geldi ancak kupon bilgisi eksik. Lütfen bizimle iletişime geç.';
+        result.appendChild(note);
+      }
+    } catch (error) {
+      result.textContent = error.message || 'Bir hata oluştu. Lütfen tekrar dene.';
+      if (window.turnstile) window.turnstile.reset();
+    } finally {
+      submit.disabled = false;
+      submit.textContent = '🎡 HEDİYEMİ ÖĞREN';
+    }
+  });
+})();
 </script>
 </body>
 </html>
