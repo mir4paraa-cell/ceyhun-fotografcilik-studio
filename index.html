@@ -1,52 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#29231f">
-<meta name="description" content="Ceyhun Fotoğrafçılık Studio. Ekim ayına özel düğün, nişan, gelin damat ve dış çekim paketleri.">
+<meta name="description" content="Ceyhun Fotoğrafçılık Studio Diyarbakır. Düğün, nişan, gelin damat ve dış çekim paketleri.">
 <title>Ceyhun Fotoğrafçılık Studio | Diyarbakır</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{--cream:#f7f3ed;--white:#fffdf9;--dark:#29231f;--muted:#777067;--gold:#c6a16d;--red:#8d3037;--line:#b9a58a42}
+:root{
+  --cream:#f7f3ed;
+  --white:#fffdf9;
+  --dark:#29231f;
+  --muted:#777067;
+  --gold:#c6a16d;
+  --red:#8d3037;
+  --line:#b9a58a42;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--cream);line-height:1.65}
-body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
-h1,h2,h3,.price{font-family:'Cormorant Garamond',serif}
-header{position:sticky;top:0;z-index:50;background:#f7f3edf0;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+h1,h2,h3{font-family:'Cormorant Garamond',serif}
+header{position:sticky;top:0;z-index:100;background:#f7f3edf0;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{font-size:13px;font-weight:800;letter-spacing:.08em}
 .logo span{display:block;font-size:10px;color:var(--muted);letter-spacing:.2em}
 nav{display:flex;align-items:center;gap:22px;font-size:12px;font-weight:700}
 nav a:hover{color:var(--red)}
-.nav-cta,.btn-red,.package-button{background:var(--red);color:white}
+.nav-cta,.package-button,.submit,.feedback-button{background:var(--red);color:white}
 .nav-cta{padding:11px 17px;border-radius:6px}
 .eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--red);margin-bottom:12px}
 .eyebrow:before{content:"✦";margin-right:9px;color:var(--gold)}
 .section-heading{font-size:clamp(38px,5vw,60px);line-height:1.02;font-weight:700}
 .muted{color:var(--muted);font-size:13px}
-.packages-area{padding:55px 0 0}
+
+.packages-area{padding:45px 0 0}
 .packages-intro{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:30px}
 .packages-intro>p{max-width:390px;color:var(--muted);font-size:13px;border-left:2px solid var(--gold);padding-left:17px}
-.campaign-banner{margin:0 0 24px;padding:20px 22px;border-radius:10px;background:var(--dark);color:white;display:flex;justify-content:space-between;align-items:center;gap:18px}
-.campaign-banner strong{display:block;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.1;color:#e5c38f}
-.campaign-banner p{font-size:12px;color:#eee5db;margin-top:5px}
-.campaign-banner .campaign-date{font-size:10px;font-weight:800;letter-spacing:.1em;color:#e5c38f;white-space:nowrap}
+.campaign-banner{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:25px;padding:19px 22px;border-radius:10px;background:linear-gradient(115deg,#29231f,#48342b);color:white}
+.campaign-banner h2{font-size:clamp(25px,3vw,35px);line-height:1.05}
+.campaign-banner p{font-size:12px;color:#e7d9c7;margin-top:6px}
+.campaign-tag{display:inline-block;color:#29231f;background:#e5c38f;padding:5px 9px;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.08em;margin-bottom:8px}
+.campaign-cta{background:var(--gold);color:#29231f;padding:12px 16px;border-radius:5px;font-size:10px;font-weight:800;white-space:nowrap}
 .packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
 .package{min-width:0;display:flex;flex-direction:column;overflow:hidden;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 35px #3323150b;transition:.25s}
 .package:hover{transform:translateY(-5px)}
 .package.featured{background:var(--dark);color:white;border-color:var(--dark);transform:translateY(-7px)}
 .package-photos{position:relative;height:205px;overflow:hidden;background:#e1d8cc}
 .package-photos img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
-.package-photos.double{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.package-photos.double-photo{display:grid;grid-template-columns:1fr 1fr;gap:3px}
 .photo-caption{position:absolute;left:16px;bottom:12px;color:white;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 2px 10px #000}
 .package-content{padding:22px 23px 24px;display:flex;flex-direction:column;flex:1}
 .package-label{align-self:flex-start;padding:6px 10px;background:#eee3d4;color:#795c39;border-radius:4px;font-size:9px;font-weight:800;letter-spacing:.1em;margin-bottom:13px}
@@ -54,23 +63,38 @@ nav a:hover{color:var(--red)}
 .package h3{font-size:clamp(29px,2.7vw,37px);line-height:1.05}
 .package-desc{font-size:12px;line-height:1.8;color:var(--muted);margin-top:10px;min-height:65px}
 .featured .package-desc{color:#d1c6b8}
-.price-line{display:flex;flex-direction:column;align-items:flex-start;margin-top:12px;gap:0}
-.old-price{font-size:16px;color:#94877a;text-decoration:line-through;font-weight:600;line-height:1.4}
-.price{font-size:44px;line-height:1.15;font-weight:700;color:var(--red);white-space:nowrap}
-.featured .price{color:#e5c38f}
-.discount-note{display:inline-block;margin-top:6px;background:#f2e3d5;color:#8d3037;border-radius:4px;padding:4px 8px;font-size:9px;font-weight:800;letter-spacing:.04em}
-.featured .discount-note{background:#4a3c30;color:#f0d4a9}
+
+/* FİYAT YAZILARI */
+.price-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:12px}
+.price{
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(32px,3.2vw,42px);
+  line-height:1.15;
+  font-weight:800;
+  letter-spacing:-1.8px;
+  color:#8d202b;
+  margin-top:14px;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  text-shadow:0 1px 0 #ffffff70;
+}
+.featured .price{color:#f0c987;text-shadow:0 0 18px #e5c38f20}
+.old-price{font-family:'DM Sans',sans-serif;font-size:14px;color:#92887b;text-decoration:line-through;text-decoration-thickness:1.5px}
+.featured .old-price{color:#c8b9a6}
+.sale-caption{font-size:9px;font-weight:800;letter-spacing:.09em;color:var(--red);text-transform:uppercase}
 .package-divider{height:1px;background:var(--line);margin:16px 0}
 .package ul{list-style:none;display:grid;gap:9px;margin-bottom:24px}
 .package li{font-size:12px;color:#57514b;padding-left:21px;position:relative}
 .package li:before{content:"✦";position:absolute;left:0;color:var(--gold)}
 .featured li{color:#eee5db}
-.package-button{display:flex;justify-content:center;align-items:center;text-align:center;width:100%;min-height:48px;margin-top:auto;padding:11px;border:0;border-radius:5px;font-size:11px;font-weight:800;letter-spacing:.06em}
+.package-button{display:flex;justify-content:center;align-items:center;text-align:center;width:100%;min-height:48px;margin-top:auto;padding:11px;border:0;border-radius:5px;font-size:11px;font-weight:800;letter-spacing:.06em;transition:.2s}
+.package-button:hover{background:#69242a}
 .featured .package-button{background:var(--gold);color:var(--dark)}
 .payment-note{margin-top:22px;background:#eee4d7;border:1px solid var(--line);border-radius:8px;padding:15px;text-align:center;font-size:12px;color:#574737}
 .payment-note strong{color:var(--red)}
 .payment-note a{text-decoration:underline;font-weight:800}
-.hero{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:45px;padding-top:75px;padding-bottom:45px}
+
+.hero{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:45px;padding-top:65px;padding-bottom:45px}
 .hero h1{font-size:clamp(52px,7vw,82px);line-height:.9;letter-spacing:-.035em;margin-bottom:22px}
 .hero-copy>p{max-width:440px;color:var(--muted);font-size:14px}
 .hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
@@ -83,6 +107,7 @@ nav a:hover{color:var(--red)}
 .stat{text-align:center;padding:8px}
 .stat-number{font-size:31px;font-weight:700}
 .stat-label{color:var(--muted);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+
 .content-section{padding-top:65px;padding-bottom:45px}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:27px}
 .section-head p{max-width:390px}
@@ -98,12 +123,14 @@ nav a:hover{color:var(--red)}
 .service h3{font-size:32px;line-height:1.1;margin-bottom:8px}
 .service p{font-size:12px;color:#eee;margin-bottom:15px}
 .service-link{align-self:flex-start;background:var(--red);color:white;padding:8px 12px;border-radius:4px;font-size:10px;font-weight:800}
+
 .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .gallery-item{height:320px;overflow:hidden;border-radius:6px 18px;background:#e5dcd0;cursor:pointer}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .gallery-item:hover img{transform:scale(1.04)}
 .gallery-status{grid-column:1/-1;text-align:center;padding:25px;background:var(--white);border-radius:8px;color:var(--muted);font-size:13px}
 .gallery-help{margin-top:12px;color:var(--muted);font-size:11px}
+
 .appointment{padding-top:35px;padding-bottom:60px}
 .appointment-box{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;background:var(--dark);color:white;border-radius:12px;padding:35px}
 .appointment-title{font-size:clamp(42px,5vw,58px);line-height:.95;margin-bottom:18px}
@@ -117,13 +144,14 @@ form{display:grid;gap:12px}
 .field input::placeholder,.field textarea::placeholder{color:#aaa198}
 .field select option{color:#222;background:white}
 .field textarea{min-height:80px;resize:vertical}
-.submit{min-height:48px;border:0;border-radius:5px;font-size:10px;font-weight:800;background:var(--red);color:white}
+.submit{min-height:48px;border:0;border-radius:5px;font-size:10px;font-weight:800;cursor:pointer}
+
 .feedback-section{padding-bottom:55px}
 .feedback-box{padding:25px;background:var(--white);border:1px solid var(--line);border-radius:10px}
 .feedback-head{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .feedback-title{font-size:34px}
 .feedback-subtitle{font-size:12px;color:var(--muted);margin-top:3px}
-.feedback-button{background:var(--red);color:white;border:0;border-radius:5px;padding:12px 16px;font-size:10px;font-weight:800}
+.feedback-button{border:0;border-radius:5px;padding:12px 16px;font-size:10px;font-weight:800;cursor:pointer}
 .feedback-form{display:none;margin-top:22px}
 .feedback-form.open{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .feedback-form .full,.feedback-message,.feedback-send{grid-column:1/-1}
@@ -131,17 +159,20 @@ form{display:grid;gap:12px}
 .feedback-form input,.feedback-form select,.feedback-form textarea{background:white;color:var(--dark);border:1px solid var(--line);border-radius:6px;padding:12px;width:100%}
 .feedback-message{display:none;padding:12px;border-radius:6px;background:#eee4d7;color:#574737;font-size:12px}
 .feedback-message.show{display:block}
-.feedback-send{min-height:45px;background:var(--red);color:white;border:0;border-radius:5px;font-size:10px;font-weight:800}
+.feedback-send{min-height:45px;background:var(--red);color:white;border:0;border-radius:5px;font-size:10px;font-weight:800;cursor:pointer}
+
 footer{display:flex;justify-content:space-between;gap:20px;padding:25px 0 90px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
 .footer-links{display:flex;gap:18px}
 .whatsapp{position:fixed;z-index:90;right:20px;bottom:20px;background:#218c58;color:white;padding:13px 18px;border-radius:30px;font-size:11px;font-weight:800;box-shadow:0 7px 25px #0002}
+
 .modal{display:none;position:fixed;inset:0;z-index:200;background:#100d0bf2;align-items:center;justify-content:center;padding:30px}
 .modal.active{display:flex}
 .modal img{max-width:95%;max-height:88vh;object-fit:contain}
 .close-modal{position:absolute;top:20px;right:25px;color:white;background:transparent;border:0;font-size:40px}
+
 .purchase-modal{display:none;position:fixed;inset:0;z-index:300;background:#17120edb;backdrop-filter:blur(6px);padding:18px;overflow-y:auto;align-items:center;justify-content:center}
 .purchase-modal.active{display:flex}
-.purchase-panel{width:min(780px,100%);max-height:94vh;overflow-y:auto;background:var(--white);border-radius:14px;padding:28px;position:relative;box-shadow:0 25px 90px #0005}
+.purchase-panel{width:min(760px,100%);max-height:94vh;overflow-y:auto;background:var(--white);border-radius:14px;padding:28px;position:relative;box-shadow:0 25px 90px #0005}
 .purchase-close{position:absolute;right:17px;top:10px;border:0;background:transparent;font-size:32px;color:var(--dark)}
 .purchase-panel h2{font-size:42px;line-height:1.1;margin-bottom:8px}
 .purchase-intro{font-size:12px;color:var(--muted);margin-bottom:18px;padding-right:25px}
@@ -155,190 +186,484 @@ footer{display:flex;justify-content:space-between;gap:20px;padding:25px 0 90px;b
 .purchase-field input,.purchase-field select,.purchase-field textarea{width:100%;padding:12px;border:1px solid #d9cbb9;border-radius:6px;background:white;color:var(--dark);outline:none}
 .purchase-field input:focus,.purchase-field select:focus,.purchase-field textarea:focus{border-color:var(--red)}
 .purchase-field textarea{min-height:75px;resize:vertical}
-.extras-title{font-size:12px;font-weight:800;margin:20px 0 8px}
-.extra-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.extra-option{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1px solid #d9cbb9;border-radius:8px;background:white;cursor:pointer;transition:.2s}
-.extra-option:has(input:checked){border-color:var(--red);background:#f8eeee;box-shadow:0 0 0 1px var(--red)}
-.extra-option input{width:18px;height:18px;accent-color:var(--red);flex-shrink:0}
-.extra-icon{font-size:24px}
-.extra-copy{display:grid;gap:2px}
-.extra-copy strong{font-size:12px}
-.extra-copy small{font-size:11px;color:var(--red);font-weight:800}
-.contract{display:flex;gap:10px;align-items:flex-start;margin:16px 0;color:#51473f;font-size:12px}
-.contract input{margin-top:4px;accent-color:var(--red);width:17px;height:17px;flex-shrink:0}
-.contract a{text-decoration:underline;color:var(--red);font-weight:800}
-.purchase-notice{font-size:11px;color:var(--muted);margin:12px 0}
+.purchase-notice{font-size:11px;color:var(--muted);margin:15px 0}
+.service-options,.payment-options{display:grid;gap:9px;background:#f5efe6;border:1px solid #e6d8c5;border-radius:8px;padding:13px}
+.service-options label,.payment-options label,.contract-label{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:#51483f;letter-spacing:0;font-weight:600}
+.service-options input,.payment-options input,.contract-label input{width:16px;height:16px;margin-top:2px;accent-color:var(--red);flex:0 0 auto}
+.total-box{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:14px;background:#29231f;color:white;border-radius:8px}
+.total-box span{font-size:12px;color:#e1d4c6}
+.total-box strong{font-family:'DM Sans',sans-serif;font-size:15px;text-align:right;font-variant-numeric:tabular-nums}
+.total-box .grand-total{font-size:23px;color:#e5c38f}
+.contract-label{background:#f8f3ec;border-radius:6px;padding:11px}
+.field-hint{font-size:10px;color:var(--muted);font-weight:400;letter-spacing:0}
 .purchase-submit{width:100%;border:0;border-radius:6px;background:#218c58;color:white;padding:15px;font-size:11px;font-weight:800}
-.purchase-submit:disabled{opacity:.65;cursor:wait}
-.payment-help{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.5}
-.remaining-summary{background:#f8f4ee;border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
-.remaining-summary span{font-size:12px;font-weight:800}
-.remaining-summary strong{font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--red);white-space:nowrap}
-@media(max-width:850px){nav{gap:12px;font-size:11px}.packages{grid-template-columns:1fr;max-width:560px;margin:auto}.package.featured{transform:none}.package-photos{height:245px}.hero{gap:25px;padding-top:45px}.hero-image{height:360px}.appointment-box{gap:25px;padding:25px}}
-@media(max-width:620px){.wrap{width:calc(100% - 28px)}.nav{min-height:66px}nav a:not(.nav-cta){display:none}.packages-area{padding-top:32px}.packages-intro{display:block}.packages-intro>p{margin-top:17px}.campaign-banner{align-items:flex-start;flex-direction:column;gap:8px}.campaign-banner strong{font-size:27px}.package-photos{height:220px}.package-content{padding:20px}.package-desc{min-height:0}.hero{grid-template-columns:1fr;padding-top:42px;gap:25px}.hero h1{font-size:61px}.hero-image{height:330px}.stats{grid-template-columns:1fr 1fr;gap:10px}.section-head{display:block}.section-head>p{margin-top:12px}.services{grid-template-columns:1fr}.service{min-height:310px}.gallery{grid-template-columns:1fr 1fr;gap:8px}.gallery-item{height:230px}.appointment-box{grid-template-columns:1fr;padding:22px}.feedback-form.open{grid-template-columns:1fr}.feedback-form .field{grid-column:1/-1}.feedback-head{align-items:flex-start}.feedback-title{font-size:29px}footer{flex-direction:column}.purchase-panel{padding:23px 17px}.purchase-panel h2{font-size:35px}.purchase-grid,.extra-options{grid-template-columns:1fr}.purchase-field.full{grid-column:auto}.purchase-summary strong{font-size:24px}.remaining-summary strong{font-size:24px}}
+.purchase-submit:hover{background:#176b42}
 [hidden]{display:none!important}
+
+@media(max-width:850px){
+  nav{gap:12px;font-size:11px}
+  .packages{grid-template-columns:1fr;max-width:560px;margin:auto}
+  .package.featured{transform:none}
+  .package-photos{height:245px}
+  .hero{gap:25px;padding-top:45px}
+  .hero-image{height:360px}
+  .appointment-box{gap:25px;padding:25px}
+}
+@media(max-width:620px){
+  .price{font-size:36px;letter-spacing:-1.3px}
+  .campaign-banner{display:block;padding:18px}
+  .campaign-cta{display:inline-flex;margin-top:13px}
+  .wrap{width:calc(100% - 28px)}
+  .nav{min-height:66px}
+  nav a:not(.nav-cta){display:none}
+  .packages-area{padding-top:32px}
+  .packages-intro{display:block}
+  .packages-intro>p{margin-top:17px}
+  .package-photos{height:220px}
+  .package-content{padding:20px}
+  .package-desc{min-height:0}
+  .hero{grid-template-columns:1fr;padding-top:42px;gap:25px}
+  .hero h1{font-size:61px}
+  .hero-image{height:330px}
+  .stats{grid-template-columns:1fr 1fr;gap:10px}
+  .section-head{display:block}
+  .section-head>p{margin-top:12px}
+  .services{grid-template-columns:1fr}
+  .service{min-height:310px}
+  .gallery{grid-template-columns:1fr 1fr;gap:8px}
+  .gallery-item{height:230px}
+  .appointment-box{grid-template-columns:1fr;padding:22px}
+  .feedback-form.open{grid-template-columns:1fr}
+  .feedback-form .field{grid-column:1/-1}
+  .feedback-head{align-items:flex-start}
+  .feedback-title{font-size:29px}
+  footer{flex-direction:column}
+  .purchase-panel{padding:23px 17px}
+  .purchase-panel h2{font-size:35px}
+  .purchase-grid{grid-template-columns:1fr}
+  .purchase-field.full{grid-column:auto}
+  .purchase-summary strong{font-size:24px}
+}
 </style>
 </head>
+
 <body>
-<header><div class="nav wrap">
-<a href="#" class="logo">CEYHUN FOTOĞRAFÇILIK <span>STUDIO · DİYARBAKIR</span></a>
-<nav><a href="#paketler">Paketler</a><a href="#cekimler">Çekimler</a><a href="#fotograflar">Fotoğraflar</a><a href="#randevu" class="nav-cta">Randevu Al</a></nav>
-</div></header>
+<header>
+  <div class="nav wrap">
+    <a href="#" class="logo">CEYHUN FOTOĞRAFÇILIK <span>STUDIO · DİYARBAKIR</span></a>
+    <nav>
+      <a href="#paketler">Paketler</a>
+      <a href="#cekimler">Çekimler</a>
+      <a href="#fotograflar">Fotoğraflar</a>
+      <a href="#randevu" class="nav-cta">Randevu Al</a>
+    </nav>
+  </div>
+</header>
 
 <main>
 <section class="packages-area wrap" id="paketler">
-<div class="packages-intro">
-<div><div class="eyebrow">Ceyhun Fotoğrafçılık Studio</div><h1 class="section-heading">Size uygun paketi<br>birlikte seçelim.</h1></div>
-<p>Düğün gününüzü, dış çekiminizi ve albümünüzü planlayın. Paketinizi seçin, ek hizmetlerinizi belirleyin ve rezervasyon talebinizi gönderin.</p>
-</div>
+  <div class="packages-intro">
+    <div>
+      <div class="eyebrow">Ceyhun Fotoğrafçılık Studio</div>
+      <h1 class="section-heading">Size uygun paketi<br>birlikte seçelim.</h1>
+    </div>
+    <p>Düğün gününüzü, dış çekiminizi ve albümünüzü bütçenize uygun paketle planlayın. Paketinizi seçin, rezervasyon talebinizi gönderin.</p>
+  </div>
 
-<div class="campaign-banner">
-<div><strong>Ekim Ayına Özel Fiyat Fırsatı</strong><p>Hayalinizdeki çekimi avantajlı fiyatlarla planlayın.</p></div>
-<div class="campaign-date">EKİM KAMPANYASI · SINIRLI SÜRE</div>
-</div>
+  <div class="campaign-banner">
+    <div>
+      <span class="campaign-tag">EKİM AYINA ÖZEL</span>
+      <h2>Bugünün fiyatını şimdi sabitleyin.</h2>
+      <p>Ekim kampanya fiyatları 31 Ekim 2026’ya kadar geçerlidir. Kasım ayında paket fiyatları güncellenecektir.</p>
+    </div>
+    <a class="campaign-cta" href="#randevu" id="campaignCta">EKİM FIRSATINI YAKALA</a>
+  </div>
 
-<div class="packages">
-<article class="package">
-<div class="package-photos"><img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%201%20Instagram%20Post.JPG" alt="Nişan ve söz çekimi" loading="lazy"><span class="photo-caption">Söz & Nişan · Özel anlar</span></div>
-<div class="package-content"><div class="package-label">GOLD · EKİM FIRSATI</div><h3>Nişan Zarafeti</h3><p class="package-desc">Söz ve nişan gününüzün en özel detayları, zarif ve doğal karelerle.</p>
-<div class="price-line"><span class="old-price">15.000 ₺</span><div class="price">11.999 ₺</div><span class="discount-note">3.001 ₺ AVANTAJ</span></div>
-<div class="package-divider"></div>
-<ul><li>Nişan / söz çekimi</li><li>Seçili fotoğrafların düzenlenmesi</li><li>Profesyonel renk düzenleme</li><li>Dijital fotoğraf teslimi</li><li>Büyük albüm</li></ul>
-<button type="button" class="package-button" data-package="Nişan Zarafeti" data-price="11999">EKİM FIRSATINI YAKALA</button></div>
-</article>
+  <div class="packages">
+    <article class="package">
+      <div class="package-photos">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%201%20Instagram%20Post.JPG" alt="Nişan ve söz çekimi" loading="lazy">
+        <span class="photo-caption">Söz & Nişan · Özel anlar</span>
+      </div>
+      <div class="package-content">
+        <div class="package-label">Başlangıç Paketi</div>
+        <h3>Nişan Zarafeti</h3>
+        <p class="package-desc">Söz ve nişan gününüzün en özel detayları, zarif ve doğal karelerle.</p>
+        <div class="price-row">
+          <span class="old-price">15.000 ₺</span>
+          <div>
+            <div class="sale-caption">Ekim kampanya fiyatı</div>
+            <div class="price">11.999 ₺</div>
+          </div>
+        </div>
+        <div class="package-divider"></div>
+        <ul>
+          <li>Nişan / söz çekimi</li>
+          <li>Seçili fotoğrafların düzenlenmesi</li>
+          <li>Profesyonel renk düzenleme</li>
+          <li>Dijital fotoğraf teslimi</li>
+          <li>Büyük albüm</li>
+        </ul>
+        <button type="button" class="package-button" data-package="Nişan Zarafeti" data-price="11.999 ₺">SATIN AL</button>
+      </div>
+    </article>
 
-<article class="package featured">
-<div class="package-photos double"><img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9218%20Instagram%20Post.JPG" alt="Düğün Premium çekimi" loading="lazy"><img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9579%20Instagram%20Post.JPG" alt="Gelin damat dış çekimi" loading="lazy"><span class="photo-caption">Gelin & Damat · Premium</span></div>
-<div class="package-content"><div class="package-label">EN ÇOK TERCİH EDİLEN · EKİM FIRSATI</div><h3>Düğün Premium</h3><p class="package-desc">Düğün hikâyenizi çekimden albüme kadar bir arada sunan özel paket.</p>
-<div class="price-line"><span class="old-price">25.000 ₺</span><div class="price">15.999 ₺</div><span class="discount-note">9.001 ₺ AVANTAJ</span></div>
-<div class="package-divider"></div>
-<ul><li>Düğün günü fotoğraf çekimi</li><li>Kına ve düğün dış çekimi</li><li>Gelin & damat özel çekimi</li><li>Profesyonel renk düzenleme</li><li>Özenli fotoğraf seçimi</li><li>Dijital fotoğraf teslimi</li><li>1 büyük albüm</li><li>2 aile albümü</li><li>1 büyük kanvas tablo</li></ul>
-<button type="button" class="package-button" data-package="Düğün Premium" data-price="15999">EKİM FIRSATINI YAKALA</button></div>
-</article>
+    <article class="package featured">
+      <div class="package-photos double-photo">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9218%20Instagram%20Post.JPG" alt="Düğün Premium çekimi" loading="lazy">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9579%20Instagram%20Post.JPG" alt="Gelin damat dış çekimi" loading="lazy">
+        <span class="photo-caption">Gelin & Damat · Premium</span>
+      </div>
+      <div class="package-content">
+        <div class="package-label">En Çok Tercih Edilen</div>
+        <h3>Düğün Premium</h3>
+        <p class="package-desc">Düğün hikâyenizi çekimden albüme kadar bir arada sunan özel paket.</p>
+        <div class="price-row">
+          <span class="old-price">25.000 ₺</span>
+          <div>
+            <div class="sale-caption">Ekim kampanya fiyatı</div>
+            <div class="price">15.999 ₺</div>
+          </div>
+        </div>
+        <div class="package-divider"></div>
+        <ul>
+          <li>Düğün günü fotoğraf çekimi</li>
+          <li>Kına ve düğün dış çekimi</li>
+          <li>Gelin & damat özel çekimi</li>
+          <li>Profesyonel renk düzenleme</li>
+          <li>Özenli fotoğraf seçimi</li>
+          <li>Dijital fotoğraf teslimi</li>
+          <li>1 büyük albüm</li>
+          <li>2 aile albümü</li>
+          <li>1 büyük kanvas tablo</li>
+        </ul>
+        <button type="button" class="package-button" data-package="Düğün Premium" data-price="15.999 ₺">PREMIUM PAKETİ YAKALA</button>
+      </div>
+    </article>
 
-<article class="package">
-<div class="package-photos"><img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/c37183ec-40f6-4889-922e-32c3785b324f.JPG" alt="Kapsamlı düğün çekimi" loading="lazy"><span class="photo-caption">Düğün hikâyenizin her anı</span></div>
-<div class="package-content"><div class="package-label">KAPSAMLI ÇEKİM</div><h3>Kapsamlı Düğün Çekimi</h3><p class="package-desc">Düğününüzün hikâyesini tüm özel anlarıyla ölümsüzleştiren kapsamlı deneyim.</p>
-<div class="price-line"><div class="price">20.000 ₺</div></div>
-<div class="package-divider"></div>
-<ul><li>Düğün ve dış çekim</li><li>Kına ve düğün çekimi</li><li>En büyük lüks albüm</li><li>35–40 seçilmiş fotoğraf</li><li>2 aile albümü</li><li>Büyük lüks kanvas tablo</li><li>Kişiye özel teslim planı</li></ul>
-<button type="button" class="package-button" data-package="Kapsamlı Düğün Çekimi" data-price="20000">ÖZEL PAKETİ SEÇ</button></div>
-</article>
-</div>
+    <article class="package">
+      <div class="package-photos">
+        <img src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/gamze%205%20Instagram%20Post.JPG" alt="Özel düğün albümü" loading="lazy">
+        <span class="photo-caption">Özel çekim · Lüks albüm</span>
+      </div>
+      <div class="package-content">
+        <div class="package-label">Size Özel</div>
+        <h3>Özel Paket</h3>
+        <p class="package-desc">En özel gününüz için kapsamlı çekim ve lüks albüm seçenekleri.</p>
+        <div class="price-row">
+          <span class="old-price">30.000 ₺</span>
+          <div>
+            <div class="sale-caption">Ekim kampanya fiyatı</div>
+            <div class="price">20.000 ₺</div>
+          </div>
+        </div>
+        <div class="package-divider"></div>
+        <ul>
+          <li>Düğün ve dış çekim</li>
+          <li>Kına ve düğün çekimi</li>
+          <li>Albüm seçenekleri</li>
+          <li>35–40 fotoğraflı büyük albüm</li>
+          <li>2 aile albümü</li>
+          <li>Büyük boy lüks tablo</li>
+          <li>Size özel fotoğraf teslimi</li>
+        </ul>
+        <button type="button" class="package-button" data-package="Özel Paket" data-price="20.000 ₺">ÖZEL PAKET OLUŞTUR</button>
+      </div>
+    </article>
+  </div>
 
-<div class="payment-note">💳 <strong>Kredi kartıyla ödeme ve taksit seçenekleri</strong> için <a href="https://wa.me/905522369828?text=Merhaba%2C%20kredi%20kart%C4%B1yla%20%C3%B6deme%20ve%20taksit%20se%C3%A7enekleri%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan bilgi alın.</a></div>
-<p class="gallery-help">Ekim ayına özel fiyatlar, kasım ayında güncellenecektir.</p>
+  <div class="payment-note">
+    <strong>Kredi kartıyla ödeme</strong> hakkında bilgi almak için
+    <a href="https://wa.me/905522369828" target="_blank" rel="noopener">WhatsApp üzerinden iletişime geçebilirsiniz.</a>
+  </div>
 </section>
 
 <section class="hero wrap">
-<div class="hero-copy"><div class="eyebrow">Düğün & Gelin Damat Fotoğrafçılığı</div><h1>Bir aşkın<br>hikâyesini<br>kadraja aldık.</h1><p>En güzel gününüzü doğal, samimi ve zamansız fotoğraflarla hatırlamanız için buradayız.</p><div class="hero-buttons"><a href="#paketler" class="btn btn-red">Paketleri İncele</a><a href="#fotograflar" class="btn btn-gold">Fotoğrafları İncele</a></div><div class="hero-note">✦ Ekim kampanyasından yararlanmak için paketinizi seçin.</div></div>
-<div class="hero-image"><img id="heroImage" src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/C37A9660.jpg" alt="Ceyhun Fotoğrafçılık düğün çekimi"></div>
+  <div class="hero-copy">
+    <div class="eyebrow">Anılarınız bize emanet</div>
+    <h1>Bir ömür<br>hatırlanacak<br>hikâyeler.</h1>
+    <p>Düğün, nişan ve dış çekim gününüzü; doğal, zarif ve zamansız fotoğraflarla ölümsüzleştiriyoruz.</p>
+    <div class="hero-buttons">
+      <a href="#paketler" class="btn btn-gold">PAKETLERİ İNCELE</a>
+      <a href="#randevu" class="btn" style="border:1px solid var(--line)">RANDEVU AL</a>
+    </div>
+    <div class="hero-note">✦ Diyarbakır ve çevresinde çekim hizmeti</div>
+  </div>
+  <div class="hero-image">
+    <img id="heroImage" src="https://nzriewxchkcfeknkbwuu.supabase.co/storage/v1/object/public/site%20fotolar/1E4A9218%20Instagram%20Post.JPG" alt="Ceyhun Fotoğrafçılık gelin damat çekimi">
+  </div>
 </section>
 
-<section class="wrap"><div class="stats">
-<div class="stat"><div class="stat-number">13+</div><div class="stat-label">Yıllık Deneyim</div></div>
-<div class="stat"><div class="stat-number">Özel</div><div class="stat-label">Çekim Planı</div></div>
-<div class="stat"><div class="stat-number">Doğal</div><div class="stat-label">Fotoğraf Stili</div></div>
-<div class="stat"><div class="stat-number">Sizin</div><div class="stat-label">Hikâyeniz</div></div>
-</div></section>
+<section class="stats wrap">
+  <div class="stat"><div class="stat-number">01</div><div class="stat-label">Size özel planlama</div></div>
+  <div class="stat"><div class="stat-number">02</div><div class="stat-label">Özenli çekim</div></div>
+  <div class="stat"><div class="stat-number">03</div><div class="stat-label">Profesyonel düzenleme</div></div>
+  <div class="stat"><div class="stat-number">04</div><div class="stat-label">Kalıcı albüm</div></div>
+</section>
 
 <section class="content-section wrap" id="cekimler">
-<div class="section-head"><div><div class="eyebrow">Hizmetlerimiz</div><h2 class="section-heading">Her anınıza özel.</h2></div><p class="muted">En özel günleriniz için doğal, estetik ve özenle hazırlanmış fotoğraf hikâyeleri.</p></div>
-<div class="services">
-<article class="service"><span class="service-tag">01 · ÖZEL GÜN</span><h3>Düğün & Kına</h3><p>Birlikte yazdığınız hikâyenin en özel anları.</p><a class="service-link" href="#paketler">Paketleri incele ↗</a></article>
-<article class="service"><span class="service-tag">02 · AŞK HİKÂYESİ</span><h3>Gelin & Damat</h3><p>Size özel, doğal ve zamansız dış çekim.</p><a class="service-link" href="#paketler">Paketleri incele ↗</a></article>
-<article class="service"><span class="service-tag">03 · HATIRA</span><h3>Nişan & Söz</h3><p>Ömür boyu saklayacağınız ilk hatıralar.</p><a class="service-link" href="#paketler">Paketleri incele ↗</a></article>
-</div>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Hizmetlerimiz</div>
+      <h2 class="section-heading">Hikâyeniz için<br>doğru kareler.</h2>
+    </div>
+    <p class="muted">Her çiftin hikâyesi farklıdır. Size en uygun çekim planını birlikte oluşturalım.</p>
+  </div>
+  <div class="services">
+    <article class="service">
+      <span class="service-tag">01 · ÖZEL GÜN</span>
+      <h3>Düğün & Nişan</h3>
+      <p>En değerli anlarınızı doğal ve zarif karelerle saklayın.</p>
+      <a class="service-link" href="#paketler">PAKETLERİ GÖR</a>
+    </article>
+    <article class="service">
+      <span class="service-tag">02 · DIŞ ÇEKİM</span>
+      <h3>Gelin & Damat</h3>
+      <p>Size özel mekânlarda aşk hikâyenizi kadraja alıyoruz.</p>
+      <a class="service-link" href="#randevu">ÇEKİM PLANLA</a>
+    </article>
+    <article class="service">
+      <span class="service-tag">03 · ALBÜM</span>
+      <h3>Ömürlük Anılar</h3>
+      <p>Seçtiğiniz fotoğrafları kaliteli albüm ve tablolarla yaşatın.</p>
+      <a class="service-link" href="#paketler">ALBÜM PAKETLERİ</a>
+    </article>
+  </div>
 </section>
 
 <section class="content-section wrap" id="fotograflar">
-<div class="section-head"><div><div class="eyebrow">Portfolyo</div><h2 class="section-heading">Hikâyelerden kareler.</h2></div><p class="muted">Her fotoğraf, yeniden hatırlanacak bir an.</p></div>
-<div class="gallery" id="gallery"><div class="gallery-status">Fotoğraflar yükleniyor...</div></div>
-<p class="gallery-help" id="galleryHelp">Fotoğraflar Supabase deposundan yüklenir.</p>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Fotoğraf galerisi</div>
+      <h2 class="section-heading">Karelerden<br>hikâyelere.</h2>
+    </div>
+    <p class="muted">Her fotoğrafta ayrı bir an, her hikâyede ayrı bir güzellik.</p>
+  </div>
+  <div class="gallery" id="gallery"></div>
+  <p class="gallery-help" id="galleryHelp">Fotoğraflar yükleniyor...</p>
 </section>
 
 <section class="appointment wrap" id="randevu">
-<div class="appointment-box">
-<div class="appointment-info"><div class="eyebrow">İlk adımı atalım</div><h2 class="appointment-title">Tarihini<br>bize bırak.</h2><p>Randevu bilgilerinizi gönderin. Talebinizi WhatsApp üzerinden bize iletebilirsiniz.</p><div class="contact-links"><a href="tel:+905522369828">☎ 0552 236 98 28</a><a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener">Instagram hesabımız ↗</a></div></div>
-<form id="appointmentForm">
-<div class="field"><label for="ad">AD SOYAD</label><input id="ad" required placeholder="Adınız ve soyadınız"></div>
-<div class="field"><label for="telefon">TELEFON</label><input id="telefon" type="tel" required placeholder="0552 000 00 00"></div>
-<div class="field"><label for="tarih">ÇEKİM TARİHİ</label><input id="tarih" type="date" required></div>
-<div class="field"><label for="cekim">PAKET / ÇEKİM</label><select id="cekim" required><option value="">Paket veya çekim seçin</option><option>Nişan Zarafeti - 11.999 TL (Ekim fırsatı)</option><option>Düğün Premium - 15.999 TL (Ekim fırsatı)</option><option>Kapsamlı Düğün Çekimi - 20.000 TL</option><option>Gelin & Damat Çekimi</option><option>Dış Çekim</option><option>Nişan / Söz</option></select></div>
-<div class="field"><label for="not">NOTUNUZ</label><textarea id="not" placeholder="Özel isteğinizi yazabilirsiniz."></textarea></div>
-<button type="submit" class="submit">WHATSAPP'TAN RANDEVU TALEBİ GÖNDER</button>
-</form>
-</div>
+  <div class="appointment-box">
+    <div class="appointment-info">
+      <div class="eyebrow" style="color:#e5c38f">İletişim & Rezervasyon</div>
+      <h2 class="appointment-title">Hikâyenizi<br>birlikte planlayalım.</h2>
+      <p>Çekim tarihinizi ve istediğiniz hizmeti paylaşın. Uygunluk ve detaylar için sizinle iletişime geçelim.</p>
+      <div class="contact-links">
+        <a href="https://wa.me/905522369828" target="_blank" rel="noopener">WhatsApp: 0552 236 98 28</a>
+        <a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener">Instagram: @ceyhunphotographer</a>
+        <span>Diyarbakır · Ceyhun Fotoğrafçılık Studio</span>
+      </div>
+    </div>
+    <form id="appointmentForm">
+      <div class="field">
+        <label for="ad">AD SOYAD *</label>
+        <input id="ad" required placeholder="Adınız ve soyadınız">
+      </div>
+      <div class="field">
+        <label for="telefon">TELEFON *</label>
+        <input id="telefon" type="tel" required placeholder="05XX XXX XX XX">
+      </div>
+      <div class="field">
+        <label for="tarih">TALEP EDİLEN TARİH *</label>
+        <input id="tarih" type="date" required>
+      </div>
+      <div class="field">
+        <label for="cekim">PAKET / ÇEKİM TÜRÜ *</label>
+        <select id="cekim" required>
+          <option value="">Seçim yapın</option>
+          <option>Nişan Zarafeti</option>
+          <option>Düğün Premium</option>
+          <option>Özel Paket</option>
+          <option>Dış çekim</option>
+          <option>Düğün salonu çekimi</option>
+          <option>Diğer / Özel çekim</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="not">NOTUNUZ</label>
+        <textarea id="not" placeholder="Eklemek istediğiniz detaylar"></textarea>
+      </div>
+      <button type="submit" class="submit">WHATSAPP İLE RANDEVU TALEBİ GÖNDER</button>
+    </form>
+  </div>
 </section>
 
 <section class="feedback-section wrap">
-<div class="feedback-box">
-<div class="feedback-head"><div><h2 class="feedback-title">Şikâyet & Öneri</h2><p class="feedback-subtitle">Görüşleriniz bizim için değerli.</p></div><button type="button" class="feedback-button" id="feedbackToggle">FORMU AÇ</button></div>
-<form class="feedback-form" id="feedbackForm">
-<div class="field"><label for="feedbackAd">AD SOYAD</label><input id="feedbackAd" required placeholder="Adınız ve soyadınız"></div>
-<div class="field"><label for="feedbackTelefon">TELEFON</label><input id="feedbackTelefon" type="tel" placeholder="0552 000 00 00"></div>
-<div class="field full"><label for="feedbackKonu">KONU</label><select id="feedbackKonu" required><option value="">Konu seçin</option><option value="Şikayet">Şikâyet</option><option value="Öneri">Öneri</option><option value="Memnuniyet">Memnuniyet</option><option value="Diğer">Diğer</option></select></div>
-<div class="field full"><label for="feedbackMesaj">MESAJINIZ</label><textarea id="feedbackMesaj" required placeholder="Görüşünüzü yazabilirsiniz."></textarea></div>
-<div class="feedback-message" id="feedbackMessage" role="status"></div><button type="submit" class="feedback-send">GÖNDER</button>
-</form>
-</div>
+  <div class="feedback-box">
+    <div class="feedback-head">
+      <div>
+        <h2 class="feedback-title">Görüşleriniz bizim için değerli.</h2>
+        <p class="feedback-subtitle">Şikâyet, öneri ve düşüncelerinizi bize iletebilirsiniz.</p>
+      </div>
+      <button type="button" class="feedback-button" id="feedbackToggle">FORMU AÇ</button>
+    </div>
+    <form id="feedbackForm" class="feedback-form">
+      <div class="field">
+        <label for="feedbackAd">AD SOYAD *</label>
+        <input id="feedbackAd" required placeholder="Adınız ve soyadınız">
+      </div>
+      <div class="field">
+        <label for="feedbackTelefon">TELEFON</label>
+        <input id="feedbackTelefon" type="tel" placeholder="Telefon numaranız">
+      </div>
+      <div class="field full">
+        <label for="feedbackKonu">KONU *</label>
+        <select id="feedbackKonu" required>
+          <option value="">Konu seçin</option>
+          <option>Öneri</option>
+          <option>Şikâyet</option>
+          <option>Memnuniyet</option>
+          <option>Diğer</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="feedbackMesaj">MESAJINIZ *</label>
+        <textarea id="feedbackMesaj" required placeholder="Mesajınızı yazın"></textarea>
+      </div>
+      <div class="feedback-message" id="feedbackMessage"></div>
+      <button type="submit" class="feedback-send">GÖNDER</button>
+    </form>
+  </div>
 </section>
 </main>
 
-<footer class="wrap"><div>© 2026 Ceyhun Fotoğrafçılık Studio</div><div class="footer-links"><a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener">Instagram</a><a href="tel:+905522369828">Telefon</a></div></footer>
-<a class="whatsapp" href="https://wa.me/905522369828?text=Merhaba%20Ceyhun%20Foto%C4%9Fraf%C3%A7%C4%B1l%C4%B1k%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+<footer class="wrap">
+  <div>© <span id="year"></span> Ceyhun Fotoğrafçılık Studio · Tüm hakları saklıdır.</div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/ceyhunphotographer/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://wa.me/905522369828" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="#paketler">Paketler</a>
+  </div>
+</footer>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Fotoğraf görüntüleyici"><button class="close-modal" id="closeModal" type="button" aria-label="Kapat">×</button><img id="modalImage" alt="Büyük fotoğraf"></div>
+<a class="whatsapp" href="https://wa.me/905522369828" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+
+<div class="modal" id="modal">
+  <button class="close-modal" id="closeModal" aria-label="Kapat">&times;</button>
+  <img id="modalImage" src="" alt="Büyük fotoğraf görünümü">
+</div>
 
 <div class="purchase-modal" id="purchaseModal" aria-hidden="true">
-<div class="purchase-panel" role="dialog" aria-modal="true" aria-labelledby="purchaseTitle">
-<button class="purchase-close" type="button" id="purchaseClose" aria-label="Kapat">×</button>
-<div class="eyebrow">Rezervasyon talebi</div><h2 id="purchaseTitle">Paketinizi ayırtın</h2>
-<p class="purchase-intro">Bilgilerinizi doldurun, ek hizmetlerinizi seçin, kapora tutarını girin ve kalan ödemenizi kontrol edin.</p>
-<div class="purchase-summary"><span id="purchasePackageName">Paket</span><strong id="purchasePackagePrice">0 ₺</strong></div>
+  <div class="purchase-panel">
+    <button type="button" class="purchase-close" id="purchaseClose" aria-label="Kapat">&times;</button>
+    <div class="eyebrow">Rezervasyon talebi</div>
+    <h2 id="purchaseTitle">Paketinizi ayırtın</h2>
+    <p class="purchase-intro">Bilgilerinizi doldurun. Talebiniz kaydedildikten sonra WhatsApp üzerinden bize iletilecektir.</p>
+    <div class="purchase-summary">
+      <span id="purchasePackageName">Paket</span>
+      <strong id="purchasePackagePrice">Fiyat</strong>
+    </div>
 
-<form id="purchaseForm">
-<input type="hidden" id="purchasePackageValue">
-<div class="purchase-grid">
-<div class="purchase-field"><label for="brideName">GELİN ADI SOYADI *</label><input id="brideName" required autocomplete="name" placeholder="Gelin adı soyadı"></div>
-<div class="purchase-field"><label for="groomName">DAMAT ADI SOYADI *</label><input id="groomName" required placeholder="Damat adı soyadı"></div>
-<div class="purchase-field"><label for="bridePhone">1. TELEFON NUMARASI *</label><input id="bridePhone" type="tel" required autocomplete="tel" placeholder="05XX XXX XX XX"></div>
-<div class="purchase-field"><label for="groomPhone">2. TELEFON NUMARASI *</label><input id="groomPhone" type="tel" required placeholder="05XX XXX XX XX"></div>
-<div class="purchase-field"><label for="shootDate">ÇEKİM TARİHİ *</label><input id="shootDate" type="date" required></div>
-<div class="purchase-field"><label for="shootLocation">ÇEKİM ŞEHRİ / YERİ *</label>
-<select id="shootLocation" required>
-<option value="">Şehir veya çekim yeri seçin</option>
-<option>Diyarbakır</option>
-<option>Bismil</option>
-<option>Batman</option>
-<option>Mardin</option>
-<option value="other">Diğer / özel mekân</option>
-</select></div>
-<div class="purchase-field full" id="otherLocationWrap" hidden><label for="otherLocation">MEKÂN ADI / ŞEHİR *</label><input id="otherLocation" placeholder="Şehir, mekân adı veya adres"></div>
-<div class="purchase-field full"><label for="venueAddress">AÇIK ADRES / BULUŞMA NOKTASI (İSTEĞE BAĞLI)</label><input id="venueAddress" placeholder="Salon, mekân, adres veya konum bilgisi"></div>
-<div class="purchase-field full"><label for="purchaseNotes">EK NOTLAR (İSTEĞE BAĞLI)</label><textarea id="purchaseNotes" placeholder="Özel istekleriniz veya eklemek istedikleriniz"></textarea></div>
-</div>
-
-<div class="extras-title">EK HİZMETLER — İSTEĞE BAĞLI</div>
-<div class="extra-options">
-<label class="extra-option"><input type="checkbox" id="extraClip" value="Dış Çekim Klibi"><span class="extra-icon">🎬</span><span class="extra-copy"><strong>Dış Çekim Klibi</strong><small>+7.500 ₺</small></span></label>
-<label class="extra-option"><input type="checkbox" id="extraSalon" value="Salon Çekimi"><span class="extra-icon">🏛️</span><span class="extra-copy"><strong>Salon Çekimi</strong><small>+7.500 ₺</small></span></label>
-</div>
-
-<div class="purchase-summary"><span>TOPLAM TUTAR</span><strong id="totalPrice">0 ₺</strong></div>
-
-<div class="purchase-grid">
-<div class="purchase-field"><label for="depositAmount">KAPORA TUTARI (₺) *</label><input id="depositAmount" type="number" min="0" step="1" value="0" required inputmode="numeric"><div class="payment-help">Ödemeyi henüz yapmadıysanız bu alanı 0 bırakabilirsiniz. Girilen tutar kapora planını belirtir; ödeme alındığı anlamına gelmez.</div></div>
-<div class="purchase-field"><label for="paymentMethod">ÖDEME YÖNTEMİ *</label><select id="paymentMethod" required><option value="">Ödeme yöntemi seçin</option><option value="Nakit">Nakit</option><option value="Banka havalesi / EFT">Banka havalesi / EFT</option><option value="Kredi kartı - WhatsApp üzerinden görüşülecek">Kredi kartı</option></select><div class="payment-help" id="paymentMethodHelp">Kredi kartı seçenekleri için WhatsApp üzerinden görüşebilirsiniz.</div></div>
-</div>
-
-<div class="remaining-summary"><span>KALAN ÖDEME</span><strong id="remainingAmount">0 ₺</strong></div>
-
-<label class="contract"><input type="checkbox" id="contractAccepted" required><span>Rezervasyon talebi gönderdiğimi, ek hizmet ve fiyat detaylarını kontrol ettiğimi ve tarih/fiyatın stüdyo onayıyla kesinleşeceğini kabul ediyorum. <a href="#reservationInfo" id="contractInfoLink">Bilgilendirme</a></span></label>
-<p class="purchase-notice" id="reservationInfo">Bu form rezervasyon talebidir; tek başına rezervasyon onayı veya ödeme anlamına gelmez. Girilen kapora tutarı ödeme alındığını göstermez. Kredi kartıyla ödeme için WhatsApp üzerinden iletişime geçebilirsiniz.</p>
-<button type="submit" class="purchase-submit">REZERVASYON TALEBİNİ GÖNDER</button>
-</form>
-</div>
+    <form id="purchaseForm">
+      <input type="hidden" id="purchasePackageValue">
+      <div class="purchase-grid">
+        <div class="purchase-field">
+          <label for="brideName">GELİN ADI SOYADI *</label>
+          <input id="brideName" required autocomplete="name" placeholder="Gelin adı soyadı">
+        </div>
+        <div class="purchase-field">
+          <label for="groomName">DAMAT ADI SOYADI *</label>
+          <input id="groomName" required placeholder="Damat adı soyadı">
+        </div>
+        <div class="purchase-field">
+          <label for="bridePhone">1. TELEFON NUMARASI *</label>
+          <input id="bridePhone" type="tel" required autocomplete="tel" placeholder="05XX XXX XX XX">
+        </div>
+        <div class="purchase-field">
+          <label for="groomPhone">2. TELEFON NUMARASI *</label>
+          <input id="groomPhone" type="tel" required placeholder="05XX XXX XX XX">
+        </div>
+        <div class="purchase-field">
+          <label for="eventType">ÇEKİM TÜRÜ *</label>
+          <select id="eventType" required>
+            <option value="">Çekim türünü seçin</option>
+            <option>Kına - Düğün</option>
+            <option>Düğün - Dış Çekim</option>
+            <option>Nişan - Dış Çekim</option>
+            <option>Kına - Düğün - Dış Çekim</option>
+            <option>Dış Çekim + Salon Çekimi</option>
+            <option>Düğün + Dış Çekim + Salon Çekimi</option>
+            <option>Kına - Düğün + Salon Çekimi</option>
+            <option>Nişan + Dış Çekim + Salon Çekimi</option>
+            <option>Düğün Salonu Çekimi</option>
+            <option>Sadece Dış Çekim</option>
+            <option>Diğer / Özel Çekim</option>
+          </select>
+        </div>
+        <div class="purchase-field">
+          <label for="shootDate">ÇEKİM TARİHİ *</label>
+          <input id="shootDate" type="date" required>
+        </div>
+        <div class="purchase-field full">
+          <label for="shootLocation">ÇEKİM YERİ *</label>
+          <select id="shootLocation" required>
+            <option value="">Çekim yerini seçin</option>
+            <option>Bismil Çekim Platosu</option>
+            <option>Diyarbakır Pandora Çekim Platosu</option>
+            <option>Diyarbakır dış çekim alanları</option>
+            <option>Bismil dış çekim alanları</option>
+            <option>Düğün salonu / organizasyon mekânı</option>
+            <option value="other">Kendi belirlediğim mekân / Diğer</option>
+          </select>
+        </div>
+        <div class="purchase-field full" id="otherLocationWrap" hidden>
+          <label for="otherLocation">MEKÂN ADI VEYA ADRESİ *</label>
+          <input id="otherLocation" placeholder="Mekân adı, adres veya konum">
+        </div>
+        <div class="purchase-field full">
+          <label for="venueAddress">AÇIK ADRES / BULUŞMA NOKTASI (İSTEĞE BAĞLI)</label>
+          <input id="venueAddress" placeholder="Adres veya konum bilgisi">
+        </div>
+        <div class="purchase-field full">
+          <label>İSTEĞE BAĞLI EK HİZMETLER</label>
+          <div class="service-options">
+            <label>
+              <input type="checkbox" id="extraClip" value="Dış Çekim Klibi" data-extra-price="7500">
+              <span><strong>Dış Çekim Klibi</strong><br><span class="field-hint">+7.500 ₺</span></span>
+            </label>
+            <label>
+              <input type="checkbox" id="extraSalon" value="Salon Çekimi" data-extra-price="7500">
+              <span><strong>Salon Çekimi</strong><br><span class="field-hint">+7.500 ₺</span></span>
+            </label>
+          </div>
+        </div>
+        <div class="purchase-field">
+          <label for="depositAmount">ÖDEMEK İSTEDİĞİNİZ KAPORA (₺) *</label>
+          <input id="depositAmount" type="number" min="1" step="1" placeholder="Örn. 3000" required inputmode="numeric">
+          <span class="field-hint">Kapora tutarını siz belirleyebilirsiniz.</span>
+        </div>
+        <div class="purchase-field">
+          <label>ÖDEME YÖNTEMİ *</label>
+          <div class="payment-options">
+            <label><input type="radio" name="paymentMethod" value="Nakit / Havale" checked required><span>Nakit / Havale</span></label>
+            <label><input type="radio" name="paymentMethod" value="Kredi Kartı ile Ödeme" required><span>Kredi kartıyla ödeme <span class="field-hint">(WhatsApp üzerinden iletişim)</span></span></label>
+          </div>
+        </div>
+        <div class="purchase-field full">
+          <div class="total-box">
+            <span>Paket fiyatı</span><strong id="summaryBase">0 ₺</strong>
+            <span>Ek hizmetler</span><strong id="summaryExtras">0 ₺</strong>
+            <span>Toplam tutar</span><strong id="summaryTotal" class="grand-total">0 ₺</strong>
+            <span>Kapora</span><strong id="summaryDeposit">0 ₺</strong>
+            <span>Kalan ödeme</span><strong id="summaryBalance">0 ₺</strong>
+          </div>
+        </div>
+        <div class="purchase-field full">
+          <label for="purchaseNotes">EK NOTLAR (İSTEĞE BAĞLI)</label>
+          <textarea id="purchaseNotes" placeholder="Özel istekleriniz veya eklemek istedikleriniz"></textarea>
+        </div>
+        <div class="purchase-field full">
+          <label class="contract-label">
+            <input type="checkbox" id="contractAccepted" required>
+            <span>Rezervasyon talebimin stüdyo tarafından onaylandıktan sonra kesinleşeceğini, kapora ve kalan ödeme bilgilerinin talep niteliğinde olduğunu kabul ediyorum. *</span>
+          </label>
+        </div>
+      </div>
+      <p class="purchase-notice">Ek hizmetlerin her biri 7.500 ₺'dir. Kredi kartıyla ödeme seçeneğinde ödeme işlemi WhatsApp üzerinden görüşülür; bu form karttan tahsilat yapmaz. Rezervasyon tarihi ve fiyat stüdyo onayından sonra kesinleşir.</p>
+      <button type="submit" class="purchase-submit">REZERVASYON TALEBİ GÖNDER</button>
+    </form>
+  </div>
 </div>
 
 <script>
@@ -348,26 +673,28 @@ const SUPABASE_URL='https://nzriewxchkcfeknkbwuu.supabase.co';
 const SUPABASE_KEY='sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI';
 const BUCKET='site fotolar';
 const BASE=SUPABASE_URL+'/storage/v1/object/public/'+encodeURIComponent(BUCKET)+'/';
-const WHATSAPP_NUMBER='905522369828';
+
+document.getElementById('year').textContent=new Date().getFullYear();
 
 const fileNames=[
-'c37183ec-40f6-4889-922e-32c3785b324f.JPG',
-'1E4A9218 Instagram Post.JPG',
-'1E4A9579 Instagram Post.JPG',
-'gamze 1 Instagram Post.JPG',
-'gamze 2 Instagram Post.JPG',
-'gamze 3 Instagram Post.JPG',
-'gamze 4 Instagram Post.JPG',
-'gamze 5 Instagram Post.JPG',
-'_T2A4971 Instagram Post.jpg',
-'_T2A4982 Instagram Post.jpg',
-'_T2A4991 Instagram Post.jpg',
-'_T2A5027 Instagram Post.jpg',
-'C37A9660.jpg',
-'C37A9666.jpg'
+  'c37183ec-40f6-4889-922e-32c3785b324f.JPG',
+  '1E4A9218 Instagram Post.JPG',
+  '1E4A9579 Instagram Post.JPG',
+  'gamze 1 Instagram Post.JPG',
+  'gamze 2 Instagram Post.JPG',
+  'gamze 3 Instagram Post.JPG',
+  'gamze 4 Instagram Post.JPG',
+  'gamze 5 Instagram Post.JPG',
+  '_T2A4971 Instagram Post.jpg',
+  '_T2A4982 Instagram Post.jpg',
+  '_T2A4991 Instagram Post.jpg',
+  '_T2A5027 Instagram Post.jpg',
+  'C37A9660.jpg',
+  'C37A9666.jpg'
 ];
 const imageUrls=fileNames.map(name=>BASE+encodeURIComponent(name));
 const gallery=document.getElementById('gallery');
+const heroImage=document.getElementById('heroImage');
 const modal=document.getElementById('modal');
 const modalImage=document.getElementById('modalImage');
 let loadedCount=0;
@@ -376,23 +703,28 @@ let failedCount=0;
 function openModal(src){
   modalImage.src=src;
   modal.classList.add('active');
-  document.body.classList.add('locked');
+  document.body.style.overflow='hidden';
 }
 function closeModal(){
   modal.classList.remove('active');
   modalImage.src='';
-  document.body.classList.remove('locked');
+  document.body.style.overflow='';
 }
 document.getElementById('closeModal').addEventListener('click',closeModal);
-modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});
+modal.addEventListener('click',event=>{
+  if(event.target===modal)closeModal();
+});
 
 function updateGalleryStatus(){
-  if(loadedCount>0)document.getElementById('galleryHelp').textContent=loadedCount+' fotoğraf yüklendi.';
+  if(loadedCount>0){
+    document.getElementById('galleryHelp').textContent=loadedCount+' fotoğraf yüklendi.';
+  }
   if(loadedCount===0&&failedCount===imageUrls.length){
     gallery.innerHTML='<div class="gallery-status">Fotoğraflar yüklenemedi. Supabase Storage dosya adlarını ve erişim ayarını kontrol edin.</div>';
     document.getElementById('galleryHelp').textContent='Fotoğraflar yüklenemedi.';
   }
 }
+
 gallery.replaceChildren();
 imageUrls.forEach((src,index)=>{
   const item=document.createElement('div');
@@ -402,20 +734,49 @@ imageUrls.forEach((src,index)=>{
   img.alt='Ceyhun Fotoğrafçılık çekim örneği '+(index+1);
   img.loading=index<3?'eager':'lazy';
   img.decoding='async';
-  img.addEventListener('load',()=>{loadedCount++;updateGalleryStatus()});
-  img.addEventListener('error',()=>{failedCount++;item.remove();updateGalleryStatus()});
+  img.addEventListener('load',()=>{
+    loadedCount++;
+    updateGalleryStatus();
+  });
+  img.addEventListener('error',()=>{
+    failedCount++;
+    item.remove();
+    updateGalleryStatus();
+  });
   item.appendChild(img);
-  item.addEventListener('click',()=>{if(img.complete&&img.naturalWidth>0)openModal(src)});
+  item.addEventListener('click',()=>{
+    if(img.complete&&img.naturalWidth>0)openModal(src);
+  });
   gallery.appendChild(item);
 });
 
+let heroIndex=0;
+function setHeroImage(index){
+  if(index>=imageUrls.length){
+    heroImage.style.display='none';
+    return;
+  }
+  heroImage.style.display='block';
+  heroImage.src=imageUrls[index];
+}
+heroImage.addEventListener('error',()=>{
+  heroIndex++;
+  setHeroImage(heroIndex);
+});
+setHeroImage(heroIndex);
+
 function localDateString(date){
-  return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');
+  return [
+    date.getFullYear(),
+    String(date.getMonth()+1).padStart(2,'0'),
+    String(date.getDate()).padStart(2,'0')
+  ].join('-');
 }
 const today=localDateString(new Date());
 document.getElementById('tarih').min=today;
 document.getElementById('shootDate').min=today;
 
+/* SATIN AL / REZERVASYON FORMU */
 const purchaseModal=document.getElementById('purchaseModal');
 const purchaseForm=document.getElementById('purchaseForm');
 const shootLocation=document.getElementById('shootLocation');
@@ -423,76 +784,84 @@ const otherLocationWrap=document.getElementById('otherLocationWrap');
 const otherLocation=document.getElementById('otherLocation');
 const extraClip=document.getElementById('extraClip');
 const extraSalon=document.getElementById('extraSalon');
-const contractAccepted=document.getElementById('contractAccepted');
 const depositAmount=document.getElementById('depositAmount');
-const paymentMethod=document.getElementById('paymentMethod');
-let currentBasePrice=0;
-let currentPackageName='';
 
-function money(value){
-  return new Intl.NumberFormat('tr-TR',{style:'currency',currency:'TRY',maximumFractionDigits:0}).format(value);
-}
-function getExtras(){
-  const extras=[];
-  if(extraClip.checked)extras.push('Dış Çekim Klibi');
-  if(extraSalon.checked)extras.push('Salon Çekimi');
-  return extras;
-}
-function getTotal(){
-  return currentBasePrice+(getExtras().length*7500);
-}
-function calculateTotal(){
-  const total=getTotal();
-  document.getElementById('purchasePackageName').textContent=currentPackageName||'Paket seçilmedi';
-  document.getElementById('purchasePackagePrice').textContent=money(currentBasePrice);
-  document.getElementById('totalPrice').textContent=money(total);
+const money=value=>Number(value||0).toLocaleString('tr-TR')+' ₺';
 
-  const depositRaw=Number(depositAmount.value);
-  const deposit=Number.isFinite(depositRaw)&&depositRaw>=0?depositRaw:0;
-  depositAmount.max=String(total);
+function currentPackageBase(){
+  const value=document.getElementById('purchasePackageValue').value;
+  const match=value.match(/([\d.]+)\s*₺/);
+  return match?Number(match[1].replace(/\./g,'')):0;
+}
+
+function selectedExtras(){
+  const items=[];
+  if(extraClip.checked)items.push({name:extraClip.value,price:7500});
+  if(extraSalon.checked)items.push({name:extraSalon.value,price:7500});
+  return items;
+}
+
+function updatePurchaseTotals(){
+  const base=currentPackageBase();
+  const extras=selectedExtras();
+  const extraTotal=extras.reduce((sum,item)=>sum+item.price,0);
+  const total=base+extraTotal;
+  let deposit=Number(depositAmount.value||0);
+
+  if(deposit<0)deposit=0;
   if(deposit>total){
-    document.getElementById('remainingAmount').textContent='Kapora toplamı aşamaz';
-    document.getElementById('remainingAmount').style.fontSize='16px';
-  }else{
-    document.getElementById('remainingAmount').textContent=money(total-deposit);
-    document.getElementById('remainingAmount').style.fontSize='';
+    deposit=total;
+    depositAmount.value=String(total);
   }
+
+  document.getElementById('summaryBase').textContent=money(base);
+  document.getElementById('summaryExtras').textContent=money(extraTotal);
+  document.getElementById('summaryTotal').textContent=money(total);
+  document.getElementById('summaryDeposit').textContent=money(deposit);
+  document.getElementById('summaryBalance').textContent=money(total-deposit);
+  depositAmount.max=String(total);
+  document.getElementById('purchasePackagePrice').textContent=money(total);
+
+  return {base,extras,extraTotal,total,deposit,balance:total-deposit};
 }
+
+extraClip.addEventListener('change',updatePurchaseTotals);
+extraSalon.addEventListener('change',updatePurchaseTotals);
+depositAmount.addEventListener('input',updatePurchaseTotals);
+
 function openPurchaseForm(packageName,packagePrice){
-  currentPackageName=packageName;
-  currentBasePrice=Number(packagePrice)||0;
   purchaseForm.reset();
-  document.getElementById('purchasePackageValue').value=packageName;
-  depositAmount.value='0';
-  otherLocationWrap.hidden=true;
-  otherLocation.required=false;
-  document.getElementById('remainingAmount').style.fontSize='';
-  calculateTotal();
+  extraClip.checked=false;
+  extraSalon.checked=false;
+  depositAmount.value='';
+  document.getElementById('purchasePackageName').textContent=packageName;
+  document.getElementById('purchasePackageValue').value=packageName+' - '+packagePrice;
+  updatePurchaseTotals();
   purchaseModal.classList.add('active');
   purchaseModal.setAttribute('aria-hidden','false');
-  document.body.classList.add('locked');
+  document.body.style.overflow='hidden';
 }
+
 function closePurchaseForm(){
   purchaseModal.classList.remove('active');
   purchaseModal.setAttribute('aria-hidden','true');
-  document.body.classList.remove('locked');
+  document.body.style.overflow='';
 }
-document.querySelectorAll('[data-package]').forEach(button=>{
-  button.addEventListener('click',()=>openPurchaseForm(button.dataset.package,button.dataset.price));
-});
-document.getElementById('purchaseClose').addEventListener('click',closePurchaseForm);
-purchaseModal.addEventListener('click',event=>{if(event.target===purchaseModal)closePurchaseForm()});
-extraClip.addEventListener('change',calculateTotal);
-extraSalon.addEventListener('change',calculateTotal);
-depositAmount.addEventListener('input',calculateTotal);
 
-paymentMethod.addEventListener('change',()=>{
-  const help=document.getElementById('paymentMethodHelp');
-  if(paymentMethod.value==='Kredi kartı - WhatsApp üzerinden görüşülecek'){
-    help.textContent='Rezervasyon talebiniz kaydedildikten sonra kredi kartı görüşmesi için WhatsApp açılacaktır.';
-  }else{
-    help.textContent='Seçtiğiniz ödeme yöntemi rezervasyon notunuza eklenecektir.';
-  }
+document.querySelectorAll('[data-package]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    openPurchaseForm(button.dataset.package,button.dataset.price);
+  });
+});
+
+document.getElementById('campaignCta').addEventListener('click',event=>{
+  event.preventDefault();
+  openPurchaseForm('Düğün Premium','15.999 ₺');
+});
+
+document.getElementById('purchaseClose').addEventListener('click',closePurchaseForm);
+purchaseModal.addEventListener('click',event=>{
+  if(event.target===purchaseModal)closePurchaseForm();
 });
 
 shootLocation.addEventListener('change',()=>{
@@ -502,92 +871,76 @@ shootLocation.addEventListener('change',()=>{
   if(!needsOther)otherLocation.value='';
 });
 
-document.getElementById('contractInfoLink').addEventListener('click',event=>{
-  event.preventDefault();
-  document.getElementById('reservationInfo').scrollIntoView({behavior:'smooth',block:'center'});
-});
-
 purchaseForm.addEventListener('submit',async event=>{
   event.preventDefault();
 
+  const packageValue=document.getElementById('purchasePackageValue').value;
   const brideName=document.getElementById('brideName').value.trim();
   const groomName=document.getElementById('groomName').value.trim();
   const bridePhone=document.getElementById('bridePhone').value.trim();
   const groomPhone=document.getElementById('groomPhone').value.trim();
+  const eventType=document.getElementById('eventType').value;
   const date=document.getElementById('shootDate').value;
   const selectedLocation=shootLocation.value==='other'?otherLocation.value.trim():shootLocation.value;
   const address=document.getElementById('venueAddress').value.trim();
   const notes=document.getElementById('purchaseNotes').value.trim();
-  const extras=getExtras();
-  const extraTotal=extras.length*7500;
-  const totalPrice=currentBasePrice+extraTotal;
-  const deposit=Number(depositAmount.value);
-  const selectedPaymentMethod=paymentMethod.value;
-  const remaining=totalPrice-deposit;
 
-  if(!currentPackageName||!brideName||!groomName||!bridePhone||!groomPhone||!date||!selectedLocation||!selectedPaymentMethod){
+  if(!packageValue||!brideName||!groomName||!bridePhone||!groomPhone||!eventType||!date||!selectedLocation){
     alert('Lütfen yıldızlı alanların tamamını doldurun.');
     return;
   }
+
   if(shootLocation.value==='other'&&!selectedLocation){
-    alert('Lütfen şehir veya mekân adını yazın.');
+    alert('Lütfen mekân adını yazın.');
     otherLocation.focus();
     return;
   }
-  if(!Number.isFinite(deposit)||deposit<0){
-    alert('Lütfen geçerli bir kapora tutarı girin.');
-    depositAmount.focus();
+
+  const totals=updatePurchaseTotals();
+  const basePrice=totals.base;
+  const totalPrice=totals.total;
+  const deposit=totals.deposit;
+  const balance=totals.balance;
+  const extras=totals.extras;
+  const paymentMethod=document.querySelector('input[name="paymentMethod"]:checked')?.value||'Nakit / Havale';
+  const contractAccepted=document.getElementById('contractAccepted').checked;
+
+  if(!contractAccepted){
+    alert('Lütfen rezervasyon koşullarını onaylayın.');
     return;
   }
-  if(deposit>totalPrice){
-    alert('Kapora tutarı toplam fiyattan fazla olamaz.');
+
+  if(deposit<1||deposit>totalPrice||!Number.isFinite(deposit)){
+    alert('Lütfen geçerli bir kapora tutarı girin (en az 1 ₺).');
     depositAmount.focus();
-    return;
-  }
-  if(!contractAccepted.checked){
-    alert('Devam etmek için rezervasyon bilgilendirmesini kabul etmelisiniz.');
     return;
   }
 
   const formattedDate=new Date(date+'T12:00:00').toLocaleDateString('tr-TR');
-  const extrasText=extras.length?extras.join(', '):'Ek hizmet seçilmedi';
-  const eventType=extras.length?extras.join(' + '):'Paket rezervasyon talebi';
-
-  const fullNotes=[
-    'Paket ana fiyatı: '+money(currentBasePrice),
-    'Ek hizmetler: '+extrasText,
-    'Ek hizmet toplamı: '+money(extraTotal),
-    'Toplam fiyat: '+money(totalPrice),
-    'Planlanan kapora: '+money(deposit),
-    'Kalan ödeme: '+money(remaining),
-    'Ödeme yöntemi: '+selectedPaymentMethod,
-    'Ödeme durumu: Henüz ödeme doğrulanmadı',
-    notes?'Müşteri notu: '+notes:''
-  ].filter(Boolean).join('\n');
+  const packageName=packageValue.replace(/\s*-\s*[\d.]+\s*₺\s*$/,'').trim();
 
   const message=[
     'Merhaba Ceyhun Fotoğrafçılık Studio 👋',
     '',
-    '📸 REZERVASYON TALEBİ',
+    '📸 PAKET / REZERVASYON TALEBİ',
+    'Seçilen paket: '+packageName,
     'Gelin adı soyadı: '+brideName,
     'Damat adı soyadı: '+groomName,
     '1. telefon: '+bridePhone,
     '2. telefon: '+groomPhone,
+    'Çekim türü: '+eventType,
     'Çekim tarihi: '+formattedDate,
-    'Çekim yeri / şehir: '+selectedLocation,
-    'Paket: '+currentPackageName,
-    'Paket ana fiyatı: '+money(currentBasePrice),
-    'Ek hizmetler: '+extrasText,
-    'Ek hizmet toplamı: '+money(extraTotal),
-    'TOPLAM FİYAT: '+money(totalPrice),
-    'Planlanan kapora: '+money(deposit),
-    'Kalan ödeme: '+money(remaining),
-    'Ödeme yöntemi: '+selectedPaymentMethod,
+    'Çekim yeri: '+selectedLocation,
+    'Paket fiyatı: '+money(basePrice),
+    extras.length?'Ek hizmetler: '+extras.map(item=>item.name+' ('+money(item.price)+')').join(', '):'Ek hizmetler: Yok',
+    'Toplam fiyat: '+money(totalPrice),
+    'Önerilen kapora: '+money(deposit),
+    'Kalan ödeme: '+money(balance),
+    'Ödeme yöntemi: '+paymentMethod,
     address?'Adres / buluşma noktası: '+address:'',
     notes?'Ek notlar: '+notes:'',
-    'Rezervasyon bilgilendirmesi kabul edildi: Evet',
     '',
-    'Not: Bu bir rezervasyon talebidir. Girilen kapora tutarı ödeme alındığı anlamına gelmez. Tarih ve fiyat stüdyo onayından sonra kesinleşir.'
+    'Bu bir rezervasyon talebidir. Tarih ve fiyat stüdyo onayından sonra kesinleşir.'
   ].filter(Boolean).join('\n');
 
   const button=purchaseForm.querySelector('.purchase-submit');
@@ -595,11 +948,7 @@ purchaseForm.addEventListener('submit',async event=>{
   button.disabled=true;
   button.textContent='REZERVASYON KAYDEDİLİYOR...';
 
-  let whatsappWindow=null;
   try{
-    /* WhatsApp penceresini kullanıcı tıklaması sırasında açarak engellenme ihtimalini azalt. */
-    whatsappWindow=window.open('about:blank','_blank');
-
     const reservation={
       bride_name:brideName,
       groom_name:groomName,
@@ -609,16 +958,16 @@ purchaseForm.addEventListener('submit',async event=>{
       shoot_date:date,
       shoot_location:selectedLocation,
       venue_address:address||null,
-      package_name:currentPackageName,
-      base_package_price:currentBasePrice,
+      package_name:packageName,
       package_price:totalPrice,
+      base_package_price:basePrice,
+      extra_services:extras.length?extras.map(item=>item.name+' ('+money(item.price)+')').join(', '):'Ek hizmet seçilmedi',
+      contract_accepted:contractAccepted,
       deposit_amount:deposit,
+      payment_method:paymentMethod,
       payment_status:'Ödenmedi',
       reservation_status:'Bekliyor',
-      notes:fullNotes,
-      additional_payment:0,
-      extra_services:extrasText,
-      contract_accepted:true
+      notes:notes||null
     };
 
     const response=await fetch(SUPABASE_URL+'/rest/v1/reservations',{
@@ -637,18 +986,12 @@ purchaseForm.addEventListener('submit',async event=>{
       throw new Error(detail||'Rezervasyon kaydedilemedi.');
     }
 
-    const whatsappUrl='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(message);
-    if(whatsappWindow&&!whatsappWindow.closed){
-      whatsappWindow.location.href=whatsappUrl;
-    }else{
-      window.location.href=whatsappUrl;
-    }
-
-    alert('Rezervasyon talebiniz kaydedildi. WhatsApp üzerinden mesajınızı da gönderebilirsiniz.');
+    const whatsappUrl='https://wa.me/905522369828?text='+encodeURIComponent(message);
     purchaseForm.reset();
     closePurchaseForm();
+    window.location.assign(whatsappUrl);
+
   }catch(error){
-    if(whatsappWindow&&!whatsappWindow.closed)whatsappWindow.close();
     console.error('Rezervasyon kaydetme hatası:',error);
     alert('Rezervasyon kaydedilemedi. Lütfen tekrar deneyin. Hata: '+(error.message||'Bilinmeyen hata'));
   }finally{
@@ -657,50 +1000,70 @@ purchaseForm.addEventListener('submit',async event=>{
   }
 });
 
-/* Ana randevu formu WhatsApp üzerinden mesaj hazırlar. */
-document.getElementById('appointmentForm').addEventListener('submit',event=>{
+/* RANDEVU FORMU */
+const appointmentForm=document.getElementById('appointmentForm');
+
+appointmentForm.addEventListener('submit',event=>{
   event.preventDefault();
+
   const ad=document.getElementById('ad').value.trim();
   const telefon=document.getElementById('telefon').value.trim();
   const tarih=document.getElementById('tarih').value;
   const cekim=document.getElementById('cekim').value;
   const not=document.getElementById('not').value.trim();
-  if(!ad||!telefon||!tarih||!cekim){alert('Lütfen gerekli alanları doldurun.');return}
+
+  if(!ad||!telefon||!tarih||!cekim){
+    alert('Lütfen gerekli alanları doldurun.');
+    return;
+  }
+
   const formattedDate=new Date(tarih+'T12:00:00').toLocaleDateString('tr-TR');
   const message=[
-    'Merhaba Ceyhun Fotoğrafçılık 👋','',
-    '📸 RANDEVU TALEBİ','Ad Soyad: '+ad,'Telefon: '+telefon,
-    'Tarih: '+formattedDate,'Paket / Çekim: '+cekim,
+    'Merhaba Ceyhun Fotoğrafçılık 👋',
+    '',
+    '📸 RANDEVU TALEBİ',
+    'Ad Soyad: '+ad,
+    'Telefon: '+telefon,
+    'Tarih: '+formattedDate,
+    'Paket / Çekim: '+cekim,
     not?'Not: '+not:'',
-    '','Müsaitlik ve paket detayları hakkında bilgi almak istiyorum.'
+    '',
+    'Müsaitlik ve paket detayları hakkında bilgi almak istiyorum.'
   ].filter(Boolean).join('\n');
-  window.open('https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+
+  window.open('https://wa.me/905522369828?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
 });
 
-/* Şikâyet ve öneri formu */
+/* ŞİKÂYET VE ÖNERİ FORMU */
 const feedbackToggle=document.getElementById('feedbackToggle');
 const feedbackForm=document.getElementById('feedbackForm');
 const feedbackMessage=document.getElementById('feedbackMessage');
+
 feedbackToggle.addEventListener('click',()=>{
   const isOpen=feedbackForm.classList.toggle('open');
   feedbackToggle.textContent=isOpen?'FORMU KAPAT':'FORMU AÇ';
   if(isOpen)feedbackForm.scrollIntoView({behavior:'smooth',block:'center'});
 });
+
 feedbackForm.addEventListener('submit',async event=>{
   event.preventDefault();
+
   const adSoyad=document.getElementById('feedbackAd').value.trim();
   const telefon=document.getElementById('feedbackTelefon').value.trim();
   const konu=document.getElementById('feedbackKonu').value;
   const mesaj=document.getElementById('feedbackMesaj').value.trim();
   const button=feedbackForm.querySelector('.feedback-send');
+
   if(!adSoyad||!konu||!mesaj){
     feedbackMessage.textContent='Lütfen gerekli alanları doldurun.';
     feedbackMessage.classList.add('show');
     return;
   }
+
   button.disabled=true;
   button.textContent='GÖNDERİLİYOR...';
   feedbackMessage.classList.remove('show');
+
   try{
     const response=await fetch(SUPABASE_URL+'/rest/v1/sikayet_oneri',{
       method:'POST',
@@ -712,10 +1075,13 @@ feedbackForm.addEventListener('submit',async event=>{
       },
       body:JSON.stringify({ad_soyad:adSoyad,telefon,konu,mesaj})
     });
+
     if(!response.ok)throw new Error(await response.text()||'Gönderim başarısız');
+
     feedbackMessage.textContent='Mesajınız başarıyla gönderildi. Teşekkür ederiz.';
     feedbackMessage.classList.add('show');
     feedbackForm.reset();
+
   }catch(error){
     feedbackMessage.textContent='Mesaj gönderilemedi. Lütfen tekrar deneyin veya WhatsApp üzerinden ulaşın.';
     feedbackMessage.classList.add('show');
