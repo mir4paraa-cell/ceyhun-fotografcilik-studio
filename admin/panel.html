@@ -4,607 +4,678 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ceyhun Studio | Yönetim Paneli</title>
+<title>Ceyhun Studio | Yönetim Merkezi</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
+:root{--bg:#f5f5f7;--card:#fff;--ink:#202124;--muted:#777;--line:#e8e8ed;--dark:#171717;--green:#16834a;--red:#b42332;--gold:#b18a48}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f5f3;color:#191919}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
-.wrap{max-width:1250px;margin:auto;padding:24px}
-.top,.toolbar,.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.top{margin-bottom:25px}
-h1{font-size:25px;margin:0}
-h2{font-size:20px;margin:0 0 12px}
-h3{font-size:16px}
+.wrap{max-width:1500px;margin:auto;padding:24px}
+header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:14px;background:#171717;color:#fff;display:grid;place-items:center;font-weight:bold;font-size:19px}
+h1{font-size:24px;margin:0 0 6px}
+h2{font-size:19px;margin:0 0 8px}
+h3{font-size:15px;margin:0 0 10px}
 p{line-height:1.5}
-.muted{color:#777;font-size:13px}
-.card{background:white;border:1px solid #e5e5e1;border-radius:16px;padding:22px;margin-bottom:20px}
-.login{max-width:430px;margin:9vh auto}
-label{display:block;font-size:13px;margin:12px 0 6px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px;background:#fff;color:#191919}
+.muted{color:var(--muted);font-size:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 3px 14px #15151505}
+.login{max-width:430px;margin:10vh auto}
+label{display:block;font-size:12px;font-weight:600;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #dedee5;border-radius:9px;background:white;color:var(--ink);min-width:0}
 textarea{min-height:75px;resize:vertical}
-.btn{border:0;border-radius:9px;padding:11px 15px;background:#171717;color:white}
-.btn-light{background:#eee;color:#171717}
-.btn-danger{background:#a32929;color:white}
+input:focus,select:focus,textarea:focus{outline:2px solid #bca77c55;border-color:var(--gold)}
+.btn{border:0;border-radius:9px;padding:10px 13px;background:var(--dark);color:white;font-weight:600;font-size:12px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.btn:hover{opacity:.86}
+.btn-light{background:#eeeef2;color:#292929}
+.btn-green{background:var(--green);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-gold{background:var(--gold);color:#fff}
 .btn:disabled{opacity:.5;cursor:wait}
-.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.tab{background:#e9e9e5;color:#222;border:0;padding:12px 15px;border-radius:9px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{border:0;background:#e9e9ed;padding:12px 16px;border-radius:10px;color:#444;font-weight:600}
 .tab.active{background:#171717;color:white}
-#status,#loginStatus,#reservationStatus,#photoStatus{margin-top:12px;font-size:13px;white-space:pre-wrap;line-height:1.5}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
-.stat{background:white;border:1px solid #e5e5e1;border-radius:14px;padding:18px}
-.stat strong{display:block;font-size:25px;margin-top:8px;overflow-wrap:anywhere}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:900px}
-th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #eee;vertical-align:top;font-size:13px}
-th{color:#666;font-weight:600;background:#fafaf8}
-td select,td input{min-width:110px;padding:8px;font-size:13px}
-.customer{font-weight:bold;margin-bottom:5px}
-.small{font-size:12px;color:#777;line-height:1.55;overflow-wrap:anywhere;margin-top:4px}
-.pill{display:inline-block;border-radius:30px;background:#eee;padding:5px 9px;font-size:12px}
-.pill.ok{background:#e2f3e7;color:#206c39}
-.pill.no{background:#f8e8e8;color:#8d3037}
-.price-line{font-size:12px;line-height:1.65;margin-top:5px}
-.price-line strong{font-size:14px}
-.extra-line{display:inline-block;margin:3px 3px 0 0;padding:4px 7px;background:#eee8dd;border-radius:5px;font-size:11px}
-.calendar-head{margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:17px;min-width:0}
+.stat .label{color:#777;font-size:12px}
+.stat strong{display:block;font-size:23px;margin-top:10px;overflow-wrap:anywhere}
+.stat small{display:block;color:#888;margin-top:6px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-top:17px}
+.table-wrap{overflow-x:auto;margin-top:16px}
+table{width:100%;border-collapse:collapse;min-width:1120px}
+th,td{text-align:left;padding:13px 10px;border-bottom:1px solid #eee;vertical-align:top;font-size:12px}
+th{background:#fafafc;color:#666;font-weight:600;white-space:nowrap}
+tbody tr:hover{background:#fcfcfd}
+td select,td input{min-width:120px;padding:8px;font-size:12px}
+.customer{font-weight:700;font-size:13px;margin-bottom:7px}
+.small{font-size:11px;color:#777;line-height:1.65;overflow-wrap:anywhere;margin-top:4px}
+.pill{display:inline-block;border-radius:20px;background:#eee;padding:5px 8px;font-size:11px}
+.pill.ok{background:#e0f5e7;color:#176b3b}
+.pill.no{background:#fbe8e9;color:#a12630}
+.pill.gold{background:#f7eedc;color:#876526}
+.price-line{font-size:12px;line-height:1.8;margin-top:5px}
+.price-line strong{font-size:13px}
+.row-actions{display:flex;flex-direction:column;gap:6px;min-width:120px}
+.row-actions .btn{width:100%;white-space:nowrap}
+.message{font-size:12px;white-space:pre-wrap;line-height:1.6;margin-top:12px;color:#555}
+.message.error{color:var(--red)}
+.message.success{color:var(--green)}
+.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}
 .calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
-.day-name{text-align:center;color:#777;font-size:12px;padding:8px 0}
-.day{min-height:95px;background:#fafaf8;border:1px solid #eee;border-radius:8px;padding:7px;font-size:13px;overflow-wrap:anywhere}
-.day.today{border:2px solid #777}
-.day.other{opacity:.35}
-.event{background:#e9e5dc;border-radius:5px;padding:5px;margin-top:5px;font-size:11px;line-height:1.35;cursor:pointer}
-.empty{padding:20px;color:#777;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:15px}
-.photo{border:1px solid #e7e7e3;border-radius:12px;overflow:hidden;background:#fff}
-.photo img{width:100%;height:190px;object-fit:cover;display:block;background:#eee}
-.photo-info{padding:11px}
-.filename{font-size:12px;overflow-wrap:anywhere;margin-bottom:10px}
+.day-name{text-align:center;color:#777;font-size:11px;padding:8px 0}
+.day{min-height:95px;background:#fafafc;border:1px solid #eee;border-radius:9px;padding:7px;font-size:12px;overflow-wrap:anywhere}
+.day.today{border:2px solid var(--gold)}
+.day.other{opacity:.4}
+.event{background:#ece5d8;border-radius:5px;padding:5px;margin-top:5px;font-size:10px;line-height:1.4;cursor:pointer}
+.event:hover{background:#dfd1b8}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.photo{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:white}
+.photo img{width:100%;height:170px;object-fit:cover;display:block;background:#eee}
+.photo-info{padding:10px}
+.filename{font-size:11px;overflow-wrap:anywhere;margin-bottom:9px}
 .photo-info button{width:100%}
-.notice{font-size:12px;color:#777;line-height:1.6}
-@media(max-width:600px){
-.wrap{padding:13px}
-.card{padding:15px}
-h1{font-size:21px}
-.day{min-height:65px;padding:4px;font-size:11px}
-.event{font-size:10px;padding:3px}
-.calendar{gap:3px}
-.stat strong{font-size:21px}
-}
+.modal{position:fixed;inset:0;background:#0009;z-index:10;display:flex;align-items:center;justify-content:center;padding:15px;overflow:auto}
+.modal-box{background:white;width:min(680px,100%);max-height:92vh;overflow:auto;border-radius:16px;padding:23px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 13px}
+.full{grid-column:1/-1}
+.close-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.empty{text-align:center;padding:25px;color:#888}
+.notice{font-size:11px;color:#888;line-height:1.6;margin-top:18px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}}
+@media(max-width:550px){.wrap{padding:12px}.card{padding:14px}h1{font-size:20px}.stats{grid-template-columns:1fr 1fr}.stat strong{font-size:19px}.filters,.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.day{min-height:62px;padding:4px;font-size:10px}.event{font-size:9px;padding:3px}.calendar{gap:3px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <section id="loginView" class="card login">
-<h1>CEYHUN STUDIO</h1>
-<p class="muted">Yönetim paneline giriş yap</p>
-<form id="loginForm">
-<label for="email">E-posta</label>
-<input id="email" type="email" autocomplete="username" required placeholder="Yönetici e-postan">
-<label for="password">Şifre</label>
-<input id="password" type="password" autocomplete="current-password" required placeholder="Şifren">
-<div class="actions"><button class="btn" id="loginBtn" type="submit">Giriş yap</button></div>
-</form>
-<div id="loginStatus" role="status"></div>
+  <div class="brand">
+    <div class="logo">CS</div>
+    <div><h1>CEYHUN STUDIO</h1><div class="muted">Profesyonel yönetim merkezi</div></div>
+  </div>
+  <p class="muted">Devam etmek için yönetici hesabınla giriş yap.</p>
+  <form id="loginForm">
+    <label for="email">E-posta</label>
+    <input id="email" type="email" autocomplete="username" required placeholder="Yönetici e-postası">
+    <label for="password">Şifre</label>
+    <input id="password" type="password" autocomplete="current-password" required placeholder="Şifren">
+    <div class="actions"><button class="btn" id="loginBtn" type="submit">Giriş yap</button></div>
+  </form>
+  <div id="loginStatus" class="message" role="status"></div>
 </section>
 
 <section id="adminView" class="hidden">
-<div class="top">
-<div>
-<h1>CEYHUN STUDIO</h1>
-<p class="muted">Fotoğrafçılık yönetim merkezi</p>
-</div>
-<button class="btn btn-light" id="logoutBtn">Güvenli çıkış</button>
-</div>
+  <header>
+    <div class="brand">
+      <div class="logo">CS</div>
+      <div><h1>CEYHUN STUDIO</h1><div class="muted">Fotoğrafçılık • Randevu • Müşteri • Finans</div></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-light" id="reloadReservations">↻ Yenile</button>
+      <button class="btn btn-red" id="logoutBtn">Güvenli çıkış</button>
+    </div>
+  </header>
 
-<div class="tabs">
-<button class="tab active" data-tab="reservations">Rezervasyonlar</button>
-<button class="tab" data-tab="calendar">Çekim takvimi</button>
-<button class="tab" data-tab="photos">Fotoğraf galerisi</button>
-</div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="reservations">▤ Rezervasyonlar</button>
+    <button class="tab" data-tab="calendar">▦ Çekim takvimi</button>
+    <button class="tab" data-tab="finance">₺ Ödeme takibi</button>
+    <button class="tab" data-tab="photos">▧ Fotoğraf galerisi</button>
+  </nav>
 
-<section id="reservationsSection">
-<div class="stats">
-<div class="stat"><span class="muted">Toplam rezervasyon</span><strong id="totalCount">0</strong></div>
-<div class="stat"><span class="muted">Bekleyen işler</span><strong id="pendingCount">0</strong></div>
-<div class="stat"><span class="muted">Toplam paket tutarı</span><strong id="totalRevenue">0 ₺</strong></div>
-<div class="stat"><span class="muted">Alınan kapora</span><strong id="totalDeposit">0 ₺</strong></div>
-<div class="stat"><span class="muted">Kalan ödeme</span><strong id="totalBalance">0 ₺</strong></div>
-</div>
+  <section id="reservationsSection">
+    <div class="stats">
+      <div class="stat"><span class="label">Toplam randevu</span><strong id="totalCount">0</strong><small>Tüm kayıtlar</small></div>
+      <div class="stat"><span class="label">Aktif işler</span><strong id="pendingCount">0</strong><small>İptal ve tamamlananlar hariç</small></div>
+      <div class="stat"><span class="label">Toplam paket tutarı</span><strong id="totalRevenue">0 ₺</strong><small>Rezervasyonların toplamı</small></div>
+      <div class="stat"><span class="label">Alınan kapora</span><strong id="totalDeposit">0 ₺</strong><small>Kayıtlardaki kaporalar</small></div>
+      <div class="stat"><span class="label">Kalan ödeme</span><strong id="totalBalance">0 ₺</strong><small>Ödenmemiş bakiye</small></div>
+    </div>
 
-<div class="card">
-<div class="toolbar">
-<div>
-<h2>Müşteri rezervasyonları</h2>
-<p class="muted">Müşteri, paket, ek hizmetler ve ödeme bilgileri</p>
-</div>
-<button class="btn btn-light" id="reloadReservations">Yenile</button>
-</div>
-<label for="reservationSearch">Müşteri ara</label>
-<input id="reservationSearch" placeholder="İsim, telefon, paket, ek hizmet veya konum yaz...">
-<div id="reservationStatus" role="status"></div>
-<div class="table-wrap" style="margin-top:16px">
-<table>
-<thead>
-<tr>
-<th>Müşteri / çekim bilgileri</th>
-<th>Paket ve fiyat detayı</th>
-<th>Kapora / kalan</th>
-<th>Ödeme durumu</th>
-<th>Rezervasyon durumu</th>
-<th>Kaydet</th>
-</tr>
-</thead>
-<tbody id="reservationRows">
-<tr><td colspan="6" class="empty">Rezervasyonlar yükleniyor...</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+    <div class="card">
+      <div class="toolbar">
+        <div><h2>Müşteri ve rezervasyonlar</h2><div class="muted">Kayıtları yönet, ödemeleri güncelle, müşteriye ulaş.</div></div>
+        <button class="btn btn-gold" id="newReservationBtn">＋ Yeni randevu</button>
+      </div>
+
+      <div class="filters">
+        <input id="reservationSearch" placeholder="İsim, telefon, paket veya konum ara...">
+        <select id="statusFilter">
+          <option value="">Tüm randevu durumları</option>
+          <option>Yeni</option><option>Bekliyor</option><option>Onaylandı</option>
+          <option>Çekim yapıldı</option><option>Tamamlandı</option><option>İptal</option>
+        </select>
+        <select id="paymentFilter">
+          <option value="">Tüm ödeme durumları</option>
+          <option>Bekliyor</option><option>Kapora alındı</option><option>Kısmi ödeme</option><option>Ödendi</option>
+        </select>
+        <input id="dateFilter" type="date" aria-label="Çekim tarihi filtrele">
+      </div>
+      <div class="actions">
+        <button class="btn btn-light" id="clearFilters">Filtreleri temizle</button>
+        <button class="btn btn-light" id="exportCsv">⇩ Excel / CSV indir</button>
+      </div>
+      <div id="reservationStatus" class="message" role="status"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Müşteri / çekim</th><th>Paket / fiyat</th><th>Kapora / ek ödeme</th>
+            <th>Ödeme durumu</th><th>İş durumu</th><th>İşlemler</th>
+          </tr></thead>
+          <tbody id="reservationRows"><tr><td colspan="6" class="empty">Yükleniyor...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendarSection" class="hidden">
+    <div class="card">
+      <div class="calendar-head">
+        <button class="btn btn-light" id="prevMonth">← Önceki ay</button>
+        <h2 id="monthTitle">Çekim takvimi</h2>
+        <button class="btn btn-light" id="nextMonth">Sonraki ay →</button>
+      </div>
+      <p class="muted">Çekim günlerini görüntüle. Bir randevuya tıklayarak müşteri kaydını aç.</p>
+      <div id="calendar" class="calendar"></div>
+    </div>
+  </section>
+
+  <section id="financeSection" class="hidden">
+    <div class="stats">
+      <div class="stat"><span class="label">Toplam paket tutarı</span><strong id="financeRevenue">0 ₺</strong></div>
+      <div class="stat"><span class="label">Kaporalar</span><strong id="financeDeposit">0 ₺</strong></div>
+      <div class="stat"><span class="label">Ek ödemeler</span><strong id="financeExtra">0 ₺</strong></div>
+      <div class="stat"><span class="label">Bekleyen bakiye</span><strong id="financeBalance">0 ₺</strong></div>
+    </div>
+    <div class="card">
+      <h2>Ödeme bekleyen müşteriler</h2>
+      <p class="muted">Müşterinin ödemesini kaydetmek için rezervasyonlar bölümündeki ödeme alanını kullan.</p>
+      <div id="financeList"></div>
+    </div>
+  </section>
+
+  <section id="photosSection" class="hidden">
+    <div class="card">
+      <h2>Fotoğraf yükle</h2>
+      <p class="muted">Fotoğraflar mevcut Supabase Storage alanına yüklenir.</p>
+      <input id="fileInput" type="file" accept="image/*" multiple>
+      <div class="actions">
+        <button class="btn" id="uploadBtn">Fotoğrafları yükle</button>
+        <button class="btn btn-light" id="refreshBtn">Galeriyi yenile</button>
+      </div>
+      <div id="photoStatus" class="message" role="status"></div>
+    </div>
+    <div class="card">
+      <h2>Mevcut fotoğraflar</h2>
+      <p class="muted" id="photoCount">Galeri yükleniyor...</p>
+      <div id="gallery" class="grid"></div>
+    </div>
+  </section>
+
+  <p class="notice">Ceyhun Studio yönetim paneli. Yönetici erişimi Supabase kimlik doğrulaması ve veritabanı izinleriyle kontrol edilir.</p>
 </section>
+</div>
 
-<section id="calendarSection" class="hidden">
-<div class="card">
-<div class="calendar-head">
-<button class="btn btn-light" id="prevMonth">← Önceki</button>
-<h2 id="monthTitle">Takvim</h2>
-<button class="btn btn-light" id="nextMonth">Sonraki →</button>
-</div>
-<p class="muted">Bir çekime tıklayarak müşteri kaydına ulaşabilirsin.</p>
-<div id="calendar" class="calendar"></div>
-</div>
-</section>
-
-<section id="photosSection" class="hidden">
-<div class="card">
-<h2>Fotoğraf yükle</h2>
-<p class="muted">JPG, PNG, WEBP ve diğer görsel dosyaları.</p>
-<input id="fileInput" type="file" accept="image/*" multiple>
-<div class="actions">
-<button class="btn" id="uploadBtn">Fotoğrafları yükle</button>
-<button class="btn btn-light" id="refreshBtn">Galeriyi yenile</button>
-</div>
-<div id="photoStatus" role="status"></div>
-</div>
-<div class="card">
-<h2>Mevcut fotoğraflar</h2>
-<p class="muted" id="photoCount">Galeri hazırlanıyor...</p>
-<div id="gallery" class="grid" style="margin-top:18px"></div>
-</div>
-</section>
-
-<p class="notice">Yönetici erişimi Supabase kimlik doğrulaması ve veritabanı izinleriyle kontrol edilir.</p>
-</section>
+<div id="newReservationModal" class="modal hidden">
+  <div class="modal-box">
+    <div class="close-row"><h2>＋ Yeni randevu ekle</h2><button class="btn btn-light" id="closeModal">Kapat ✕</button></div>
+    <p class="muted">Yeni müşteri kaydını doldurup kaydet.</p>
+    <form id="newReservationForm">
+      <div class="form-grid">
+        <div><label for="newBride">Gelin adı</label><input id="newBride" required></div>
+        <div><label for="newGroom">Damat adı</label><input id="newGroom"></div>
+        <div><label for="newBridePhone">Gelin telefonu</label><input id="newBridePhone" type="tel"></div>
+        <div><label for="newGroomPhone">Damat telefonu</label><input id="newGroomPhone" type="tel"></div>
+        <div><label for="newEvent">Çekim türü</label><input id="newEvent" placeholder="Düğün, kına, dış çekim..."></div>
+        <div><label for="newDate">Çekim tarihi</label><input id="newDate" type="date" required></div>
+        <div><label for="newPackage">Paket adı</label><input id="newPackage" placeholder="Premium"></div>
+        <div><label for="newPrice">Toplam paket tutarı (₺)</label><input id="newPrice" type="number" min="0" step="0.01" value="0" required></div>
+        <div><label for="newDeposit">Alınan kapora (₺)</label><input id="newDeposit" type="number" min="0" step="0.01" value="0"></div>
+        <div><label for="newPaymentMethod">Ödeme yöntemi</label><select id="newPaymentMethod"><option value="Belirtilmedi">Belirtilmedi</option><option value="Nakit">Nakit</option><option value="Havale/EFT">Havale/EFT</option><option value="Kredi kartı">Kredi kartı</option></select></div>
+        <div class="full"><label for="newLocation">Çekim yeri / şehir</label><input id="newLocation"></div>
+        <div class="full"><label for="newAddress">Adres</label><input id="newAddress"></div>
+        <div class="full"><label for="newNotes">Notlar</label><textarea id="newNotes"></textarea></div>
+      </div>
+      <div class="actions"><button class="btn btn-green" id="createReservationBtn" type="submit">Randevuyu kaydet</button><button class="btn btn-light" type="button" id="cancelModal">Vazgeç</button></div>
+      <div id="newReservationStatus" class="message"></div>
+    </form>
+  </div>
 </div>
 
 <script>
 'use strict';
 
-const SUPABASE_URL="https://nzriewxchkcfeknkbwuu.supabase.co";
-const SUPABASE_KEY="sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
-const BUCKET="site fotolar";
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const $=id=>document.getElementById(id);
+const SUPABASE_URL = "https://nzriewxchkcfeknkbwuu.supabase.co";
+const SUPABASE_KEY = "sb_publishable_tZemFcdKUDB-l7ozX2ezbA_rK542nOI";
+const BUCKET = "site fotolar";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+let currentUser = null;
+let busy = false;
+let reservations = [];
+let calendarMonth = new Date();
+let activeTab = "reservations";
 
-let currentUser=null;
-let busy=false;
-let reservations=[];
-let calendarMonth=new Date();
-let activeTab="reservations";
-
-function loginMessage(text){$("loginStatus").textContent=text}
-function reservationMessage(text){$("reservationStatus").textContent=text}
-function photoMessage(text){$("photoStatus").textContent=text}
-function money(value){return (Number(value)||0).toLocaleString("tr-TR",{maximumFractionDigits:2})+" ₺"}
-
-function escapeHTML(value){
-return String(value??"").replace(/[&<>"']/g,char=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-})[char]);
+function money(value) {
+  return (Number(value) || 0).toLocaleString("tr-TR",{maximumFractionDigits:2}) + " ₺";
 }
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
+}
+function message(id, text, type="") {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = text;
+  el.className = "message" + (type ? " " + type : "");
+}
+function totalPrice(r) { return Number(r.package_price) || 0; }
+function depositPrice(r) { return Number(r.deposit_amount) || 0; }
+function extraPayment(r) { return Number(r.additional_payment) || 0; }
+function remainingBalance(r) {
+  if (r.payment_status === "Ödendi") return 0;
+  return totalPrice(r) - depositPrice(r) - extraPayment(r);
+}
+function showLogin() {
+  $("loginView").classList.remove("hidden");
+  $("adminView").classList.add("hidden");
+}
+function showAdmin() {
+  $("loginView").classList.add("hidden");
+  $("adminView").classList.remove("hidden");
+}
+function setTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  $("reservationsSection").classList.toggle("hidden", tab !== "reservations");
+  $("calendarSection").classList.toggle("hidden", tab !== "calendar");
+  $("financeSection").classList.toggle("hidden", tab !== "finance");
+  $("photosSection").classList.toggle("hidden", tab !== "photos");
+  if (tab === "calendar") renderCalendar();
+  if (tab === "finance") renderFinance();
+  if (tab === "photos") loadGallery();
+}
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
 
-function basePrice(r){
-const value=Number(r.base_package_price);
-return Number.isFinite(value)&&r.base_package_price!==null&&r.base_package_price!==""?value:Number(r.package_price)||0;
+async function verifyAdmin(user) {
+  const {data,error} = await db.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();
+  if (error) throw error;
+  return !!data;
 }
-
-function extraServices(r){
-const value=String(r.extra_services||"").trim();
-return value&&value!=="Ek hizmet seçilmedi"?value:"";
+async function enterAdmin(user) {
+  try {
+    if (!(await verifyAdmin(user))) {
+      await db.auth.signOut();
+      currentUser = null;
+      showLogin();
+      message("loginStatus","Bu hesap yönetici olarak yetkilendirilmemiş.","error");
+      return;
+    }
+    currentUser = user;
+    showAdmin();
+    message("loginStatus","");
+    await loadReservations();
+    await loadGallery();
+  } catch (e) {
+    showLogin();
+    message("loginStatus","Yönetici kontrolü yapılamadı: " + e.message,"error");
+  }
 }
-
-function totalPrice(r){return Number(r.package_price)||0}
-function depositPrice(r){return Number(r.deposit_amount)||0}
-function additionalPayment(r){return Number(r.additional_payment)||0}
-function remainingBalance(r){return totalPrice(r)-depositPrice(r)-additionalPayment(r)}
-
-function showLogin(){
-$("loginView").classList.remove("hidden");
-$("adminView").classList.add("hidden");
-}
-function showAdmin(){
-$("loginView").classList.add("hidden");
-$("adminView").classList.remove("hidden");
-}
-
-function setTab(tab){
-activeTab=tab;
-document.querySelectorAll(".tab").forEach(button=>button.classList.toggle("active",button.dataset.tab===tab));
-$("reservationsSection").classList.toggle("hidden",tab!=="reservations");
-$("calendarSection").classList.toggle("hidden",tab!=="calendar");
-$("photosSection").classList.toggle("hidden",tab!=="photos");
-if(tab==="calendar")renderCalendar();
-if(tab==="photos")loadGallery();
-}
-document.querySelectorAll(".tab").forEach(button=>button.addEventListener("click",()=>setTab(button.dataset.tab)));
-
-async function verifyAdmin(user){
-const {data,error}=await db.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();
-if(error)throw error;
-return !!data;
-}
-
-async function enterAdmin(user){
-try{
-const allowed=await verifyAdmin(user);
-if(!allowed){
-await db.auth.signOut();
-currentUser=null;
-showLogin();
-loginMessage("Bu hesap yönetici olarak yetkilendirilmemiş.");
-return;
-}
-currentUser=user;
-showAdmin();
-loginMessage("");
-await Promise.all([loadReservations(),loadGallery()]);
-}catch(error){
-showLogin();
-loginMessage("Yönetici kontrolü yapılamadı: "+error.message);
-}
-}
-
-$("loginForm").addEventListener("submit",async event=>{
-event.preventDefault();
-$("loginBtn").disabled=true;
-loginMessage("Giriş kontrol ediliyor...");
-try{
-const {data,error}=await db.auth.signInWithPassword({
-email:$("email").value.trim(),
-password:$("password").value
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  $("loginBtn").disabled = true;
+  message("loginStatus","Giriş kontrol ediliyor...");
+  try {
+    const {data,error} = await db.auth.signInWithPassword({
+      email:$("email").value.trim(),
+      password:$("password").value
+    });
+    if (error) throw error;
+    await enterAdmin(data.user);
+  } catch (e) {
+    message("loginStatus","Giriş başarısız: " + e.message,"error");
+  } finally {
+    $("loginBtn").disabled = false;
+  }
 });
-if(error)throw error;
-await enterAdmin(data.user);
-}catch(error){
-loginMessage("Giriş başarısız: "+error.message);
-}finally{
-$("loginBtn").disabled=false;
-}
-});
-
-$("logoutBtn").addEventListener("click",async()=>{
-const {error}=await db.auth.signOut();
-currentUser=null;
-showLogin();
-loginMessage(error?error.message:"Güvenli çıkış yapıldı.");
+$("logoutBtn").addEventListener("click", async () => {
+  await db.auth.signOut();
+  currentUser = null;
+  showLogin();
+  message("loginStatus","Güvenli çıkış yapıldı.","success");
 });
 
-async function loadReservations(){
-if(!currentUser)return;
-reservationMessage("Rezervasyonlar yükleniyor...");
-$("reservationRows").innerHTML='<tr><td colspan="6" class="empty">Yükleniyor...</td></tr>';
-
-const {data,error}=await db.from("reservations").select("*").order("shoot_date",{ascending:true});
-
-if(error){
-reservations=[];
-$("reservationRows").innerHTML='<tr><td colspan="6" class="empty">Kayıtlar alınamadı.</td></tr>';
-reservationMessage("Rezervasyonlar alınamadı: "+error.message);
-updateStats();
-return;
+async function loadReservations() {
+  if (!currentUser) return;
+  message("reservationStatus","Rezervasyonlar yükleniyor...");
+  $("reservationRows").innerHTML = '<tr><td colspan="6" class="empty">Yükleniyor...</td></tr>';
+  const {data,error} = await db.from("reservations").select("*").order("shoot_date",{ascending:true});
+  if (error) {
+    reservations = [];
+    $("reservationRows").innerHTML = '<tr><td colspan="6" class="empty">Kayıtlar alınamadı.</td></tr>';
+    message("reservationStatus","Rezervasyonlar alınamadı: " + error.message,"error");
+    updateStats();
+    return;
+  }
+  reservations = data || [];
+  updateStats();
+  renderReservations();
+  renderCalendar();
+  renderFinance();
+  message("reservationStatus",reservations.length + " rezervasyon bulundu.","success");
 }
-reservations=data||[];
-reservationMessage(reservations.length+" rezervasyon bulundu.");
-updateStats();
-renderReservations();
-renderCalendar();
+function updateStats() {
+  const active = reservations.filter(r => !["Tamamlandı","İptal"].includes(r.reservation_status));
+  $("totalCount").textContent = reservations.length;
+  $("pendingCount").textContent = active.length;
+  $("totalRevenue").textContent = money(reservations.reduce((s,r)=>s+totalPrice(r),0));
+  $("totalDeposit").textContent = money(reservations.reduce((s,r)=>s+depositPrice(r),0));
+  $("totalBalance").textContent = money(reservations.reduce((s,r)=>s+Math.max(0,remainingBalance(r)),0));
+  $("financeRevenue").textContent = money(reservations.reduce((s,r)=>s+totalPrice(r),0));
+  $("financeDeposit").textContent = money(reservations.reduce((s,r)=>s+depositPrice(r),0));
+  $("financeExtra").textContent = money(reservations.reduce((s,r)=>s+extraPayment(r),0));
+  $("financeBalance").textContent = money(reservations.reduce((s,r)=>s+Math.max(0,remainingBalance(r)),0));
 }
-
-function updateStats(){
-$("totalCount").textContent=reservations.length;
-$("pendingCount").textContent=reservations.filter(r=>!r.reservation_status||!["Tamamlandı","İptal"].includes(r.reservation_status)).length;
-$("totalRevenue").textContent=money(reservations.reduce((sum,r)=>sum+totalPrice(r),0));
-$("totalDeposit").textContent=money(reservations.reduce((sum,r)=>sum+depositPrice(r),0));
-$("totalBalance").textContent=money(reservations.reduce((sum,r)=>sum+remainingBalance(r),0));
+function optionList(options, selected) {
+  const current = selected || options[0];
+  const all = [...new Set([current,...options].filter(Boolean))];
+  return all.map(x=>`<option value="${esc(x)}" ${x===current?"selected":""}>${esc(x)}</option>`).join("");
 }
-
-function renderReservations(){
-const query=$("reservationSearch").value.trim().toLocaleLowerCase("tr");
-const filtered=reservations.filter(r=>{
-const text=[
-r.bride_name,r.groom_name,r.bride_phone,r.groom_phone,
-r.event_type,r.shoot_location,r.venue_address,r.package_name,
-r.extra_services,r.notes
-].join(" ").toLocaleLowerCase("tr");
-return text.includes(query);
+function getFilteredReservations() {
+  const query = $("reservationSearch").value.trim().toLocaleLowerCase("tr-TR");
+  const status = $("statusFilter").value;
+  const payment = $("paymentFilter").value;
+  const date = $("dateFilter").value;
+  return reservations.filter(r => {
+    const text = [r.bride_name,r.groom_name,r.bride_phone,r.groom_phone,r.event_type,r.shoot_location,r.venue_address,r.package_name,r.notes].join(" ").toLocaleLowerCase("tr-TR");
+    return text.includes(query) && (!status || r.reservation_status === status) &&
+      (!payment || r.payment_status === payment) && (!date || r.shoot_date === date);
+  });
+}
+function renderReservations() {
+  const filtered = getFilteredReservations();
+  if (!filtered.length) {
+    $("reservationRows").innerHTML = '<tr><td colspan="6" class="empty">Bu filtrelerle eşleşen rezervasyon yok.</td></tr>';
+    return;
+  }
+  $("reservationRows").innerHTML = filtered.map(r => {
+    const name = [r.bride_name,r.groom_name].filter(Boolean).join(" & ") || "İsimsiz müşteri";
+    const remaining = remainingBalance(r);
+    const phone = (r.bride_phone || r.groom_phone || "").replace(/[^\d+]/g,"");
+    const whatsappPhone = phone.startsWith("0") ? "90"+phone.slice(1) : phone;
+    const whatsapp = whatsappPhone ? `https://wa.me/${encodeURIComponent(whatsappPhone)}` : "";
+    return `<tr>
+      <td>
+        <div class="customer">${esc(name)}</div>
+        <div class="small">Gelin: ${esc(r.bride_phone || "—")}<br>Damat: ${esc(r.groom_phone || "—")}</div>
+        <div class="small"><b>Tarih:</b> ${esc(r.shoot_date || "Belirtilmedi")}</div>
+        <div class="small"><b>Çekim:</b> ${esc(r.event_type || "—")}</div>
+        <div class="small"><b>Yer:</b> ${esc(r.shoot_location || "—")}</div>
+        ${r.venue_address ? `<div class="small"><b>Adres:</b> ${esc(r.venue_address)}</div>` : ""}
+        ${r.notes ? `<div class="small"><b>Not:</b> ${esc(r.notes)}</div>` : ""}
+      </td>
+      <td>
+        <b>${esc(r.package_name || "Paket belirtilmemiş")}</b>
+        <div class="price-line">Toplam: <strong>${money(totalPrice(r))}</strong></div>
+        <div class="price-line">Kalan: <strong>${money(Math.max(0,remaining))}</strong></div>
+      </td>
+      <td>
+        <label>Kapora (₺)</label>
+        <input type="number" min="0" step="0.01" id="deposit-${esc(r.id)}" value="${depositPrice(r)}">
+        <label>Ek ödeme (₺)</label>
+        <input type="number" min="0" step="0.01" id="additional-${esc(r.id)}" value="${extraPayment(r)}">
+      </td>
+      <td><select id="payment-${esc(r.id)}">${optionList(["Bekliyor","Kapora alındı","Kısmi ödeme","Ödendi"],r.payment_status)}</select></td>
+      <td><select id="status-${esc(r.id)}">${optionList(["Yeni","Bekliyor","Onaylandı","Çekim yapıldı","Tamamlandı","İptal"],r.reservation_status)}</select></td>
+      <td><div class="row-actions">
+        <button class="btn save-row" data-id="${esc(r.id)}">Değişiklikleri kaydet</button>
+        <button class="btn btn-green close-account" data-id="${esc(r.id)}">✓ Hesap kapandı</button>
+        ${whatsapp ? `<a class="btn btn-light" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>` : `<button class="btn btn-light" disabled>Telefon yok</button>`}
+      </div></td>
+    </tr>`;
+  }).join("");
+  document.querySelectorAll(".save-row").forEach(b=>b.addEventListener("click",()=>saveReservation(b.dataset.id)));
+  document.querySelectorAll(".close-account").forEach(b=>b.addEventListener("click",()=>closeAccount(b.dataset.id)));
+}
+async function saveReservation(id) {
+  const r = reservations.find(x=>String(x.id)===String(id));
+  if (!r) return;
+  const deposit = Number($("deposit-"+id).value);
+  const additional = Number($("additional-"+id).value);
+  const payment = $("payment-"+id).value;
+  const status = $("status-"+id).value;
+  if (!Number.isFinite(deposit)||deposit<0||!Number.isFinite(additional)||additional<0) {
+    alert("Kapora ve ek ödeme sıfır veya daha büyük olmalı."); return;
+  }
+  if (deposit+additional>totalPrice(r) && !confirm("Girilen ödemeler toplam fiyatı aşıyor. Devam edilsin mi?")) return;
+  message("reservationStatus","Değişiklikler kaydediliyor...");
+  const {error} = await db.from("reservations").update({
+    deposit_amount:deposit,
+    additional_payment:additional,
+    payment_status:payment,
+    reservation_status:status
+  }).eq("id",id);
+  if (error) {
+    message("reservationStatus","Kaydedilemedi: "+error.message,"error");
+    return;
+  }
+  message("reservationStatus","Rezervasyon ve ödeme bilgileri kaydedildi.","success");
+  await loadReservations();
+}
+async function closeAccount(id) {
+  const r = reservations.find(x=>String(x.id)===String(id));
+  if (!r) return;
+  if (!confirm(`${[r.bride_name,r.groom_name].filter(Boolean).join(" & ") || "Bu müşteri"} için hesabı kapatmak ve ödeme durumunu "Ödendi" yapmak istiyor musun?`)) return;
+  message("reservationStatus","Hesap kapatılıyor...");
+  // Hesap kapatma, rezervasyonu silmez ve kapora tutarını değiştirmez.
+  const {error} = await db.from("reservations").update({payment_status:"Ödendi"}).eq("id",id);
+  if (error) {
+    message("reservationStatus","Hesap kapatılamadı: "+error.message,"error");
+    return;
+  }
+  message("reservationStatus","Hesap kapandı olarak kaydedildi. Rezervasyon silinmedi.","success");
+  await loadReservations();
+}
+["reservationSearch","statusFilter","paymentFilter","dateFilter"].forEach(id=>$(id).addEventListener("input",renderReservations));
+$("clearFilters").addEventListener("click",()=>{
+  $("reservationSearch").value="";
+  $("statusFilter").value="";
+  $("paymentFilter").value="";
+  $("dateFilter").value="";
+  renderReservations();
 });
-
-if(!filtered.length){
-$("reservationRows").innerHTML='<tr><td colspan="6" class="empty">Aramayla eşleşen rezervasyon bulunamadı.</td></tr>';
-return;
-}
-
-$("reservationRows").innerHTML=filtered.map(r=>{
-const extras=extraServices(r);
-const accepted=r.contract_accepted===true;
-const base=basePrice(r);
-const total=totalPrice(r);
-const extraTotal=Math.max(0,total-base);
-const remaining=remainingBalance(r);
-
-return `
-<tr>
-<td>
-<div class="customer">${escapeHTML([r.bride_name,r.groom_name].filter(Boolean).join(" & ")||"İsimsiz müşteri")}</div>
-<div class="small">Gelin: ${escapeHTML(r.bride_phone||"—")}<br>Damat: ${escapeHTML(r.groom_phone||"—")}</div>
-<div class="small"><strong>Tarih:</strong> ${escapeHTML(r.shoot_date||"Tarih yok")}</div>
-<div class="small"><strong>Şehir / yer:</strong> ${escapeHTML(r.shoot_location||"—")}</div>
-<div class="small"><strong>Adres:</strong> ${escapeHTML(r.venue_address||"—")}</div>
-<div class="small"><strong>Çekim / hizmet:</strong> ${escapeHTML(r.event_type||"—")}</div>
-${r.notes?`<div class="small"><strong>Notlar:</strong><br>${escapeHTML(r.notes)}</div>`:""}
-<div class="small"><span class="pill ${accepted?"ok":"no"}">Sözleşme / bilgilendirme: ${accepted?"Kabul edildi":"Kabul edilmedi / eski kayıt"}</span></div>
-</td>
-<td>
-<div><strong>${escapeHTML(r.package_name||"Paket belirtilmemiş")}</strong></div>
-<div class="price-line">Paket ana fiyatı: <strong>${money(base)}</strong></div>
-<div class="price-line">Ek hizmet tutarı: <strong>${money(extraTotal)}</strong></div>
-${extras?`<div class="small"><strong>Ek hizmetler:</strong></div><div>${extras.split(",").map(item=>`<span class="extra-line">${escapeHTML(item.trim())}</span>`).join("")}</div>`:`<div class="small">Ek hizmet seçilmedi</div>`}
-<div class="price-line">TOPLAM: <strong>${money(total)}</strong></div>
-</td>
-<td>
-<label for="deposit-${escapeHTML(r.id)}">Kapora</label>
-<input type="number" min="0" step="0.01" id="deposit-${escapeHTML(r.id)}" value="${depositPrice(r)}" aria-label="Kapora">
-<label for="additional-${escapeHTML(r.id)}">Ek alınan ödeme</label>
-<input type="number" min="0" step="0.01" id="additional-${escapeHTML(r.id)}" value="${additionalPayment(r)}" aria-label="Ek alınan ödeme">
-<div class="price-line">Kalan: <strong>${money(remaining)}</strong></div>
-</td>
-<td>
-<select id="payment-${escapeHTML(r.id)}" aria-label="Ödeme durumu">
-${optionList(["Bekliyor","Kapora alındı","Kısmi ödeme","Ödendi"],r.payment_status)}
-</select>
-</td>
-<td>
-<select id="status-${escapeHTML(r.id)}" aria-label="Rezervasyon durumu">
-${optionList(["Yeni","Bekliyor","Onaylandı","Çekim yapıldı","Tamamlandı","İptal"],r.reservation_status)}
-</select>
-</td>
-<td><button class="btn save-row" data-id="${escapeHTML(r.id)}">Kaydet</button></td>
-</tr>`;
-}).join("");
-
-document.querySelectorAll(".save-row").forEach(button=>button.addEventListener("click",()=>saveReservation(button.dataset.id)));
-
-filtered.forEach(r=>{
-const depositInput=$("deposit-"+r.id);
-const additionalInput=$("additional-"+r.id);
-if(!depositInput||!additionalInput)return;
-const refreshRemaining=()=>{
-const remain=totalPrice(r)-(Number(depositInput.value)||0)-(Number(additionalInput.value)||0);
-const label=depositInput.parentElement.querySelector(".price-line strong");
-if(label)label.textContent=money(remain);
-};
-depositInput.addEventListener("input",refreshRemaining);
-additionalInput.addEventListener("input",refreshRemaining);
-});
-}
-
-function optionList(options,selected){
-const current=selected||options[0];
-const all=[...new Set([current,...options].filter(Boolean))];
-return all.map(item=>`<option value="${escapeHTML(item)}" ${item===current?"selected":""}>${escapeHTML(item)}</option>`).join("");
-}
-
-async function saveReservation(id){
-if(!currentUser)return;
-const deposit=Number($("deposit-"+id).value);
-const additional=Number($("additional-"+id).value);
-const payment=$("payment-"+id).value;
-const status=$("status-"+id).value;
-const reservation=reservations.find(r=>String(r.id)===String(id));
-if(!reservation)return;
-
-if(!Number.isFinite(deposit)||deposit<0||!Number.isFinite(additional)||additional<0){
-alert("Kapora ve ek ödeme sıfır veya daha büyük olmalı.");
-return;
-}
-if(deposit+additional>totalPrice(reservation)){
-if(!confirm("Girilen ödemeler toplam fiyatı aşıyor. Yine de kaydedilsin mi?"))return;
-}
-
-reservationMessage("Değişiklikler kaydediliyor...");
-const {error}=await db.from("reservations").update({
-deposit_amount:deposit,
-additional_payment:additional,
-payment_status:payment,
-reservation_status:status
-}).eq("id",id);
-
-if(error){
-reservationMessage("Kaydedilemedi: "+error.message);
-return;
-}
-reservationMessage("Rezervasyon güncellendi.");
-await loadReservations();
-}
-
-$("reservationSearch").addEventListener("input",renderReservations);
 $("reloadReservations").addEventListener("click",loadReservations);
 
-function renderCalendar(){
-const year=calendarMonth.getFullYear();
-const month=calendarMonth.getMonth();
-$("monthTitle").textContent=calendarMonth.toLocaleDateString("tr-TR",{month:"long",year:"numeric"});
-const first=new Date(year,month,1);
-const offset=(first.getDay()+6)%7;
-const days=new Date(year,month+1,0).getDate();
-const previousDays=new Date(year,month,0).getDate();
-const today=new Date();
-const todayKey=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
-
-let html=["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"].map(day=>`<div class="day-name">${day}</div>`).join("");
-for(let i=0;i<42;i++){
-let dayNumber,date,other=false;
-if(i<offset){
-dayNumber=previousDays-offset+i+1;
-date=new Date(year,month-1,dayNumber);
-other=true;
-}else if(i>=offset+days){
-dayNumber=i-offset-days+1;
-date=new Date(year,month+1,dayNumber);
-other=true;
-}else{
-dayNumber=i-offset+1;
-date=new Date(year,month,dayNumber);
+function renderFinance() {
+  updateStats();
+  const unpaid = reservations.filter(r=>remainingBalance(r)>0 && r.payment_status!=="Ödendi");
+  $("financeList").innerHTML = unpaid.length ? `<div class="table-wrap"><table>
+    <thead><tr><th>Müşteri</th><th>Tarih</th><th>Paket</th><th>Toplam</th><th>Kapora</th><th>Kalan</th></tr></thead>
+    <tbody>${unpaid.map(r=>`<tr>
+      <td>${esc([r.bride_name,r.groom_name].filter(Boolean).join(" & ")||"İsimsiz")}</td>
+      <td>${esc(r.shoot_date||"—")}</td><td>${esc(r.package_name||"—")}</td>
+      <td>${money(totalPrice(r))}</td><td>${money(depositPrice(r))}</td><td><b>${money(Math.max(0,remainingBalance(r)))}</b></td>
+    </tr>`).join("")}</tbody></table></div>` : '<div class="empty">Bekleyen ödeme görünmüyor.</div>';
 }
-const key=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
-const events=reservations.filter(r=>r.shoot_date===key&&r.reservation_status!=="İptal");
-html+=`<div class="day ${other?"other":""} ${key===todayKey?"today":""}">
-<strong>${dayNumber}</strong>
-${events.map(r=>`<div class="event" data-reservation="${escapeHTML(r.id)}">${escapeHTML([r.bride_name,r.groom_name].filter(Boolean).join(" & ")||r.package_name||"Çekim")}</div>`).join("")}
-</div>`;
+function csvCell(value) {
+  return '"' + String(value ?? "").replace(/"/g,'""') + '"';
 }
-$("calendar").innerHTML=html;
-$("calendar").querySelectorAll("[data-reservation]").forEach(el=>{
-el.addEventListener("click",()=>{
-$("reservationSearch").value="";
-renderReservations();
-setTab("reservations");
-const row=reservations.find(r=>String(r.id)===el.dataset.reservation);
-if(row)reservationMessage("Seçilen müşteri: "+[row.bride_name,row.groom_name].filter(Boolean).join(" & "));
-});
-});
-}
-$("prevMonth").addEventListener("click",()=>{
-calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);
-renderCalendar();
-});
-$("nextMonth").addEventListener("click",()=>{
-calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);
-renderCalendar();
+$("exportCsv").addEventListener("click",()=>{
+  const rows = getFilteredReservations();
+  if (!rows.length) { alert("Dışa aktarılacak kayıt bulunamadı."); return; }
+  const headers = ["ID","Gelin","Damat","Gelin telefonu","Damat telefonu","Çekim türü","Tarih","Yer","Adres","Paket","Toplam tutar","Kapora","Ek ödeme","Kalan","Ödeme durumu","Randevu durumu","Notlar"];
+  const lines = [headers,...rows.map(r=>[
+    r.id,r.bride_name,r.groom_name,r.bride_phone,r.groom_phone,r.event_type,r.shoot_date,
+    r.shoot_location,r.venue_address,r.package_name,totalPrice(r),depositPrice(r),extraPayment(r),
+    Math.max(0,remainingBalance(r)),r.payment_status,r.reservation_status,r.notes
+  ])].map(row=>row.map(csvCell).join(";")).join("\r\n");
+  const blob = new Blob(["\ufeff"+lines],{type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "ceyhun-studio-rezervasyonlar.csv"; a.click();
+  URL.revokeObjectURL(url);
 });
 
-async function loadGallery(){
-if(!currentUser)return;
-$("gallery").replaceChildren();
-$("photoCount").textContent="Yükleniyor...";
-const {data,error}=await db.storage.from(BUCKET).list("",{
-limit:1000,offset:0,sortBy:{column:"name",order:"asc"}
+function renderCalendar() {
+  const year = calendarMonth.getFullYear(), month = calendarMonth.getMonth();
+  $("monthTitle").textContent = calendarMonth.toLocaleDateString("tr-TR",{month:"long",year:"numeric"});
+  const first = new Date(year,month,1);
+  const offset = (first.getDay()+6)%7;
+  const days = new Date(year,month+1,0).getDate();
+  const prevDays = new Date(year,month,0).getDate();
+  const today = new Date();
+  const todayKey = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+  let html = ["Pzt","Sal","Çar","Per","Cum","Cmt","Paz"].map(d=>`<div class="day-name">${d}</div>`).join("");
+  for (let i=0;i<42;i++) {
+    let num,date,other=false;
+    if(i<offset){num=prevDays-offset+i+1;date=new Date(year,month-1,num);other=true;}
+    else if(i>=offset+days){num=i-offset-days+1;date=new Date(year,month+1,num);other=true;}
+    else{num=i-offset+1;date=new Date(year,month,num);}
+    const key = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;
+    const events = reservations.filter(r=>r.shoot_date===key&&r.reservation_status!=="İptal");
+    html += `<div class="day ${other?"other":""} ${key===todayKey?"today":""}"><strong>${num}</strong>
+      ${events.map(r=>`<div class="event" data-reservation="${esc(r.id)}">${esc([r.bride_name,r.groom_name].filter(Boolean).join(" & ")||r.package_name||"Çekim")}</div>`).join("")}
+    </div>`;
+  }
+  $("calendar").innerHTML = html;
+  $("calendar").querySelectorAll("[data-reservation]").forEach(el=>el.addEventListener("click",()=>{
+    const r = reservations.find(x=>String(x.id)===el.dataset.reservation);
+    setTab("reservations");
+    $("reservationSearch").value = r ? (r.bride_name || r.groom_name || "") : "";
+    renderReservations();
+  }));
+}
+$("prevMonth").addEventListener("click",()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);renderCalendar();});
+$("nextMonth").addEventListener("click",()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);renderCalendar();});
+
+function openModal() {
+  $("newReservationModal").classList.remove("hidden");
+  message("newReservationStatus","");
+}
+function closeModal() {
+  $("newReservationModal").classList.add("hidden");
+  $("newReservationForm").reset();
+  $("newDeposit").value="0";
+  $("newPrice").value="0";
+  message("newReservationStatus","");
+}
+$("newReservationBtn").addEventListener("click",openModal);
+$("closeModal").addEventListener("click",closeModal);
+$("cancelModal").addEventListener("click",closeModal);
+$("newReservationModal").addEventListener("click",e=>{if(e.target===$("newReservationModal"))closeModal();});
+
+$("newReservationForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if (!currentUser) return;
+  const price = Number($("newPrice").value);
+  const deposit = Number($("newDeposit").value || 0);
+  if (price<0 || deposit<0 || !Number.isFinite(price) || !Number.isFinite(deposit)) {
+    message("newReservationStatus","Tutarlar geçerli olmalı.","error"); return;
+  }
+  const payload = {
+    bride_name:$("newBride").value.trim(),
+    groom_name:$("newGroom").value.trim() || null,
+    bride_phone:$("newBridePhone").value.trim() || null,
+    groom_phone:$("newGroomPhone").value.trim() || null,
+    event_type:$("newEvent").value.trim() || null,
+    shoot_date:$("newDate").value,
+    shoot_location:$("newLocation").value.trim() || null,
+    venue_address:$("newAddress").value.trim() || null,
+    package_name:$("newPackage").value.trim() || null,
+    package_price:price,
+    deposit_amount:deposit,
+    payment_method:$("newPaymentMethod").value,
+    payment_status:deposit>=price && price>0 ? "Ödendi" : deposit>0 ? "Kapora alındı" : "Bekliyor",
+    reservation_status:"Bekliyor",
+    notes:$("newNotes").value.trim() || null
+  };
+  $("createReservationBtn").disabled=true;
+  message("newReservationStatus","Randevu kaydediliyor...");
+  try {
+    const {error} = await db.from("reservations").insert(payload);
+    if (error) throw error;
+    message("newReservationStatus","Randevu başarıyla kaydedildi.","success");
+    await loadReservations();
+    setTimeout(closeModal,700);
+  } catch(error) {
+    message("newReservationStatus","Kayıt yapılamadı: "+error.message,"error");
+  } finally {
+    $("createReservationBtn").disabled=false;
+  }
 });
-if(error){
-photoMessage("Galeri alınamadı: "+error.message);
-$("photoCount").textContent="Fotoğraflar alınamadı";
-return;
-}
-const photos=(data||[]).filter(file=>file.name&&/\.(jpg|jpeg|png|webp|gif|avif)$/i.test(file.name));
-$("photoCount").textContent=photos.length+" fotoğraf";
-photoMessage("");
-if(!photos.length){
-$("gallery").textContent="Henüz fotoğraf bulunamadı.";
-return;
-}
-for(const photo of photos){
-const {data:publicData}=db.storage.from(BUCKET).getPublicUrl(photo.name);
-const card=document.createElement("article");
-card.className="photo";
-const img=document.createElement("img");
-img.src=publicData.publicUrl;
-img.alt=photo.name;
-img.loading="lazy";
-const info=document.createElement("div");
-info.className="photo-info";
-const filename=document.createElement("div");
-filename.className="filename";
-filename.textContent=photo.name;
-const del=document.createElement("button");
-del.className="btn btn-danger";
-del.textContent="Fotoğrafı sil";
-del.addEventListener("click",()=>deletePhoto(photo.name));
-info.append(filename,del);
-card.append(img,info);
-$("gallery").append(card);
-}
-}
 
-async function deletePhoto(name){
-if(!currentUser||busy)return;
-if(!confirm(`"${name}" fotoğrafını kalıcı olarak silmek istiyor musun?`))return;
-busy=true;
-try{
-const {error}=await db.storage.from(BUCKET).remove([name]);
-if(error)throw error;
-photoMessage("Fotoğraf silindi.");
-await loadGallery();
-}catch(error){
-photoMessage("Silme başarısız: "+error.message);
-}finally{
-busy=false;
+async function loadGallery() {
+  if (!currentUser) return;
+  $("gallery").replaceChildren();
+  $("photoCount").textContent="Yükleniyor...";
+  const {data,error} = await db.storage.from(BUCKET).list("",{limit:1000,offset:0,sortBy:{column:"name",order:"asc"}});
+  if (error) {
+    message("photoStatus","Galeri alınamadı: "+error.message,"error");
+    $("photoCount").textContent="Fotoğraflar alınamadı";
+    return;
+  }
+  const photos = (data||[]).filter(f=>f.name&&/\.(jpg|jpeg|png|webp|gif|avif)$/i.test(f.name));
+  $("photoCount").textContent=photos.length+" fotoğraf";
+  message("photoStatus","");
+  if (!photos.length) { $("gallery").textContent="Henüz fotoğraf bulunamadı."; return; }
+  for (const photo of photos) {
+    const {data:pub} = db.storage.from(BUCKET).getPublicUrl(photo.name);
+    const card = document.createElement("article"); card.className="photo";
+    const img = document.createElement("img"); img.src=pub.publicUrl; img.alt=photo.name; img.loading="lazy";
+    const info = document.createElement("div"); info.className="photo-info";
+    const filename = document.createElement("div"); filename.className="filename"; filename.textContent=photo.name;
+    const del = document.createElement("button"); del.className="btn btn-red"; del.textContent="Fotoğrafı sil";
+    del.addEventListener("click",()=>deletePhoto(photo.name));
+    info.append(filename,del); card.append(img,info); $("gallery").append(card);
+  }
 }
+async function deletePhoto(name) {
+  if (!currentUser||busy) return;
+  if (!confirm(`"${name}" fotoğrafını kalıcı olarak silmek istiyor musun?`)) return;
+  busy=true;
+  try {
+    const {error} = await db.storage.from(BUCKET).remove([name]);
+    if (error) throw error;
+    message("photoStatus","Fotoğraf silindi.","success");
+    await loadGallery();
+  } catch(e) { message("photoStatus","Silme başarısız: "+e.message,"error"); }
+  finally { busy=false; }
 }
-
 $("uploadBtn").addEventListener("click",async()=>{
-if(!currentUser||busy)return;
-const files=Array.from($("fileInput").files||[]);
-if(!files.length){
-photoMessage("Önce yüklemek istediğin fotoğrafları seç.");
-return;
-}
-busy=true;
-$("uploadBtn").disabled=true;
-let uploaded=0;
-const errors=[];
-try{
-for(const file of files){
-if(!file.type.startsWith("image/")){
-errors.push(file.name+": Görsel dosyası değil.");
-continue;
-}
-const safeName=file.name.normalize("NFKD").replace(/[^\w.-]+/g,"_");
-const uniqueName=Date.now()+"_"+Math.random().toString(36).slice(2,8)+"_"+safeName;
-const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{
-cacheControl:"3600",upsert:false,contentType:file.type
-});
-if(error)errors.push(file.name+": "+error.message);
-else uploaded++;
-}
-$("fileInput").value="";
-photoMessage(uploaded+" fotoğraf yüklendi."+(errors.length?"\nSorunlar:\n"+errors.join("\n"):""));
-await loadGallery();
-}catch(error){
-photoMessage("Yükleme başarısız: "+error.message);
-}finally{
-busy=false;
-$("uploadBtn").disabled=false;
-}
+  if (!currentUser||busy) return;
+  const files=Array.from($("fileInput").files||[]);
+  if (!files.length) { message("photoStatus","Önce fotoğraf seç.","error"); return; }
+  busy=true; $("uploadBtn").disabled=true;
+  let uploaded=0; const errors=[];
+  try {
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) { errors.push(file.name+": Görsel değil."); continue; }
+      const safeName=file.name.normalize("NFKD").replace(/[^\w.-]+/g,"_");
+      const uniqueName=Date.now()+"_"+Math.random().toString(36).slice(2,8)+"_"+safeName;
+      const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+      if(error) errors.push(file.name+": "+error.message); else uploaded++;
+    }
+    $("fileInput").value="";
+    message("photoStatus",uploaded+" fotoğraf yüklendi."+(errors.length?"\nSorunlar:\n"+errors.join("\n"):""),errors.length?"error":"success");
+    await loadGallery();
+  } catch(e) { message("photoStatus","Yükleme başarısız: "+e.message,"error"); }
+  finally { busy=false; $("uploadBtn").disabled=false; }
 });
 $("refreshBtn").addEventListener("click",loadGallery);
 
 (async function init(){
-const {data,error}=await db.auth.getSession();
-if(error){
-loginMessage("Oturum kontrol edilemedi: "+error.message);
-return;
-}
-if(data.session)await enterAdmin(data.session.user);
+  const {data,error}=await db.auth.getSession();
+  if(error){message("loginStatus","Oturum kontrol edilemedi: "+error.message,"error");return;}
+  if(data.session) await enterAdmin(data.session.user);
 })();
 db.auth.onAuthStateChange(event=>{
-if(event==="SIGNED_OUT"){
-currentUser=null;
-showLogin();
-}
+  if(event==="SIGNED_OUT"){currentUser=null;showLogin();}
 });
 </script>
 </body>
