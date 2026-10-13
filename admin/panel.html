@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -436,12 +436,14 @@ function renderReservations() {
       <td><div class="row-actions">
         <button class="btn save-row" data-id="${esc(r.id)}">Değişiklikleri kaydet</button>
         <button class="btn btn-green close-account" data-id="${esc(r.id)}">✓ Hesap kapandı</button>
+        <button class="btn btn-red delete-row" data-id="${esc(r.id)}">🗑️ Randevuyu sil</button>
         ${whatsapp ? `<a class="btn btn-light" target="_blank" rel="noopener" href="${whatsapp}">WhatsApp</a>` : `<button class="btn btn-light" disabled>Telefon yok</button>`}
       </div></td>
     </tr>`;
   }).join("");
   document.querySelectorAll(".save-row").forEach(b=>b.addEventListener("click",()=>saveReservation(b.dataset.id)));
   document.querySelectorAll(".close-account").forEach(b=>b.addEventListener("click",()=>closeAccount(b.dataset.id)));
+  document.querySelectorAll(".delete-row").forEach(b=>b.addEventListener("click",()=>deleteReservation(b.dataset.id)));
 }
 async function saveReservation(id) {
   const r = reservations.find(x=>String(x.id)===String(id));
@@ -468,12 +470,40 @@ async function saveReservation(id) {
   message("reservationStatus","Rezervasyon ve ödeme bilgileri kaydedildi.","success");
   await loadReservations();
 }
+
+async function deleteReservation(id) {
+  if (!currentUser || busy) return;
+  const r = reservations.find(x => String(x.id) === String(id));
+  if (!r) return;
+
+  const name = [r.bride_name, r.groom_name].filter(Boolean).join(" & ") || "Bu müşteri";
+  const ok = confirm(`DİKKAT: ${name} adlı müşterinin randevu kaydını kalıcı olarak silmek istiyor musun?\n\nBu işlem geri alınamaz.`);
+  if (!ok) return;
+
+  busy = true;
+  message("reservationStatus", "Randevu siliniyor...");
+  try {
+    const { error } = await db.from("reservations").delete().eq("id", id);
+    if (error) throw error;
+
+    reservations = reservations.filter(x => String(x.id) !== String(id));
+    updateStats();
+    renderReservations();
+    renderCalendar();
+    renderFinance();
+    message("reservationStatus", `${name} randevusu silindi.`, "success");
+  } catch (e) {
+    message("reservationStatus", "Randevu silinemedi: " + e.message + "\nSupabase üzerinde yönetici DELETE iznini kontrol et.", "error");
+  } finally {
+    busy = false;
+  }
+}
+
 async function closeAccount(id) {
   const r = reservations.find(x=>String(x.id)===String(id));
   if (!r) return;
   if (!confirm(`${[r.bride_name,r.groom_name].filter(Boolean).join(" & ") || "Bu müşteri"} için hesabı kapatmak ve ödeme durumunu "Ödendi" yapmak istiyor musun?`)) return;
   message("reservationStatus","Hesap kapatılıyor...");
-  // Hesap kapatma, rezervasyonu silmez ve kapora tutarını değiştirmez.
   const {error} = await db.from("reservations").update({payment_status:"Ödendi"}).eq("id",id);
   if (error) {
     message("reservationStatus","Hesap kapatılamadı: "+error.message,"error");
@@ -680,3 +710,4 @@ db.auth.onAuthStateChange(event=>{
 </script>
 </body>
 </html>
+```
